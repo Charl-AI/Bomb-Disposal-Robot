@@ -6,7 +6,6 @@
  * This project is to develop the software and hardware for an autonomous
  * bomb disposal robot.
  
- GitHub test line
  */
 
 /*****************************************************************************/
