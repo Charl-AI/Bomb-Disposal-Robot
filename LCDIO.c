@@ -15,7 +15,6 @@
  //#define LCD_DB7 LATDbits.LATD1
  
  */
-#include "config.h"
 #include "LCDIO.h"
 #include <xc.h>
 #include <pic18f4331.h>
@@ -100,7 +99,7 @@ void LCD_Init(void){
  __delay_us(50);
  
  // Display on (cursor on, blinking on)
- SendLCD(0b00001110,0);
+ SendLCD(0b00001100,0);
  __delay_us(50);
 }
 
