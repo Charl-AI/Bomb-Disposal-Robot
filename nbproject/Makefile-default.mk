@@ -57,17 +57,17 @@ OBJECTDIR=build/${CND_CONF}/${IMAGE_TYPE}
 DISTDIR=dist/${CND_CONF}/${IMAGE_TYPE}
 
 # Source Files Quoted if spaced
-SOURCEFILES_QUOTED_IF_SPACED=main.c dc_motor.c LCDIO.c
+SOURCEFILES_QUOTED_IF_SPACED=main.c dc_motor.c LCDIO.c RFID.c
 
 # Object Files Quoted if spaced
-OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1 ${OBJECTDIR}/dc_motor.p1 ${OBJECTDIR}/LCDIO.p1
-POSSIBLE_DEPFILES=${OBJECTDIR}/main.p1.d ${OBJECTDIR}/dc_motor.p1.d ${OBJECTDIR}/LCDIO.p1.d
+OBJECTFILES_QUOTED_IF_SPACED=${OBJECTDIR}/main.p1 ${OBJECTDIR}/dc_motor.p1 ${OBJECTDIR}/LCDIO.p1 ${OBJECTDIR}/RFID.p1
+POSSIBLE_DEPFILES=${OBJECTDIR}/main.p1.d ${OBJECTDIR}/dc_motor.p1.d ${OBJECTDIR}/LCDIO.p1.d ${OBJECTDIR}/RFID.p1.d
 
 # Object Files
-OBJECTFILES=${OBJECTDIR}/main.p1 ${OBJECTDIR}/dc_motor.p1 ${OBJECTDIR}/LCDIO.p1
+OBJECTFILES=${OBJECTDIR}/main.p1 ${OBJECTDIR}/dc_motor.p1 ${OBJECTDIR}/LCDIO.p1 ${OBJECTDIR}/RFID.p1
 
 # Source Files
-SOURCEFILES=main.c dc_motor.c LCDIO.c
+SOURCEFILES=main.c dc_motor.c LCDIO.c RFID.c
 
 
 CFLAGS=
@@ -117,6 +117,14 @@ ${OBJECTDIR}/LCDIO.p1: LCDIO.c  nbproject/Makefile-${CND_CONF}.mk
 	@-${MV} ${OBJECTDIR}/LCDIO.d ${OBJECTDIR}/LCDIO.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/LCDIO.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
+${OBJECTDIR}/RFID.p1: RFID.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/RFID.p1.d 
+	@${RM} ${OBJECTDIR}/RFID.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -D__DEBUG=1  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/RFID.p1 RFID.c 
+	@-${MV} ${OBJECTDIR}/RFID.d ${OBJECTDIR}/RFID.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/RFID.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
 else
 ${OBJECTDIR}/main.p1: main.c  nbproject/Makefile-${CND_CONF}.mk
 	@${MKDIR} "${OBJECTDIR}" 
@@ -141,6 +149,14 @@ ${OBJECTDIR}/LCDIO.p1: LCDIO.c  nbproject/Makefile-${CND_CONF}.mk
 	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/LCDIO.p1 LCDIO.c 
 	@-${MV} ${OBJECTDIR}/LCDIO.d ${OBJECTDIR}/LCDIO.p1.d 
 	@${FIXDEPS} ${OBJECTDIR}/LCDIO.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
+	
+${OBJECTDIR}/RFID.p1: RFID.c  nbproject/Makefile-${CND_CONF}.mk
+	@${MKDIR} "${OBJECTDIR}" 
+	@${RM} ${OBJECTDIR}/RFID.p1.d 
+	@${RM} ${OBJECTDIR}/RFID.p1 
+	${MP_CC} $(MP_EXTRA_CC_PRE) -mcpu=$(MP_PROCESSOR_OPTION) -c  -fno-short-double -fno-short-float -memi=wordwrite -O0 -fasmfile -maddrqual=ignore -xassembler-with-cpp -mwarn=-3 -Wa,-a -DXPRJ_default=$(CND_CONF)  -msummary=-psect,-class,+mem,-hex,-file  -ginhx032 -Wl,--data-init -mno-keep-startup -mno-download -mdefault-config-bits $(COMPARISON_BUILD)  -std=c99 -gdwarf-3 -mstack=compiled:auto:auto:auto     -o ${OBJECTDIR}/RFID.p1 RFID.c 
+	@-${MV} ${OBJECTDIR}/RFID.d ${OBJECTDIR}/RFID.p1.d 
+	@${FIXDEPS} ${OBJECTDIR}/RFID.p1.d $(SILENT) -rsi ${MP_CC_DIR}../  
 	
 endif
 

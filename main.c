@@ -42,8 +42,8 @@ void __interrupt(high_priority) InterruptHandlerHigh (void)
     // Trigger interrupt when a character is read from the RFID
     if(PIR1bits.RCIF)
     {
-        char temp = RCREG;
-        processRFID(temp);
+        
+        processRFID(RCREG);
         
         
     }

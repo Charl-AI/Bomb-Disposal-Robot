@@ -15,7 +15,7 @@ extern "C" {
 void init_RFID(void);
 char getCharSerial(void);
 void processRFID(char latestChar);
-
+int check_data(char dataBuf[]);
 
 
 #ifdef	__cplusplus
