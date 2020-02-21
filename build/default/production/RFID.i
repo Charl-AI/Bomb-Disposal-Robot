@@ -4973,8 +4973,8 @@ extern volatile __bit nWRITE __attribute__((address(0x7E3A)));
 # 15 "./RFID.h"
 void init_RFID(void);
 char getCharSerial(void);
-void processRFID(char latestChar);
-int check_data(char dataBuf[]);
+char processRFID(char RFIDbuf[], char latestChar);
+void check_RFID(char dataBuf[]);
 # 8 "RFID.c" 2
 
 # 1 "./LCDIO.h" 1
@@ -5023,63 +5023,53 @@ void init_RFID(void)
 }
 
 
-void processRFID(char latestChar)
+
+char processRFID(char RFIDbuf[], char latestChar)
 {
 
 
-    static char RFIDbuf[12];
+
     static char position_in_buf;
 
 
     if(latestChar == 0x03)
     {
-        if(check_data(RFIDbuf) == 1)
+        ClearLCD();
+        SetLine(1);
+        for(int i=0;i<10;i++)
         {
-
-            ClearLCD();
-            SetLine(1);
-            LCD_String("CHECKSUM PASSED");
-            SetLine(2);
-            for(int i=0;i<10;i++)
-            {
-                SendLCD(RFIDbuf[i],1);
-            }
+            SendLCD(RFIDbuf[i],1);
         }
-        else
-        {
 
-
-            ClearLCD();
-            SetLine(1);
-            LCD_String("CHECKSUM FAILED");
-            SetLine(2);
-            for(int i=0;i<10;i++)
-            {
-                 SendLCD(RFIDbuf[i],1);
-            }
-            LCD_String("  ");
-            SendLCD(RFIDbuf[10],1);
-            SendLCD(RFIDbuf[11],1);
-        }
+        return 1;
     }
     else
     {
 
+
        if(latestChar == 0x02)
         {
-            position_in_buf = 0;
+           position_in_buf = 0;
+           for(char i=0 ;i<12 ;i++)
+           {
+               RFIDbuf[i] = 0;
+           }
+
+           return 0;
         }
 
        else
         {
             RFIDbuf[position_in_buf] = latestChar;
             position_in_buf++;
+
+            return 0;
         }
     }
 }
 
 
-int check_data(char dataBuf[])
+void check_RFID(char dataBuf[])
 {
 
     char hexBuf[12];
@@ -5105,9 +5095,13 @@ int check_data(char dataBuf[])
 
     if(byte1^byte2^byte3^byte4^byte5 == checksum)
     {
-        return 1;
+
+        SetLine(2);
+        LCD_String("CHECKSUM PASSED");
     }
     else{
-        return 0;
+
+        SetLine(2);
+        LCD_String("CHECKSUM FAILED");
     }
 }

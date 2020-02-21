@@ -21,6 +21,15 @@
 /*****************************************************************************/
 //Global variables defined here
 
+// this defines the subroutine that the robot will operate on:
+// 0 represents searching for bomb
+// 1 represents returning to starting position
+// 2 represents finished (robot has found bomb and returned)
+volatile char robot_mode = 0;
+
+// stores the characters read from RFID (10 data bits and 2 checksum)
+volatile char RFIDbuf[12];
+
 /*****************************************************************************/
 // setup function, initialise registers here
 void setup(void)
@@ -42,9 +51,18 @@ void __interrupt(high_priority) InterruptHandlerHigh (void)
     // Trigger interrupt when a character is read from the RFID
     if(PIR1bits.RCIF)
     {
+        // process and print the RFID data, once all the data has been read and
+        // displayed, RFID_flag is set to 1
+        char RFID_flag = processRFID(RFIDbuf, RCREG);
         
-        processRFID(RCREG);
-        
+        // once the RFID has been read, check against checksum and set 
+        // robot to return home
+        if(RFID_flag == 1)
+        {
+            check_RFID(RFIDbuf);
+            robot_mode = 1;
+        }
+  
         
     }
     
@@ -65,6 +83,25 @@ void main(void)
   
   // loop, this runs forever
   while(1){
+      
+      // Subroutine to search for bomb
+      while(robot_mode == 0)
+      {
+          
+      }
+      
+      // Subroutine to return to starting position
+      while(robot_mode == 1)
+      {
+          
+      }
+      
+      // Once bomb has been found and robot has returned
+      while(robot_mode == 2)
+      {
+          
+      }
+      
       
   }  
 }

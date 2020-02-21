@@ -5184,13 +5184,14 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 # 15 "./RFID.h"
 void init_RFID(void);
 char getCharSerial(void);
-void processRFID(char latestChar);
-int check_data(char dataBuf[]);
+char processRFID(char RFIDbuf[], char latestChar);
+void check_RFID(char dataBuf[]);
 # 19 "main.c" 2
+# 28 "main.c"
+volatile char robot_mode = 0;
 
 
-
-
+volatile char RFIDbuf[12];
 
 
 
@@ -5214,7 +5215,16 @@ void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void
     if(PIR1bits.RCIF)
     {
 
-        processRFID(RCREG);
+
+        char RFID_flag = processRFID(RFIDbuf, RCREG);
+
+
+
+        if(RFID_flag == 1)
+        {
+            check_RFID(RFIDbuf);
+            robot_mode = 1;
+        }
 
 
     }
@@ -5236,6 +5246,25 @@ void main(void)
 
 
   while(1){
+
+
+      while(robot_mode == 0)
+      {
+
+      }
+
+
+      while(robot_mode == 1)
+      {
+
+      }
+
+
+      while(robot_mode == 2)
+      {
+
+      }
+
 
   }
 }
