@@ -12,6 +12,7 @@
 // Include statements and boilerplate code
 #include <xc.h>
 #include <pic18f4331.h>
+#include <stdio.h>
 #pragma config OSC = IRCIO, MCLRE=OFF, LVP=OFF
 
 #include "LCDIO.h"
@@ -43,16 +44,19 @@ void setup(void)
     
     LCD_Init();
     init_RFID();
+    
+    TRISCbits.RC3 = 1;
 }
 /*****************************************************************************/
 // High priority interrupt service routine
 void __interrupt(high_priority) InterruptHandlerHigh (void)
 {
     // Trigger interrupt when a character is read from the RFID
-    if(PIR1bits.RCIF)
+    // this can only occur when the robot is in searching mode
+    if((PIR1bits.RCIF) && (robot_mode == 0))
     {
-        // process and print the RFID data, once all the data has been read and
-        // displayed, RFID_flag is set to 1
+        // process the RFID data, once all the data has been read, it is
+        // displayed and RFID_flag is set to 1
         char RFID_flag = processRFID(RFIDbuf, RCREG);
         
         // once the RFID has been read, check against checksum and set 
@@ -62,10 +66,13 @@ void __interrupt(high_priority) InterruptHandlerHigh (void)
             check_RFID(RFIDbuf);
             robot_mode = 1;
         }
-  
-        
     }
-    
+    // this runs if you try to scan an RFID when the robot is not searching
+    else
+    {
+        // simply reads and discards RCREG to reset interrupt flag
+        char throwaway = RCREG;
+    }
 }
 /*****************************************************************************/
 // Low priority interrupt service routine
@@ -93,15 +100,20 @@ void main(void)
       // Subroutine to return to starting position
       while(robot_mode == 1)
       {
-          
+          // for debugging only, remove later
+          robot_mode = 2;
       }
       
-      // Once bomb has been found and robot has returned
+      // Subroutine for once bomb has been found and robot has returned
       while(robot_mode == 2)
       {
-          
+          while(PORTCbits.RC3 == 1)
+          {
+              ClearLCD();
+              LCD_String("RESETTING ROBOT");
+              __delay_ms(100);
+              robot_mode = 0;
+          }
       }
-      
-      
   }  
 }

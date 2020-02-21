@@ -52,15 +52,17 @@
 [v _SetLine SetLine `(v  1 e 1 0 ]
 "119
 [v _LCD_String LCD_String `(v  1 e 1 0 ]
+[v i2_LCD_String LCD_String `(v  1 e 1 0 ]
 "137
 [v _ClearLCD ClearLCD `(v  1 e 1 0 ]
-"35 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+[v i2_ClearLCD ClearLCD `(v  1 e 1 0 ]
+"36 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
 [v _setup setup `(v  1 e 1 0 ]
-"49
+"52
 [v _InterruptHandlerHigh InterruptHandlerHigh `IIH(v  1 e 1 0 ]
-"72
+"79
 [v _InterruptHandlerLow InterruptHandlerLow `IIL(v  1 e 1 0 ]
-"78
+"85
 [v _main main `(v  1 e 1 0 ]
 "12 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
 [v _init_RFID init_RFID `(v  1 e 1 0 ]
@@ -80,7 +82,65 @@
 [v _PTCON1 PTCON1 `VEuc  1 e 1 @3966 ]
 "954
 [v _PTCON0 PTCON0 `VEuc  1 e 1 @3967 ]
-[s S466 . 1 `uc 1 LATA0 1 0 :1:0 
+[s S204 . 1 `uc 1 RC0 1 0 :1:0 
+`uc 1 RC1 1 0 :1:1 
+`uc 1 RC2 1 0 :1:2 
+`uc 1 RC3 1 0 :1:3 
+`uc 1 RC4 1 0 :1:4 
+`uc 1 RC5 1 0 :1:5 
+`uc 1 RC6 1 0 :1:6 
+`uc 1 RC7 1 0 :1:7 
+]
+"1339
+[s S306 . 1 `uc 1 T1OSO 1 0 :1:0 
+`uc 1 T1OSI 1 0 :1:1 
+`uc 1 CCP1 1 0 :1:2 
+`uc 1 INT0 1 0 :1:3 
+`uc 1 INT1 1 0 :1:4 
+`uc 1 INT2 1 0 :1:5 
+`uc 1 TX 1 0 :1:6 
+`uc 1 RX 1 0 :1:7 
+]
+[s S315 . 1 `uc 1 T13CKI 1 0 :1:0 
+`uc 1 CCP2 1 0 :1:1 
+`uc 1 . 1 0 :1:2 
+`uc 1 T0CKI 1 0 :1:3 
+`uc 1 SDA 1 0 :1:4 
+`uc 1 SCK 1 0 :1:5 
+`uc 1 CK 1 0 :1:6 
+`uc 1 DT 1 0 :1:7 
+]
+[s S324 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 NOT_FLTA 1 0 :1:1 
+]
+[s S327 . 1 `uc 1 . 1 0 :2:0 
+`uc 1 NOT_FLTB 1 0 :1:2 
+]
+[s S330 . 1 `uc 1 . 1 0 :6:0 
+`uc 1 NOT_SS 1 0 :1:6 
+]
+[s S333 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 nFLTA 1 0 :1:1 
+`uc 1 nFLTB 1 0 :1:2 
+`uc 1 T5CKI 1 0 :1:3 
+`uc 1 SDI 1 0 :1:4 
+`uc 1 SCL 1 0 :1:5 
+`uc 1 nSS 1 0 :1:6 
+`uc 1 SDO 1 0 :1:7 
+]
+[s S342 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 FLTA 1 0 :1:1 
+`uc 1 FLTB 1 0 :1:2 
+`uc 1 . 1 0 :3:3 
+`uc 1 SS 1 0 :1:6 
+]
+[s S348 . 1 `uc 1 . 1 0 :1:0 
+`uc 1 PA2 1 0 :1:1 
+`uc 1 PA1 1 0 :1:2 
+]
+[u S352 . 1 `S204 1 . 1 0 `S306 1 . 1 0 `S315 1 . 1 0 `S324 1 . 1 0 `S327 1 . 1 0 `S330 1 . 1 0 `S333 1 . 1 0 `S342 1 . 1 0 `S348 1 . 1 0 ]
+[v _PORTCbits PORTCbits `VES352  1 e 1 @3970 ]
+[s S656 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -90,7 +150,7 @@
 `uc 1 LATA7 1 0 :1:7 
 ]
 "1779
-[s S475 . 1 `uc 1 LA0 1 0 :1:0 
+[s S665 . 1 `uc 1 LA0 1 0 :1:0 
 `uc 1 LA1 1 0 :1:1 
 `uc 1 LA2 1 0 :1:2 
 `uc 1 LA3 1 0 :1:3 
@@ -99,11 +159,11 @@
 `uc 1 LA6 1 0 :1:6 
 `uc 1 LA7 1 0 :1:7 
 ]
-[u S484 . 1 `S466 1 . 1 0 `S475 1 . 1 0 ]
-[v _LATAbits LATAbits `VES484  1 e 1 @3977 ]
+[u S674 . 1 `S656 1 . 1 0 `S665 1 . 1 0 ]
+[v _LATAbits LATAbits `VES674  1 e 1 @3977 ]
 "1864
 [v _LATB LATB `VEuc  1 e 1 @3978 ]
-[s S384 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S574 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -113,7 +173,7 @@
 `uc 1 LATC7 1 0 :1:7 
 ]
 "2003
-[s S393 . 1 `uc 1 LC0 1 0 :1:0 
+[s S583 . 1 `uc 1 LC0 1 0 :1:0 
 `uc 1 LC1 1 0 :1:1 
 `uc 1 LC2 1 0 :1:2 
 `uc 1 LC3 1 0 :1:3 
@@ -122,9 +182,9 @@
 `uc 1 LC6 1 0 :1:6 
 `uc 1 LC7 1 0 :1:7 
 ]
-[u S402 . 1 `S384 1 . 1 0 `S393 1 . 1 0 ]
-[v _LATCbits LATCbits `VES402  1 e 1 @3979 ]
-[s S426 . 1 `uc 1 LATD0 1 0 :1:0 
+[u S592 . 1 `S574 1 . 1 0 `S583 1 . 1 0 ]
+[v _LATCbits LATCbits `VES592  1 e 1 @3979 ]
+[s S616 . 1 `uc 1 LATD0 1 0 :1:0 
 `uc 1 LATD1 1 0 :1:1 
 `uc 1 LATD2 1 0 :1:2 
 `uc 1 LATD3 1 0 :1:3 
@@ -134,7 +194,7 @@
 `uc 1 LATD7 1 0 :1:7 
 ]
 "2115
-[s S435 . 1 `uc 1 LD0 1 0 :1:0 
+[s S625 . 1 `uc 1 LD0 1 0 :1:0 
 `uc 1 LD1 1 0 :1:1 
 `uc 1 LD2 1 0 :1:2 
 `uc 1 LD3 1 0 :1:3 
@@ -143,9 +203,9 @@
 `uc 1 LD6 1 0 :1:6 
 `uc 1 LD7 1 0 :1:7 
 ]
-[u S444 . 1 `S426 1 . 1 0 `S435 1 . 1 0 ]
-[v _LATDbits LATDbits `VES444  1 e 1 @3980 ]
-[s S586 . 1 `uc 1 TRISA0 1 0 :1:0 
+[u S634 . 1 `S616 1 . 1 0 `S625 1 . 1 0 ]
+[v _LATDbits LATDbits `VES634  1 e 1 @3980 ]
+[s S758 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -155,7 +215,7 @@
 `uc 1 TRISA7 1 0 :1:7 
 ]
 "2305
-[s S595 . 1 `uc 1 RA0 1 0 :1:0 
+[s S767 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -164,9 +224,9 @@
 `uc 1 RA6 1 0 :1:6 
 `uc 1 RA7 1 0 :1:7 
 ]
-[u S604 . 1 `S586 1 . 1 0 `S595 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES604  1 e 1 @3986 ]
-[s S506 . 1 `uc 1 TRISC0 1 0 :1:0 
+[u S776 . 1 `S758 1 . 1 0 `S767 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES776  1 e 1 @3986 ]
+[s S195 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -176,18 +236,9 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "2749
-[s S515 . 1 `uc 1 RC0 1 0 :1:0 
-`uc 1 RC1 1 0 :1:1 
-`uc 1 RC2 1 0 :1:2 
-`uc 1 RC3 1 0 :1:3 
-`uc 1 RC4 1 0 :1:4 
-`uc 1 RC5 1 0 :1:5 
-`uc 1 RC6 1 0 :1:6 
-`uc 1 RC7 1 0 :1:7 
-]
-[u S524 . 1 `S506 1 . 1 0 `S515 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES524  1 e 1 @3988 ]
-[s S546 . 1 `uc 1 TRISD0 1 0 :1:0 
+[u S213 . 1 `S195 1 . 1 0 `S204 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES213  1 e 1 @3988 ]
+[s S718 . 1 `uc 1 TRISD0 1 0 :1:0 
 `uc 1 TRISD1 1 0 :1:1 
 `uc 1 TRISD2 1 0 :1:2 
 `uc 1 TRISD3 1 0 :1:3 
@@ -197,7 +248,7 @@
 `uc 1 TRISD7 1 0 :1:7 
 ]
 "2971
-[s S555 . 1 `uc 1 RD0 1 0 :1:0 
+[s S727 . 1 `uc 1 RD0 1 0 :1:0 
 `uc 1 RD1 1 0 :1:1 
 `uc 1 RD2 1 0 :1:2 
 `uc 1 RD3 1 0 :1:3 
@@ -206,9 +257,9 @@
 `uc 1 RD6 1 0 :1:6 
 `uc 1 RD7 1 0 :1:7 
 ]
-[u S564 . 1 `S546 1 . 1 0 `S555 1 . 1 0 ]
-[v _TRISDbits TRISDbits `VES564  1 e 1 @3989 ]
-[s S867 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[u S736 . 1 `S718 1 . 1 0 `S727 1 . 1 0 ]
+[v _TRISDbits TRISDbits `VES736  1 e 1 @3989 ]
+[s S1031 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -217,16 +268,16 @@
 `uc 1 ADIE 1 0 :1:6 
 ]
 "3556
-[s S875 . 1 `uc 1 . 1 0 :4:0 
+[s S1039 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TBIE 1 0 :1:4 
 ]
-[s S878 . 1 `uc 1 . 1 0 :4:0 
+[s S1042 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IE 1 0 :1:4 
 `uc 1 RC1IE 1 0 :1:5 
 ]
-[u S882 . 1 `S867 1 . 1 0 `S875 1 . 1 0 `S878 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES882  1 e 1 @3997 ]
-[s S195 . 1 `uc 1 TMR1IF 1 0 :1:0 
+[u S1046 . 1 `S1031 1 . 1 0 `S1039 1 . 1 0 `S1042 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES1046  1 e 1 @3997 ]
+[s S235 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
 `uc 1 SSPIF 1 0 :1:3 
@@ -235,16 +286,16 @@
 `uc 1 ADIF 1 0 :1:6 
 ]
 "3636
-[s S203 . 1 `uc 1 . 1 0 :4:0 
+[s S243 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TBIF 1 0 :1:4 
 ]
-[s S206 . 1 `uc 1 . 1 0 :4:0 
+[s S246 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IF 1 0 :1:4 
 `uc 1 RC1IF 1 0 :1:5 
 ]
-[u S210 . 1 `S195 1 . 1 0 `S203 1 . 1 0 `S206 1 . 1 0 ]
-[v _PIR1bits PIR1bits `VES210  1 e 1 @3998 ]
-[s S715 . 1 `uc 1 ABDEN 1 0 :1:0 
+[u S250 . 1 `S235 1 . 1 0 `S243 1 . 1 0 `S246 1 . 1 0 ]
+[v _PIR1bits PIR1bits `VES250  1 e 1 @3998 ]
+[s S879 . 1 `uc 1 ABDEN 1 0 :1:0 
 `uc 1 WUE 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 BRG16 1 0 :1:3 
@@ -254,20 +305,20 @@
 `uc 1 ABDOVF 1 0 :1:7 
 ]
 "4229
-[s S724 . 1 `uc 1 . 1 0 :4:0 
+[s S888 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 SCKP 1 0 :1:4 
 `uc 1 . 1 0 :1:5 
 `uc 1 RCMT 1 0 :1:6 
 ]
-[s S729 . 1 `uc 1 . 1 0 :5:0 
+[s S893 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 RXCKP 1 0 :1:5 
 ]
-[s S732 . 1 `uc 1 . 1 0 :1:0 
+[s S896 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 W4E 1 0 :1:1 
 ]
-[u S735 . 1 `S715 1 . 1 0 `S724 1 . 1 0 `S729 1 . 1 0 `S732 1 . 1 0 ]
-[v _BAUDCONbits BAUDCONbits `VES735  1 e 1 @4010 ]
-[s S813 . 1 `uc 1 RX9D 1 0 :1:0 
+[u S899 . 1 `S879 1 . 1 0 `S888 1 . 1 0 `S893 1 . 1 0 `S896 1 . 1 0 ]
+[v _BAUDCONbits BAUDCONbits `VES899  1 e 1 @4010 ]
+[s S977 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -277,23 +328,23 @@
 `uc 1 SPEN 1 0 :1:7 
 ]
 "4414
-[s S822 . 1 `uc 1 . 1 0 :3:0 
+[s S986 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 ADEN 1 0 :1:3 
 ]
-[s S825 . 1 `uc 1 . 1 0 :5:0 
+[s S989 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 SRENA 1 0 :1:5 
 ]
-[s S828 . 1 `uc 1 . 1 0 :6:0 
+[s S992 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_9 1 0 :1:6 
 ]
-[s S831 . 1 `uc 1 . 1 0 :6:0 
+[s S995 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC9 1 0 :1:6 
 ]
-[s S834 . 1 `uc 1 RCD8 1 0 :1:0 
+[s S998 . 1 `uc 1 RCD8 1 0 :1:0 
 ]
-[u S836 . 1 `S813 1 . 1 0 `S822 1 . 1 0 `S825 1 . 1 0 `S828 1 . 1 0 `S831 1 . 1 0 `S834 1 . 1 0 ]
-[v _RCSTAbits RCSTAbits `VES836  1 e 1 @4011 ]
-[s S761 . 1 `uc 1 TX9D 1 0 :1:0 
+[u S1000 . 1 `S977 1 . 1 0 `S986 1 . 1 0 `S989 1 . 1 0 `S992 1 . 1 0 `S995 1 . 1 0 `S998 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES1000  1 e 1 @4011 ]
+[s S925 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -303,7 +354,7 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "4622
-[s S770 . 1 `uc 1 TX9D1 1 0 :1:0 
+[s S934 . 1 `uc 1 TX9D1 1 0 :1:0 
 `uc 1 TRMT1 1 0 :1:1 
 `uc 1 BRGH1 1 0 :1:2 
 `uc 1 SENDB1 1 0 :1:3 
@@ -312,13 +363,13 @@
 `uc 1 TX91 1 0 :1:6 
 `uc 1 CSRC1 1 0 :1:7 
 ]
-[s S779 . 1 `uc 1 . 1 0 :6:0 
+[s S943 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_9 1 0 :1:6 
 ]
-[s S782 . 1 `uc 1 TXD8 1 0 :1:0 
+[s S946 . 1 `uc 1 TXD8 1 0 :1:0 
 ]
-[u S784 . 1 `S761 1 . 1 0 `S770 1 . 1 0 `S779 1 . 1 0 `S782 1 . 1 0 ]
-[v _TXSTAbits TXSTAbits `VES784  1 e 1 @4012 ]
+[u S948 . 1 `S925 1 . 1 0 `S934 1 . 1 0 `S943 1 . 1 0 `S946 1 . 1 0 ]
+[v _TXSTAbits TXSTAbits `VES948  1 e 1 @4012 ]
 "4851
 [v _RCREG RCREG `VEuc  1 e 1 @4014 ]
 "4863
@@ -407,19 +458,19 @@
 ]
 [u S84 . 1 `S62 1 . 1 0 `S71 1 . 1 0 `S80 1 . 1 0 ]
 [v _INTCONbits INTCONbits `VES84  1 e 1 @4082 ]
-"28 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+"29 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
 [v _robot_mode robot_mode `VEuc  1 e 1 0 ]
-"31
+"32
 [v _RFIDbuf RFIDbuf `VE[12]uc  1 e 12 0 ]
-"78
+"85
 [v _main main `(v  1 e 1 0 ]
 {
-"107
+"119
 } 0
-"35
+"36
 [v _setup setup `(v  1 e 1 0 ]
 {
-"46
+"49
 } 0
 "12 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
 [v _init_RFID init_RFID `(v  1 e 1 0 ]
@@ -431,14 +482,25 @@
 {
 "104
 } 0
+"119
+[v _LCD_String LCD_String `(v  1 e 1 0 ]
+{
+[v LCD_String@string string `*.32uc  1 p 2 5 ]
+"129
+} 0
+"137
+[v _ClearLCD ClearLCD `(v  1 e 1 0 ]
+{
+"140
+} 0
 "44
 [v _SendLCD SendLCD `(v  1 e 1 0 ]
 {
 [v SendLCD@Byte Byte `uc  1 a 1 wreg ]
 [v SendLCD@Byte Byte `uc  1 a 1 wreg ]
-[v SendLCD@type type `uc  1 p 1 2 ]
+[v SendLCD@type type `uc  1 p 1 3 ]
 "47
-[v SendLCD@Byte Byte `uc  1 a 1 3 ]
+[v SendLCD@Byte Byte `uc  1 a 1 4 ]
 "55
 } 0
 "31
@@ -447,7 +509,7 @@
 [v LCDout@number number `uc  1 a 1 wreg ]
 [v LCDout@number number `uc  1 a 1 wreg ]
 "33
-[v LCDout@number number `uc  1 a 1 1 ]
+[v LCDout@number number `uc  1 a 1 2 ]
 "41
 } 0
 "23
@@ -455,23 +517,23 @@
 {
 "28
 } 0
-"72 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+"79 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
 [v _InterruptHandlerLow InterruptHandlerLow `IIL(v  1 e 1 0 ]
 {
-"75
+"82
 } 0
-"49
+"52
 [v _InterruptHandlerHigh InterruptHandlerHigh `IIH(v  1 e 1 0 ]
 {
-"56
-[v InterruptHandlerHigh@RFID_flag RFID_flag `uc  1 a 1 38 ]
-"69
+"60
+[v InterruptHandlerHigh@RFID_flag RFID_flag `uc  1 a 1 39 ]
+"76
 } 0
 "32 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
 [v _processRFID processRFID `(uc  1 e 1 0 ]
 {
 "58
-[v processRFID@i_941 i `uc  1 a 1 10 ]
+[v processRFID@i_1104 i `uc  1 a 1 10 ]
 "44
 [v processRFID@i i `i  1 a 2 8 ]
 "32
@@ -482,7 +544,7 @@
 "74
 } 0
 "137 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-[v _ClearLCD ClearLCD `(v  1 e 1 0 ]
+[v i2_ClearLCD ClearLCD `(v  1 e 1 0 ]
 {
 "140
 } 0
@@ -509,7 +571,13 @@
 [v check_RFID@dataBuf dataBuf `*.39uc  1 p 2 6 ]
 "112
 } 0
-"107 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+"119 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+[v i2_LCD_String LCD_String `(v  1 e 1 0 ]
+{
+[v i2LCD_String@string string `*.32uc  1 p 2 4 ]
+"129
+} 0
+"107
 [v _SetLine SetLine `(v  1 e 1 0 ]
 {
 [v SetLine@line line `uc  1 a 1 wreg ]
@@ -517,12 +585,6 @@
 "109
 [v SetLine@line line `uc  1 a 1 4 ]
 "117
-} 0
-"119
-[v _LCD_String LCD_String `(v  1 e 1 0 ]
-{
-[v LCD_String@string string `*.32uc  1 p 2 4 ]
-"129
 } 0
 "44
 [v i2_SendLCD SendLCD `(v  1 e 1 0 ]
