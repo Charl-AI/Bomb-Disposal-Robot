@@ -1,6 +1,7 @@
 /*
- This file contains the functions for reading the RFID tag on the device
+ RFID.c
  
+ This file contains the functions for reading the RFID tag on the device
  
  18.02.20
  */

@@ -1,198 +1,52 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"6702 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6702: extern volatile unsigned char OSCCON __attribute__((address(0xFD3)));
-[v _OSCCON `Vuc ~T0 @X0 0 e@4051 ]
-"6708
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6708:     struct {
-[s S291 :2 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
-[n S291 . SCS IOFS OSTS IRCF IDLEN ]
-"6715
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6715:     struct {
-[s S292 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S292 . SCS0 SCS1 . IRCF0 IRCF1 IRCF2 ]
-"6723
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6723:     struct {
-[s S293 :2 `uc 1 :1 `uc 1 ]
-[n S293 . . FLTS ]
-"6707
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6707: typedef union {
-[u S290 `S291 1 `S292 1 `S293 1 ]
-[n S290 . . . . ]
-"6728
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6728: extern volatile OSCCONbits_t OSCCONbits __attribute__((address(0xFD3)));
-[v _OSCCONbits `VS290 ~T0 @X0 0 e@4051 ]
-"7313
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 7313:     struct {
-[s S308 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S308 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
-"7323
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 7323:     struct {
-[s S309 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S309 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
-"7333
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 7333:     struct {
-[s S310 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S310 . . GIEL GIEH ]
-"7312
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 7312: typedef union {
-[u S307 `S308 1 `S309 1 `S310 1 ]
-[n S307 . . . . ]
-"7339
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 7339: extern volatile INTCONbits_t INTCONbits __attribute__((address(0xFF2)));
-[v _INTCONbits `VS307 ~T0 @X0 0 e@4082 ]
-"6473
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6473:     struct {
-[s S277 :1 `uc 1 ]
-[n S277 . NOT_BOR ]
-"6476
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6476:     struct {
-[s S278 :1 `uc 1 :1 `uc 1 ]
-[n S278 . . NOT_POR ]
-"6480
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6480:     struct {
-[s S279 :2 `uc 1 :1 `uc 1 ]
-[n S279 . . NOT_PD ]
-"6484
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6484:     struct {
-[s S280 :3 `uc 1 :1 `uc 1 ]
-[n S280 . . NOT_TO ]
-"6488
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6488:     struct {
-[s S281 :4 `uc 1 :1 `uc 1 ]
-[n S281 . . NOT_RI ]
-"6492
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6492:     struct {
-[s S282 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S282 . nBOR nPOR nPD nTO nRI . IPEN ]
-"6501
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6501:     struct {
-[s S283 :7 `uc 1 :1 `uc 1 ]
-[n S283 . . NOT_IPEN ]
-"6505
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6505:     struct {
-[s S284 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S284 . BOR POR PD TO RI . nIPEN ]
-"6472
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6472: typedef union {
-[u S276 `S277 1 `S278 1 `S279 1 `S280 1 `S281 1 `S282 1 `S283 1 `S284 1 ]
-[n S276 . . . . . . . . . ]
-"6515
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6515: extern volatile RCONbits_t RCONbits __attribute__((address(0xFD0)));
-[v _RCONbits `VS276 ~T0 @X0 0 e@4048 ]
-"35 ./LCDIO.h
-[; ;./LCDIO.h: 35: void init_LCD(void);
-[v _init_LCD `(v ~T0 @X0 0 ef ]
-"11 ./RFID.h
-[; ;./RFID.h: 11: void init_RFID(void);
-[v _init_RFID `(v ~T0 @X0 0 ef ]
-"13 ./signal_processing.h
-[; ;./signal_processing.h: 13: void init_sensors(void);
-[v _init_sensors `(v ~T0 @X0 0 ef ]
-"2950 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2950:     struct {
-[s S104 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S104 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
-"2960
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2960:     struct {
-[s S105 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S105 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
-"2949
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2949: typedef union {
-[u S103 `S104 1 `S105 1 ]
-[n S103 . . . ]
-"2971
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2971: extern volatile TRISDbits_t TRISDbits __attribute__((address(0xF95)));
-[v _TRISDbits `VS103 ~T0 @X0 0 e@3989 ]
-[t ~ __interrupt . k ]
-[t T36 __interrupt high_priority ]
-"3617
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3617:     struct {
-[s S130 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S130 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF ]
-"3626
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3626:     struct {
-[s S131 :4 `uc 1 :1 `uc 1 ]
-[n S131 . . TBIF ]
-"3630
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3630:     struct {
-[s S132 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S132 . . TX1IF RC1IF ]
-"3616
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3616: typedef union {
-[u S129 `S130 1 `S131 1 `S132 1 ]
-[n S129 . . . . ]
-"3636
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3636: extern volatile PIR1bits_t PIR1bits __attribute__((address(0xF9E)));
-[v _PIR1bits `VS129 ~T0 @X0 0 e@3998 ]
-"13 ./RFID.h
-[; ;./RFID.h: 13: char processRFID(char RFIDbuf[], char latestChar);
-[v _processRFID `(uc ~T0 @X0 0 ef2`*uc`uc ]
-"4851 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4851: extern volatile unsigned char RCREG __attribute__((address(0xFAE)));
-[v _RCREG `Vuc ~T0 @X0 0 e@4014 ]
-"14 ./RFID.h
-[; ;./RFID.h: 14: void check_RFID(char dataBuf[]);
-[v _check_RFID `(v ~T0 @X0 0 ef1`*uc ]
-[t T37 __interrupt low_priority ]
-"41 ./LCDIO.h
-[; ;./LCDIO.h: 41: void LCD_String(char *string);
-[v _LCD_String `(v ~T0 @X0 0 ef1`*uc ]
-[v F2763 `(v ~T0 @X0 1 tf1`ul ]
-"183 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18.h
-[v __delay `JF2763 ~T0 @X0 0 e ]
-[p i __delay ]
-"5334 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
+"2728 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2728:     struct {
+[s S93 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S93 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
+"2738
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2738:     struct {
+[s S94 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S94 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
+"2727
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2727: typedef union {
+[u S92 `S93 1 `S94 1 ]
+[n S92 . . . ]
+"2749
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2749: extern volatile TRISCbits_t TRISCbits __attribute__((address(0xF94)));
+[v _TRISCbits `VS92 ~T0 @X0 0 e@3988 ]
+"5334
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 5334: extern volatile unsigned char CCP1CON __attribute__((address(0xFBD)));
 [v _CCP1CON `Vuc ~T0 @X0 0 e@4029 ]
-"5427
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 5427: extern volatile unsigned char CCPR1H __attribute__((address(0xFBF)));
-[v _CCPR1H `Vuc ~T0 @X0 0 e@4031 ]
-"5420
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 5420: extern volatile unsigned char CCPR1L __attribute__((address(0xFBE)));
-[v _CCPR1L `Vuc ~T0 @X0 0 e@4030 ]
-"3537
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3537:     struct {
-[s S126 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S126 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE ]
-"3546
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3546:     struct {
-[s S127 :4 `uc 1 :1 `uc 1 ]
-[n S127 . . TBIE ]
-"3550
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3550:     struct {
-[s S128 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S128 . . TX1IE RC1IE ]
-"3536
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3536: typedef union {
-[u S125 `S126 1 `S127 1 `S128 1 ]
-[n S125 . . . . ]
-"3556
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3556: extern volatile PIE1bits_t PIE1bits __attribute__((address(0xF9D)));
-[v _PIE1bits `VS125 ~T0 @X0 0 e@3997 ]
-[p mainexit ]
-"38 ./LCDIO.h
-[; ;./LCDIO.h: 38: void SetLine (char line);
-[v _SetLine `(v ~T0 @X0 0 ef1`uc ]
-"115 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\c99\stdio.h
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"46 ./LCDIO.h
-[; ;./LCDIO.h: 46: void ClearLCD(void);
-[v _ClearLCD `(v ~T0 @X0 0 ef ]
-"1540 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1540:     struct {
-[s S60 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S60 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
-"1550
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1550:     struct {
-[s S61 :7 `uc 1 :1 `uc 1 ]
-[n S61 . . SS2 ]
-"1539
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1539: typedef union {
-[u S59 `S60 1 `S61 1 ]
-[n S59 . . . ]
-"1555
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1555: extern volatile PORTDbits_t PORTDbits __attribute__((address(0xF83)));
-[v _PORTDbits `VS59 ~T0 @X0 0 e@3971 ]
+"5234
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 5234: extern volatile unsigned char CCP2CON __attribute__((address(0xFBA)));
+[v _CCP2CON `Vuc ~T0 @X0 0 e@4026 ]
+"6340
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6340:     struct {
+[s S266 :2 `uc 1 :1 `uc 1 ]
+[n S266 . . NOT_T1SYNC ]
+"6344
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6344:     struct {
+[s S267 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S267 . TMR1ON TMR1CS nT1SYNC T1OSCEN T1CKPS T1RUN RD16 ]
+"6353
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6353:     struct {
+[s S268 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S268 . . T1SYNC . T1CKPS0 T1CKPS1 ]
+"6360
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6360:     struct {
+[s S269 :2 `uc 1 :1 `uc 1 ]
+[n S269 . . T1INSYNC ]
+"6364
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6364:     struct {
+[s S270 :3 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
+[n S270 . . SOSCEN . T1RD16 ]
+"6339
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6339: typedef union {
+[u S265 `S266 1 `S267 1 `S268 1 `S269 1 `S270 1 ]
+[n S265 . . . . . . ]
+"6371
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6371: extern volatile T1CONbits_t T1CONbits __attribute__((address(0xFCD)));
+[v _T1CONbits `VS265 ~T0 @X0 0 e@4045 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 54: __asm("DFLTCON equ 0F60h");
 [; <" DFLTCON equ 0F60h ;# ">
@@ -733,352 +587,30 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7616
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 7616: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"16 main.c
-[p x OSC = IRCIO  MCLRE=OFF  LVP=OFF ]
-"30
-[; ;main.c: 30: volatile char robot_mode = 0;
-[v _robot_mode `Vuc ~T0 @X0 1 e ]
-[i _robot_mode
--> -> 0 `i `uc
-]
-"32
-[; ;main.c: 32: volatile int raw_data;
-[v _raw_data `Vi ~T0 @X0 1 e ]
-"35
-[; ;main.c: 35: void setup(void)
-[v _setup `(v ~T0 @X0 1 ef ]
-"36
-[; ;main.c: 36: {
+"13 signal_processing.c
+[; ;signal_processing.c: 13: void init_sensors(void)
+[v _init_sensors `(v ~T0 @X0 1 ef ]
+"14
+[; ;signal_processing.c: 14: {
 {
-[e :U _setup ]
+[e :U _init_sensors ]
 [f ]
-"38
-[; ;main.c: 38:     OSCCON = 0x72;
-[e = _OSCCON -> -> 114 `i `uc ]
-"39
-[; ;main.c: 39:     while(!OSCCONbits.IOFS);
-[e $U 318  ]
-[e :U 319 ]
-[e :U 318 ]
-[e $ ! != -> . . _OSCCONbits 0 1 `i -> 0 `i 319  ]
-[e :U 320 ]
-"40
-[; ;main.c: 40:     INTCONbits.GIEH = 1;
-[e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
-"41
-[; ;main.c: 41:     INTCONbits.GIEL = 1;
-[e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
-"42
-[; ;main.c: 42:     RCONbits.IPEN=1;
-[e = . . _RCONbits 5 6 -> -> 1 `i `uc ]
-"45
-[; ;main.c: 45:     init_LCD();
-[e ( _init_LCD ..  ]
-"46
-[; ;main.c: 46:     init_RFID();
-[e ( _init_RFID ..  ]
-"47
-[; ;main.c: 47:     init_sensors();
-[e ( _init_sensors ..  ]
-"49
-[; ;main.c: 49:     TRISDbits.RD2 = 1;
-[e = . . _TRISDbits 1 2 -> -> 1 `i `uc ]
-"50
-[; ;main.c: 50: }
-[e :UE 317 ]
-}
-[v $root$_InterruptHandlerHigh `(v ~T0 @X0 0 e ]
-"53
-[; ;main.c: 53: void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void)
-[v _InterruptHandlerHigh `(v ~T36 @X0 1 ef ]
-"54
-[; ;main.c: 54: {
-{
-[e :U _InterruptHandlerHigh ]
-[f ]
-"57
-[; ;main.c: 57:     if((PIR1bits.RCIF) && (robot_mode == 0))
-[e $ ! && != -> . . _PIR1bits 0 5 `i -> 0 `i == -> _robot_mode `i -> 0 `i 322  ]
-"58
-[; ;main.c: 58:     {
-{
-"62
-[; ;main.c: 62:         static char RFIDbuf[12];
-[v F3142 `uc ~T0 @X0 -> 12 `i s RFIDbuf ]
-"66
-[; ;main.c: 66:         char RFID_flag = processRFID(RFIDbuf, RCREG);
-[v _RFID_flag `uc ~T0 @X0 1 a ]
-[e = _RFID_flag ( _processRFID (2 , &U F3142 -> _RCREG `uc ]
-"70
-[; ;main.c: 70:         if(RFID_flag == 1)
-[e $ ! == -> _RFID_flag `i -> 1 `i 323  ]
-"71
-[; ;main.c: 71:         {
-{
-"72
-[; ;main.c: 72:             check_RFID(RFIDbuf);
-[e ( _check_RFID (1 &U F3142 ]
-"73
-[; ;main.c: 73:             robot_mode = 1;
-[e = _robot_mode -> -> 1 `i `uc ]
-"74
-[; ;main.c: 74:         }
-}
-[e :U 323 ]
-"75
-[; ;main.c: 75:     }
-}
-[e $U 324  ]
-"77
-[; ;main.c: 77:     else
-[e :U 322 ]
-"78
-[; ;main.c: 78:     {
-{
-"80
-[; ;main.c: 80:         char throwaway = RCREG;
-[v _throwaway `uc ~T0 @X0 1 a ]
-[e = _throwaway -> _RCREG `uc ]
-"81
-[; ;main.c: 81:     }
-}
-[e :U 324 ]
-"82
-[; ;main.c: 82: }
-[e :UE 321 ]
-}
-[v $root$_InterruptHandlerLow `(v ~T0 @X0 0 e ]
-"85
-[; ;main.c: 85: void __attribute__((picinterrupt(("low_priority")))) InterruptHandlerLow (void)
-[v _InterruptHandlerLow `(v ~T37 @X0 1 ef ]
-"86
-[; ;main.c: 86: {
-{
-[e :U _InterruptHandlerLow ]
-[f ]
-"88
-[; ;main.c: 88:     if((PIR1bits.CCP1IF) && robot_mode == 0)
-[e $ ! && != -> . . _PIR1bits 0 2 `i -> 0 `i == -> _robot_mode `i -> 0 `i 326  ]
-"89
-[; ;main.c: 89:     {
-{
-"91
-[; ;main.c: 91:         static int falling_edge;
-[v F3146 `i ~T0 @X0 1 s falling_edge ]
-"93
-[; ;main.c: 93:         LCD_String("TEST");
-[e ( _LCD_String (1 :s 1C ]
-"94
-[; ;main.c: 94:         _delay((unsigned long)((100)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"96
-[; ;main.c: 96:         if(CCP1CON == 00000100)
-[e $ ! == -> _CCP1CON `i -> 64 `i 327  ]
-"97
-[; ;main.c: 97:         {
-{
-"98
-[; ;main.c: 98:             falling_edge = (CCPR1H << 8) | CCPR1L;
-[e = F3146 | << -> _CCPR1H `i -> 8 `i -> _CCPR1L `i ]
-"99
-[; ;main.c: 99:             CCP1CON = 00000101;
-[e = _CCP1CON -> -> 65 `i `uc ]
-"100
-[; ;main.c: 100:             PIE1bits.CCP1IE = 0;
-[e = . . _PIE1bits 0 2 -> -> 0 `i `uc ]
-"101
-[; ;main.c: 101:             PIR1bits.CCP1IF = 0;
-[e = . . _PIR1bits 0 2 -> -> 0 `i `uc ]
-"103
-[; ;main.c: 103:         }
-}
-[e $U 328  ]
-"104
-[; ;main.c: 104:         else if(CCP1CON == 00000101)
-[e :U 327 ]
-[e $ ! == -> _CCP1CON `i -> 65 `i 329  ]
-"105
-[; ;main.c: 105:         {
-{
-"106
-[; ;main.c: 106:             raw_data = (CCPR1H << 8) | CCPR1L - falling_edge;
-[e = _raw_data | << -> _CCPR1H `i -> 8 `i - -> _CCPR1L `i F3146 ]
-"107
-[; ;main.c: 107:             CCP1CON = 00000100;
+"16
+[; ;signal_processing.c: 16:     TRISCbits.RC1 = 1;
+[e = . . _TRISCbits 1 1 -> -> 1 `i `uc ]
+"17
+[; ;signal_processing.c: 17:     TRISCbits.RC2 = 1;
+[e = . . _TRISCbits 1 2 -> -> 1 `i `uc ]
+"20
+[; ;signal_processing.c: 20:     CCP1CON = 00000100;
 [e = _CCP1CON -> -> 64 `i `uc ]
-"108
-[; ;main.c: 108:             PIE1bits.CCP1IE = 0;
-[e = . . _PIE1bits 0 2 -> -> 0 `i `uc ]
-"109
-[; ;main.c: 109:             PIR1bits.CCP1IF = 0;
-[e = . . _PIR1bits 0 2 -> -> 0 `i `uc ]
-"110
-[; ;main.c: 110:         }
+"21
+[; ;signal_processing.c: 21:     CCP2CON = 00000100;
+[e = _CCP2CON -> -> 64 `i `uc ]
+"23
+[; ;signal_processing.c: 23:     T1CONbits.TMR1ON = 1;
+[e = . . _T1CONbits 1 0 -> -> 1 `i `uc ]
+"26
+[; ;signal_processing.c: 26: }
+[e :UE 309 ]
 }
-[e :U 329 ]
-[e :U 328 ]
-"111
-[; ;main.c: 111:     }
-}
-[e $U 330  ]
-"113
-[; ;main.c: 113:     else
-[e :U 326 ]
-"114
-[; ;main.c: 114:     {
-{
-"115
-[; ;main.c: 115:         PIR1bits.CCP1IF = 0;
-[e = . . _PIR1bits 0 2 -> -> 0 `i `uc ]
-"116
-[; ;main.c: 116:     }
-}
-[e :U 330 ]
-"117
-[; ;main.c: 117: }
-[e :UE 325 ]
-}
-[v $root$_main `(v ~T0 @X0 0 e ]
-"120
-[; ;main.c: 120: void main(void)
-[v _main `(v ~T0 @X0 1 ef ]
-"121
-[; ;main.c: 121: {
-{
-[e :U _main ]
-[f ]
-"123
-[; ;main.c: 123:   setup();
-[e ( _setup ..  ]
-"127
-[; ;main.c: 127:   while(1)
-[e :U 333 ]
-"128
-[; ;main.c: 128:   {
-{
-"130
-[; ;main.c: 130:       while(robot_mode == 0)
-[e $U 335  ]
-[e :U 336 ]
-"131
-[; ;main.c: 131:       {
-{
-"132
-[; ;main.c: 132:           SetLine(1);
-[e ( _SetLine (1 -> -> 1 `i `uc ]
-"133
-[; ;main.c: 133:           LCD_String("raw duty cycle");
-[e ( _LCD_String (1 :s 2C ]
-"134
-[; ;main.c: 134:           SetLine(2);
-[e ( _SetLine (1 -> -> 2 `i `uc ]
-"135
-[; ;main.c: 135:           char temp[16];
-[v _temp `uc ~T0 @X0 -> 16 `i a ]
-"136
-[; ;main.c: 136:           sprintf(temp,"%d",raw_data);
-[e ( _sprintf (1 , (. , &U _temp :s 3C _raw_data ]
-"137
-[; ;main.c: 137:       }
-}
-[e :U 335 ]
-"130
-[; ;main.c: 130:       while(robot_mode == 0)
-[e $ == -> _robot_mode `i -> 0 `i 336  ]
-[e :U 337 ]
-"140
-[; ;main.c: 140:       while(robot_mode == 1)
-[e $U 338  ]
-[e :U 339 ]
-"141
-[; ;main.c: 141:       {
-{
-"143
-[; ;main.c: 143:           robot_mode = 2;
-[e = _robot_mode -> -> 2 `i `uc ]
-"144
-[; ;main.c: 144:       }
-}
-[e :U 338 ]
-"140
-[; ;main.c: 140:       while(robot_mode == 1)
-[e $ == -> _robot_mode `i -> 1 `i 339  ]
-[e :U 340 ]
-"147
-[; ;main.c: 147:       while(robot_mode == 2)
-[e $U 341  ]
-[e :U 342 ]
-"148
-[; ;main.c: 148:       {
-{
-"149
-[; ;main.c: 149:           while(PORTDbits.RD2 == 1)
-[e $U 344  ]
-[e :U 345 ]
-"150
-[; ;main.c: 150:           {
-{
-"151
-[; ;main.c: 151:               ClearLCD();
-[e ( _ClearLCD ..  ]
-"152
-[; ;main.c: 152:               LCD_String("RESETTING ROBOT");
-[e ( _LCD_String (1 :s 4C ]
-"153
-[; ;main.c: 153:               for(int i=0; i<10;i++)
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 10 `i 347  ]
-[e $U 348  ]
-[e :U 347 ]
-"154
-[; ;main.c: 154:               {
-{
-"155
-[; ;main.c: 155:                   _delay((unsigned long)((100)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"156
-[; ;main.c: 156:               }
-}
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 10 `i 347  ]
-[e :U 348 ]
-}
-"157
-[; ;main.c: 157:               ClearLCD();
-[e ( _ClearLCD ..  ]
-"158
-[; ;main.c: 158:               robot_mode = 0;
-[e = _robot_mode -> -> 0 `i `uc ]
-"159
-[; ;main.c: 159:           }
-}
-[e :U 344 ]
-"149
-[; ;main.c: 149:           while(PORTDbits.RD2 == 1)
-[e $ == -> . . _PORTDbits 0 2 `i -> 1 `i 345  ]
-[e :U 346 ]
-"160
-[; ;main.c: 160:       }
-}
-[e :U 341 ]
-"147
-[; ;main.c: 147:       while(robot_mode == 2)
-[e $ == -> _robot_mode `i -> 2 `i 342  ]
-[e :U 343 ]
-"161
-[; ;main.c: 161:   }
-}
-[e :U 332 ]
-[e $U 333  ]
-[e :U 334 ]
-"162
-[; ;main.c: 162: }
-[e :UE 331 ]
-}
-[p f _sprintf 8388736 ]
-[a 2C 114 97 119 32 100 117 116 121 32 99 121 99 108 101 0 ]
-[a 3C 37 100 0 ]
-[a 1C 84 69 83 84 0 ]
-[a 4C 82 69 83 69 84 84 73 78 71 32 82 79 66 79 84 0 ]

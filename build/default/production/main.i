@@ -5318,15 +5318,21 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 # 19 "main.c" 2
 
 # 1 "./RFID.h" 1
-# 15 "./RFID.h"
+# 11 "./RFID.h"
 void init_RFID(void);
 char getCharSerial(void);
 char processRFID(char RFIDbuf[], char latestChar);
 void check_RFID(char dataBuf[]);
 # 20 "main.c" 2
-# 29 "main.c"
+
+# 1 "./signal_processing.h" 1
+# 13 "./signal_processing.h"
+void init_sensors(void);
+# 21 "main.c" 2
+# 30 "main.c"
 volatile char robot_mode = 0;
 
+volatile int raw_data;
 
 
 void setup(void)
@@ -5341,6 +5347,7 @@ void setup(void)
 
     init_LCD();
     init_RFID();
+    init_sensors();
 
     TRISDbits.RD2 = 1;
 }
@@ -5381,6 +5388,35 @@ void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void
 void __attribute__((picinterrupt(("low_priority")))) InterruptHandlerLow (void)
 {
 
+    if((PIR1bits.CCP1IF) && robot_mode == 0)
+    {
+
+        static int falling_edge;
+
+        LCD_String("TEST");
+        _delay((unsigned long)((100)*(8000000/4000.0)));
+
+        if(CCP1CON == 00000100)
+        {
+            falling_edge = (CCPR1H << 8) | CCPR1L;
+            CCP1CON = 00000101;
+            PIE1bits.CCP1IE = 0;
+            PIR1bits.CCP1IF = 0;
+
+        }
+        else if(CCP1CON == 00000101)
+        {
+            raw_data = (CCPR1H << 8) | CCPR1L - falling_edge;
+            CCP1CON = 00000100;
+            PIE1bits.CCP1IE = 0;
+            PIR1bits.CCP1IF = 0;
+        }
+    }
+
+    else
+    {
+        PIR1bits.CCP1IF = 0;
+    }
 }
 
 
@@ -5396,7 +5432,11 @@ void main(void)
 
       while(robot_mode == 0)
       {
-
+          SetLine(1);
+          LCD_String("raw duty cycle");
+          SetLine(2);
+          char temp[16];
+          sprintf(temp,"%d",raw_data);
       }
 
 

@@ -1,4 +1,4 @@
-# 1 "RFID.c"
+# 1 "signal_processing.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,14 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "RFID.c" 2
-
-
-
-
-
-
-
+# 1 "signal_processing.c" 2
+# 10 "signal_processing.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\pic18f4331.h" 1 3
 # 44 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\pic18f4331.h" 3
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\__at.h" 1 3
@@ -4968,141 +4962,21 @@ extern volatile __bit nW __attribute__((address(0x7E3A)));
 
 
 extern volatile __bit nWRITE __attribute__((address(0x7E3A)));
-# 8 "RFID.c" 2
-
-# 1 "./RFID.h" 1
-# 11 "./RFID.h"
-void init_RFID(void);
-char getCharSerial(void);
-char processRFID(char RFIDbuf[], char latestChar);
-void check_RFID(char dataBuf[]);
-# 9 "RFID.c" 2
-
-# 1 "./LCDIO.h" 1
-# 26 "./LCDIO.h"
-void E_TOG(void);
-
-
-void LCDout(unsigned char number);
-
-
-void SendLCD(unsigned char Byte, char type);
-
-
-void init_LCD(void);
-
-
-void SetLine (char line);
-
-
-void LCD_String(char *string);
-
-
-void ShiftLeft(void);
-void ShiftRight(void);
-void ClearLCD(void);
-# 10 "RFID.c" 2
+# 10 "signal_processing.c" 2
 
 
 
-void init_RFID(void)
+void init_sensors(void)
 {
 
-    TRISCbits.RC7 = 1;
+    TRISCbits.RC1 = 1;
+    TRISCbits.RC2 = 1;
 
 
-    SPBRG = 203;
-    SPBRGH = 0;
+    CCP1CON = 00000100;
+    CCP2CON = 00000100;
 
-    BAUDCONbits.BRG16=1;
-    TXSTAbits.BRGH = 1;
-    RCSTAbits.CREN = 1;
-    RCSTAbits.SPEN = 1;
-    TXSTAbits.TXEN = 1;
-
-    PIE1bits.RC1IE = 1;
-}
+    T1CONbits.TMR1ON = 1;
 
 
-
-char processRFID(char RFIDbuf[], char latestChar)
-{
-
-
-
-    static char position_in_buf;
-
-
-    if(latestChar == 0x03)
-    {
-        ClearLCD();
-        SetLine(1);
-        for(int i=0;i<10;i++)
-        {
-            SendLCD(RFIDbuf[i],1);
-        }
-
-        return 1;
-    }
-    else
-    {
-
-
-       if(latestChar == 0x02)
-        {
-           position_in_buf = 0;
-           for(char i=0 ;i<12 ;i++)
-           {
-               RFIDbuf[i] = 0;
-           }
-
-           return 0;
-        }
-
-       else
-        {
-            RFIDbuf[position_in_buf] = latestChar;
-            position_in_buf++;
-
-            return 0;
-        }
-    }
-}
-
-
-void check_RFID(char dataBuf[])
-{
-
-    char hexBuf[12];
-
-    for(int i=0; i<12;i++)
-    {
-        if ((dataBuf[i] >= '0') && (dataBuf[i] <= '9'))
-        {
-            hexBuf[i] = dataBuf[i] - '0';
-        } else if ((dataBuf[i] >= 'A') && (dataBuf[i] <= 'F'))
-        {
-            hexBuf[i] = 10 + dataBuf[i] - 'A';
-        }
-    }
-
-    char byte1 = 0x00 | (hexBuf[0] < 1) | hexBuf[1];
-    char byte2 = 0x00 | (hexBuf[2] < 1) | hexBuf[3];
-    char byte3 = 0x00 | (hexBuf[4] < 1) | hexBuf[5];
-    char byte4 = 0x00 | (hexBuf[6] < 1) | hexBuf[7];
-    char byte5 = 0x00 | (hexBuf[8] < 1) | hexBuf[9];
-    char checksum = 0x00 | (hexBuf[10] < 1) | hexBuf[11];
-
-
-    if(byte1^byte2^byte3^byte4^byte5 == checksum)
-    {
-
-        SetLine(2);
-        LCD_String("CHECKSUM PASSED");
-    }
-    else{
-
-        SetLine(2);
-        LCD_String("CHECKSUM FAILED");
-    }
 }
