@@ -4988,7 +4988,7 @@ void LCDout(unsigned char number);
 void SendLCD(unsigned char Byte, char type);
 
 
-void LCD_Init(void);
+void init_LCD(void);
 
 
 void SetLine (char line);

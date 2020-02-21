@@ -80,26 +80,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6515: extern volatile RCONbits_t RCONbits __attribute__((address(0xFD0)));
 [v _RCONbits `VS276 ~T0 @X0 0 e@4048 ]
 "35 ./LCDIO.h
-[; ;./LCDIO.h: 35: void LCD_Init(void);
-[v _LCD_Init `(v ~T0 @X0 0 ef ]
+[; ;./LCDIO.h: 35: void init_LCD(void);
+[v _init_LCD `(v ~T0 @X0 0 ef ]
 "15 ./RFID.h
 [; ;./RFID.h: 15: void init_RFID(void);
 [v _init_RFID `(v ~T0 @X0 0 ef ]
-"2728 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2728:     struct {
-[s S98 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S98 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
-"2738
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2738:     struct {
-[s S99 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S99 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
-"2727
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2727: typedef union {
-[u S97 `S98 1 `S99 1 ]
-[n S97 . . . ]
-"2749
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2749: extern volatile TRISCbits_t TRISCbits __attribute__((address(0xF94)));
-[v _TRISCbits `VS97 ~T0 @X0 0 e@3988 ]
+"2950 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2950:     struct {
+[s S104 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S104 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
+"2960
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2960:     struct {
+[s S105 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S105 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
+"2949
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2949: typedef union {
+[u S103 `S104 1 `S105 1 ]
+[n S103 . . . ]
+"2971
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2971: extern volatile TRISDbits_t TRISDbits __attribute__((address(0xF95)));
+[v _TRISDbits `VS103 ~T0 @X0 0 e@3989 ]
 [t ~ __interrupt . k ]
 [t T36 __interrupt high_priority ]
 "3617
@@ -142,49 +142,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "183 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18.h
 [v __delay `JF2763 ~T0 @X0 0 e ]
 [p i __delay ]
-"1274 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1274:     struct {
-[s S50 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S50 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
-"1284
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1284:     struct {
-[s S51 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S51 . T1OSO T1OSI CCP1 INT0 INT1 INT2 TX RX ]
-"1294
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1294:     struct {
-[s S52 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S52 . T13CKI CCP2 . T0CKI SDA SCK CK DT ]
-"1304
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1304:     struct {
-[s S53 :1 `uc 1 :1 `uc 1 ]
-[n S53 . . NOT_FLTA ]
-"1308
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1308:     struct {
-[s S54 :2 `uc 1 :1 `uc 1 ]
-[n S54 . . NOT_FLTB ]
-"1312
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1312:     struct {
-[s S55 :6 `uc 1 :1 `uc 1 ]
-[n S55 . . NOT_SS ]
-"1316
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1316:     struct {
-[s S56 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S56 . . nFLTA nFLTB T5CKI SDI SCL nSS SDO ]
-"1326
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1326:     struct {
-[s S57 :1 `uc 1 :1 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
-[n S57 . . FLTA FLTB . SS ]
-"1333
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1333:     struct {
-[s S58 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S58 . . PA2 PA1 ]
-"1273
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1273: typedef union {
-[u S49 `S50 1 `S51 1 `S52 1 `S53 1 `S54 1 `S55 1 `S56 1 `S57 1 `S58 1 ]
-[n S49 . . . . . . . . . . ]
-"1339
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1339: extern volatile PORTCbits_t PORTCbits __attribute__((address(0xF82)));
-[v _PORTCbits `VS49 ~T0 @X0 0 e@3970 ]
+"1540 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1540:     struct {
+[s S60 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S60 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
+"1550
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1550:     struct {
+[s S61 :7 `uc 1 :1 `uc 1 ]
+[n S61 . . SS2 ]
+"1539
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1539: typedef union {
+[u S59 `S60 1 `S61 1 ]
+[n S59 . . . ]
+"1555
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1555: extern volatile PORTDbits_t PORTDbits __attribute__((address(0xF83)));
+[v _PORTDbits `VS59 ~T0 @X0 0 e@3971 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 54: __asm("DFLTCON equ 0F60h");
 [; <" DFLTCON equ 0F60h ;# ">
@@ -733,241 +705,241 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _robot_mode
 -> -> 0 `i `uc
 ]
-"36
-[; ;main.c: 36: void setup(void)
+"33
+[; ;main.c: 33: void setup(void)
 [v _setup `(v ~T0 @X0 1 ef ]
-"37
-[; ;main.c: 37: {
+"34
+[; ;main.c: 34: {
 {
 [e :U _setup ]
 [f ]
-"39
-[; ;main.c: 39:     OSCCON = 0x72;
+"36
+[; ;main.c: 36:     OSCCON = 0x72;
 [e = _OSCCON -> -> 114 `i `uc ]
-"40
-[; ;main.c: 40:     while(!OSCCONbits.IOFS);
+"37
+[; ;main.c: 37:     while(!OSCCONbits.IOFS);
 [e $U 318  ]
 [e :U 319 ]
 [e :U 318 ]
 [e $ ! != -> . . _OSCCONbits 0 1 `i -> 0 `i 319  ]
 [e :U 320 ]
-"41
-[; ;main.c: 41:     INTCONbits.GIEH = 1;
+"38
+[; ;main.c: 38:     INTCONbits.GIEH = 1;
 [e = . . _INTCONbits 2 2 -> -> 1 `i `uc ]
-"42
-[; ;main.c: 42:     INTCONbits.GIEL = 1;
+"39
+[; ;main.c: 39:     INTCONbits.GIEL = 1;
 [e = . . _INTCONbits 2 1 -> -> 1 `i `uc ]
-"43
-[; ;main.c: 43:     RCONbits.IPEN=1;
+"40
+[; ;main.c: 40:     RCONbits.IPEN=1;
 [e = . . _RCONbits 5 6 -> -> 1 `i `uc ]
-"45
-[; ;main.c: 45:     LCD_Init();
-[e ( _LCD_Init ..  ]
-"46
-[; ;main.c: 46:     init_RFID();
+"43
+[; ;main.c: 43:     init_LCD();
+[e ( _init_LCD ..  ]
+"44
+[; ;main.c: 44:     init_RFID();
 [e ( _init_RFID ..  ]
-"48
-[; ;main.c: 48:     TRISCbits.RC3 = 1;
-[e = . . _TRISCbits 1 3 -> -> 1 `i `uc ]
-"49
-[; ;main.c: 49: }
+"46
+[; ;main.c: 46:     TRISDbits.RD2 = 1;
+[e = . . _TRISDbits 1 2 -> -> 1 `i `uc ]
+"47
+[; ;main.c: 47: }
 [e :UE 317 ]
 }
 [v $root$_InterruptHandlerHigh `(v ~T0 @X0 0 e ]
-"52
-[; ;main.c: 52: void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void)
+"50
+[; ;main.c: 50: void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void)
 [v _InterruptHandlerHigh `(v ~T36 @X0 1 ef ]
-"53
-[; ;main.c: 53: {
+"51
+[; ;main.c: 51: {
 {
 [e :U _InterruptHandlerHigh ]
 [f ]
-"58
-[; ;main.c: 58:     if((PIR1bits.RCIF) && (robot_mode == 0))
+"54
+[; ;main.c: 54:     if((PIR1bits.RCIF) && (robot_mode == 0))
 [e $ ! && != -> . . _PIR1bits 0 5 `i -> 0 `i == -> _robot_mode `i -> 0 `i 322  ]
-"59
-[; ;main.c: 59:     {
+"55
+[; ;main.c: 55:     {
 {
-"61
-[; ;main.c: 61:         static char RFIDbuf[12];
+"59
+[; ;main.c: 59:         static char RFIDbuf[12];
 [v F3140 `uc ~T0 @X0 -> 12 `i s RFIDbuf ]
-"65
-[; ;main.c: 65:         char RFID_flag = processRFID(RFIDbuf, RCREG);
+"63
+[; ;main.c: 63:         char RFID_flag = processRFID(RFIDbuf, RCREG);
 [v _RFID_flag `uc ~T0 @X0 1 a ]
 [e = _RFID_flag ( _processRFID (2 , &U F3140 -> _RCREG `uc ]
-"69
-[; ;main.c: 69:         if(RFID_flag == 1)
+"67
+[; ;main.c: 67:         if(RFID_flag == 1)
 [e $ ! == -> _RFID_flag `i -> 1 `i 323  ]
-"70
-[; ;main.c: 70:         {
+"68
+[; ;main.c: 68:         {
 {
-"71
-[; ;main.c: 71:             check_RFID(RFIDbuf);
+"69
+[; ;main.c: 69:             check_RFID(RFIDbuf);
 [e ( _check_RFID (1 &U F3140 ]
-"72
-[; ;main.c: 72:             robot_mode = 1;
+"70
+[; ;main.c: 70:             robot_mode = 1;
 [e = _robot_mode -> -> 1 `i `uc ]
-"73
-[; ;main.c: 73:         }
+"71
+[; ;main.c: 71:         }
 }
 [e :U 323 ]
-"74
-[; ;main.c: 74:     }
+"72
+[; ;main.c: 72:     }
 }
 [e $U 324  ]
-"76
-[; ;main.c: 76:     else
+"74
+[; ;main.c: 74:     else
 [e :U 322 ]
-"77
-[; ;main.c: 77:     {
+"75
+[; ;main.c: 75:     {
 {
-"79
-[; ;main.c: 79:         char throwaway = RCREG;
+"77
+[; ;main.c: 77:         char throwaway = RCREG;
 [v _throwaway `uc ~T0 @X0 1 a ]
 [e = _throwaway -> _RCREG `uc ]
-"80
-[; ;main.c: 80:     }
+"78
+[; ;main.c: 78:     }
 }
 [e :U 324 ]
-"81
-[; ;main.c: 81: }
+"79
+[; ;main.c: 79: }
 [e :UE 321 ]
 }
 [v $root$_InterruptHandlerLow `(v ~T0 @X0 0 e ]
-"84
-[; ;main.c: 84: void __attribute__((picinterrupt(("low_priority")))) InterruptHandlerLow (void)
+"82
+[; ;main.c: 82: void __attribute__((picinterrupt(("low_priority")))) InterruptHandlerLow (void)
 [v _InterruptHandlerLow `(v ~T37 @X0 1 ef ]
-"85
-[; ;main.c: 85: {
+"83
+[; ;main.c: 83: {
 {
 [e :U _InterruptHandlerLow ]
 [f ]
-"87
-[; ;main.c: 87: }
+"85
+[; ;main.c: 85: }
 [e :UE 325 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"90
-[; ;main.c: 90: void main(void)
+"88
+[; ;main.c: 88: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"91
-[; ;main.c: 91: {
+"89
+[; ;main.c: 89: {
 {
 [e :U _main ]
 [f ]
-"93
-[; ;main.c: 93:   setup();
+"91
+[; ;main.c: 91:   setup();
 [e ( _setup ..  ]
-"97
-[; ;main.c: 97:   while(1)
+"95
+[; ;main.c: 95:   while(1)
 [e :U 328 ]
-"98
-[; ;main.c: 98:   {
+"96
+[; ;main.c: 96:   {
 {
-"100
-[; ;main.c: 100:       while(robot_mode == 0)
+"98
+[; ;main.c: 98:       while(robot_mode == 0)
 [e $U 330  ]
 [e :U 331 ]
-"101
-[; ;main.c: 101:       {
+"99
+[; ;main.c: 99:       {
 {
-"103
-[; ;main.c: 103:       }
+"101
+[; ;main.c: 101:       }
 }
 [e :U 330 ]
-"100
-[; ;main.c: 100:       while(robot_mode == 0)
+"98
+[; ;main.c: 98:       while(robot_mode == 0)
 [e $ == -> _robot_mode `i -> 0 `i 331  ]
 [e :U 332 ]
-"106
-[; ;main.c: 106:       while(robot_mode == 1)
+"104
+[; ;main.c: 104:       while(robot_mode == 1)
 [e $U 333  ]
 [e :U 334 ]
-"107
-[; ;main.c: 107:       {
+"105
+[; ;main.c: 105:       {
 {
-"109
-[; ;main.c: 109:           robot_mode = 2;
+"107
+[; ;main.c: 107:           robot_mode = 2;
 [e = _robot_mode -> -> 2 `i `uc ]
-"110
-[; ;main.c: 110:       }
+"108
+[; ;main.c: 108:       }
 }
 [e :U 333 ]
-"106
-[; ;main.c: 106:       while(robot_mode == 1)
+"104
+[; ;main.c: 104:       while(robot_mode == 1)
 [e $ == -> _robot_mode `i -> 1 `i 334  ]
 [e :U 335 ]
-"113
-[; ;main.c: 113:       while(robot_mode == 2)
+"111
+[; ;main.c: 111:       while(robot_mode == 2)
 [e $U 336  ]
 [e :U 337 ]
-"114
-[; ;main.c: 114:       {
+"112
+[; ;main.c: 112:       {
 {
-"115
-[; ;main.c: 115:           while(PORTCbits.RC3 == 1)
+"113
+[; ;main.c: 113:           while(PORTDbits.RD2 == 1)
 [e $U 339  ]
 [e :U 340 ]
-"116
-[; ;main.c: 116:           {
+"114
+[; ;main.c: 114:           {
 {
-"117
-[; ;main.c: 117:               ClearLCD();
+"115
+[; ;main.c: 115:               ClearLCD();
 [e ( _ClearLCD ..  ]
-"118
-[; ;main.c: 118:               LCD_String("RESETTING ROBOT");
+"116
+[; ;main.c: 116:               LCD_String("RESETTING ROBOT");
 [e ( _LCD_String (1 :s 1C ]
-"119
-[; ;main.c: 119:               for(int i=0; i<10;i++)
+"117
+[; ;main.c: 117:               for(int i=0; i<10;i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $ < _i -> 10 `i 342  ]
 [e $U 343  ]
 [e :U 342 ]
-"120
-[; ;main.c: 120:               {
+"118
+[; ;main.c: 118:               {
 {
-"121
-[; ;main.c: 121:                   _delay((unsigned long)((100)*(8000000/4000.0)));
+"119
+[; ;main.c: 119:                   _delay((unsigned long)((100)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"122
-[; ;main.c: 122:               }
+"120
+[; ;main.c: 120:               }
 }
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 10 `i 342  ]
 [e :U 343 ]
 }
-"123
-[; ;main.c: 123:               ClearLCD();
+"121
+[; ;main.c: 121:               ClearLCD();
 [e ( _ClearLCD ..  ]
-"124
-[; ;main.c: 124:               robot_mode = 0;
+"122
+[; ;main.c: 122:               robot_mode = 0;
 [e = _robot_mode -> -> 0 `i `uc ]
-"125
-[; ;main.c: 125:           }
+"123
+[; ;main.c: 123:           }
 }
 [e :U 339 ]
-"115
-[; ;main.c: 115:           while(PORTCbits.RC3 == 1)
-[e $ == -> . . _PORTCbits 0 3 `i -> 1 `i 340  ]
+"113
+[; ;main.c: 113:           while(PORTDbits.RD2 == 1)
+[e $ == -> . . _PORTDbits 0 2 `i -> 1 `i 340  ]
 [e :U 341 ]
-"126
-[; ;main.c: 126:       }
+"124
+[; ;main.c: 124:       }
 }
 [e :U 336 ]
-"113
-[; ;main.c: 113:       while(robot_mode == 2)
+"111
+[; ;main.c: 111:       while(robot_mode == 2)
 [e $ == -> _robot_mode `i -> 2 `i 337  ]
 [e :U 338 ]
-"127
-[; ;main.c: 127:   }
+"125
+[; ;main.c: 125:   }
 }
 [e :U 327 ]
 [e $U 328  ]
 [e :U 329 ]
-"128
-[; ;main.c: 128: }
+"126
+[; ;main.c: 126: }
 [e :UE 326 ]
 }
 [a 1C 82 69 83 69 84 84 73 78 71 32 82 79 66 79 84 0 ]

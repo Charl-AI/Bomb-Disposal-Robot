@@ -32,17 +32,18 @@ volatile char robot_mode = 0;
 // setup function, initialise registers here
 void setup(void)
 {   
-    // set the clock to 8 MHz and wait for it to stabilise
-    OSCCON = 0x72; 
-    while(!OSCCONbits.IOFS);
+    // Board-specific setup
+    OSCCON = 0x72; // set clock to 8 MHz
+    while(!OSCCONbits.IOFS); // wait for clock to stabilise
     INTCONbits.GIEH = 1; //Global high priority interrupt enable
     INTCONbits.GIEL = 1;// enable low priority interrupts
     RCONbits.IPEN=1; // enable interrupt prioritisation
     
-    LCD_Init();
+    // Initialise pins to enable LCD, RFID, motors, etc.
+    init_LCD();
     init_RFID();
     
-    TRISCbits.RC3 = 1;
+    TRISDbits.RD2 = 1;
 }
 /*****************************************************************************/
 // High priority interrupt service routine
@@ -109,7 +110,7 @@ void main(void)
       // Subroutine for once bomb has been found and robot has returned
       while(robot_mode == 2)
       {
-          while(PORTCbits.RC3 == 1)
+          while(PORTDbits.RD2 == 1)
           {
               ClearLCD();
               LCD_String("RESETTING ROBOT");

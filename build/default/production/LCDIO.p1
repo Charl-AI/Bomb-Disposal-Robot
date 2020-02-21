@@ -1,4 +1,23 @@
 Version 4.0 HI-TECH Software Intermediate Code
+"1758 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1758:     struct {
+[s S71 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S71 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
+"1768
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1768:     struct {
+[s S72 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S72 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
+"1757
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1757: typedef union {
+[u S70 `S71 1 `S72 1 ]
+[n S70 . . . ]
+"1779
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1779: extern volatile LATAbits_t LATAbits __attribute__((address(0xF89)));
+[v _LATAbits `VS70 ~T0 @X0 0 e@3977 ]
+[v F2777 `(v ~T0 @X0 1 tf1`ul ]
+"183 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18.h
+[v __delay `JF2777 ~T0 @X0 0 e ]
+[p i __delay ]
 "1982 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1982:     struct {
 [s S77 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -14,11 +33,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2003
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2003: extern volatile LATCbits_t LATCbits __attribute__((address(0xF8B)));
 [v _LATCbits `VS76 ~T0 @X0 0 e@3979 ]
-[v F2777 `(v ~T0 @X0 1 tf1`ul ]
-"183 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18.h
-[v __delay `JF2777 ~T0 @X0 0 e ]
-[p i __delay ]
-"2094 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
+"2094
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2094:     struct {
 [s S80 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S80 . LATD0 LATD1 LATD2 LATD3 LATD4 LATD5 LATD6 LATD7 ]
@@ -33,21 +48,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2115
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2115: extern volatile LATDbits_t LATDbits __attribute__((address(0xF8C)));
 [v _LATDbits `VS79 ~T0 @X0 0 e@3980 ]
-"1758
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1758:     struct {
-[s S71 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S71 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
-"1768
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1768:     struct {
-[s S72 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S72 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
-"1757
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1757: typedef union {
-[u S70 `S71 1 `S72 1 ]
-[n S70 . . . ]
-"1779
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1779: extern volatile LATAbits_t LATAbits __attribute__((address(0xF89)));
-[v _LATAbits `VS70 ~T0 @X0 0 e@3977 ]
 "2728
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2728:     struct {
 [s S98 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -63,21 +63,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2749
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2749: extern volatile TRISCbits_t TRISCbits __attribute__((address(0xF94)));
 [v _TRISCbits `VS97 ~T0 @X0 0 e@3988 ]
-"2950
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2950:     struct {
-[s S104 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S104 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
-"2960
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2960:     struct {
-[s S105 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S105 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
-"2949
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2949: typedef union {
-[u S103 `S104 1 `S105 1 ]
-[n S103 . . . ]
-"2971
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2971: extern volatile TRISDbits_t TRISDbits __attribute__((address(0xF95)));
-[v _TRISDbits `VS103 ~T0 @X0 0 e@3989 ]
 "2284
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2284:     struct {
 [s S86 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -93,6 +78,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2305
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2305: extern volatile TRISAbits_t TRISAbits __attribute__((address(0xF92)));
 [v _TRISAbits `VS85 ~T0 @X0 0 e@3986 ]
+"2950
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2950:     struct {
+[s S104 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S104 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
+"2960
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2960:     struct {
+[s S105 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S105 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
+"2949
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2949: typedef union {
+[u S103 `S104 1 `S105 1 ]
+[n S103 . . . ]
+"2971
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2971: extern volatile TRISDbits_t TRISDbits __attribute__((address(0xF95)));
+[v _TRISDbits `VS103 ~T0 @X0 0 e@3989 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 54: __asm("DFLTCON equ 0F60h");
 [; <" DFLTCON equ 0F60h ;# ">
@@ -640,14 +640,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _E_TOG ]
 [f ]
 "25
-[; ;LCDIO.c: 25: LATCbits.LATC0 = 1;
-[e = . . _LATCbits 0 0 -> -> 1 `i `uc ]
+[; ;LCDIO.c: 25: LATAbits.LATA6 = 1;
+[e = . . _LATAbits 0 6 -> -> 1 `i `uc ]
 "26
 [; ;LCDIO.c: 26: _delay((unsigned long)((5)*(8000000/4000000.0)));
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
 "27
-[; ;LCDIO.c: 27: LATCbits.LATC0 = 0;
-[e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
+[; ;LCDIO.c: 27: LATAbits.LATA6 = 0;
+[e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
 "28
 [; ;LCDIO.c: 28: }
 [e :UE 314 ]
@@ -660,11 +660,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _number `uc ~T0 @X0 1 r1 ]
 [f ]
 "33
-[; ;LCDIO.c: 33:  LATCbits.LATC1 = (0b0001 & number);
-[e = . . _LATCbits 0 1 -> & -> 1 `i -> _number `i `uc ]
+[; ;LCDIO.c: 33:  LATCbits.LATC0 = (0b0001 & number);
+[e = . . _LATCbits 0 0 -> & -> 1 `i -> _number `i `uc ]
 "34
-[; ;LCDIO.c: 34:  LATCbits.LATC2 = (0b0010 & number) >> 1;
-[e = . . _LATCbits 0 2 -> >> & -> 2 `i -> _number `i -> 1 `i `uc ]
+[; ;LCDIO.c: 34:  LATCbits.LATC3 = (0b0010 & number) >> 1;
+[e = . . _LATCbits 0 3 -> >> & -> 2 `i -> _number `i -> 1 `i `uc ]
 "35
 [; ;LCDIO.c: 35:  LATDbits.LATD0 = (0b0100 & number) >> 2;
 [e = . . _LATDbits 0 0 -> >> & -> 4 `i -> _number `i -> 2 `i `uc ]
@@ -690,8 +690,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _type `uc ~T0 @X0 1 r2 ]
 [f ]
 "47
-[; ;LCDIO.c: 47:  LATAbits.LATA6 = type;
-[e = . . _LATAbits 0 6 -> _type `uc ]
+[; ;LCDIO.c: 47:  LATAbits.LATA7 = type;
+[e = . . _LATAbits 0 7 -> _type `uc ]
 "49
 [; ;LCDIO.c: 49:  LCDout((0b11110000 & Byte) >> 4);
 [e ( _LCDout (1 -> >> & -> 240 `i -> _Byte `i -> 4 `i `uc ]
@@ -709,20 +709,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 316 ]
 }
 "56
-[; ;LCDIO.c: 56: void LCD_Init(void){
-[v _LCD_Init `(v ~T0 @X0 1 ef ]
+[; ;LCDIO.c: 56: void init_LCD(void){
+[v _init_LCD `(v ~T0 @X0 1 ef ]
 {
-[e :U _LCD_Init ]
+[e :U _init_LCD ]
 [f ]
 "59
 [; ;LCDIO.c: 59:  TRISCbits.RC0 = 0;
 [e = . . _TRISCbits 1 0 -> -> 0 `i `uc ]
 "60
-[; ;LCDIO.c: 60:  TRISCbits.RC1 = 0;
-[e = . . _TRISCbits 1 1 -> -> 0 `i `uc ]
+[; ;LCDIO.c: 60:  TRISAbits.RA7 = 0;
+[e = . . _TRISAbits 1 7 -> -> 0 `i `uc ]
 "61
-[; ;LCDIO.c: 61:  TRISCbits.RC2 = 0;
-[e = . . _TRISCbits 1 2 -> -> 0 `i `uc ]
+[; ;LCDIO.c: 61:  TRISCbits.RC3 = 0;
+[e = . . _TRISCbits 1 3 -> -> 0 `i `uc ]
 "62
 [; ;LCDIO.c: 62:  TRISDbits.RD0 = 0;
 [e = . . _TRISDbits 1 0 -> -> 0 `i `uc ]
@@ -739,17 +739,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;LCDIO.c: 68:  LATDbits.LATD1 = 0;
 [e = . . _LATDbits 0 1 -> -> 0 `i `uc ]
 "69
-[; ;LCDIO.c: 69:  LATCbits.LATC2 = 0;
-[e = . . _LATCbits 0 2 -> -> 0 `i `uc ]
+[; ;LCDIO.c: 69:  LATCbits.LATC3 = 0;
+[e = . . _LATCbits 0 3 -> -> 0 `i `uc ]
 "70
-[; ;LCDIO.c: 70:  LATCbits.LATC1 = 0;
-[e = . . _LATCbits 0 1 -> -> 0 `i `uc ]
-"71
-[; ;LCDIO.c: 71:  LATCbits.LATC0 = 0;
+[; ;LCDIO.c: 70:  LATCbits.LATC0 = 0;
 [e = . . _LATCbits 0 0 -> -> 0 `i `uc ]
-"72
-[; ;LCDIO.c: 72:  LATAbits.LATA6 = 0;
+"71
+[; ;LCDIO.c: 71:  LATAbits.LATA6 = 0;
 [e = . . _LATAbits 0 6 -> -> 0 `i `uc ]
+"72
+[; ;LCDIO.c: 72:  LATAbits.LATA7 = 0;
+[e = . . _LATAbits 0 7 -> -> 0 `i `uc ]
 "75
 [; ;LCDIO.c: 75:  _delay((unsigned long)((15)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 15 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]

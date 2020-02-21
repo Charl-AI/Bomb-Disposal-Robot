@@ -3,7 +3,6 @@
 
 #define _XTAL_FREQ 8000000
 
-#include <xc.h>
 
 struct DC_motor { //definition of DC_motor structure
     char power;         //motor power, out of 100

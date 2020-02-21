@@ -19,7 +19,7 @@ void LCDout(unsigned char number);
 void SendLCD(unsigned char Byte, char type);
 
 
-void LCD_Init(void);
+void init_LCD(void);
 
 
 void SetLine (char line);
@@ -5153,16 +5153,16 @@ extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 
 void E_TOG(void){
 
-LATCbits.LATC0 = 1;
+LATAbits.LATA6 = 1;
 _delay((unsigned long)((5)*(8000000/4000000.0)));
-LATCbits.LATC0 = 0;
+LATAbits.LATA6 = 0;
 }
 
 
 void LCDout(unsigned char number){
 
- LATCbits.LATC1 = (0b0001 & number);
- LATCbits.LATC2 = (0b0010 & number) >> 1;
+ LATCbits.LATC0 = (0b0001 & number);
+ LATCbits.LATC3 = (0b0010 & number) >> 1;
  LATDbits.LATD0 = (0b0100 & number) >> 2;
  LATDbits.LATD1 = (0b1000 & number) >> 3;
 
@@ -5175,7 +5175,7 @@ _delay((unsigned long)((5)*(8000000/4000000.0)));
 void SendLCD(unsigned char Byte, char type){
 
 
- LATAbits.LATA6 = type;
+ LATAbits.LATA7 = type;
 
  LCDout((0b11110000 & Byte) >> 4);
  _delay((unsigned long)((10)*(8000000/4000000.0)));
@@ -5184,12 +5184,12 @@ void SendLCD(unsigned char Byte, char type){
  LCDout(0b00001111 & Byte);
  _delay((unsigned long)((50)*(8000000/4000000.0)));
 }
-void LCD_Init(void){
+void init_LCD(void){
 
 
  TRISCbits.RC0 = 0;
- TRISCbits.RC1 = 0;
- TRISCbits.RC2 = 0;
+ TRISAbits.RA7 = 0;
+ TRISCbits.RC3 = 0;
  TRISDbits.RD0 = 0;
  TRISDbits.RD1 = 0;
  TRISAbits.RA6 = 0;
@@ -5197,10 +5197,10 @@ void LCD_Init(void){
 
  LATDbits.LATD0 = 0;
  LATDbits.LATD1 = 0;
- LATCbits.LATC2 = 0;
- LATCbits.LATC1 = 0;
+ LATCbits.LATC3 = 0;
  LATCbits.LATC0 = 0;
  LATAbits.LATA6 = 0;
+ LATAbits.LATA7 = 0;
 
 
  _delay((unsigned long)((15)*(8000000/4000.0)));

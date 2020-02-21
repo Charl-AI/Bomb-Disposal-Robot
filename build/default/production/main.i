@@ -5276,7 +5276,7 @@ void LCDout(unsigned char number);
 void SendLCD(unsigned char Byte, char type);
 
 
-void LCD_Init(void);
+void init_LCD(void);
 
 
 void SetLine (char line);
@@ -5291,7 +5291,6 @@ void ClearLCD(void);
 # 18 "main.c" 2
 
 # 1 "./dc_motor.h" 1
-
 
 
 
@@ -5330,9 +5329,6 @@ volatile char robot_mode = 0;
 
 
 
-
-
-
 void setup(void)
 {
 
@@ -5342,10 +5338,11 @@ void setup(void)
     INTCONbits.GIEL = 1;
     RCONbits.IPEN=1;
 
-    LCD_Init();
+
+    init_LCD();
     init_RFID();
 
-    TRISCbits.RC3 = 1;
+    TRISDbits.RD2 = 1;
 }
 
 
@@ -5353,10 +5350,10 @@ void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void
 {
 
 
-
-
     if((PIR1bits.RCIF) && (robot_mode == 0))
     {
+
+
 
         static char RFIDbuf[12];
 
@@ -5412,7 +5409,7 @@ void main(void)
 
       while(robot_mode == 2)
       {
-          while(PORTCbits.RC3 == 1)
+          while(PORTDbits.RD2 == 1)
           {
               ClearLCD();
               LCD_String("RESETTING ROBOT");

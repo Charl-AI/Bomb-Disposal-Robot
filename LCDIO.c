@@ -53,12 +53,12 @@ void SendLCD(unsigned char Byte, char type){
  LCDout(0b00001111 & Byte);
  __delay_us(50); // 10us delay
 }
-void LCD_Init(void){
+void init_LCD(void){
  
  // Set all pins to outputs
  TRISCbits.RC0 = 0;
- TRISCbits.RC1 = 0;
- TRISCbits.RC2 = 0;
+ TRISAbits.RA7 = 0;
+ TRISCbits.RC3 = 0;
  TRISDbits.RD0 = 0;
  TRISDbits.RD1 = 0;
  TRISAbits.RA6 = 0;

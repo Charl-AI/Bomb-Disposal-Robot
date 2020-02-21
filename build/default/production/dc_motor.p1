@@ -17,8 +17,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "899
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 899: extern volatile unsigned char PTPERH __attribute__((address(0xF7A)));
 [v _PTPERH `Vuc ~T0 @X0 0 e@3962 ]
-"8 ./dc_motor.h
-[; ;./dc_motor.h: 8: struct DC_motor {
+"7 ./dc_motor.h
+[; ;./dc_motor.h: 7: struct DC_motor {
 [s S314 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
 [n S314 DC_motor power direction dutyLowByte dutyHighByte dir_pin PWMperiod ]
 "1864 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h

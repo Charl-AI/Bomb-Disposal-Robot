@@ -15,10 +15,10 @@
 
 // Define Pins attached to LCD
 // if changing board or moving the LCD, we only need to change these definitions
-#define LCD_RS LATAbits.LATA6
-#define LCD_E LATCbits.LATC0
-#define LCD_DB4 LATCbits.LATC1
-#define LCD_DB5 LATCbits.LATC2
+#define LCD_RS LATAbits.LATA7
+#define LCD_E LATAbits.LATA6
+#define LCD_DB4 LATCbits.LATC0
+#define LCD_DB5 LATCbits.LATC3
 #define LCD_DB6 LATDbits.LATD0
 #define LCD_DB7 LATDbits.LATD1
 
@@ -32,7 +32,7 @@ void LCDout(unsigned char number);
 void SendLCD(unsigned char Byte, char type);
 
 // function to initialise LCD display, always call this before doing anything
-void LCD_Init(void);
+void init_LCD(void);
 
 //function to put cursor to start of line
 void SetLine (char line);
