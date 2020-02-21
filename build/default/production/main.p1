@@ -733,9 +733,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _robot_mode
 -> -> 0 `i `uc
 ]
-"32
-[; ;main.c: 32: volatile char RFIDbuf[12];
-[v _RFIDbuf `Vuc ~T0 @X0 -> 12 `i e ]
 "36
 [; ;main.c: 36: void setup(void)
 [v _setup `(v ~T0 @X0 1 ef ]
@@ -785,166 +782,192 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e :U _InterruptHandlerHigh ]
 [f ]
-"56
-[; ;main.c: 56:     if((PIR1bits.RCIF) && (robot_mode == 0))
+"58
+[; ;main.c: 58:     if((PIR1bits.RCIF) && (robot_mode == 0))
 [e $ ! && != -> . . _PIR1bits 0 5 `i -> 0 `i == -> _robot_mode `i -> 0 `i 322  ]
-"57
-[; ;main.c: 57:     {
+"59
+[; ;main.c: 59:     {
 {
-"60
-[; ;main.c: 60:         char RFID_flag = processRFID(RFIDbuf, RCREG);
-[v _RFID_flag `uc ~T0 @X0 1 a ]
-[e = _RFID_flag ( _processRFID (2 , -> &U _RFIDbuf `*uc -> _RCREG `uc ]
-"64
-[; ;main.c: 64:         if(RFID_flag == 1)
-[e $ ! == -> _RFID_flag `i -> 1 `i 323  ]
+"61
+[; ;main.c: 61:         static char RFIDbuf[12];
+[v F3140 `uc ~T0 @X0 -> 12 `i s RFIDbuf ]
 "65
-[; ;main.c: 65:         {
+[; ;main.c: 65:         char RFID_flag = processRFID(RFIDbuf, RCREG);
+[v _RFID_flag `uc ~T0 @X0 1 a ]
+[e = _RFID_flag ( _processRFID (2 , &U F3140 -> _RCREG `uc ]
+"69
+[; ;main.c: 69:         if(RFID_flag == 1)
+[e $ ! == -> _RFID_flag `i -> 1 `i 323  ]
+"70
+[; ;main.c: 70:         {
 {
-"66
-[; ;main.c: 66:             check_RFID(RFIDbuf);
-[e ( _check_RFID (1 -> &U _RFIDbuf `*uc ]
-"67
-[; ;main.c: 67:             robot_mode = 1;
+"71
+[; ;main.c: 71:             check_RFID(RFIDbuf);
+[e ( _check_RFID (1 &U F3140 ]
+"72
+[; ;main.c: 72:             robot_mode = 1;
 [e = _robot_mode -> -> 1 `i `uc ]
-"68
-[; ;main.c: 68:         }
+"73
+[; ;main.c: 73:         }
 }
 [e :U 323 ]
-"69
-[; ;main.c: 69:     }
-}
-[e $U 324  ]
-"70
-[; ;main.c: 70:     else
-[e :U 322 ]
-"71
-[; ;main.c: 71:     {
-{
-"73
-[; ;main.c: 73:         char temp = RCREG;
-[v _temp `uc ~T0 @X0 1 a ]
-[e = _temp -> _RCREG `uc ]
 "74
 [; ;main.c: 74:     }
 }
-[e :U 324 ]
+[e $U 324  ]
 "76
-[; ;main.c: 76: }
+[; ;main.c: 76:     else
+[e :U 322 ]
+"77
+[; ;main.c: 77:     {
+{
+"79
+[; ;main.c: 79:         char throwaway = RCREG;
+[v _throwaway `uc ~T0 @X0 1 a ]
+[e = _throwaway -> _RCREG `uc ]
+"80
+[; ;main.c: 80:     }
+}
+[e :U 324 ]
+"81
+[; ;main.c: 81: }
 [e :UE 321 ]
 }
 [v $root$_InterruptHandlerLow `(v ~T0 @X0 0 e ]
-"79
-[; ;main.c: 79: void __attribute__((picinterrupt(("low_priority")))) InterruptHandlerLow (void)
+"84
+[; ;main.c: 84: void __attribute__((picinterrupt(("low_priority")))) InterruptHandlerLow (void)
 [v _InterruptHandlerLow `(v ~T37 @X0 1 ef ]
-"80
-[; ;main.c: 80: {
+"85
+[; ;main.c: 85: {
 {
 [e :U _InterruptHandlerLow ]
 [f ]
-"82
-[; ;main.c: 82: }
+"87
+[; ;main.c: 87: }
 [e :UE 325 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"85
-[; ;main.c: 85: void main(void)
+"90
+[; ;main.c: 90: void main(void)
 [v _main `(v ~T0 @X0 1 ef ]
-"86
-[; ;main.c: 86: {
+"91
+[; ;main.c: 91: {
 {
 [e :U _main ]
 [f ]
-"88
-[; ;main.c: 88:   setup();
+"93
+[; ;main.c: 93:   setup();
 [e ( _setup ..  ]
-"92
-[; ;main.c: 92:   while(1){
+"97
+[; ;main.c: 97:   while(1)
 [e :U 328 ]
+"98
+[; ;main.c: 98:   {
 {
-"95
-[; ;main.c: 95:       while(robot_mode == 0)
+"100
+[; ;main.c: 100:       while(robot_mode == 0)
 [e $U 330  ]
 [e :U 331 ]
-"96
-[; ;main.c: 96:       {
+"101
+[; ;main.c: 101:       {
 {
-"98
-[; ;main.c: 98:       }
+"103
+[; ;main.c: 103:       }
 }
 [e :U 330 ]
-"95
-[; ;main.c: 95:       while(robot_mode == 0)
+"100
+[; ;main.c: 100:       while(robot_mode == 0)
 [e $ == -> _robot_mode `i -> 0 `i 331  ]
 [e :U 332 ]
-"101
-[; ;main.c: 101:       while(robot_mode == 1)
+"106
+[; ;main.c: 106:       while(robot_mode == 1)
 [e $U 333  ]
 [e :U 334 ]
-"102
-[; ;main.c: 102:       {
+"107
+[; ;main.c: 107:       {
 {
-"104
-[; ;main.c: 104:           robot_mode = 2;
+"109
+[; ;main.c: 109:           robot_mode = 2;
 [e = _robot_mode -> -> 2 `i `uc ]
-"105
-[; ;main.c: 105:       }
+"110
+[; ;main.c: 110:       }
 }
 [e :U 333 ]
-"101
-[; ;main.c: 101:       while(robot_mode == 1)
+"106
+[; ;main.c: 106:       while(robot_mode == 1)
 [e $ == -> _robot_mode `i -> 1 `i 334  ]
 [e :U 335 ]
-"108
-[; ;main.c: 108:       while(robot_mode == 2)
+"113
+[; ;main.c: 113:       while(robot_mode == 2)
 [e $U 336  ]
 [e :U 337 ]
-"109
-[; ;main.c: 109:       {
+"114
+[; ;main.c: 114:       {
 {
-"110
-[; ;main.c: 110:           while(PORTCbits.RC3 == 1)
+"115
+[; ;main.c: 115:           while(PORTCbits.RC3 == 1)
 [e $U 339  ]
 [e :U 340 ]
-"111
-[; ;main.c: 111:           {
-{
-"112
-[; ;main.c: 112:               ClearLCD();
-[e ( _ClearLCD ..  ]
-"113
-[; ;main.c: 113:               LCD_String("RESETTING ROBOT");
-[e ( _LCD_String (1 :s 1C ]
-"114
-[; ;main.c: 114:               _delay((unsigned long)((100)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"115
-[; ;main.c: 115:               robot_mode = 0;
-[e = _robot_mode -> -> 0 `i `uc ]
 "116
-[; ;main.c: 116:           }
+[; ;main.c: 116:           {
+{
+"117
+[; ;main.c: 117:               ClearLCD();
+[e ( _ClearLCD ..  ]
+"118
+[; ;main.c: 118:               LCD_String("RESETTING ROBOT");
+[e ( _LCD_String (1 :s 1C ]
+"119
+[; ;main.c: 119:               for(int i=0; i<10;i++)
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 10 `i 342  ]
+[e $U 343  ]
+[e :U 342 ]
+"120
+[; ;main.c: 120:               {
+{
+"121
+[; ;main.c: 121:                   _delay((unsigned long)((100)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"122
+[; ;main.c: 122:               }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 10 `i 342  ]
+[e :U 343 ]
+}
+"123
+[; ;main.c: 123:               ClearLCD();
+[e ( _ClearLCD ..  ]
+"124
+[; ;main.c: 124:               robot_mode = 0;
+[e = _robot_mode -> -> 0 `i `uc ]
+"125
+[; ;main.c: 125:           }
 }
 [e :U 339 ]
-"110
-[; ;main.c: 110:           while(PORTCbits.RC3 == 1)
+"115
+[; ;main.c: 115:           while(PORTCbits.RC3 == 1)
 [e $ == -> . . _PORTCbits 0 3 `i -> 1 `i 340  ]
 [e :U 341 ]
-"117
-[; ;main.c: 117:       }
+"126
+[; ;main.c: 126:       }
 }
 [e :U 336 ]
-"108
-[; ;main.c: 108:       while(robot_mode == 2)
+"113
+[; ;main.c: 113:       while(robot_mode == 2)
 [e $ == -> _robot_mode `i -> 2 `i 337  ]
 [e :U 338 ]
-"118
-[; ;main.c: 118:   }
+"127
+[; ;main.c: 127:   }
 }
 [e :U 327 ]
 [e $U 328  ]
 [e :U 329 ]
-"119
-[; ;main.c: 119: }
+"128
+[; ;main.c: 128: }
 [e :UE 326 ]
 }
 [a 1C 82 69 83 69 84 84 73 78 71 32 82 79 66 79 84 0 ]

@@ -28,9 +28,6 @@
 // 2 represents finished (robot has found bomb and returned)
 volatile char robot_mode = 0;
 
-// stores the characters read from RFID (10 data bits and 2 checksum)
-volatile char RFIDbuf[12];
-
 /*****************************************************************************/
 // setup function, initialise registers here
 void setup(void)
@@ -55,6 +52,11 @@ void __interrupt(high_priority) InterruptHandlerHigh (void)
     // this can only occur when the robot is in searching mode
     if((PIR1bits.RCIF) && (robot_mode == 0))
     {
+        // stores the characters read from RFID (10 data bits and 2 checksum)
+        // this is static so it does not change between ISR calls
+        // (better than declaring globally because it is only scoped in the ISR)
+        static char RFIDbuf[12];
+        
         // process the RFID data, once all the data has been read, it is
         // displayed and RFID_flag is set to 1
         char RFID_flag = processRFID(RFIDbuf, RCREG);
@@ -89,14 +91,14 @@ void main(void)
   
   
   // loop, this runs forever
-  while(1){
-      
+  while(1)
+  {
       // Subroutine to search for bomb
       while(robot_mode == 0)
       {
           
       }
-      
+    
       // Subroutine to return to starting position
       while(robot_mode == 1)
       {
@@ -111,9 +113,13 @@ void main(void)
           {
               ClearLCD();
               LCD_String("RESETTING ROBOT");
-              __delay_ms(100);
+              for(int i=0; i<10;i++)
+              {
+                  __delay_ms(100);
+              }
+              ClearLCD();
               robot_mode = 0;
           }
       }
-  }  
+  }
 }

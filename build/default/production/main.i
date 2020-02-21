@@ -5329,7 +5329,7 @@ void check_RFID(char dataBuf[]);
 volatile char robot_mode = 0;
 
 
-volatile char RFIDbuf[12];
+
 
 
 
@@ -5353,8 +5353,13 @@ void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void
 {
 
 
+
+
     if((PIR1bits.RCIF) && (robot_mode == 0))
     {
+
+        static char RFIDbuf[12];
+
 
 
         char RFID_flag = processRFID(RFIDbuf, RCREG);
@@ -5367,12 +5372,12 @@ void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void
             robot_mode = 1;
         }
     }
+
     else
     {
 
-        char temp = RCREG;
+        char throwaway = RCREG;
     }
-
 }
 
 
@@ -5389,8 +5394,8 @@ void main(void)
 
 
 
-  while(1){
-
+  while(1)
+  {
 
       while(robot_mode == 0)
       {
@@ -5411,7 +5416,11 @@ void main(void)
           {
               ClearLCD();
               LCD_String("RESETTING ROBOT");
-              _delay((unsigned long)((100)*(8000000/4000.0)));
+              for(int i=0; i<10;i++)
+              {
+                  _delay((unsigned long)((100)*(8000000/4000.0)));
+              }
+              ClearLCD();
               robot_mode = 0;
           }
       }
