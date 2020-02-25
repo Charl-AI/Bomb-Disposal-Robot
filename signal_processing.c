@@ -26,9 +26,14 @@ void init_sensors(void)
 }
 
 // This function takes the raw data and smooths it to produce a better signal
-int process_signal(int raw_data)
+// we use an exponential moving average, which is good because it acts as a
+// low-pass filter, is very fast and uses very little memory
+void process_signal(struct Sensor *S)
 {
-    
+    char smoothing_constant = 75; //"alpha" constant for smoothing algorithm (%)
+    // use exponential moving average to smooth data
+    (S->smoothed_signal) = ((S->raw_data * smoothing_constant)
+                            + (100-smoothing_constant)* S->smoothed_signal)/100;
 }
 
 // This function takes the smoothed data and classifies it into a status

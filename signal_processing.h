@@ -16,8 +16,8 @@ struct Sensor {
 };
 
 void init_sensors(void);
-int process_signal(int raw_data);
-char classify_data(int left_smoothed, right_smoothed);
+void process_signal(struct Sensor *S);
+char classify_data(int left_smoothed, int right_smoothed);
 
 #endif	/* SIGNAL_PROCESSING_H */
 

@@ -7,7 +7,6 @@
  * bomb disposal robot.
  
  */
-
 /*****************************************************************************/
 // Include statements and boilerplate code
 #include <xc.h>
@@ -109,12 +108,10 @@ void main(void)
           sensorR.raw_data = (int)((CAP2BUFH << 8) | CAP2BUFL);
           
           // Next, process the signal by passing through a smoothing algorithm
-          sensorL.smoothed_signal = process_signal(sensorL.smoothed_signal);
-          sensorR.smoothed_signal = process_signal(sensorR.smoothed_signal);
+          process_signal(&sensorL);
+          process_signal(&sensorR);
           
-          // Now, classify the signals into a number which represents the 
-          // location of the beacon: 0 means beacon is lost, 1 means beacon to
-          // the left, 2 means to the right and 3 means straight ahead.
+          // Now, classify the signals to find the beacon location
           char beacon_location = classify_data(sensorL.smoothed_signal, sensorR.smoothed_signal);
           
           
@@ -125,7 +122,7 @@ void main(void)
           LCD_String("raw duty cycle");
           SetLine(2);
           char temp[32];
-          sprintf(temp,"%u s",smoothed);
+          //sprintf(temp,"%u s",smoothed);
           LCD_String(temp);
           __delay_ms(100);
       }

@@ -4966,26 +4966,49 @@ extern volatile __bit nWRITE __attribute__((address(0x7E3A)));
 
 # 1 "./signal_processing.h" 1
 # 13 "./signal_processing.h"
+struct Sensor {
+    int raw_data;
+    int smoothed_signal;
+};
+
 void init_sensors(void);
+void process_signal(struct Sensor *S);
+char classify_data(int left_smoothed, int right_smoothed);
 # 11 "signal_processing.c" 2
+
 
 
 void init_sensors(void)
 {
-
     T5CON =0b00011001;
     TRISAbits.RA2 = 1;
     TRISAbits.RA3 = 1;
 
 
-    ANSEL0 =0;
-    ANSEL1 =0;
+    ANSEL0 = 0;
+    ANSEL1 = 0;
 
     DFLTCON = 0b00011000;
     CAP1CON = 0b01000110;
+}
 
 
-    int throwaway = (CAP1BUFH<<8) | CAP1BUFL;
 
+
+void process_signal(struct Sensor *S)
+{
+    char smoothing_constant = 75;
+
+    (S->smoothed_signal) = ((S->raw_data * smoothing_constant)
+                            + (100-smoothing_constant)* S->smoothed_signal)/100;
+}
+
+
+
+
+
+
+char classify_data(int left_smoothed, int right_smoothed)
+{
 
 }

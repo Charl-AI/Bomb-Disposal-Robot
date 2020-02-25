@@ -7,7 +7,7 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-# 13 "main.c"
+# 12 "main.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -5121,7 +5121,7 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 2 3
-# 13 "main.c" 2
+# 12 "main.c" 2
 
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdio.h" 1 3
@@ -5260,7 +5260,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 15 "main.c" 2
+# 14 "main.c" 2
 
 #pragma config OSC = IRCIO, MCLRE=OFF, LVP=OFF
 
@@ -5288,7 +5288,7 @@ void LCD_String(char *string);
 void ShiftLeft(void);
 void ShiftRight(void);
 void ClearLCD(void);
-# 18 "main.c" 2
+# 17 "main.c" 2
 
 # 1 "./dc_motor.h" 1
 
@@ -5315,7 +5315,7 @@ void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-# 19 "main.c" 2
+# 18 "main.c" 2
 
 # 1 "./RFID.h" 1
 # 11 "./RFID.h"
@@ -5323,13 +5323,20 @@ void init_RFID(void);
 char getCharSerial(void);
 char processRFID(char RFIDbuf[], char latestChar);
 void check_RFID(char dataBuf[]);
-# 20 "main.c" 2
+# 19 "main.c" 2
 
 # 1 "./signal_processing.h" 1
 # 13 "./signal_processing.h"
+struct Sensor {
+    int raw_data;
+    int smoothed_signal;
+};
+
 void init_sensors(void);
-# 21 "main.c" 2
-# 30 "main.c"
+void process_signal(struct Sensor *S);
+char classify_data(int left_smoothed, int right_smoothed);
+# 20 "main.c" 2
+# 29 "main.c"
 volatile char robot_mode = 0;
 
 
@@ -5397,23 +5404,36 @@ void main(void)
   setup();
 
 
+  struct DC_motor motorL, motorR;
+
+  struct Sensor sensorL, sensorR;
+
 
   while(1)
   {
 
       while(robot_mode == 0)
       {
-          static int smoothed;
-          int raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
 
-          smoothed = 0.9*raw_data + 0.1* smoothed;
+          sensorL.raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
+          sensorR.raw_data = (int)((CAP2BUFH << 8) | CAP2BUFL);
+
+
+          process_signal(&sensorL);
+          process_signal(&sensorR);
+
+
+          char beacon_location = classify_data(sensorL.smoothed_signal, sensorR.smoothed_signal);
+
+
+
 
           ClearLCD();
           SetLine(1);
           LCD_String("raw duty cycle");
           SetLine(2);
           char temp[32];
-          sprintf(temp,"%u s",smoothed);
+
           LCD_String(temp);
           _delay((unsigned long)((100)*(8000000/4000.0)));
       }
