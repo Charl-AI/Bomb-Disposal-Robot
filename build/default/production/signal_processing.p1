@@ -1,52 +1,40 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"2728 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2728:     struct {
-[s S93 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S93 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
-"2738
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2738:     struct {
-[s S94 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S94 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
-"2727
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2727: typedef union {
-[u S92 `S93 1 `S94 1 ]
-[n S92 . . . ]
-"2749
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2749: extern volatile TRISCbits_t TRISCbits __attribute__((address(0xF94)));
-[v _TRISCbits `VS92 ~T0 @X0 0 e@3988 ]
-"5334
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 5334: extern volatile unsigned char CCP1CON __attribute__((address(0xFBD)));
-[v _CCP1CON `Vuc ~T0 @X0 0 e@4029 ]
-"5234
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 5234: extern volatile unsigned char CCP2CON __attribute__((address(0xFBA)));
-[v _CCP2CON `Vuc ~T0 @X0 0 e@4026 ]
-"6340
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6340:     struct {
-[s S266 :2 `uc 1 :1 `uc 1 ]
-[n S266 . . NOT_T1SYNC ]
-"6344
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6344:     struct {
-[s S267 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S267 . TMR1ON TMR1CS nT1SYNC T1OSCEN T1CKPS T1RUN RD16 ]
-"6353
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6353:     struct {
-[s S268 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S268 . . T1SYNC . T1CKPS0 T1CKPS1 ]
-"6360
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6360:     struct {
-[s S269 :2 `uc 1 :1 `uc 1 ]
-[n S269 . . T1INSYNC ]
-"6364
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6364:     struct {
-[s S270 :3 `uc 1 :1 `uc 1 :3 `uc 1 :1 `uc 1 ]
-[n S270 . . SOSCEN . T1RD16 ]
-"6339
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6339: typedef union {
-[u S265 `S266 1 `S267 1 `S268 1 `S269 1 `S270 1 ]
-[n S265 . . . . . . ]
-"6371
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 6371: extern volatile T1CONbits_t T1CONbits __attribute__((address(0xFCD)));
-[v _T1CONbits `VS265 ~T0 @X0 0 e@4045 ]
+"5034 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 5034: extern volatile unsigned char T5CON __attribute__((address(0xFB7)));
+[v _T5CON `Vuc ~T0 @X0 0 e@4023 ]
+"2284
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2284:     struct {
+[s S81 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S81 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 TRISA7 ]
+"2294
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2294:     struct {
+[s S82 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S82 . RA0 RA1 RA2 RA3 RA4 RA5 RA6 RA7 ]
+"2283
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2283: typedef union {
+[u S80 `S81 1 `S82 1 ]
+[n S80 . . . ]
+"2305
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2305: extern volatile TRISAbits_t TRISAbits __attribute__((address(0xF92)));
+[v _TRISAbits `VS80 ~T0 @X0 0 e@3986 ]
+"5152
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 5152: extern volatile unsigned char ANSEL0 __attribute__((address(0xFB8)));
+[v _ANSEL0 `Vuc ~T0 @X0 0 e@4024 ]
+"5214
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 5214: extern volatile unsigned char ANSEL1 __attribute__((address(0xFB9)));
+[v _ANSEL1 `Vuc ~T0 @X0 0 e@4025 ]
+"52
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 52: extern volatile unsigned char DFLTCON __attribute__((address(0xF60)));
+[v _DFLTCON `Vuc ~T0 @X0 0 e@3936 ]
+"234
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 234: extern volatile unsigned char CAP1CON __attribute__((address(0xF63)));
+[v _CAP1CON `Vuc ~T0 @X0 0 e@3939 ]
+"353
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 353: extern volatile unsigned char CAP1BUFH __attribute__((address(0xF69)));
+[v _CAP1BUFH `Vuc ~T0 @X0 0 e@3945 ]
+"341
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 341: extern volatile unsigned char CAP1BUFL __attribute__((address(0xF68)));
+[v _CAP1BUFL `Vuc ~T0 @X0 0 e@3944 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 54: __asm("DFLTCON equ 0F60h");
 [; <" DFLTCON equ 0F60h ;# ">
@@ -596,21 +584,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _init_sensors ]
 [f ]
 "16
-[; ;signal_processing.c: 16:     TRISCbits.RC1 = 1;
-[e = . . _TRISCbits 1 1 -> -> 1 `i `uc ]
+[; ;signal_processing.c: 16:     T5CON =0b00011001;
+[e = _T5CON -> -> 25 `i `uc ]
 "17
-[; ;signal_processing.c: 17:     TRISCbits.RC2 = 1;
-[e = . . _TRISCbits 1 2 -> -> 1 `i `uc ]
-"20
-[; ;signal_processing.c: 20:     CCP1CON = 00000100;
-[e = _CCP1CON -> -> 64 `i `uc ]
+[; ;signal_processing.c: 17:     TRISAbits.RA2 = 1;
+[e = . . _TRISAbits 1 2 -> -> 1 `i `uc ]
 "21
-[; ;signal_processing.c: 21:     CCP2CON = 00000100;
-[e = _CCP2CON -> -> 64 `i `uc ]
-"23
-[; ;signal_processing.c: 23:     T1CONbits.TMR1ON = 1;
-[e = . . _T1CONbits 1 0 -> -> 1 `i `uc ]
-"26
-[; ;signal_processing.c: 26: }
+[; ;signal_processing.c: 21:     ANSEL0 =0;
+[e = _ANSEL0 -> -> 0 `i `uc ]
+"22
+[; ;signal_processing.c: 22:     ANSEL1 =0;
+[e = _ANSEL1 -> -> 0 `i `uc ]
+"24
+[; ;signal_processing.c: 24:     DFLTCON = 0b00011000;
+[e = _DFLTCON -> -> 24 `i `uc ]
+"25
+[; ;signal_processing.c: 25:     CAP1CON = 0b01000110;
+[e = _CAP1CON -> -> 70 `i `uc ]
+"28
+[; ;signal_processing.c: 28:     int throwaway = (CAP1BUFH<<8) | CAP1BUFL;
+[v _throwaway `i ~T0 @X0 1 a ]
+[e = _throwaway | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i ]
+"31
+[; ;signal_processing.c: 31: }
 [e :UE 309 ]
 }

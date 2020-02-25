@@ -4964,19 +4964,28 @@ extern volatile __bit nW __attribute__((address(0x7E3A)));
 extern volatile __bit nWRITE __attribute__((address(0x7E3A)));
 # 10 "signal_processing.c" 2
 
+# 1 "./signal_processing.h" 1
+# 13 "./signal_processing.h"
+void init_sensors(void);
+# 11 "signal_processing.c" 2
 
 
 void init_sensors(void)
 {
 
-    TRISCbits.RC1 = 1;
-    TRISCbits.RC2 = 1;
+    T5CON =0b00011001;
+    TRISAbits.RA2 = 1;
 
 
-    CCP1CON = 00000100;
-    CCP2CON = 00000100;
 
-    T1CONbits.TMR1ON = 1;
+    ANSEL0 =0;
+    ANSEL1 =0;
+
+    DFLTCON = 0b00011000;
+    CAP1CON = 0b01000110;
+
+
+    int throwaway = (CAP1BUFH<<8) | CAP1BUFL;
 
 
 }

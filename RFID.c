@@ -26,6 +26,7 @@ void init_RFID(void)
     TXSTAbits.TXEN = 1; // enable transmitter, defualt settings
     
     PIE1bits.RC1IE = 1; // enable serial interrupt
+    IPR1bits.RC1IP = 1; // Make interrupt high priority
 }
 
 // this function is called when the RFID serial interrupt is triggered

@@ -29,7 +29,6 @@
 // 2 represents finished (robot has found bomb and returned)
 volatile char robot_mode = 0;
 
-volatile int raw_data;
 /*****************************************************************************/
 // setup function, initialise registers here
 void setup(void)
@@ -84,34 +83,8 @@ void __interrupt(high_priority) InterruptHandlerHigh (void)
 // Low priority interrupt service routine
 void __interrupt(low_priority) InterruptHandlerLow (void)
 {
-    // Triggers when CCP1 detects a rising or falling edge and search mode is on
-    if((PIR1bits.CCP1IF) && robot_mode == 0)
-    {
-        // stores the most recent falling edge
-        static int falling_edge;
-        // if falling edge detected
-        
-        if(CCP1CON == 00000100)
-        {   
-            falling_edge = (CCPR1H << 8) | CCPR1L;
-            CCP1CON = 00000101; // set CCP1CON to detect next rising edge
-            PIE1bits.CCP1IE = 0; // clear to avoid false interrupt
-            PIR1bits.CCP1IF = 0; // clear interrupt flag
-
-        }
-        else if(CCP1CON == 00000101)
-        {
-            raw_data = (CCPR1H << 8) | CCPR1L - falling_edge;
-            CCP1CON = 00000100; // set CCP1CON to detect next falling edge
-            PIE1bits.CCP1IE = 0; // clear to avoid false interrupt
-            PIR1bits.CCP1IF = 0; // clear interrupt flag
-        }
-    }
-    // when the robot is not in searching mode, do nothing apart from clear flag
-    else
-    {
-        PIR1bits.CCP1IF = 0; // clear interrupt flag
-    }
+    
+    
 }
 /*****************************************************************************/
 // main function
@@ -127,11 +100,17 @@ void main(void)
       // Subroutine to search for bomb
       while(robot_mode == 0)
       {
+          
+          int raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
+          
+          ClearLCD();
           SetLine(1);
           LCD_String("raw duty cycle");
           SetLine(2);
-          char temp[16];
-          sprintf(temp,"%d",raw_data);
+          char temp[32];
+          sprintf(temp,"%u s",raw_data);
+          LCD_String(temp);
+          __delay_ms(100);
       }
     
       // Subroutine to return to starting position

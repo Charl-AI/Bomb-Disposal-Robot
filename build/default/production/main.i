@@ -5332,7 +5332,6 @@ void init_sensors(void);
 # 30 "main.c"
 volatile char robot_mode = 0;
 
-volatile int raw_data;
 
 
 void setup(void)
@@ -5388,35 +5387,7 @@ void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void
 void __attribute__((picinterrupt(("low_priority")))) InterruptHandlerLow (void)
 {
 
-    if((PIR1bits.CCP1IF) && robot_mode == 0)
-    {
 
-        static int falling_edge;
-
-        LCD_String("TEST");
-        _delay((unsigned long)((100)*(8000000/4000.0)));
-
-        if(CCP1CON == 00000100)
-        {
-            falling_edge = (CCPR1H << 8) | CCPR1L;
-            CCP1CON = 00000101;
-            PIE1bits.CCP1IE = 0;
-            PIR1bits.CCP1IF = 0;
-
-        }
-        else if(CCP1CON == 00000101)
-        {
-            raw_data = (CCPR1H << 8) | CCPR1L - falling_edge;
-            CCP1CON = 00000100;
-            PIE1bits.CCP1IE = 0;
-            PIR1bits.CCP1IF = 0;
-        }
-    }
-
-    else
-    {
-        PIR1bits.CCP1IF = 0;
-    }
 }
 
 
@@ -5432,11 +5403,17 @@ void main(void)
 
       while(robot_mode == 0)
       {
+
+          int raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
+
+          ClearLCD();
           SetLine(1);
           LCD_String("raw duty cycle");
           SetLine(2);
-          char temp[16];
-          sprintf(temp,"%d",raw_data);
+          char temp[32];
+          sprintf(temp,"%u s",raw_data);
+          LCD_String(temp);
+          _delay((unsigned long)((100)*(8000000/4000.0)));
       }
 
 

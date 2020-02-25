@@ -5021,6 +5021,7 @@ void init_RFID(void)
     TXSTAbits.TXEN = 1;
 
     PIE1bits.RC1IE = 1;
+    IPR1bits.RC1IP = 1;
 }
 
 
