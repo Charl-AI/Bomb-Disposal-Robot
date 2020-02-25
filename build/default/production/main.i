@@ -5403,15 +5403,17 @@ void main(void)
 
       while(robot_mode == 0)
       {
-
+          static int smoothed;
           int raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
+
+          smoothed = 0.9*raw_data + 0.1* smoothed;
 
           ClearLCD();
           SetLine(1);
           LCD_String("raw duty cycle");
           SetLine(2);
           char temp[32];
-          sprintf(temp,"%u s",raw_data);
+          sprintf(temp,"%u s",smoothed);
           LCD_String(temp);
           _delay((unsigned long)((100)*(8000000/4000.0)));
       }

@@ -860,131 +860,137 @@ Version 4.0 HI-TECH Software Intermediate Code
 "102
 [; ;main.c: 102:       {
 {
+"103
+[; ;main.c: 103:           static int smoothed;
+[v F3146 `i ~T0 @X0 1 s smoothed ]
 "104
 [; ;main.c: 104:           int raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
 [v _raw_data `i ~T0 @X0 1 a ]
 [e = _raw_data | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i ]
 "106
-[; ;main.c: 106:           ClearLCD();
-[e ( _ClearLCD ..  ]
-"107
-[; ;main.c: 107:           SetLine(1);
-[e ( _SetLine (1 -> -> 1 `i `uc ]
+[; ;main.c: 106:           smoothed = 0.9*raw_data + 0.1* smoothed;
+[e = F3146 -> + * .0.9 -> _raw_data `d * .0.1 -> F3146 `d `i ]
 "108
-[; ;main.c: 108:           LCD_String("raw duty cycle");
-[e ( _LCD_String (1 :s 1C ]
+[; ;main.c: 108:           ClearLCD();
+[e ( _ClearLCD ..  ]
 "109
-[; ;main.c: 109:           SetLine(2);
-[e ( _SetLine (1 -> -> 2 `i `uc ]
+[; ;main.c: 109:           SetLine(1);
+[e ( _SetLine (1 -> -> 1 `i `uc ]
 "110
-[; ;main.c: 110:           char temp[32];
-[v _temp `uc ~T0 @X0 -> 32 `i a ]
+[; ;main.c: 110:           LCD_String("raw duty cycle");
+[e ( _LCD_String (1 :s 1C ]
 "111
-[; ;main.c: 111:           sprintf(temp,"%u s",raw_data);
-[e ( _sprintf (1 , (. , &U _temp :s 2C _raw_data ]
+[; ;main.c: 111:           SetLine(2);
+[e ( _SetLine (1 -> -> 2 `i `uc ]
 "112
-[; ;main.c: 112:           LCD_String(temp);
-[e ( _LCD_String (1 &U _temp ]
+[; ;main.c: 112:           char temp[32];
+[v _temp `uc ~T0 @X0 -> 32 `i a ]
 "113
-[; ;main.c: 113:           _delay((unsigned long)((100)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[; ;main.c: 113:           sprintf(temp,"%u s",smoothed);
+[e ( _sprintf (1 , (. , &U _temp :s 2C F3146 ]
 "114
-[; ;main.c: 114:       }
+[; ;main.c: 114:           LCD_String(temp);
+[e ( _LCD_String (1 &U _temp ]
+"115
+[; ;main.c: 115:           _delay((unsigned long)((100)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"116
+[; ;main.c: 116:       }
 }
 [e :U 330 ]
 "101
 [; ;main.c: 101:       while(robot_mode == 0)
 [e $ == -> _robot_mode `i -> 0 `i 331  ]
 [e :U 332 ]
-"117
-[; ;main.c: 117:       while(robot_mode == 1)
+"119
+[; ;main.c: 119:       while(robot_mode == 1)
 [e $U 333  ]
 [e :U 334 ]
-"118
-[; ;main.c: 118:       {
-{
 "120
-[; ;main.c: 120:           robot_mode = 2;
+[; ;main.c: 120:       {
+{
+"122
+[; ;main.c: 122:           robot_mode = 2;
 [e = _robot_mode -> -> 2 `i `uc ]
-"121
-[; ;main.c: 121:       }
+"123
+[; ;main.c: 123:       }
 }
 [e :U 333 ]
-"117
-[; ;main.c: 117:       while(robot_mode == 1)
+"119
+[; ;main.c: 119:       while(robot_mode == 1)
 [e $ == -> _robot_mode `i -> 1 `i 334  ]
 [e :U 335 ]
-"124
-[; ;main.c: 124:       while(robot_mode == 2)
+"126
+[; ;main.c: 126:       while(robot_mode == 2)
 [e $U 336  ]
 [e :U 337 ]
-"125
-[; ;main.c: 125:       {
-{
-"126
-[; ;main.c: 126:           while(PORTDbits.RD2 == 1)
-[e $U 339  ]
-[e :U 340 ]
 "127
-[; ;main.c: 127:           {
+[; ;main.c: 127:       {
 {
 "128
-[; ;main.c: 128:               ClearLCD();
-[e ( _ClearLCD ..  ]
+[; ;main.c: 128:           while(PORTDbits.RD2 == 1)
+[e $U 339  ]
+[e :U 340 ]
 "129
-[; ;main.c: 129:               LCD_String("RESETTING ROBOT");
-[e ( _LCD_String (1 :s 3C ]
+[; ;main.c: 129:           {
+{
 "130
-[; ;main.c: 130:               for(int i=0; i<10;i++)
+[; ;main.c: 130:               ClearLCD();
+[e ( _ClearLCD ..  ]
+"131
+[; ;main.c: 131:               LCD_String("RESETTING ROBOT");
+[e ( _LCD_String (1 :s 3C ]
+"132
+[; ;main.c: 132:               for(int i=0; i<10;i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $ < _i -> 10 `i 342  ]
 [e $U 343  ]
 [e :U 342 ]
-"131
-[; ;main.c: 131:               {
-{
-"132
-[; ;main.c: 132:                   _delay((unsigned long)((100)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
 "133
-[; ;main.c: 133:               }
+[; ;main.c: 133:               {
+{
+"134
+[; ;main.c: 134:                   _delay((unsigned long)((100)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"135
+[; ;main.c: 135:               }
 }
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 10 `i 342  ]
 [e :U 343 ]
 }
-"134
-[; ;main.c: 134:               ClearLCD();
-[e ( _ClearLCD ..  ]
-"135
-[; ;main.c: 135:               robot_mode = 0;
-[e = _robot_mode -> -> 0 `i `uc ]
 "136
-[; ;main.c: 136:           }
+[; ;main.c: 136:               ClearLCD();
+[e ( _ClearLCD ..  ]
+"137
+[; ;main.c: 137:               robot_mode = 0;
+[e = _robot_mode -> -> 0 `i `uc ]
+"138
+[; ;main.c: 138:           }
 }
 [e :U 339 ]
-"126
-[; ;main.c: 126:           while(PORTDbits.RD2 == 1)
+"128
+[; ;main.c: 128:           while(PORTDbits.RD2 == 1)
 [e $ == -> . . _PORTDbits 0 2 `i -> 1 `i 340  ]
 [e :U 341 ]
-"137
-[; ;main.c: 137:       }
+"139
+[; ;main.c: 139:       }
 }
 [e :U 336 ]
-"124
-[; ;main.c: 124:       while(robot_mode == 2)
+"126
+[; ;main.c: 126:       while(robot_mode == 2)
 [e $ == -> _robot_mode `i -> 2 `i 337  ]
 [e :U 338 ]
-"138
-[; ;main.c: 138:   }
+"140
+[; ;main.c: 140:   }
 }
 [e :U 327 ]
 [e $U 328  ]
 [e :U 329 ]
-"139
-[; ;main.c: 139: }
+"141
+[; ;main.c: 141: }
 [e :UE 326 ]
 }
 [p f _sprintf 8389632 ]

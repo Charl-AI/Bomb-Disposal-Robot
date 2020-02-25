@@ -93,6 +93,10 @@ void main(void)
   // first we call the setup function
   setup();
   
+  //now, we declare the structures that need to be visible to the main function
+  struct DC_motor motorL, motorR; //declare 2 motor structures
+  
+  struct Sensor sensorL, sensorR; // declare structures for both sensors
   
   // loop, this runs forever
   while(1)
@@ -100,15 +104,28 @@ void main(void)
       // Subroutine to search for bomb
       while(robot_mode == 0)
       {
+          // First, acquire the PWM duty cycle using the motion feedback module
+          sensorL.raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
+          sensorR.raw_data = (int)((CAP2BUFH << 8) | CAP2BUFL);
           
-          int raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
+          // Next, process the signal by passing through a smoothing algorithm
+          sensorL.smoothed_signal = process_signal(sensorL.smoothed_signal);
+          sensorR.smoothed_signal = process_signal(sensorR.smoothed_signal);
           
+          // Now, classify the signals into a number which represents the 
+          // location of the beacon: 0 means beacon is lost, 1 means beacon to
+          // the left, 2 means to the right and 3 means straight ahead.
+          char beacon_location = classify_data(sensorL.smoothed_signal, sensorR.smoothed_signal);
+          
+          
+          
+          //print to LCD for debugging (remove later)
           ClearLCD();
           SetLine(1);
           LCD_String("raw duty cycle");
           SetLine(2);
           char temp[32];
-          sprintf(temp,"%u s",raw_data);
+          sprintf(temp,"%u s",smoothed);
           LCD_String(temp);
           __delay_ms(100);
       }

@@ -4975,7 +4975,7 @@ void init_sensors(void)
 
     T5CON =0b00011001;
     TRISAbits.RA2 = 1;
-
+    TRISAbits.RA3 = 1;
 
 
     ANSEL0 =0;
