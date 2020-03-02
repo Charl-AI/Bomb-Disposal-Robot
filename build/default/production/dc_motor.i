@@ -5147,6 +5147,8 @@ void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+void moveToBeacon(char beacon_location, struct DC_motor *mL, struct DC_motor *mR);
+void init_motors(struct DC_motor *mL, struct DC_motor *mR);
 # 2 "dc_motor.c" 2
 
 
@@ -5206,8 +5208,13 @@ void stopMotor(struct DC_motor *m)
 
 void stop(struct DC_motor *mL, struct DC_motor *mR)
 {
- stopMotor(mL);
-    stopMotor(mR);
+ for(int i = 100; i > 0; i--)
+    {
+        mL->power = i;
+        mR->power = i;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
 }
 
 
@@ -5248,6 +5255,57 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 {
     mL->direction = 1;
     mR->direction = 1;
- setMotorFullSpeed(mL);
-    setMotorFullSpeed(mR);
+    for(int i = 0; i < 100; i++)
+    {
+        mL->power = i;
+        mR->power = i;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+
+}
+
+void moveToBeacon(char beacon_location, struct DC_motor *mL, struct DC_motor *mR)
+{
+
+    if(beacon_location == 0)
+    {
+
+    }
+
+    if(beacon_location == 1)
+    {
+        stop(&mL,&mR);
+        turnLeft(&mL, &mR);
+    }
+
+    if(beacon_location == 2)
+    {
+        stop(&mL,&mR);
+        turnLeft(&mL, &mR);
+    }
+
+    if(beacon_location == 3)
+    {
+
+        fullSpeedAhead(&mL,&mR);
+    }
+}
+
+void init_motors(struct DC_motor *mL, struct DC_motor *mR)
+{
+
+mL->power = 0;
+mL->direction = 1;
+mL->dutyLowByte = (unsigned char *)(&PDC0L);
+mL->dutyHighByte = (unsigned char *)(&PDC0H);
+mL->dir_pin=0;
+mL->PWMperiod=199;
+
+mR->power = 0;
+mR->direction = 1;
+mR->dutyLowByte = (unsigned char *)(&PDC1L);
+mR->dutyHighByte = (unsigned char *)(&PDC1H);
+mR->dir_pin=2;
+mR->PWMperiod=199;
 }

@@ -5315,6 +5315,8 @@ void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+void moveToBeacon(char beacon_location, struct DC_motor *mL, struct DC_motor *mR);
+void init_motors(struct DC_motor *mL, struct DC_motor *mR);
 # 18 "main.c" 2
 
 # 1 "./RFID.h" 1
@@ -5354,7 +5356,10 @@ void setup(void)
     init_LCD();
     init_RFID();
     init_sensors();
+    initPWM(199);
 
+    TRISBbits.RB0 = 0;
+    TRISBbits.RB2 = 0;
     TRISDbits.RD2 = 1;
 }
 
@@ -5405,6 +5410,7 @@ void main(void)
 
 
   struct DC_motor motorL, motorR;
+  init_motors(&motorL, &motorR);
 
   struct Sensor sensorL, sensorR;
 
@@ -5415,26 +5421,31 @@ void main(void)
       while(robot_mode == 0)
       {
 
-          sensorL.raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
-          sensorR.raw_data = (int)((CAP2BUFH << 8) | CAP2BUFL);
+          sensorL.raw_data = (int)((CAP2BUFH << 8) | CAP2BUFL);
+          sensorR.raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
 
 
           process_signal(&sensorL);
           process_signal(&sensorR);
 
 
-          char beacon_location = classify_data(sensorL.smoothed_signal, sensorR.smoothed_signal);
+          char beacon_location = classify_data(sensorL.smoothed_signal,
+                                               sensorR.smoothed_signal);
 
 
+
+          moveToBeacon(beacon_location, &motorL, &motorR);
 
 
           ClearLCD();
           SetLine(1);
-          LCD_String("raw duty cycle");
+          char temp2[16];
+          sprintf(temp2,"LEFT %u ",sensorL.smoothed_signal);
+          LCD_String(temp2);
           SetLine(2);
-          char temp[32];
-
-          LCD_String(temp);
+          char temp1[16];
+          sprintf(temp1,"RIGHT %u ",sensorR.smoothed_signal);
+          LCD_String(temp1);
           _delay((unsigned long)((100)*(8000000/4000.0)));
       }
 

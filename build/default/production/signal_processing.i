@@ -4990,6 +4990,7 @@ void init_sensors(void)
 
     DFLTCON = 0b00011000;
     CAP1CON = 0b01000110;
+    CAP2CON = 0b01000110;
 }
 
 
@@ -4997,10 +4998,10 @@ void init_sensors(void)
 
 void process_signal(struct Sensor *S)
 {
-    char smoothing_constant = 75;
+    char smoothing_constant = 50;
 
-    (S->smoothed_signal) = ((S->raw_data * smoothing_constant)
-                            + (100-smoothing_constant)* S->smoothed_signal)/100;
+    S->smoothed_signal *= (100-smoothing_constant)/100;
+    S->smoothed_signal += (S->raw_data * smoothing_constant)/100;
 }
 
 
@@ -5010,5 +5011,23 @@ void process_signal(struct Sensor *S)
 
 char classify_data(int left_smoothed, int right_smoothed)
 {
+    int difference = left_smoothed - right_smoothed;
+
+
+    if(difference < 5 && difference > -5)
+    {
+        return 3;
+    }
+
+    else if(difference < 0)
+    {
+        return 2;
+    }
+
+    else
+    {
+        return 1;
+    }
+
 
 }

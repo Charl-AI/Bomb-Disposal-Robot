@@ -29,6 +29,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "234
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 234: extern volatile unsigned char CAP1CON __attribute__((address(0xF63)));
 [v _CAP1CON `Vuc ~T0 @X0 0 e@3939 ]
+"175
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 175: extern volatile unsigned char CAP2CON __attribute__((address(0xF62)));
+[v _CAP2CON `Vuc ~T0 @X0 0 e@3938 ]
 "13 ./signal_processing.h
 [; ;./signal_processing.h: 13: struct Sensor {
 [s S309 `i 1 `i 1 ]
@@ -603,48 +606,102 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;signal_processing.c: 25:     CAP1CON = 0b01000110;
 [e = _CAP1CON -> -> 70 `i `uc ]
 "26
-[; ;signal_processing.c: 26: }
+[; ;signal_processing.c: 26:     CAP2CON = 0b01000110;
+[e = _CAP2CON -> -> 70 `i `uc ]
+"27
+[; ;signal_processing.c: 27: }
 [e :UE 310 ]
 }
-"31
-[; ;signal_processing.c: 31: void process_signal(struct Sensor *S)
-[v _process_signal `(v ~T0 @X0 1 ef1`*S309 ]
 "32
-[; ;signal_processing.c: 32: {
+[; ;signal_processing.c: 32: void process_signal(struct Sensor *S)
+[v _process_signal `(v ~T0 @X0 1 ef1`*S309 ]
+"33
+[; ;signal_processing.c: 33: {
 {
 [e :U _process_signal ]
-"31
-[; ;signal_processing.c: 31: void process_signal(struct Sensor *S)
-[v _S `*S309 ~T0 @X0 1 r1 ]
 "32
-[; ;signal_processing.c: 32: {
-[f ]
+[; ;signal_processing.c: 32: void process_signal(struct Sensor *S)
+[v _S `*S309 ~T0 @X0 1 r1 ]
 "33
-[; ;signal_processing.c: 33:     char smoothing_constant = 75;
+[; ;signal_processing.c: 33: {
+[f ]
+"34
+[; ;signal_processing.c: 34:     char smoothing_constant = 50;
 [v _smoothing_constant `uc ~T0 @X0 1 a ]
-[e = _smoothing_constant -> -> 75 `i `uc ]
-"35
-[; ;signal_processing.c: 35:     (S->smoothed_signal) = ((S->raw_data * smoothing_constant)
-[e = . *U _S 1 / + * . *U _S 0 -> _smoothing_constant `i * - -> 100 `i -> _smoothing_constant `i . *U _S 1 -> 100 `i ]
+[e = _smoothing_constant -> -> 50 `i `uc ]
+"36
+[; ;signal_processing.c: 36:     S->smoothed_signal *= (100-smoothing_constant)/100;
+[e =* . *U _S 1 / - -> 100 `i -> _smoothing_constant `i -> 100 `i ]
 "37
-[; ;signal_processing.c: 37: }
+[; ;signal_processing.c: 37:     S->smoothed_signal += (S->raw_data * smoothing_constant)/100;
+[e =+ . *U _S 1 / * . *U _S 0 -> _smoothing_constant `i -> 100 `i ]
+"38
+[; ;signal_processing.c: 38: }
 [e :UE 311 ]
 }
-"44
-[; ;signal_processing.c: 44: char classify_data(int left_smoothed, int right_smoothed)
-[v _classify_data `(uc ~T0 @X0 1 ef2`i`i ]
 "45
-[; ;signal_processing.c: 45: {
+[; ;signal_processing.c: 45: char classify_data(int left_smoothed, int right_smoothed)
+[v _classify_data `(uc ~T0 @X0 1 ef2`i`i ]
+"46
+[; ;signal_processing.c: 46: {
 {
 [e :U _classify_data ]
-"44
-[; ;signal_processing.c: 44: char classify_data(int left_smoothed, int right_smoothed)
+"45
+[; ;signal_processing.c: 45: char classify_data(int left_smoothed, int right_smoothed)
 [v _left_smoothed `i ~T0 @X0 1 r1 ]
 [v _right_smoothed `i ~T0 @X0 1 r2 ]
-"45
-[; ;signal_processing.c: 45: {
+"46
+[; ;signal_processing.c: 46: {
 [f ]
 "47
-[; ;signal_processing.c: 47: }
+[; ;signal_processing.c: 47:     int difference = left_smoothed - right_smoothed;
+[v _difference `i ~T0 @X0 1 a ]
+[e = _difference - _left_smoothed _right_smoothed ]
+"50
+[; ;signal_processing.c: 50:     if(difference < 5 && difference > -5)
+[e $ ! && < _difference -> 5 `i > _difference -U -> 5 `i 313  ]
+"51
+[; ;signal_processing.c: 51:     {
+{
+"52
+[; ;signal_processing.c: 52:         return 3;
+[e ) -> -> 3 `i `uc ]
+[e $UE 312  ]
+"53
+[; ;signal_processing.c: 53:     }
+}
+[e $U 314  ]
+"55
+[; ;signal_processing.c: 55:     else if(difference < 0)
+[e :U 313 ]
+[e $ ! < _difference -> 0 `i 315  ]
+"56
+[; ;signal_processing.c: 56:     {
+{
+"57
+[; ;signal_processing.c: 57:         return 2;
+[e ) -> -> 2 `i `uc ]
+[e $UE 312  ]
+"58
+[; ;signal_processing.c: 58:     }
+}
+[e $U 316  ]
+"60
+[; ;signal_processing.c: 60:     else
+[e :U 315 ]
+"61
+[; ;signal_processing.c: 61:     {
+{
+"62
+[; ;signal_processing.c: 62:         return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 312  ]
+"63
+[; ;signal_processing.c: 63:     }
+}
+[e :U 316 ]
+[e :U 314 ]
+"66
+[; ;signal_processing.c: 66: }
 [e :UE 312 ]
 }

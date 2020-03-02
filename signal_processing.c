@@ -23,6 +23,7 @@ void init_sensors(void)
    
     DFLTCON = 0b00011000; // noise filter for CAP1,2,3 inputs
     CAP1CON = 0b01000110; //PWM measurement (falling to rising), time base reset
+    CAP2CON = 0b01000110; //PWM measurement (falling to rising), time base reset
 }
 
 // This function takes the raw data and smooths it to produce a better signal
@@ -30,10 +31,10 @@ void init_sensors(void)
 // low-pass filter, is very fast and uses very little memory
 void process_signal(struct Sensor *S)
 {
-    char smoothing_constant = 75; //"alpha" constant for smoothing algorithm (%)
+    char smoothing_constant = 50; //"alpha" constant for smoothing algorithm (%)
     // use exponential moving average to smooth data
-    (S->smoothed_signal) = ((S->raw_data * smoothing_constant)
-                            + (100-smoothing_constant)* S->smoothed_signal)/100;
+    S->smoothed_signal *= (100-smoothing_constant)/100;
+    S->smoothed_signal += (S->raw_data * smoothing_constant)/100;
 }
 
 // This function takes the smoothed data and classifies it into a status
@@ -43,5 +44,23 @@ void process_signal(struct Sensor *S)
 // 3 means that the beacon is straight ahead
 char classify_data(int left_smoothed, int right_smoothed)
 {
+    int difference = left_smoothed - right_smoothed;
+    
+    // if values within 10 of each other, beacon is straight ahead
+    if(difference < 5 && difference > -5)
+    {
+        return 3;
+    }
+    // else, if left < right, beacon is to right
+    else if(difference < 0)
+    {
+        return 2;
+    }
+    // else, beacon is to left
+    else
+    {
+        return 1;
+    }
+    
     
 }

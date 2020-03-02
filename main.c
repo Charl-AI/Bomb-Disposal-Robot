@@ -43,8 +43,11 @@ void setup(void)
     init_LCD();
     init_RFID();
     init_sensors();
+    initPWM(199);
     
-    TRISDbits.RD2 = 1;
+    TRISBbits.RB0 = 0; // motor direction pins
+    TRISBbits.RB2 = 0;
+    TRISDbits.RD2 = 1; // button attached to D2, used for reset
 }
 /*****************************************************************************/
 // High priority interrupt service routine
@@ -89,11 +92,12 @@ void __interrupt(low_priority) InterruptHandlerLow (void)
 // main function
 void main(void)
 {
-  // first we call the setup function
+  // first we call the setup function to initialise all the necessary registers
   setup();
   
   //now, we declare the structures that need to be visible to the main function
   struct DC_motor motorL, motorR; //declare 2 motor structures
+  init_motors(&motorL, &motorR); // initialise values in each struct
   
   struct Sensor sensorL, sensorR; // declare structures for both sensors
   
@@ -104,26 +108,31 @@ void main(void)
       while(robot_mode == 0)
       {
           // First, acquire the PWM duty cycle using the motion feedback module
-          sensorL.raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
-          sensorR.raw_data = (int)((CAP2BUFH << 8) | CAP2BUFL);
+          sensorL.raw_data = (int)((CAP2BUFH << 8) | CAP2BUFL);
+          sensorR.raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
           
           // Next, process the signal by passing through a smoothing algorithm
           process_signal(&sensorL);
           process_signal(&sensorR);
           
           // Now, classify the signals to find the beacon location
-          char beacon_location = classify_data(sensorL.smoothed_signal, sensorR.smoothed_signal);
+          char beacon_location = classify_data(sensorL.smoothed_signal, 
+                                               sensorR.smoothed_signal);
           
-          
+          // if the beacon is straight ahead, move towards it, otherwise, stop
+          // and align the robot with the beacon direction
+          moveToBeacon(beacon_location, &motorL, &motorR);
           
           //print to LCD for debugging (remove later)
           ClearLCD();
           SetLine(1);
-          LCD_String("raw duty cycle");
+          char temp2[16];
+          sprintf(temp2,"LEFT %u ",sensorL.smoothed_signal);
+          LCD_String(temp2);
           SetLine(2);
-          char temp[32];
-          //sprintf(temp,"%u s",smoothed);
-          LCD_String(temp);
+          char temp1[16];
+          sprintf(temp1,"RIGHT %u ",sensorR.smoothed_signal);
+          LCD_String(temp1);
           __delay_ms(100);
       }
     

@@ -11,13 +11,13 @@ void initPWM(int PWMperiod){
     PWMCON1 = 0x00; //special features, all 0
     
     PTPERL = (0b11111111 & PWMperiod); // base PWM period low byte
-    PTPERH = (0b1111111100000000 & PWMperiod) >> 8; // base PWM period high bytes
+    PTPERH = (0b1111111100000000 & PWMperiod) >> 8; // base PWM period high byte
 }
 
 // function to set PWM output from the values in the motor structure
 void setMotorPWM(struct DC_motor *m)
 {
-    int PWMduty; //tmp variable to store PWM duty cycle
+    int PWMduty; //temp variable to store PWM duty cycle
 
     PWMduty = (m->power*m->PWMperiod)/100;  //calculate duty cycle (value between 0 and PWMperiod)
     
@@ -57,8 +57,13 @@ void stopMotor(struct DC_motor *m)
 //function to stop the robot gradually 
 void stop(struct DC_motor *mL, struct DC_motor *mR)
 {
-	stopMotor(mL);
-    stopMotor(mR);
+	for(int i = 100; i > 0; i--)
+    {
+        mL->power = i;
+        mR->power = i;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
 }
 
 //function to make the robot turn left 
@@ -99,8 +104,57 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 {
     mL->direction = 1;
     mR->direction = 1;
-	setMotorFullSpeed(mL);
-    setMotorFullSpeed(mR);
+    for(int i = 0; i < 100; i++)
+    {
+        mL->power = i;
+        mR->power = i;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
+	
 }
 
+void moveToBeacon(char beacon_location, struct DC_motor *mL, struct DC_motor *mR)
+{
+    // if beacon is lost
+    if(beacon_location == 0)
+    {
+        
+    }
+    // if beacon is to left
+    if(beacon_location == 1)
+    {
+        stop(&mL,&mR);
+        turnLeft(&mL, &mR);
+    }
+    // if beacon is to right
+    if(beacon_location == 2)
+    {
+        stop(&mL,&mR);
+        turnLeft(&mL, &mR);
+    }
+    // if beacon is straight ahead
+    if(beacon_location == 3)
+    {
+        stop(&mL,&mR);
+        fullSpeedAhead(&mL,&mR);
+    }
+}
 
+void init_motors(struct DC_motor *mL, struct DC_motor *mR)
+{
+    //some code to set initial values of each structure
+mL->power = 0;
+mL->direction = 1;
+mL->dutyLowByte = (unsigned char *)(&PDC0L);
+mL->dutyHighByte = (unsigned char *)(&PDC0H);
+mL->dir_pin=0;
+mL->PWMperiod=199;
+
+mR->power = 0;
+mR->direction = 1;
+mR->dutyLowByte = (unsigned char *)(&PDC1L);
+mR->dutyHighByte = (unsigned char *)(&PDC1H);
+mR->dir_pin=2;
+mR->PWMperiod=199;
+}
