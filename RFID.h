@@ -12,6 +12,7 @@ void init_RFID(void);
 char getCharSerial(void);
 char processRFID(char RFIDbuf[], char latestChar);
 void check_RFID(char dataBuf[]);
+void display_RFID(char RFIDBuf[]);
 
 #endif	/* RFID_H */
 

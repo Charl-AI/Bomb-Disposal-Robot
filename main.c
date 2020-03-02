@@ -28,6 +28,11 @@
 // 2 represents finished (robot has found bomb and returned)
 volatile char robot_mode = 0;
 
+// stores characters read from RFID (10 data bits and 2 checksum)
+volatile char RFIDbuf[12];
+
+// This flag is set to 1 once the RFID has been completely read
+volatile char RFID_flag = 0;
 /*****************************************************************************/
 // setup function, initialise registers here
 void setup(void)
@@ -57,22 +62,8 @@ void __interrupt(high_priority) InterruptHandlerHigh (void)
     // this can only occur when the robot is in searching mode
     if((PIR1bits.RCIF) && (robot_mode == 0))
     {
-        // stores the characters read from RFID (10 data bits and 2 checksum)
-        // this is static so it does not change between ISR calls
-        // (better than declaring globally because it is only scoped in the ISR)
-        static char RFIDbuf[12];
-        
-        // process the RFID data, once all the data has been read, it is
-        // displayed and RFID_flag is set to 1
-        char RFID_flag = processRFID(RFIDbuf, RCREG);
-        
-        // once the RFID has been read, check against checksum and set 
-        // robot to return home
-        if(RFID_flag == 1)
-        {
-            check_RFID(RFIDbuf);
-            robot_mode = 1;
-        }
+        // process the RFID data, once all the data has been read, set flag=1
+        RFID_flag = processRFID(RFIDbuf, RCREG);
     }
     // this runs if you try to scan an RFID when the robot is not searching
     else
@@ -121,8 +112,8 @@ void main(void)
           
           // if the beacon is straight ahead, move towards it, otherwise, stop
           // and align the robot with the beacon direction
-          moveToBeacon(beacon_location, &motorL, &motorR);
-          
+          //moveToBeacon(beacon_location, &motorL, &motorR);
+           
           //print to LCD for debugging (remove later)
           ClearLCD();
           SetLine(1);
@@ -134,6 +125,16 @@ void main(void)
           sprintf(temp1,"RIGHT %u ",sensorR.smoothed_signal);
           LCD_String(temp1);
           __delay_ms(100);
+          
+          // once RFID fully read, check against checksum, display it and change
+          // robot mode to return home
+          if(RFID_flag == 1)
+          {
+              display_RFID(RFIDbuf);
+              check_RFID(RFIDbuf);
+              robot_mode = 1;
+              RFID_flag = 0;
+          }
       }
     
       // Subroutine to return to starting position

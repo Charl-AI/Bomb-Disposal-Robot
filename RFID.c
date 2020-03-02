@@ -38,16 +38,9 @@ char processRFID(char RFIDbuf[], char latestChar)
     // (this is better than declaring globally because it limits the scope)
     static char position_in_buf;
     
-    // if we see the final character in RFID, display the RFID and return 1
+    // if we see the final character in RFID, return 1
     if(latestChar == 0x03)
     {
-        ClearLCD();
-        SetLine(1);
-        for(int i=0;i<10;i++)
-        {
-            SendLCD(RFIDbuf[i],1);
-        }
-        // finished reading RFID, so return 1
         return 1;
     }
     else
@@ -110,5 +103,15 @@ void check_RFID(char dataBuf[])
         // if bad, display checksum failed on screen
         SetLine(2);
         LCD_String("CHECKSUM FAILED");
+    }
+}
+
+void display_RFID(char dataBuf[])
+{
+    ClearLCD();
+    SetLine(1);
+    for(int i=0;i<10;i++)
+    {
+        SendLCD(dataBuf[i],1);
     }
 }

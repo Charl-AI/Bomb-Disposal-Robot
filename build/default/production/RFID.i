@@ -4976,6 +4976,7 @@ void init_RFID(void);
 char getCharSerial(void);
 char processRFID(char RFIDbuf[], char latestChar);
 void check_RFID(char dataBuf[]);
+void display_RFID(char RFIDBuf[]);
 # 9 "RFID.c" 2
 
 # 1 "./LCDIO.h" 1
@@ -5036,13 +5037,6 @@ char processRFID(char RFIDbuf[], char latestChar)
 
     if(latestChar == 0x03)
     {
-        ClearLCD();
-        SetLine(1);
-        for(int i=0;i<10;i++)
-        {
-            SendLCD(RFIDbuf[i],1);
-        }
-
         return 1;
     }
     else
@@ -5105,5 +5099,15 @@ void check_RFID(char dataBuf[])
 
         SetLine(2);
         LCD_String("CHECKSUM FAILED");
+    }
+}
+
+void display_RFID(char dataBuf[])
+{
+    ClearLCD();
+    SetLine(1);
+    for(int i=0;i<10;i++)
+    {
+        SendLCD(dataBuf[i],1);
     }
 }

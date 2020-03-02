@@ -5325,6 +5325,7 @@ void init_RFID(void);
 char getCharSerial(void);
 char processRFID(char RFIDbuf[], char latestChar);
 void check_RFID(char dataBuf[]);
+void display_RFID(char RFIDBuf[]);
 # 19 "main.c" 2
 
 # 1 "./signal_processing.h" 1
@@ -5341,6 +5342,11 @@ char classify_data(int left_smoothed, int right_smoothed);
 # 29 "main.c"
 volatile char robot_mode = 0;
 
+
+volatile char RFIDbuf[12];
+
+
+volatile char RFID_flag = 0;
 
 
 void setup(void)
@@ -5371,21 +5377,7 @@ void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void
     if((PIR1bits.RCIF) && (robot_mode == 0))
     {
 
-
-
-        static char RFIDbuf[12];
-
-
-
-        char RFID_flag = processRFID(RFIDbuf, RCREG);
-
-
-
-        if(RFID_flag == 1)
-        {
-            check_RFID(RFIDbuf);
-            robot_mode = 1;
-        }
+        RFID_flag = processRFID(RFIDbuf, RCREG);
     }
 
     else
@@ -5434,7 +5426,7 @@ void main(void)
 
 
 
-          moveToBeacon(beacon_location, &motorL, &motorR);
+
 
 
           ClearLCD();
@@ -5447,6 +5439,16 @@ void main(void)
           sprintf(temp1,"RIGHT %u ",sensorR.smoothed_signal);
           LCD_String(temp1);
           _delay((unsigned long)((100)*(8000000/4000.0)));
+
+
+
+          if(RFID_flag == 1)
+          {
+              display_RFID(RFIDbuf);
+              check_RFID(RFIDbuf);
+              robot_mode = 1;
+              RFID_flag = 0;
+          }
       }
 
 
