@@ -128,12 +128,6 @@ SendLCD(*string++,1);
  }
 }
 
-void ShiftLeft(void){
-    SendLCD(0b00011000,0);
-}
-void ShiftRight(void){
-    SendLCD(0b00011100,0);
-}
 void ClearLCD(void){
     SendLCD(0b00000001,0);
     __delay_ms(5);

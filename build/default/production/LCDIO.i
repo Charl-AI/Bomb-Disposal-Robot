@@ -28,8 +28,6 @@ void SetLine (char line);
 void LCD_String(char *string);
 
 
-void ShiftLeft(void);
-void ShiftRight(void);
 void ClearLCD(void);
 # 18 "LCDIO.c" 2
 
@@ -5259,12 +5257,6 @@ SendLCD(*string++,1);
  }
 }
 
-void ShiftLeft(void){
-    SendLCD(0b00011000,0);
-}
-void ShiftRight(void){
-    SendLCD(0b00011100,0);
-}
 void ClearLCD(void){
     SendLCD(0b00000001,0);
     _delay((unsigned long)((5)*(8000000/4000.0)));

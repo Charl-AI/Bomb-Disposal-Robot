@@ -4999,8 +4999,6 @@ void SetLine (char line);
 void LCD_String(char *string);
 
 
-void ShiftLeft(void);
-void ShiftRight(void);
 void ClearLCD(void);
 # 10 "RFID.c" 2
 

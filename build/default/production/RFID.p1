@@ -141,8 +141,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "41
 [; ;./LCDIO.h: 41: void LCD_String(char *string);
 [v _LCD_String `(v ~T0 @X0 0 ef1`*uc ]
-"46
-[; ;./LCDIO.h: 46: void ClearLCD(void);
+"44
+[; ;./LCDIO.h: 44: void ClearLCD(void);
 [v _ClearLCD `(v ~T0 @X0 0 ef ]
 "32
 [; ;./LCDIO.h: 32: void SendLCD(unsigned char Byte, char type);
@@ -745,7 +745,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "39
 [; ;RFID.c: 39:     static char position_in_buf;
-[v F2626 `uc ~T0 @X0 1 s position_in_buf ]
+[v F2624 `uc ~T0 @X0 1 s position_in_buf ]
 "42
 [; ;RFID.c: 42:     if(latestChar == 0x03)
 [e $ ! == -> _latestChar `i -> 3 `i 311  ]
@@ -774,7 +774,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "52
 [; ;RFID.c: 52:            position_in_buf = 0;
-[e = F2626 -> -> 0 `i `uc ]
+[e = F2624 -> -> 0 `i `uc ]
 "53
 [; ;RFID.c: 53:            for(char i=0 ;i<12 ;i++)
 {
@@ -812,10 +812,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "63
 [; ;RFID.c: 63:             RFIDbuf[position_in_buf] = latestChar;
-[e = *U + _RFIDbuf * -> F2626 `ux -> -> # *U _RFIDbuf `ui `ux _latestChar ]
+[e = *U + _RFIDbuf * -> F2624 `ux -> -> # *U _RFIDbuf `ui `ux _latestChar ]
 "64
 [; ;RFID.c: 64:             position_in_buf++;
-[e ++ F2626 -> -> 1 `i `uc ]
+[e ++ F2624 -> -> 1 `i `uc ]
 "66
 [; ;RFID.c: 66:             return 0;
 [e ) -> -> 0 `i `uc ]

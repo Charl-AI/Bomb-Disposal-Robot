@@ -40,9 +40,7 @@ void SetLine (char line);
 // output a string on the LCD
 void LCD_String(char *string);
 
-// some quick functions to clear the LCD or scroll
-void ShiftLeft(void);
-void ShiftRight(void);
+// function to clear the LCD
 void ClearLCD(void);
 
 

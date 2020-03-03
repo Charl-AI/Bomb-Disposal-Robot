@@ -37,13 +37,13 @@
 [v _setMotorPWM setMotorPWM `(v  1 e 1 0 ]
 "40
 [v _stop stop `(v  1 e 1 0 ]
-"68
+"52
 [v _turnRight turnRight `(v  1 e 1 0 ]
-"85
+"69
 [v _moveForward moveForward `(v  1 e 1 0 ]
-"99
+"83
 [v _moveBackward moveBackward `(v  1 e 1 0 ]
-"112
+"96
 [v _init_motor_struct init_motor_struct `(v  1 e 1 0 ]
 "23 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
 [v _E_TOG E_TOG `(v  1 e 1 0 ]
@@ -57,7 +57,7 @@
 [v _SetLine SetLine `(v  1 e 1 0 ]
 "119
 [v _LCD_String LCD_String `(v  1 e 1 0 ]
-"137
+"131
 [v _ClearLCD ClearLCD `(v  1 e 1 0 ]
 "38 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
 [v _setup setup `(v  1 e 1 0 ]
@@ -115,12 +115,12 @@
 `uc 1 RD7 1 0 :1:7 
 ]
 "1555
-[s S406 . 1 `uc 1 . 1 0 :7:0 
+[s S408 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 SS2 1 0 :1:7 
 ]
-[u S409 . 1 `S253 1 . 1 0 `S406 1 . 1 0 ]
-[v _PORTDbits PORTDbits `VES409  1 e 1 @3971 ]
-[s S636 . 1 `uc 1 LATA0 1 0 :1:0 
+[u S411 . 1 `S253 1 . 1 0 `S408 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES411  1 e 1 @3971 ]
+[s S626 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
 `uc 1 LATA3 1 0 :1:3 
@@ -130,7 +130,7 @@
 `uc 1 LATA7 1 0 :1:7 
 ]
 "1779
-[s S645 . 1 `uc 1 LA0 1 0 :1:0 
+[s S635 . 1 `uc 1 LA0 1 0 :1:0 
 `uc 1 LA1 1 0 :1:1 
 `uc 1 LA2 1 0 :1:2 
 `uc 1 LA3 1 0 :1:3 
@@ -139,11 +139,11 @@
 `uc 1 LA6 1 0 :1:6 
 `uc 1 LA7 1 0 :1:7 
 ]
-[u S654 . 1 `S636 1 . 1 0 `S645 1 . 1 0 ]
-[v _LATAbits LATAbits `VES654  1 e 1 @3977 ]
+[u S644 . 1 `S626 1 . 1 0 `S635 1 . 1 0 ]
+[v _LATAbits LATAbits `VES644  1 e 1 @3977 ]
 "1864
 [v _LATB LATB `VEuc  1 e 1 @3978 ]
-[s S678 . 1 `uc 1 LATC0 1 0 :1:0 
+[s S668 . 1 `uc 1 LATC0 1 0 :1:0 
 `uc 1 LATC1 1 0 :1:1 
 `uc 1 LATC2 1 0 :1:2 
 `uc 1 LATC3 1 0 :1:3 
@@ -153,7 +153,7 @@
 `uc 1 LATC7 1 0 :1:7 
 ]
 "2003
-[s S687 . 1 `uc 1 LC0 1 0 :1:0 
+[s S677 . 1 `uc 1 LC0 1 0 :1:0 
 `uc 1 LC1 1 0 :1:1 
 `uc 1 LC2 1 0 :1:2 
 `uc 1 LC3 1 0 :1:3 
@@ -162,9 +162,9 @@
 `uc 1 LC6 1 0 :1:6 
 `uc 1 LC7 1 0 :1:7 
 ]
-[u S696 . 1 `S678 1 . 1 0 `S687 1 . 1 0 ]
-[v _LATCbits LATCbits `VES696  1 e 1 @3979 ]
-[s S718 . 1 `uc 1 LATD0 1 0 :1:0 
+[u S686 . 1 `S668 1 . 1 0 `S677 1 . 1 0 ]
+[v _LATCbits LATCbits `VES686  1 e 1 @3979 ]
+[s S708 . 1 `uc 1 LATD0 1 0 :1:0 
 `uc 1 LATD1 1 0 :1:1 
 `uc 1 LATD2 1 0 :1:2 
 `uc 1 LATD3 1 0 :1:3 
@@ -174,7 +174,7 @@
 `uc 1 LATD7 1 0 :1:7 
 ]
 "2115
-[s S727 . 1 `uc 1 LD0 1 0 :1:0 
+[s S717 . 1 `uc 1 LD0 1 0 :1:0 
 `uc 1 LD1 1 0 :1:1 
 `uc 1 LD2 1 0 :1:2 
 `uc 1 LD3 1 0 :1:3 
@@ -183,9 +183,9 @@
 `uc 1 LD6 1 0 :1:6 
 `uc 1 LD7 1 0 :1:7 
 ]
-[u S736 . 1 `S718 1 . 1 0 `S727 1 . 1 0 ]
-[v _LATDbits LATDbits `VES736  1 e 1 @3980 ]
-[s S798 . 1 `uc 1 TRISA0 1 0 :1:0 
+[u S726 . 1 `S708 1 . 1 0 `S717 1 . 1 0 ]
+[v _LATDbits LATDbits `VES726  1 e 1 @3980 ]
+[s S788 . 1 `uc 1 TRISA0 1 0 :1:0 
 `uc 1 TRISA1 1 0 :1:1 
 `uc 1 TRISA2 1 0 :1:2 
 `uc 1 TRISA3 1 0 :1:3 
@@ -195,7 +195,7 @@
 `uc 1 TRISA7 1 0 :1:7 
 ]
 "2305
-[s S807 . 1 `uc 1 RA0 1 0 :1:0 
+[s S797 . 1 `uc 1 RA0 1 0 :1:0 
 `uc 1 RA1 1 0 :1:1 
 `uc 1 RA2 1 0 :1:2 
 `uc 1 RA3 1 0 :1:3 
@@ -204,8 +204,8 @@
 `uc 1 RA6 1 0 :1:6 
 `uc 1 RA7 1 0 :1:7 
 ]
-[u S816 . 1 `S798 1 . 1 0 `S807 1 . 1 0 ]
-[v _TRISAbits TRISAbits `VES816  1 e 1 @3986 ]
+[u S806 . 1 `S788 1 . 1 0 `S797 1 . 1 0 ]
+[v _TRISAbits TRISAbits `VES806  1 e 1 @3986 ]
 [s S204 . 1 `uc 1 TRISB0 1 0 :1:0 
 `uc 1 TRISB1 1 0 :1:1 
 `uc 1 TRISB2 1 0 :1:2 
@@ -227,7 +227,7 @@
 ]
 [u S222 . 1 `S204 1 . 1 0 `S213 1 . 1 0 ]
 [v _TRISBbits TRISBbits `VES222  1 e 1 @3987 ]
-[s S758 . 1 `uc 1 TRISC0 1 0 :1:0 
+[s S748 . 1 `uc 1 TRISC0 1 0 :1:0 
 `uc 1 TRISC1 1 0 :1:1 
 `uc 1 TRISC2 1 0 :1:2 
 `uc 1 TRISC3 1 0 :1:3 
@@ -237,7 +237,7 @@
 `uc 1 TRISC7 1 0 :1:7 
 ]
 "2749
-[s S767 . 1 `uc 1 RC0 1 0 :1:0 
+[s S757 . 1 `uc 1 RC0 1 0 :1:0 
 `uc 1 RC1 1 0 :1:1 
 `uc 1 RC2 1 0 :1:2 
 `uc 1 RC3 1 0 :1:3 
@@ -246,8 +246,8 @@
 `uc 1 RC6 1 0 :1:6 
 `uc 1 RC7 1 0 :1:7 
 ]
-[u S776 . 1 `S758 1 . 1 0 `S767 1 . 1 0 ]
-[v _TRISCbits TRISCbits `VES776  1 e 1 @3988 ]
+[u S766 . 1 `S748 1 . 1 0 `S757 1 . 1 0 ]
+[v _TRISCbits TRISCbits `VES766  1 e 1 @3988 ]
 [s S244 . 1 `uc 1 TRISD0 1 0 :1:0 
 `uc 1 TRISD1 1 0 :1:1 
 `uc 1 TRISD2 1 0 :1:2 
@@ -260,7 +260,7 @@
 "2971
 [u S262 . 1 `S244 1 . 1 0 `S253 1 . 1 0 ]
 [v _TRISDbits TRISDbits `VES262  1 e 1 @3989 ]
-[s S1093 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S1081 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -269,15 +269,15 @@
 `uc 1 ADIE 1 0 :1:6 
 ]
 "3556
-[s S1101 . 1 `uc 1 . 1 0 :4:0 
+[s S1089 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TBIE 1 0 :1:4 
 ]
-[s S1104 . 1 `uc 1 . 1 0 :4:0 
+[s S1092 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IE 1 0 :1:4 
 `uc 1 RC1IE 1 0 :1:5 
 ]
-[u S1108 . 1 `S1093 1 . 1 0 `S1101 1 . 1 0 `S1104 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES1108  1 e 1 @3997 ]
+[u S1096 . 1 `S1081 1 . 1 0 `S1089 1 . 1 0 `S1092 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES1096  1 e 1 @3997 ]
 [s S284 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
@@ -296,7 +296,7 @@
 ]
 [u S299 . 1 `S284 1 . 1 0 `S292 1 . 1 0 `S295 1 . 1 0 ]
 [v _PIR1bits PIR1bits `VES299  1 e 1 @3998 ]
-[s S1128 . 1 `uc 1 TMR1IP 1 0 :1:0 
+[s S1116 . 1 `uc 1 TMR1IP 1 0 :1:0 
 `uc 1 TMR2IP 1 0 :1:1 
 `uc 1 CCP1IP 1 0 :1:2 
 `uc 1 SSPIP 1 0 :1:3 
@@ -305,16 +305,16 @@
 `uc 1 ADIP 1 0 :1:6 
 ]
 "3716
-[s S1136 . 1 `uc 1 . 1 0 :4:0 
+[s S1124 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TBIP 1 0 :1:4 
 ]
-[s S1139 . 1 `uc 1 . 1 0 :4:0 
+[s S1127 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IP 1 0 :1:4 
 `uc 1 RC1IP 1 0 :1:5 
 ]
-[u S1143 . 1 `S1128 1 . 1 0 `S1136 1 . 1 0 `S1139 1 . 1 0 ]
-[v _IPR1bits IPR1bits `VES1143  1 e 1 @3999 ]
-[s S941 . 1 `uc 1 ABDEN 1 0 :1:0 
+[u S1131 . 1 `S1116 1 . 1 0 `S1124 1 . 1 0 `S1127 1 . 1 0 ]
+[v _IPR1bits IPR1bits `VES1131  1 e 1 @3999 ]
+[s S929 . 1 `uc 1 ABDEN 1 0 :1:0 
 `uc 1 WUE 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 BRG16 1 0 :1:3 
@@ -324,20 +324,20 @@
 `uc 1 ABDOVF 1 0 :1:7 
 ]
 "4229
-[s S950 . 1 `uc 1 . 1 0 :4:0 
+[s S938 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 SCKP 1 0 :1:4 
 `uc 1 . 1 0 :1:5 
 `uc 1 RCMT 1 0 :1:6 
 ]
-[s S955 . 1 `uc 1 . 1 0 :5:0 
+[s S943 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 RXCKP 1 0 :1:5 
 ]
-[s S958 . 1 `uc 1 . 1 0 :1:0 
+[s S946 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 W4E 1 0 :1:1 
 ]
-[u S961 . 1 `S941 1 . 1 0 `S950 1 . 1 0 `S955 1 . 1 0 `S958 1 . 1 0 ]
-[v _BAUDCONbits BAUDCONbits `VES961  1 e 1 @4010 ]
-[s S1039 . 1 `uc 1 RX9D 1 0 :1:0 
+[u S949 . 1 `S929 1 . 1 0 `S938 1 . 1 0 `S943 1 . 1 0 `S946 1 . 1 0 ]
+[v _BAUDCONbits BAUDCONbits `VES949  1 e 1 @4010 ]
+[s S1027 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -347,23 +347,23 @@
 `uc 1 SPEN 1 0 :1:7 
 ]
 "4414
-[s S1048 . 1 `uc 1 . 1 0 :3:0 
+[s S1036 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 ADEN 1 0 :1:3 
 ]
-[s S1051 . 1 `uc 1 . 1 0 :5:0 
+[s S1039 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 SRENA 1 0 :1:5 
 ]
-[s S1054 . 1 `uc 1 . 1 0 :6:0 
+[s S1042 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_9 1 0 :1:6 
 ]
-[s S1057 . 1 `uc 1 . 1 0 :6:0 
+[s S1045 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC9 1 0 :1:6 
 ]
-[s S1060 . 1 `uc 1 RCD8 1 0 :1:0 
+[s S1048 . 1 `uc 1 RCD8 1 0 :1:0 
 ]
-[u S1062 . 1 `S1039 1 . 1 0 `S1048 1 . 1 0 `S1051 1 . 1 0 `S1054 1 . 1 0 `S1057 1 . 1 0 `S1060 1 . 1 0 ]
-[v _RCSTAbits RCSTAbits `VES1062  1 e 1 @4011 ]
-[s S987 . 1 `uc 1 TX9D 1 0 :1:0 
+[u S1050 . 1 `S1027 1 . 1 0 `S1036 1 . 1 0 `S1039 1 . 1 0 `S1042 1 . 1 0 `S1045 1 . 1 0 `S1048 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES1050  1 e 1 @4011 ]
+[s S975 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -373,7 +373,7 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "4622
-[s S996 . 1 `uc 1 TX9D1 1 0 :1:0 
+[s S984 . 1 `uc 1 TX9D1 1 0 :1:0 
 `uc 1 TRMT1 1 0 :1:1 
 `uc 1 BRGH1 1 0 :1:2 
 `uc 1 SENDB1 1 0 :1:3 
@@ -382,13 +382,13 @@
 `uc 1 TX91 1 0 :1:6 
 `uc 1 CSRC1 1 0 :1:7 
 ]
-[s S1005 . 1 `uc 1 . 1 0 :6:0 
+[s S993 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_9 1 0 :1:6 
 ]
-[s S1008 . 1 `uc 1 TXD8 1 0 :1:0 
+[s S996 . 1 `uc 1 TXD8 1 0 :1:0 
 ]
-[u S1010 . 1 `S987 1 . 1 0 `S996 1 . 1 0 `S1005 1 . 1 0 `S1008 1 . 1 0 ]
-[v _TXSTAbits TXSTAbits `VES1010  1 e 1 @4012 ]
+[u S998 . 1 `S975 1 . 1 0 `S984 1 . 1 0 `S993 1 . 1 0 `S996 1 . 1 0 ]
+[v _TXSTAbits TXSTAbits `VES998  1 e 1 @4012 ]
 "4851
 [v _RCREG RCREG `VEuc  1 e 1 @4014 ]
 "4863
@@ -492,42 +492,48 @@
 "77
 [v _main main `(v  1 e 1 0 ]
 {
-"159
-[v main@i_498 i `i  1 a 2 52 ]
-"141
-[v main@i i `ul  1 a 4 47 ]
-"100
-[v main@raw_data raw_data `ui  1 a 2 41 ]
-"103
-[v main@beacon_location beacon_location `uc  1 a 1 51 ]
+"163
+[v main@i_502 i `i  1 a 2 13 ]
+"145
+[v main@i i `ul  1 a 4 8 ]
+"104
+[v main@raw_data raw_data `ui  1 a 2 2 ]
+"107
+[v main@beacon_location beacon_location `uc  1 a 1 12 ]
 [s S326 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyLowByte 2 2 `*.39uc 1 dutyHighByte 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 "83
-[v main@motorR motorR `S326  1 a 9 63 ]
-[v main@motorL motorL `S326  1 a 9 54 ]
-"86
-[v main@movementMicros movementMicros `ul  1 a 4 43 ]
-"169
+[v main@motorR motorR `S326  1 a 9 26 ]
+[v main@motorL motorL `S326  1 a 9 17 ]
+"90
+[v main@movementMicros movementMicros `ul  1 a 4 4 ]
+"88
+[v main@moving_speed moving_speed `i  1 a 2 15 ]
+"87
+[v main@searching_speed searching_speed `i  1 a 2 0 ]
+"173
 } 0
-"68 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+"52 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
 [v _turnRight turnRight `(v  1 e 1 0 ]
 {
-"74
-[v turnRight@i i `i  1 a 2 35 ]
+"58
+[v turnRight@i i `i  1 a 2 37 ]
 [s S326 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyLowByte 2 2 `*.39uc 1 dutyHighByte 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
-"68
+"52
 [v turnRight@mL mL `*.39S326  1 p 2 30 ]
 [v turnRight@mR mR `*.39S326  1 p 2 32 ]
-"82
+[v turnRight@max_power max_power `i  1 p 2 34 ]
+"66
 } 0
 "40
 [v _stop stop `(v  1 e 1 0 ]
 {
 "42
-[v stop@i i `i  1 a 2 34 ]
+[v stop@i i `i  1 a 2 36 ]
 [s S326 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyLowByte 2 2 `*.39uc 1 dutyHighByte 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 "40
 [v stop@mL mL `*.39S326  1 p 2 30 ]
 [v stop@mR mR `*.39S326  1 p 2 32 ]
+[v stop@initial_speed initial_speed `i  1 p 2 34 ]
 "49
 } 0
 "38 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
@@ -556,37 +562,37 @@
 [v initPWM@PWMperiod PWMperiod `i  1 p 2 7 ]
 "15
 } 0
-"85
+"69
 [v _moveForward moveForward `(v  1 e 1 0 ]
 {
-"89
+"73
 [v moveForward@i i `i  1 a 2 37 ]
 [s S326 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyLowByte 2 2 `*.39uc 1 dutyHighByte 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
-"85
+"69
 [v moveForward@mL mL `*.39S326  1 p 2 30 ]
 [v moveForward@mR mR `*.39S326  1 p 2 32 ]
 [v moveForward@max_power max_power `i  1 p 2 34 ]
-"96
+"80
 } 0
-"99
+"83
 [v _moveBackward moveBackward `(v  1 e 1 0 ]
 {
-"103
+"87
 [v moveBackward@i i `i  1 a 2 37 ]
 [s S326 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyLowByte 2 2 `*.39uc 1 dutyHighByte 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
-"99
+"83
 [v moveBackward@mL mL `*.39S326  1 p 2 30 ]
 [v moveBackward@mR mR `*.39S326  1 p 2 32 ]
 [v moveBackward@max_power max_power `i  1 p 2 34 ]
-"110
+"94
 } 0
-"112
+"96
 [v _init_motor_struct init_motor_struct `(v  1 e 1 0 ]
 {
 [s S326 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyLowByte 2 2 `*.39uc 1 dutyHighByte 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v init_motor_struct@mL mL `*.39S326  1 p 2 30 ]
 [v init_motor_struct@mR mR `*.39S326  1 p 2 32 ]
-"131
+"115
 } 0
 "18
 [v _setMotorPWM setMotorPWM `(v  1 e 1 0 ]
@@ -630,10 +636,10 @@
 [v display_RFID@dataBuf dataBuf `*.39uc  1 p 2 12 ]
 "117
 } 0
-"137 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+"131 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
 [v _ClearLCD ClearLCD `(v  1 e 1 0 ]
 {
-"140
+"134
 } 0
 "30 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
 [v _classify_data classify_data `(uc  1 e 1 0 ]

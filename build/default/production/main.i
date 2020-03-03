@@ -5285,8 +5285,6 @@ void SetLine (char line);
 void LCD_String(char *string);
 
 
-void ShiftLeft(void);
-void ShiftRight(void);
 void ClearLCD(void);
 # 16 "main.c" 2
 
@@ -5309,11 +5307,14 @@ struct DC_motor {
 
 void initPWM(int PWMperiod);
 void setMotorPWM(struct DC_motor *m);
-void stop(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR);
+
+
+void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed);
+void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+
+
 void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR);
 # 17 "main.c" 2
 
@@ -5394,6 +5395,10 @@ void main(void)
   struct DC_motor motorL, motorR;
   init_motor_struct(&motorL, &motorR);
 
+
+  int searching_speed = 50;
+  int moving_speed = 75;
+
   unsigned long movementMicros=0;
 
 
@@ -5402,7 +5407,7 @@ void main(void)
 
       if(robot_mode == 0)
       {
-          turnRight(&motorL, &motorR);
+          turnRight(&motorL, &motorR,searching_speed);
 
 
           while(robot_mode == 0)
@@ -5424,7 +5429,7 @@ void main(void)
 
       if(robot_mode == 1)
       {
-          moveForward(&motorL, &motorR,75);
+          moveForward(&motorL, &motorR,moving_speed);
 
 
           while(robot_mode == 1)
@@ -5447,7 +5452,7 @@ void main(void)
 
       if(robot_mode == 2)
       {
-          moveBackward(&motorL,&motorR,75);
+          moveBackward(&motorL,&motorR,moving_speed);
 
           for(unsigned long i=0; i<movementMicros;i++)
           {
@@ -5459,7 +5464,7 @@ void main(void)
 
       if(robot_mode == 3)
       {
-          stop(&motorL, &motorR);
+          stop(&motorL, &motorR,moving_speed);
 
           while(robot_mode == 3)
           {

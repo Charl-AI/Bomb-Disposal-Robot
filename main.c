@@ -83,6 +83,10 @@ void main(void)
   struct DC_motor motorL, motorR; //declare 2 motor structures
   init_motor_struct(&motorL, &motorR); // initialise values in each struct
   
+  // these define how fast the robot moves in each operation
+  int searching_speed = 50;
+  int moving_speed = 75;
+  
   unsigned long movementMicros=0; // stores time taken moving forward
   
   // loop, this runs forever
@@ -91,7 +95,7 @@ void main(void)
       // Subroutine for initial sweep to search for bomb
       if(robot_mode == 0)
       {
-          turnRight(&motorL, &motorR); // continuously turn right
+          turnRight(&motorL, &motorR,searching_speed); // continuously turn right
       
           // Runs until the beacon is found and the break statement executes
           while(robot_mode == 0)
@@ -113,7 +117,7 @@ void main(void)
       // Subroutine to move towards bomb
       if(robot_mode == 1)
       {
-          moveForward(&motorL, &motorR,75); // move robot forwards
+          moveForward(&motorL, &motorR,moving_speed); // move robot forwards
       
           // Runs until RFID has been scanned and break statement executes
           while(robot_mode == 1)
@@ -136,7 +140,7 @@ void main(void)
       // Subroutine to return to starting position
       if(robot_mode == 2)
       {
-          moveBackward(&motorL,&motorR,75); // move robot backwards
+          moveBackward(&motorL,&motorR,moving_speed); // move robot backwards
           
           for(unsigned long i=0; i<movementMicros;i++)
           {
@@ -148,7 +152,7 @@ void main(void)
       // Subroutine for once bomb has been found and robot has returned
       if(robot_mode == 3)
       {
-          stop(&motorL, &motorR); // stop moving
+          stop(&motorL, &motorR,moving_speed); // stop moving
           
           while(robot_mode == 3)
           {
