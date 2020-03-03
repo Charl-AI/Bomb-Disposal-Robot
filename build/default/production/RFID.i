@@ -4974,9 +4974,9 @@ extern volatile __bit nWRITE __attribute__((address(0x7E3A)));
 # 11 "./RFID.h"
 void init_RFID(void);
 char getCharSerial(void);
-char processRFID(char RFIDbuf[], char latestChar);
-void check_RFID(char dataBuf[]);
-void display_RFID(char RFIDBuf[]);
+char processRFID(volatile char RFIDbuf[], char latestChar);
+void check_RFID(volatile char dataBuf[]);
+void display_RFID(volatile char RFIDBuf[]);
 # 9 "RFID.c" 2
 
 # 1 "./LCDIO.h" 1
@@ -5025,7 +5025,7 @@ void init_RFID(void)
 
 
 
-char processRFID(char RFIDbuf[], char latestChar)
+char processRFID(volatile char RFIDbuf[], char latestChar)
 {
 
 
@@ -5063,7 +5063,7 @@ char processRFID(char RFIDbuf[], char latestChar)
 }
 
 
-void check_RFID(char dataBuf[])
+void check_RFID(volatile char dataBuf[])
 {
 
     char hexBuf[12];
@@ -5100,7 +5100,7 @@ void check_RFID(char dataBuf[])
     }
 }
 
-void display_RFID(char dataBuf[])
+void display_RFID(volatile char dataBuf[])
 {
     ClearLCD();
     SetLine(1);

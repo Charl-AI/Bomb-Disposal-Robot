@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.05\pic\dat\en_msgs.txt \
   -cs -h+dist/default/production\ECM_Final_Project.X.production.sym \
   --cmf=dist/default/production\ECM_Final_Project.X.production.cmf -z \
-  -Q18F4331 -oC:\Users\charl\AppData\Local\Temp\s1io.2 \
+  -Q18F4331 -oC:\Users\charl\AppData\Local\Temp\s7l0.2 \
   --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/ECM_Final_Project.X.production.map -E1 -ver=XC8 \
   --acfsm=1493 -ASTACK=083h-02FFh -pstack=STACK -ACODE=00h-01FFFh \
@@ -22,7 +22,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\charl\AppData\Local\Temp\s1io.o \
+  C:\Users\charl\AppData\Local\Temp\s7l0.o \
   dist/default/production\ECM_Final_Project.X.production.o 
 
 Object code version is 3.11
@@ -35,7 +35,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\charl\AppData\Local\Temp\s1io.o
+C:\Users\charl\AppData\Local\Temp\s7l0.o
                 init                                 3E       3E        4        4       0
                 reset_vec                             0        0        4        0       0
                 idloc                            200000   200000        8   200000       0
@@ -1058,7 +1058,7 @@ Total ram usage:        8 bytes
  Defined at:
 		line 109 in file "RFID.c"
  Parameters:    Size  Location     Type
-  dataBuf         2   12[COMRAM] PTR unsigned char 
+  dataBuf         2   12[COMRAM] PTR volatile unsigned ch
 		 -> RFIDbuf(12), 
  Auto vars:     Size  Location     Type
   i               2   14[COMRAM] int 
@@ -1152,7 +1152,7 @@ Total ram usage:        2 bytes
  Defined at:
 		line 72 in file "RFID.c"
  Parameters:    Size  Location     Type
-  dataBuf         2   13[COMRAM] PTR unsigned char 
+  dataBuf         2   13[COMRAM] PTR volatile unsigned ch
 		 -> RFIDbuf(12), 
  Auto vars:     Size  Location     Type
   i               2   35[COMRAM] int 
@@ -1380,7 +1380,7 @@ Total ram usage:        3 bytes
  Defined at:
 		line 34 in file "RFID.c"
  Parameters:    Size  Location     Type
-  RFIDbuf         2    0[COMRAM] PTR unsigned char 
+  RFIDbuf         2    0[COMRAM] PTR volatile unsigned ch
 		 -> RFIDbuf(12), 
   latestChar      1    2[COMRAM] unsigned char 
  Auto vars:     Size  Location     Type

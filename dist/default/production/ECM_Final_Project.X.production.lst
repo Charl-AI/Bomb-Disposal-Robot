@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.05 build -831301201 
-                                                                                               Tue Mar 03 16:33:57 2020
+                                                                                               Tue Mar 03 16:41:08 2020
 
 Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og1 
      1                           	processor	18F4331
@@ -2305,7 +2305,7 @@ Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og1
   2280 ;; Defined at:
   2281 ;;		line 109 in file "RFID.c"
   2282 ;; Parameters:    Size  Location     Type
-  2283 ;;  dataBuf         2   12[COMRAM] PTR unsigned char 
+  2283 ;;  dataBuf         2   12[COMRAM] PTR volatile unsigned ch
   2284 ;;		 -> RFIDbuf(12), 
   2285 ;; Auto vars:     Size  Location     Type
   2286 ;;  i               2   14[COMRAM] int 
@@ -2340,8 +2340,8 @@ Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og1
   2315  000C32                     _display_RFID:
   2316                           	opt callstack 24
   2317                           
-  2318                           ;RFID.c: 109: void display_RFID(char dataBuf[]);RFID.c: 110: {;RFID.c: 111:     ClearLCD
-      +                          ();
+  2318                           ;RFID.c: 109: void display_RFID(volatile char dataBuf[]);RFID.c: 110: {;RFID.c: 111:    
+      +                           ClearLCD();
   2319                           
   2320                           ;incstack = 0
   2321  000C32  ECD6  F006         	call	_ClearLCD	;wreg free
@@ -2508,7 +2508,7 @@ Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og1
   2481 ;; Defined at:
   2482 ;;		line 72 in file "RFID.c"
   2483 ;; Parameters:    Size  Location     Type
-  2484 ;;  dataBuf         2   13[COMRAM] PTR unsigned char 
+  2484 ;;  dataBuf         2   13[COMRAM] PTR volatile unsigned ch
   2485 ;;		 -> RFIDbuf(12), 
   2486 ;; Auto vars:     Size  Location     Type
   2487 ;;  i               2   35[COMRAM] int 
@@ -2549,8 +2549,8 @@ Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og1
   2522  00050C                     _check_RFID:
   2523                           	opt callstack 24
   2524                           
-  2525                           ;RFID.c: 72: void check_RFID(char dataBuf[]);RFID.c: 73: {;RFID.c: 75:     char hexBuf[1
-      +                          2];;RFID.c: 77:     for(int i=0; i<12;i++)
+  2525                           ;RFID.c: 72: void check_RFID(volatile char dataBuf[]);RFID.c: 73: {;RFID.c: 75:     char
+      +                           hexBuf[12];;RFID.c: 77:     for(int i=0; i<12;i++)
   2526                           
   2527                           ;incstack = 0
   2528  00050C  0E00               	movlw	0
@@ -3250,7 +3250,7 @@ Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og1
   3222 ;; Defined at:
   3223 ;;		line 34 in file "RFID.c"
   3224 ;; Parameters:    Size  Location     Type
-  3225 ;;  RFIDbuf         2    0[COMRAM] PTR unsigned char 
+  3225 ;;  RFIDbuf         2    0[COMRAM] PTR volatile unsigned ch
   3226 ;;		 -> RFIDbuf(12), 
   3227 ;;  latestChar      1    2[COMRAM] unsigned char 
   3228 ;; Auto vars:     Size  Location     Type
@@ -3283,8 +3283,8 @@ Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og1
   3255  000BE6                     _processRFID:
   3256                           	opt callstack 24
   3257                           
-  3258                           ;RFID.c: 34: char processRFID(char RFIDbuf[], char latestChar);RFID.c: 35: {;RFID.c: 39:
-      +                               static char position_in_buf;;RFID.c: 42:     if(latestChar == 0x03)
+  3258                           ;RFID.c: 34: char processRFID(volatile char RFIDbuf[], char latestChar);RFID.c: 35: {;RF
+      +                          ID.c: 39:     static char position_in_buf;;RFID.c: 42:     if(latestChar == 0x03)
   3259                           
   3260                           ;incstack = 0
   3261  000BE6  0E03               	movlw	3
@@ -3416,13 +3416,13 @@ Auto Spaces:
 
 Pointer List with Targets:
 
-    display_RFID@dataBuf	PTR unsigned char  size(2) Largest target is 12
+    display_RFID@dataBuf	PTR volatile unsigned char  size(2) Largest target is 12
 		 -> RFIDbuf(COMRAM[12]), 
 
-    check_RFID@dataBuf	PTR unsigned char  size(2) Largest target is 12
+    check_RFID@dataBuf	PTR volatile unsigned char  size(2) Largest target is 12
 		 -> RFIDbuf(COMRAM[12]), 
 
-    processRFID@RFIDbuf	PTR unsigned char  size(2) Largest target is 12
+    processRFID@RFIDbuf	PTR volatile unsigned char  size(2) Largest target is 12
 		 -> RFIDbuf(COMRAM[12]), 
 
     LCD_String@string	PTR unsigned char  size(2) Largest target is 16
@@ -3810,7 +3810,7 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V2.05 build -831301201 
-Symbol Table                                                                                   Tue Mar 03 16:33:57 2020
+Symbol Table                                                                                   Tue Mar 03 16:41:08 2020
 
                            l63 0CDC                             l80 03C2                             l90 0470  
                            l91 0460                             l86 03EC                   ___awdiv@sign 0013  

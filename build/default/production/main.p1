@@ -143,8 +143,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3636: extern volatile PIR1bits_t PIR1bits __attribute__((address(0xF9E)));
 [v _PIR1bits `VS129 ~T0 @X0 0 e@3998 ]
 "13 ./RFID.h
-[; ;./RFID.h: 13: char processRFID(char RFIDbuf[], char latestChar);
-[v _processRFID `(uc ~T0 @X0 0 ef2`*uc`uc ]
+[; ;./RFID.h: 13: char processRFID(volatile char RFIDbuf[], char latestChar);
+[v _processRFID `(uc ~T0 @X0 0 ef2`*Vuc`uc ]
 "4851 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4851: extern volatile unsigned char RCREG __attribute__((address(0xFAE)));
 [v _RCREG `Vuc ~T0 @X0 0 e@4014 ]
@@ -176,11 +176,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v __delay `JF2763 ~T0 @X0 0 e ]
 [p i __delay ]
 "15 ./RFID.h
-[; ;./RFID.h: 15: void display_RFID(char RFIDBuf[]);
-[v _display_RFID `(v ~T0 @X0 0 ef1`*uc ]
+[; ;./RFID.h: 15: void display_RFID(volatile char RFIDBuf[]);
+[v _display_RFID `(v ~T0 @X0 0 ef1`*Vuc ]
 "14
-[; ;./RFID.h: 14: void check_RFID(char dataBuf[]);
-[v _check_RFID `(v ~T0 @X0 0 ef1`*uc ]
+[; ;./RFID.h: 14: void check_RFID(volatile char dataBuf[]);
+[v _check_RFID `(v ~T0 @X0 0 ef1`*Vuc ]
 "24 ./dc_motor.h
 [; ;./dc_motor.h: 24: void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 [v _moveBackward `(v ~T0 @X0 0 ef3`*S316`*S316`i ]
@@ -834,7 +834,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "66
 [; ;main.c: 66:         RFID_flag = processRFID(RFIDbuf, RCREG);
-[e = _RFID_flag ( _processRFID (2 , -> &U _RFIDbuf `*uc -> _RCREG `uc ]
+[e = _RFID_flag ( _processRFID (2 , &U _RFIDbuf -> _RCREG `uc ]
 "67
 [; ;main.c: 67:     }
 }
@@ -973,10 +973,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 "132
 [; ;main.c: 132:                   display_RFID(RFIDbuf);
-[e ( _display_RFID (1 -> &U _RFIDbuf `*uc ]
+[e ( _display_RFID (1 &U _RFIDbuf ]
 "133
 [; ;main.c: 133:                   check_RFID(RFIDbuf);
-[e ( _check_RFID (1 -> &U _RFIDbuf `*uc ]
+[e ( _check_RFID (1 &U _RFIDbuf ]
 "134
 [; ;main.c: 134:                   robot_mode = 2;
 [e = _robot_mode -> -> 2 `i `uc ]

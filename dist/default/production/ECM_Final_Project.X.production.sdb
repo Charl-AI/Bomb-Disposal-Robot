@@ -633,7 +633,7 @@
 "113
 [v display_RFID@i i `i  1 a 2 14 ]
 "109
-[v display_RFID@dataBuf dataBuf `*.39uc  1 p 2 12 ]
+[v display_RFID@dataBuf dataBuf `*.39VEuc  1 p 2 12 ]
 "117
 } 0
 "131 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
@@ -667,7 +667,7 @@
 "88
 [v check_RFID@byte1 byte1 `uc  1 a 1 29 ]
 "72
-[v check_RFID@dataBuf dataBuf `*.39uc  1 p 2 13 ]
+[v check_RFID@dataBuf dataBuf `*.39VEuc  1 p 2 13 ]
 "107
 } 0
 "107 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
@@ -720,7 +720,7 @@
 "53
 [v processRFID@i i `uc  1 a 1 3 ]
 "34
-[v processRFID@RFIDbuf RFIDbuf `*.39uc  1 p 2 0 ]
+[v processRFID@RFIDbuf RFIDbuf `*.39VEuc  1 p 2 0 ]
 [v processRFID@latestChar latestChar `uc  1 p 1 2 ]
 "39
 [v processRFID@position_in_buf position_in_buf `uc  1 s 1 position_in_buf ]

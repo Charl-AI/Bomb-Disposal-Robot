@@ -5322,9 +5322,9 @@ void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR);
 # 11 "./RFID.h"
 void init_RFID(void);
 char getCharSerial(void);
-char processRFID(char RFIDbuf[], char latestChar);
-void check_RFID(char dataBuf[]);
-void display_RFID(char RFIDBuf[]);
+char processRFID(volatile char RFIDbuf[], char latestChar);
+void check_RFID(volatile char dataBuf[]);
+void display_RFID(volatile char RFIDBuf[]);
 # 18 "main.c" 2
 
 # 1 "./signal_processing.h" 1

@@ -730,15 +730,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 309 ]
 }
 "34
-[; ;RFID.c: 34: char processRFID(char RFIDbuf[], char latestChar)
-[v _processRFID `(uc ~T0 @X0 1 ef2`*uc`uc ]
+[; ;RFID.c: 34: char processRFID(volatile char RFIDbuf[], char latestChar)
+[v _processRFID `(uc ~T0 @X0 1 ef2`*Vuc`uc ]
 "35
 [; ;RFID.c: 35: {
 {
 [e :U _processRFID ]
 "34
-[; ;RFID.c: 34: char processRFID(char RFIDbuf[], char latestChar)
-[v _RFIDbuf `*uc ~T0 @X0 1 r1 ]
+[; ;RFID.c: 34: char processRFID(volatile char RFIDbuf[], char latestChar)
+[v _RFIDbuf `*Vuc ~T0 @X0 1 r1 ]
 [v _latestChar `uc ~T0 @X0 1 r2 ]
 "35
 [; ;RFID.c: 35: {
@@ -833,15 +833,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 310 ]
 }
 "72
-[; ;RFID.c: 72: void check_RFID(char dataBuf[])
-[v _check_RFID `(v ~T0 @X0 1 ef1`*uc ]
+[; ;RFID.c: 72: void check_RFID(volatile char dataBuf[])
+[v _check_RFID `(v ~T0 @X0 1 ef1`*Vuc ]
 "73
 [; ;RFID.c: 73: {
 {
 [e :U _check_RFID ]
 "72
-[; ;RFID.c: 72: void check_RFID(char dataBuf[])
-[v _dataBuf `*uc ~T0 @X0 1 r1 ]
+[; ;RFID.c: 72: void check_RFID(volatile char dataBuf[])
+[v _dataBuf `*Vuc ~T0 @X0 1 r1 ]
 "73
 [; ;RFID.c: 73: {
 [f ]
@@ -951,15 +951,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 318 ]
 }
 "109
-[; ;RFID.c: 109: void display_RFID(char dataBuf[])
-[v _display_RFID `(v ~T0 @X0 1 ef1`*uc ]
+[; ;RFID.c: 109: void display_RFID(volatile char dataBuf[])
+[v _display_RFID `(v ~T0 @X0 1 ef1`*Vuc ]
 "110
 [; ;RFID.c: 110: {
 {
 [e :U _display_RFID ]
 "109
-[; ;RFID.c: 109: void display_RFID(char dataBuf[])
-[v _dataBuf `*uc ~T0 @X0 1 r1 ]
+[; ;RFID.c: 109: void display_RFID(volatile char dataBuf[])
+[v _dataBuf `*Vuc ~T0 @X0 1 r1 ]
 "110
 [; ;RFID.c: 110: {
 [f ]

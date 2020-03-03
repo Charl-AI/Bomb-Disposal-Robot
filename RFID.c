@@ -31,7 +31,7 @@ void init_RFID(void)
 
 // this function is called when the RFID serial interrupt is triggered
 // it returns 1 when the RFID has been completely read and 0 otherwise
-char processRFID(char RFIDbuf[], char latestChar)
+char processRFID(volatile char RFIDbuf[], char latestChar)
 {
     // here we store the position we are at in the buffer, it is declared
     // as static so it doesn't change between function calls
@@ -69,7 +69,7 @@ char processRFID(char RFIDbuf[], char latestChar)
 }
 
 // do checksum calculation, display result on LCD
-void check_RFID(char dataBuf[])
+void check_RFID(volatile char dataBuf[])
 {
     // array to store hex values
     char hexBuf[12];
@@ -106,7 +106,7 @@ void check_RFID(char dataBuf[])
     }
 }
 
-void display_RFID(char dataBuf[])
+void display_RFID(volatile char dataBuf[])
 {
     ClearLCD();
     SetLine(1);
