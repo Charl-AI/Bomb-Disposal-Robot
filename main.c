@@ -47,7 +47,7 @@ void setup(void)
     // Initialise pins to enable LCD, RFID, motors, etc.
     init_LCD();
     init_RFID();
-    init_sensors();
+    init_sensor();
     initPWM(199);
     
     TRISBbits.RB0 = 0; // motor direction pins
@@ -101,8 +101,7 @@ void main(void)
           static char beacon_location;
           
           // First, acquire the PWM duty cycle using the motion feedback module
-          sensor.raw_data = (int)((CAP2BUFH << 8) | CAP2BUFL);
-          
+          sensor.raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
           
           // Next, process the signal by passing through a smoothing algorithm
           process_signal(&sensor);
@@ -111,7 +110,7 @@ void main(void)
           char previous_location = beacon_location;
           
           // Now, classify the signals to find the beacon location
-          beacon_location = classify_data(sensor.smoothed_signal) 
+          beacon_location = classify_data(sensor.raw_data); 
                              
           // if the beacon is straight ahead, move towards it, otherwise, stop
           // and align the robot with the beacon direction

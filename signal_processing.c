@@ -40,7 +40,7 @@ void process_signal(struct Sensor *S)
 // 1 means the beacon is straight ahead
 char classify_data(int smoothed_data)
 {
-    if(smoothed_data > 1000)
+    if(smoothed_data > 10000)
     {
         return 1;
     }

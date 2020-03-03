@@ -132,7 +132,6 @@ void moveToBeacon(char beacon_location, char prev_location,
         {
         fullSpeedAhead(mL,mR);
         }
-        
     }
 }
 

@@ -5271,34 +5271,18 @@ void moveToBeacon(char beacon_location, char prev_location,
 
     if(beacon_location == 0)
     {
-
+        if(prev_location!= beacon_location)
+        {
+            turnRight(mL, mR);
+        }
     }
 
     if(beacon_location == 1)
     {
         if(prev_location != beacon_location)
         {
-        turnLeft(mL, mR);
-        }
-
-    }
-
-    if(beacon_location == 2)
-    {
-        if(prev_location != beacon_location)
-        {
-        turnRight(mL, mR);
-        }
-
-    }
-
-    if(beacon_location == 3)
-    {
-        if(prev_location != beacon_location)
-        {
         fullSpeedAhead(mL,mR);
         }
-
     }
 }
 

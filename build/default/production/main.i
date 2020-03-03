@@ -5331,13 +5331,13 @@ void display_RFID(char RFIDBuf[]);
 # 1 "./signal_processing.h" 1
 # 13 "./signal_processing.h"
 struct Sensor {
-    int raw_data;
-    int smoothed_signal;
+    unsigned int raw_data;
+    unsigned int smoothed_signal;
 };
 
-void init_sensors(void);
+void init_sensor(void);
 void process_signal(struct Sensor *S);
-char classify_data(int left_smoothed, int right_smoothed);
+char classify_data(int smoothed_data);
 # 20 "main.c" 2
 # 29 "main.c"
 volatile char robot_mode = 0;
@@ -5361,7 +5361,7 @@ void setup(void)
 
     init_LCD();
     init_RFID();
-    init_sensors();
+    init_sensor();
     initPWM(199);
 
     TRISBbits.RB0 = 0;
@@ -5404,7 +5404,7 @@ void main(void)
   struct DC_motor motorL, motorR;
   init_motors(&motorL, &motorR);
 
-  struct Sensor sensorL, sensorR;
+  struct Sensor sensor;
 
 
   while(1)
@@ -5415,18 +5415,16 @@ void main(void)
           static char beacon_location;
 
 
-          sensorL.raw_data = (int)((CAP2BUFH << 8) | CAP2BUFL);
-          sensorR.raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
+          sensor.raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 
 
-          process_signal(&sensorL);
-          process_signal(&sensorR);
+          process_signal(&sensor);
+
 
           char previous_location = beacon_location;
 
 
-          beacon_location = classify_data(sensorL.smoothed_signal,
-                                          sensorR.smoothed_signal);
+          beacon_location = classify_data(sensor.raw_data);
 
 
 
@@ -5436,11 +5434,11 @@ void main(void)
           ClearLCD();
           SetLine(1);
           char temp2[16];
-          sprintf(temp2,"LEFT %u ",sensorL.smoothed_signal);
+          sprintf(temp2,"smoothed %u ",sensor.smoothed_signal);
           LCD_String(temp2);
           SetLine(2);
           char temp1[16];
-          sprintf(temp1,"RIGHT %u ",sensorR.smoothed_signal);
+          sprintf(temp1,"raw %u ",sensor.raw_data);
           LCD_String(temp1);
           _delay((unsigned long)((100)*(8000000/4000.0)));
 
