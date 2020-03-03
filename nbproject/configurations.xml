@@ -21,7 +21,6 @@
       <itemPath>LCDIO.c</itemPath>
       <itemPath>RFID.c</itemPath>
       <itemPath>signal_processing.c</itemPath>
-      <itemPath>subroutines.c</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

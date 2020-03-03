@@ -86,84 +86,92 @@ void main(void)
   // loop, this runs forever
   while(1)
   {
-      // When searching for bomb initially, continuously turn right
+      // Subroutine for initial sweep to search for bomb
       if(robot_mode == 0)
       {
-          turnRight(&motorL, &motorR);
-      }
-      // Subroutine for initial sweep to search for bomb
-      while(robot_mode == 0)
-      {
-          // First, acquire the PWM duty cycle using the motion feedback module
-          unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
- 
-          // Now, classify the signals to find if we are looking at the beacon
-          char beacon_location = classify_data(raw_data); 
-          
-          // if beacon is straight ahead, exit this subroutine and enter mode 1
-          if(beacon_location == 1)
-          {
-              robot_mode = 1;
-          }
-          
-          //print to LCD for debugging (remove later)
-          ClearLCD();
-          SetLine(1);
-          char temp2[16];
-          sprintf(temp2,"smoothed %u ",raw_data);
-          LCD_String(temp2);
-          SetLine(2);
-          //char temp1[16];
-          //sprintf(temp1,"raw %u ",sensor.raw_data);
-          //LCD_String(temp1);
-          __delay_ms(100);
-          
-      }
+          turnRight(&motorL, &motorR); // continuously turn right
       
-      // When mode is set to 1, accelerate the robot forwards
-      if(robot_mode == 1)
-      {
-          moveForward(&motorL, &motorR);
+          // Runs until the beacon is found and the break statement executes
+          while(robot_mode == 0)
+          {
+            // First, acquire the PWM duty cycle using the motion feedback module
+            unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+
+            // Now, classify the signals to find if we are looking at the beacon
+            char beacon_location = classify_data(raw_data); 
+
+            // if beacon is straight ahead, exit this subroutine
+            if(beacon_location == 1)
+            {
+                robot_mode = 1;
+            }
+
+            //print to LCD for debugging (remove later)
+            ClearLCD();
+            SetLine(1);
+            char temp2[16];
+            sprintf(temp2,"smoothed %u ",raw_data);
+            LCD_String(temp2);
+            SetLine(2);
+            //char temp1[16];
+            //sprintf(temp1,"raw %u ",sensor.raw_data);
+            //LCD_String(temp1);
+            __delay_ms(100);
+
+         }
       }
       
       // Subroutine to move towards bomb
-      while(robot_mode == 1)
+      if(robot_mode == 1)
       {
-         
-           
-          
-          
-          // once RFID fully read, check against checksum, display it and change
-          // robot mode to return home
-          if(RFID_flag == 1)
+          moveForward(&motorL, &motorR); // move robot forwards
+      
+          // Runs until RFID has been scanned and break statement executes
+          while(robot_mode == 1)
           {
-              display_RFID(RFIDbuf);
-              check_RFID(RFIDbuf);
-              robot_mode = 1;
-              RFID_flag = 0;
+
+              // once RFID fully read, check against checksum, display it,
+              // break loop and set robot mode to return home
+              if(RFID_flag == 1)
+              {
+                  display_RFID(RFIDbuf);
+                  check_RFID(RFIDbuf);
+                  robot_mode = 1;
+                  RFID_flag = 0;
+              }
           }
       }
     
       // Subroutine to return to starting position
-      while(robot_mode == 2)
+      if(robot_mode == 2)
       {
-          // for debugging only, remove later
-          robot_mode = 3;
+          moveBackward(&motorL,&motorR); // move robot backwards
+          
+          while(robot_mode == 2)
+          {
+              // for debugging only, remove later
+              robot_mode = 3;
+          }
       }
       
       // Subroutine for once bomb has been found and robot has returned
-      while(robot_mode == 3)
+      if(robot_mode == 3)
       {
-          while(PORTDbits.RD2 == 1)
+          stop(&motorL, &motorR); // stop moving
+          
+          while(robot_mode == 3)
           {
-              ClearLCD();
-              LCD_String("RESETTING ROBOT");
-              for(int i=0; i<10;i++)
+              while(PORTDbits.RD2 == 1)
               {
-                  __delay_ms(100);
+                  ClearLCD();
+                  LCD_String("RESETTING ROBOT");
+                  for(int i=0; i<10;i++)
+                  {
+                      __delay_ms(100);
+                  }
+                  ClearLCD();
+                  robot_mode = 0;
               }
-              ClearLCD();
-              robot_mode = 0;
           }
       }
   }

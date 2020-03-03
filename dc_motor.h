@@ -20,6 +20,7 @@ void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR);
 void moveForward(struct DC_motor *mL, struct DC_motor *mR);
+void moveBackward(struct DC_motor *mL, struct DC_motor *mR);
 void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR);
 
 #endif

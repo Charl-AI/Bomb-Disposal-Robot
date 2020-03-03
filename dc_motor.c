@@ -93,7 +93,20 @@ void moveForward(struct DC_motor *mL, struct DC_motor *mR)
         setMotorPWM(mL);
         setMotorPWM(mR);
     }
-	
+}
+
+//function to make the robot go straight
+void moveBackward(struct DC_motor *mL, struct DC_motor *mR)
+{
+    mL->direction = 0;
+    mR->direction = 0;
+    for(int i = 0; i < 50; i++)
+    {
+        mL->power = i;
+        mR->power = i;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+    }
 }
 
 void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR)
