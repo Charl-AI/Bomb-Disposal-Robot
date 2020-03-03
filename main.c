@@ -90,8 +90,6 @@ void main(void)
   struct DC_motor motorL, motorR; //declare 2 motor structures
   init_motors(&motorL, &motorR); // initialise values in each struct
   
-  struct Sensor sensor; // declare structures for both sensors
-  
   // loop, this runs forever
   while(1)
   {
@@ -101,16 +99,13 @@ void main(void)
           static char beacon_location;
           
           // First, acquire the PWM duty cycle using the motion feedback module
-          sensor.raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
-          
-          // Next, process the signal by passing through a smoothing algorithm
-          process_signal(&sensor);
+          unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
           
           // Temporarily store the previous location of the beacon
           char previous_location = beacon_location;
           
           // Now, classify the signals to find the beacon location
-          beacon_location = classify_data(sensor.raw_data); 
+          beacon_location = classify_data(raw_data); 
                              
           // if the beacon is straight ahead, move towards it, otherwise, stop
           // and align the robot with the beacon direction
@@ -120,12 +115,12 @@ void main(void)
           ClearLCD();
           SetLine(1);
           char temp2[16];
-          sprintf(temp2,"smoothed %u ",sensor.smoothed_signal);
+          sprintf(temp2,"smoothed %u ",raw_data);
           LCD_String(temp2);
           SetLine(2);
-          char temp1[16];
-          sprintf(temp1,"raw %u ",sensor.raw_data);
-          LCD_String(temp1);
+          //char temp1[16];
+          //sprintf(temp1,"raw %u ",sensor.raw_data);
+          //LCD_String(temp1);
           __delay_ms(100);
           
           // once RFID fully read, check against checksum, display it and change

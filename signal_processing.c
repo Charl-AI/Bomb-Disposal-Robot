@@ -24,17 +24,6 @@ void init_sensor(void)
     CAP1CON = 0b01000111; //PWM measurement (falling to rising), time base reset
 }
 
-// This function takes the raw data and smooths it to produce a better signal
-// we use an exponential moving average, which is good because it acts as a
-// low-pass filter, is very fast and uses very little memory
-void process_signal(struct Sensor *S)
-{
-    int smoothing_constant = 10; //"alpha" constant for smoothing algorithm (%)
-    // use exponential moving average to smooth data
-    S->smoothed_signal *= (100-smoothing_constant)/100;
-    S->smoothed_signal += (S->raw_data * smoothing_constant)/100;
-}
-
 // This function takes the smoothed data and classifies it into a status
 // 0 means that the beacon has not been found
 // 1 means the beacon is straight ahead
