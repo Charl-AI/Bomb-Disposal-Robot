@@ -5336,7 +5336,6 @@ struct Sensor {
 };
 
 void init_sensor(void);
-void process_signal(struct Sensor *S);
 char classify_data(int smoothed_data);
 # 20 "main.c" 2
 # 29 "main.c"
@@ -5388,13 +5387,6 @@ void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void
 }
 
 
-void __attribute__((picinterrupt(("low_priority")))) InterruptHandlerLow (void)
-{
-
-
-}
-
-
 void main(void)
 {
 
@@ -5403,8 +5395,6 @@ void main(void)
 
   struct DC_motor motorL, motorR;
   init_motors(&motorL, &motorR);
-
-  struct Sensor sensor;
 
 
   while(1)
@@ -5415,16 +5405,13 @@ void main(void)
           static char beacon_location;
 
 
-          sensor.raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
-
-
-          process_signal(&sensor);
+          unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 
 
           char previous_location = beacon_location;
 
 
-          beacon_location = classify_data(sensor.raw_data);
+          beacon_location = classify_data(raw_data);
 
 
 
@@ -5434,12 +5421,12 @@ void main(void)
           ClearLCD();
           SetLine(1);
           char temp2[16];
-          sprintf(temp2,"smoothed %u ",sensor.smoothed_signal);
+          sprintf(temp2,"smoothed %u ",raw_data);
           LCD_String(temp2);
           SetLine(2);
-          char temp1[16];
-          sprintf(temp1,"raw %u ",sensor.raw_data);
-          LCD_String(temp1);
+
+
+
           _delay((unsigned long)((100)*(8000000/4000.0)));
 
 

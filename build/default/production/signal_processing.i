@@ -4972,7 +4972,6 @@ struct Sensor {
 };
 
 void init_sensor(void);
-void process_signal(struct Sensor *S);
 char classify_data(int smoothed_data);
 # 11 "signal_processing.c" 2
 
@@ -4987,27 +4986,16 @@ void init_sensor(void)
     ANSEL0 = 0;
     ANSEL1 = 0;
 
-
+    DFLTCON = 0b00011000;
     CAP1CON = 0b01000111;
 }
 
 
 
 
-void process_signal(struct Sensor *S)
+char classify_data(int raw_data)
 {
-    int smoothing_constant = 10;
-
-    S->smoothed_signal *= (100-smoothing_constant)/100;
-    S->smoothed_signal += (S->raw_data * smoothing_constant)/100;
-}
-
-
-
-
-char classify_data(int smoothed_data)
-{
-    if(smoothed_data > 10000)
+    if(raw_data > 10000)
     {
         return 1;
     }

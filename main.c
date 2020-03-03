@@ -5,7 +5,6 @@
  * 
  * This project is to develop the software and hardware for an autonomous
  * bomb disposal robot.
- 
  */
 /*****************************************************************************/
 // Include statements and boilerplate code
@@ -23,9 +22,10 @@
 //Global variables defined here
 
 // this defines the subroutine that the robot will operate on:
-// 0 represents searching for bomb
-// 1 represents returning to starting position
-// 2 represents finished (robot has found bomb and returned)
+// 0 represents the initial sweep to look for bomb
+// 1 represents moving towards bomb
+// 2 represents returning to starting position
+// 3 represents finished (robot has found bomb and returned)
 volatile char robot_mode = 0;
 
 // stores characters read from RFID (10 data bits and 2 checksum)
@@ -60,7 +60,7 @@ void __interrupt(high_priority) InterruptHandlerHigh (void)
 {
     // Trigger interrupt when a character is read from the RFID
     // this can only occur when the robot is in searching mode
-    if((PIR1bits.RCIF) && (robot_mode == 0))
+    if((PIR1bits.RCIF) && (robot_mode == 1))
     {
         //read RFID data into buffer, once all the data has been read set flag=1
         RFID_flag = processRFID(RFIDbuf, RCREG);
@@ -73,13 +73,6 @@ void __interrupt(high_priority) InterruptHandlerHigh (void)
     }
 }
 /*****************************************************************************/
-// Low priority interrupt service routine
-void __interrupt(low_priority) InterruptHandlerLow (void)
-{
-    
-    
-}
-/*****************************************************************************/
 // main function
 void main(void)
 {
@@ -88,29 +81,31 @@ void main(void)
   
   //now, we declare the structures that need to be visible to the main function
   struct DC_motor motorL, motorR; //declare 2 motor structures
-  init_motors(&motorL, &motorR); // initialise values in each struct
+  init_motor_struct(&motorL, &motorR); // initialise values in each struct
   
   // loop, this runs forever
   while(1)
   {
-      // Subroutine to search for bomb
+      // When searching for bomb initially, continuously turn right
+      if(robot_mode == 0)
+      {
+          turnRight(&motorL, &motorR);
+      }
+      // Subroutine for initial sweep to search for bomb
       while(robot_mode == 0)
       {
-          static char beacon_location;
-          
           // First, acquire the PWM duty cycle using the motion feedback module
           unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+ 
+          // Now, classify the signals to find if we are looking at the beacon
+          char beacon_location = classify_data(raw_data); 
           
-          // Temporarily store the previous location of the beacon
-          char previous_location = beacon_location;
+          // if beacon is straight ahead, exit this subroutine and enter mode 1
+          if(beacon_location == 1)
+          {
+              robot_mode = 1;
+          }
           
-          // Now, classify the signals to find the beacon location
-          beacon_location = classify_data(raw_data); 
-                             
-          // if the beacon is straight ahead, move towards it, otherwise, stop
-          // and align the robot with the beacon direction
-          moveToBeacon(beacon_location, previous_location, &motorL, &motorR);
-           
           //print to LCD for debugging (remove later)
           ClearLCD();
           SetLine(1);
@@ -122,6 +117,21 @@ void main(void)
           //sprintf(temp1,"raw %u ",sensor.raw_data);
           //LCD_String(temp1);
           __delay_ms(100);
+          
+      }
+      
+      // When mode is set to 1, accelerate the robot forwards
+      if(robot_mode == 1)
+      {
+          moveForward(&motorL, &motorR);
+      }
+      
+      // Subroutine to move towards bomb
+      while(robot_mode == 1)
+      {
+         
+           
+          
           
           // once RFID fully read, check against checksum, display it and change
           // robot mode to return home
@@ -135,14 +145,14 @@ void main(void)
       }
     
       // Subroutine to return to starting position
-      while(robot_mode == 1)
+      while(robot_mode == 2)
       {
           // for debugging only, remove later
-          robot_mode = 2;
+          robot_mode = 3;
       }
       
       // Subroutine for once bomb has been found and robot has returned
-      while(robot_mode == 2)
+      while(robot_mode == 3)
       {
           while(PORTDbits.RD2 == 1)
           {

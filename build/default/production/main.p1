@@ -148,7 +148,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "4851 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4851: extern volatile unsigned char RCREG __attribute__((address(0xFAE)));
 [v _RCREG `Vuc ~T0 @X0 0 e@4014 ]
-[t T37 __interrupt low_priority ]
 [p mainexit ]
 "7 ./dc_motor.h
 [; ;./dc_motor.h: 7: struct DC_motor {
@@ -157,10 +156,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "26
 [; ;./dc_motor.h: 26: void init_motors(struct DC_motor *mL, struct DC_motor *mR);
 [v _init_motors `(v ~T0 @X0 0 ef2`*S316`*S316 ]
-"13 ./signal_processing.h
-[; ;./signal_processing.h: 13: struct Sensor {
-[s S317 `ui 1 `ui 1 ]
-[n S317 Sensor raw_data smoothed_signal ]
 "353 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 353: extern volatile unsigned char CAP1BUFH __attribute__((address(0xF69)));
 [v _CAP1BUFH `Vuc ~T0 @X0 0 e@3945 ]
@@ -168,10 +163,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 341: extern volatile unsigned char CAP1BUFL __attribute__((address(0xF68)));
 [v _CAP1BUFL `Vuc ~T0 @X0 0 e@3944 ]
 "19 ./signal_processing.h
-[; ;./signal_processing.h: 19: void process_signal(struct Sensor *S);
-[v _process_signal `(v ~T0 @X0 0 ef1`*S317 ]
-"20
-[; ;./signal_processing.h: 20: char classify_data(int smoothed_data);
+[; ;./signal_processing.h: 19: char classify_data(int smoothed_data);
 [v _classify_data `(uc ~T0 @X0 0 ef1`i ]
 "25 ./dc_motor.h
 [; ;./dc_motor.h: 25: void moveToBeacon(char beacon_location, char prev_location, struct DC_motor *mL, struct DC_motor *mR);
@@ -861,225 +853,197 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 74: }
 [e :UE 322 ]
 }
-[v $root$_InterruptHandlerLow `(v ~T0 @X0 0 e ]
+[v $root$_main `(v ~T0 @X0 0 e ]
 "77
-[; ;main.c: 77: void __attribute__((picinterrupt(("low_priority")))) InterruptHandlerLow (void)
-[v _InterruptHandlerLow `(v ~T37 @X0 1 ef ]
+[; ;main.c: 77: void main(void)
+[v _main `(v ~T0 @X0 1 ef ]
 "78
 [; ;main.c: 78: {
 {
-[e :U _InterruptHandlerLow ]
-[f ]
-"81
-[; ;main.c: 81: }
-[e :UE 325 ]
-}
-[v $root$_main `(v ~T0 @X0 0 e ]
-"84
-[; ;main.c: 84: void main(void)
-[v _main `(v ~T0 @X0 1 ef ]
-"85
-[; ;main.c: 85: {
-{
 [e :U _main ]
 [f ]
-"87
-[; ;main.c: 87:   setup();
+"80
+[; ;main.c: 80:   setup();
 [e ( _setup ..  ]
-"90
-[; ;main.c: 90:   struct DC_motor motorL, motorR;
+"83
+[; ;main.c: 83:   struct DC_motor motorL, motorR;
 [v _motorL `S316 ~T0 @X0 1 a ]
 [v _motorR `S316 ~T0 @X0 1 a ]
-"91
-[; ;main.c: 91:   init_motors(&motorL, &motorR);
+"84
+[; ;main.c: 84:   init_motors(&motorL, &motorR);
 [e ( _init_motors (2 , &U _motorL &U _motorR ]
-"93
-[; ;main.c: 93:   struct Sensor sensor;
-[v _sensor `S317 ~T0 @X0 1 a ]
-"96
-[; ;main.c: 96:   while(1)
-[e :U 328 ]
-"97
-[; ;main.c: 97:   {
+"87
+[; ;main.c: 87:   while(1)
+[e :U 327 ]
+"88
+[; ;main.c: 88:   {
 {
-"99
-[; ;main.c: 99:       while(robot_mode == 0)
-[e $U 330  ]
-[e :U 331 ]
-"100
-[; ;main.c: 100:       {
+"90
+[; ;main.c: 90:       while(robot_mode == 0)
+[e $U 329  ]
+[e :U 330 ]
+"91
+[; ;main.c: 91:       {
 {
-"101
-[; ;main.c: 101:           static char beacon_location;
-[v F3166 `uc ~T0 @X0 1 s beacon_location ]
-"104
-[; ;main.c: 104:           sensor.raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
-[e = . _sensor 0 -> | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i `ui ]
-"107
-[; ;main.c: 107:           process_signal(&sensor);
-[e ( _process_signal (1 &U _sensor ]
-"110
-[; ;main.c: 110:           char previous_location = beacon_location;
+"92
+[; ;main.c: 92:           static char beacon_location;
+[v F3162 `uc ~T0 @X0 1 s beacon_location ]
+"95
+[; ;main.c: 95:           unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+[v _raw_data `ui ~T0 @X0 1 a ]
+[e = _raw_data -> | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i `ui ]
+"98
+[; ;main.c: 98:           char previous_location = beacon_location;
 [v _previous_location `uc ~T0 @X0 1 a ]
-[e = _previous_location F3166 ]
-"113
-[; ;main.c: 113:           beacon_location = classify_data(sensor.raw_data);
-[e = F3166 ( _classify_data (1 -> . _sensor 0 `i ]
-"117
-[; ;main.c: 117:           moveToBeacon(beacon_location, previous_location, &motorL, &motorR);
-[e ( _moveToBeacon (4 , , , F3166 _previous_location &U _motorL &U _motorR ]
-"120
-[; ;main.c: 120:           ClearLCD();
+[e = _previous_location F3162 ]
+"101
+[; ;main.c: 101:           beacon_location = classify_data(raw_data);
+[e = F3162 ( _classify_data (1 -> _raw_data `i ]
+"105
+[; ;main.c: 105:           moveToBeacon(beacon_location, previous_location, &motorL, &motorR);
+[e ( _moveToBeacon (4 , , , F3162 _previous_location &U _motorL &U _motorR ]
+"108
+[; ;main.c: 108:           ClearLCD();
 [e ( _ClearLCD ..  ]
-"121
-[; ;main.c: 121:           SetLine(1);
+"109
+[; ;main.c: 109:           SetLine(1);
 [e ( _SetLine (1 -> -> 1 `i `uc ]
-"122
-[; ;main.c: 122:           char temp2[16];
+"110
+[; ;main.c: 110:           char temp2[16];
 [v _temp2 `uc ~T0 @X0 -> 16 `i a ]
-"123
-[; ;main.c: 123:           sprintf(temp2,"smoothed %u ",sensor.smoothed_signal);
-[e ( _sprintf (1 , (. , &U _temp2 :s 1C . _sensor 1 ]
-"124
-[; ;main.c: 124:           LCD_String(temp2);
+"111
+[; ;main.c: 111:           sprintf(temp2,"smoothed %u ",raw_data);
+[e ( _sprintf (1 , (. , &U _temp2 :s 1C _raw_data ]
+"112
+[; ;main.c: 112:           LCD_String(temp2);
 [e ( _LCD_String (1 &U _temp2 ]
-"125
-[; ;main.c: 125:           SetLine(2);
+"113
+[; ;main.c: 113:           SetLine(2);
 [e ( _SetLine (1 -> -> 2 `i `uc ]
-"126
-[; ;main.c: 126:           char temp1[16];
-[v _temp1 `uc ~T0 @X0 -> 16 `i a ]
-"127
-[; ;main.c: 127:           sprintf(temp1,"raw %u ",sensor.raw_data);
-[e ( _sprintf (1 , (. , &U _temp1 :s 2C . _sensor 0 ]
-"128
-[; ;main.c: 128:           LCD_String(temp1);
-[e ( _LCD_String (1 &U _temp1 ]
-"129
-[; ;main.c: 129:           _delay((unsigned long)((100)*(8000000/4000.0)));
+"117
+[; ;main.c: 117:           _delay((unsigned long)((100)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"133
-[; ;main.c: 133:           if(RFID_flag == 1)
-[e $ ! == -> _RFID_flag `i -> 1 `i 333  ]
-"134
-[; ;main.c: 134:           {
+"121
+[; ;main.c: 121:           if(RFID_flag == 1)
+[e $ ! == -> _RFID_flag `i -> 1 `i 332  ]
+"122
+[; ;main.c: 122:           {
 {
-"135
-[; ;main.c: 135:               display_RFID(RFIDbuf);
+"123
+[; ;main.c: 123:               display_RFID(RFIDbuf);
 [e ( _display_RFID (1 -> &U _RFIDbuf `*uc ]
-"136
-[; ;main.c: 136:               check_RFID(RFIDbuf);
+"124
+[; ;main.c: 124:               check_RFID(RFIDbuf);
 [e ( _check_RFID (1 -> &U _RFIDbuf `*uc ]
-"137
-[; ;main.c: 137:               robot_mode = 1;
+"125
+[; ;main.c: 125:               robot_mode = 1;
 [e = _robot_mode -> -> 1 `i `uc ]
-"138
-[; ;main.c: 138:               RFID_flag = 0;
+"126
+[; ;main.c: 126:               RFID_flag = 0;
 [e = _RFID_flag -> -> 0 `i `uc ]
-"139
-[; ;main.c: 139:           }
+"127
+[; ;main.c: 127:           }
+}
+[e :U 332 ]
+"128
+[; ;main.c: 128:       }
+}
+[e :U 329 ]
+"90
+[; ;main.c: 90:       while(robot_mode == 0)
+[e $ == -> _robot_mode `i -> 0 `i 330  ]
+[e :U 331 ]
+"131
+[; ;main.c: 131:       while(robot_mode == 1)
+[e $U 333  ]
+[e :U 334 ]
+"132
+[; ;main.c: 132:       {
+{
+"134
+[; ;main.c: 134:           robot_mode = 2;
+[e = _robot_mode -> -> 2 `i `uc ]
+"135
+[; ;main.c: 135:       }
 }
 [e :U 333 ]
-"140
-[; ;main.c: 140:       }
-}
-[e :U 330 ]
-"99
-[; ;main.c: 99:       while(robot_mode == 0)
-[e $ == -> _robot_mode `i -> 0 `i 331  ]
-[e :U 332 ]
-"143
-[; ;main.c: 143:       while(robot_mode == 1)
-[e $U 334  ]
+"131
+[; ;main.c: 131:       while(robot_mode == 1)
+[e $ == -> _robot_mode `i -> 1 `i 334  ]
 [e :U 335 ]
-"144
-[; ;main.c: 144:       {
+"138
+[; ;main.c: 138:       while(robot_mode == 2)
+[e $U 336  ]
+[e :U 337 ]
+"139
+[; ;main.c: 139:       {
 {
-"146
-[; ;main.c: 146:           robot_mode = 2;
-[e = _robot_mode -> -> 2 `i `uc ]
-"147
-[; ;main.c: 147:       }
-}
-[e :U 334 ]
-"143
-[; ;main.c: 143:       while(robot_mode == 1)
-[e $ == -> _robot_mode `i -> 1 `i 335  ]
-[e :U 336 ]
-"150
-[; ;main.c: 150:       while(robot_mode == 2)
-[e $U 337  ]
-[e :U 338 ]
-"151
-[; ;main.c: 151:       {
+"140
+[; ;main.c: 140:           while(PORTDbits.RD2 == 1)
+[e $U 339  ]
+[e :U 340 ]
+"141
+[; ;main.c: 141:           {
 {
-"152
-[; ;main.c: 152:           while(PORTDbits.RD2 == 1)
-[e $U 340  ]
-[e :U 341 ]
-"153
-[; ;main.c: 153:           {
-{
-"154
-[; ;main.c: 154:               ClearLCD();
+"142
+[; ;main.c: 142:               ClearLCD();
 [e ( _ClearLCD ..  ]
-"155
-[; ;main.c: 155:               LCD_String("RESETTING ROBOT");
-[e ( _LCD_String (1 :s 3C ]
-"156
-[; ;main.c: 156:               for(int i=0; i<10;i++)
+"143
+[; ;main.c: 143:               LCD_String("RESETTING ROBOT");
+[e ( _LCD_String (1 :s 2C ]
+"144
+[; ;main.c: 144:               for(int i=0; i<10;i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 10 `i 343  ]
-[e $U 344  ]
-[e :U 343 ]
-"157
-[; ;main.c: 157:               {
+[e $ < _i -> 10 `i 342  ]
+[e $U 343  ]
+[e :U 342 ]
+"145
+[; ;main.c: 145:               {
 {
-"158
-[; ;main.c: 158:                   _delay((unsigned long)((100)*(8000000/4000.0)));
+"146
+[; ;main.c: 146:                   _delay((unsigned long)((100)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"159
-[; ;main.c: 159:               }
+"147
+[; ;main.c: 147:               }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 10 `i 343  ]
-[e :U 344 ]
+[e $ < _i -> 10 `i 342  ]
+[e :U 343 ]
 }
-"160
-[; ;main.c: 160:               ClearLCD();
+"148
+[; ;main.c: 148:               ClearLCD();
 [e ( _ClearLCD ..  ]
-"161
-[; ;main.c: 161:               robot_mode = 0;
+"149
+[; ;main.c: 149:               robot_mode = 0;
 [e = _robot_mode -> -> 0 `i `uc ]
-"162
-[; ;main.c: 162:           }
-}
-[e :U 340 ]
-"152
-[; ;main.c: 152:           while(PORTDbits.RD2 == 1)
-[e $ == -> . . _PORTDbits 0 2 `i -> 1 `i 341  ]
-[e :U 342 ]
-"163
-[; ;main.c: 163:       }
-}
-[e :U 337 ]
 "150
-[; ;main.c: 150:       while(robot_mode == 2)
-[e $ == -> _robot_mode `i -> 2 `i 338  ]
-[e :U 339 ]
-"164
-[; ;main.c: 164:   }
+[; ;main.c: 150:           }
 }
-[e :U 327 ]
-[e $U 328  ]
-[e :U 329 ]
-"165
-[; ;main.c: 165: }
-[e :UE 326 ]
+[e :U 339 ]
+"140
+[; ;main.c: 140:           while(PORTDbits.RD2 == 1)
+[e $ == -> . . _PORTDbits 0 2 `i -> 1 `i 340  ]
+[e :U 341 ]
+"151
+[; ;main.c: 151:       }
+}
+[e :U 336 ]
+"138
+[; ;main.c: 138:       while(robot_mode == 2)
+[e $ == -> _robot_mode `i -> 2 `i 337  ]
+[e :U 338 ]
+"152
+[; ;main.c: 152:   }
+}
+[e :U 326 ]
+[e $U 327  ]
+[e :U 328 ]
+"153
+[; ;main.c: 153: }
+[e :UE 325 ]
 }
 [p f _sprintf 8389632 ]
-[a 3C 82 69 83 69 84 84 73 78 71 32 82 79 66 79 84 0 ]
-[a 2C 114 97 119 32 37 117 32 0 ]
+[a 2C 82 69 83 69 84 84 73 78 71 32 82 79 66 79 84 0 ]
 [a 1C 115 109 111 111 116 104 101 100 32 37 117 32 0 ]

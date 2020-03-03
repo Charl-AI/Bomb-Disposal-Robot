@@ -16,14 +16,10 @@ struct DC_motor { //definition of DC_motor structure
 //function prototypes
 void initPWM(int PWMperiod); // function to setup PWM
 void setMotorPWM(struct DC_motor *m);
-void setMotorFullSpeed(struct DC_motor *m);
-void stopMotor(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void moveToBeacon(char beacon_location, char prev_location, struct DC_motor *mL, struct DC_motor *mR);
-void init_motors(struct DC_motor *mL, struct DC_motor *mR);
-
+void moveForward(struct DC_motor *mL, struct DC_motor *mR);
+void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR);
 
 #endif
