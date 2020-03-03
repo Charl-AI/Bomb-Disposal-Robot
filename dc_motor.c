@@ -82,11 +82,11 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR)
 }
 
 //function to make the robot go straight
-void moveForward(struct DC_motor *mL, struct DC_motor *mR)
+void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
     mL->direction = 1;
     mR->direction = 1;
-    for(int i = 0; i < 50; i++)
+    for(int i = 0; i < max_power; i++)
     {
         mL->power = i;
         mR->power = i;
@@ -96,11 +96,11 @@ void moveForward(struct DC_motor *mL, struct DC_motor *mR)
 }
 
 //function to make the robot go straight
-void moveBackward(struct DC_motor *mL, struct DC_motor *mR)
+void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
     mL->direction = 0;
     mR->direction = 0;
-    for(int i = 0; i < 50; i++)
+    for(int i = 0; i < max_power; i++)
     {
         mL->power = i;
         mR->power = i;

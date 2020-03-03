@@ -5312,8 +5312,8 @@ void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR);
-void moveForward(struct DC_motor *mL, struct DC_motor *mR);
-void moveBackward(struct DC_motor *mL, struct DC_motor *mR);
+void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR);
 # 17 "main.c" 2
 
@@ -5394,7 +5394,7 @@ void main(void)
   struct DC_motor motorL, motorR;
   init_motor_struct(&motorL, &motorR);
 
-  unsigned long movementMillis=0;
+  unsigned long movementMicros=0;
 
 
   while(1)
@@ -5418,32 +5418,19 @@ void main(void)
             {
                 robot_mode = 1;
             }
-
-
-            ClearLCD();
-            SetLine(1);
-            char temp2[16];
-            sprintf(temp2,"smoothed %u ",raw_data);
-            LCD_String(temp2);
-            SetLine(2);
-
-
-
-            _delay((unsigned long)((100)*(8000000/4000.0)));
-
          }
       }
 
 
       if(robot_mode == 1)
       {
-          moveForward(&motorL, &motorR);
+          moveForward(&motorL, &motorR,75);
 
 
           while(robot_mode == 1)
           {
-              _delay((unsigned long)((1)*(8000000/4000.0)));
-              movementMillis += 1;
+              _delay((unsigned long)((1)*(8000000/4000000.0)));
+              movementMicros += 1;
 
 
 
@@ -5460,11 +5447,11 @@ void main(void)
 
       if(robot_mode == 2)
       {
-          moveBackward(&motorL,&motorR);
+          moveBackward(&motorL,&motorR,75);
 
-          for(unsigned long i=0; i<movementMillis;i++)
+          for(unsigned long i=0; i<movementMicros;i++)
           {
-              _delay((unsigned long)((1)*(8000000/4000.0)));
+              _delay((unsigned long)((1)*(8000000/4000000.0)));
           }
           robot_mode = 3;
       }

@@ -5144,8 +5144,8 @@ void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR);
-void moveForward(struct DC_motor *mL, struct DC_motor *mR);
-void moveBackward(struct DC_motor *mL, struct DC_motor *mR);
+void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR);
 # 2 "dc_motor.c" 2
 
@@ -5231,11 +5231,11 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR)
 }
 
 
-void moveForward(struct DC_motor *mL, struct DC_motor *mR)
+void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
     mL->direction = 1;
     mR->direction = 1;
-    for(int i = 0; i < 50; i++)
+    for(int i = 0; i < max_power; i++)
     {
         mL->power = i;
         mR->power = i;
@@ -5245,11 +5245,11 @@ void moveForward(struct DC_motor *mL, struct DC_motor *mR)
 }
 
 
-void moveBackward(struct DC_motor *mL, struct DC_motor *mR)
+void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
     mL->direction = 0;
     mR->direction = 0;
-    for(int i = 0; i < 50; i++)
+    for(int i = 0; i < max_power; i++)
     {
         mL->power = i;
         mR->power = i;

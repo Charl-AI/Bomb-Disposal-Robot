@@ -168,24 +168,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "19 ./signal_processing.h
 [; ;./signal_processing.h: 19: char classify_data(int smoothed_data);
 [v _classify_data `(uc ~T0 @X0 0 ef1`i ]
-"46 ./LCDIO.h
-[; ;./LCDIO.h: 46: void ClearLCD(void);
-[v _ClearLCD `(v ~T0 @X0 0 ef ]
-"38
-[; ;./LCDIO.h: 38: void SetLine (char line);
-[v _SetLine `(v ~T0 @X0 0 ef1`uc ]
-"115 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\c99\stdio.h
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
-"41 ./LCDIO.h
-[; ;./LCDIO.h: 41: void LCD_String(char *string);
-[v _LCD_String `(v ~T0 @X0 0 ef1`*uc ]
+"22 ./dc_motor.h
+[; ;./dc_motor.h: 22: void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+[v _moveForward `(v ~T0 @X0 0 ef3`*S316`*S316`i ]
 [v F2763 `(v ~T0 @X0 1 tf1`ul ]
 "183 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18.h
 [v __delay `JF2763 ~T0 @X0 0 e ]
 [p i __delay ]
-"22 ./dc_motor.h
-[; ;./dc_motor.h: 22: void moveForward(struct DC_motor *mL, struct DC_motor *mR);
-[v _moveForward `(v ~T0 @X0 0 ef2`*S316`*S316 ]
 "15 ./RFID.h
 [; ;./RFID.h: 15: void display_RFID(char RFIDBuf[]);
 [v _display_RFID `(v ~T0 @X0 0 ef1`*uc ]
@@ -193,11 +182,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./RFID.h: 14: void check_RFID(char dataBuf[]);
 [v _check_RFID `(v ~T0 @X0 0 ef1`*uc ]
 "23 ./dc_motor.h
-[; ;./dc_motor.h: 23: void moveBackward(struct DC_motor *mL, struct DC_motor *mR);
-[v _moveBackward `(v ~T0 @X0 0 ef2`*S316`*S316 ]
+[; ;./dc_motor.h: 23: void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+[v _moveBackward `(v ~T0 @X0 0 ef3`*S316`*S316`i ]
 "19
 [; ;./dc_motor.h: 19: void stop(struct DC_motor *mL, struct DC_motor *mR);
 [v _stop `(v ~T0 @X0 0 ef2`*S316`*S316 ]
+"46 ./LCDIO.h
+[; ;./LCDIO.h: 46: void ClearLCD(void);
+[v _ClearLCD `(v ~T0 @X0 0 ef ]
+"41
+[; ;./LCDIO.h: 41: void LCD_String(char *string);
+[v _LCD_String `(v ~T0 @X0 0 ef1`*uc ]
 "1540 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1540:     struct {
 [s S60 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -882,9 +877,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 84:   init_motor_struct(&motorL, &motorR);
 [e ( _init_motor_struct (2 , &U _motorL &U _motorR ]
 "86
-[; ;main.c: 86:   unsigned long movementMillis=0;
-[v _movementMillis `ul ~T0 @X0 1 a ]
-[e = _movementMillis -> -> -> 0 `i `l `ul ]
+[; ;main.c: 86:   unsigned long movementMicros=0;
+[v _movementMicros `ul ~T0 @X0 1 a ]
+[e = _movementMicros -> -> -> 0 `i `l `ul ]
 "89
 [; ;main.c: 89:   while(1)
 [e :U 327 ]
@@ -928,218 +923,195 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 109:             }
 }
 [e :U 333 ]
-"112
-[; ;main.c: 112:             ClearLCD();
-[e ( _ClearLCD ..  ]
-"113
-[; ;main.c: 113:             SetLine(1);
-[e ( _SetLine (1 -> -> 1 `i `uc ]
-"114
-[; ;main.c: 114:             char temp2[16];
-[v _temp2 `uc ~T0 @X0 -> 16 `i a ]
-"115
-[; ;main.c: 115:             sprintf(temp2,"smoothed %u ",raw_data);
-[e ( _sprintf (1 , (. , &U _temp2 :s 1C _raw_data ]
-"116
-[; ;main.c: 116:             LCD_String(temp2);
-[e ( _LCD_String (1 &U _temp2 ]
-"117
-[; ;main.c: 117:             SetLine(2);
-[e ( _SetLine (1 -> -> 2 `i `uc ]
-"121
-[; ;main.c: 121:             _delay((unsigned long)((100)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"123
-[; ;main.c: 123:          }
+"110
+[; ;main.c: 110:          }
 }
 [e :U 330 ]
 "97
 [; ;main.c: 97:           while(robot_mode == 0)
 [e $ == -> _robot_mode `i -> 0 `i 331  ]
 [e :U 332 ]
-"124
-[; ;main.c: 124:       }
+"111
+[; ;main.c: 111:       }
 }
 [e :U 329 ]
-"127
-[; ;main.c: 127:       if(robot_mode == 1)
+"114
+[; ;main.c: 114:       if(robot_mode == 1)
 [e $ ! == -> _robot_mode `i -> 1 `i 334  ]
-"128
-[; ;main.c: 128:       {
+"115
+[; ;main.c: 115:       {
 {
-"129
-[; ;main.c: 129:           moveForward(&motorL, &motorR);
-[e ( _moveForward (2 , &U _motorL &U _motorR ]
-"132
-[; ;main.c: 132:           while(robot_mode == 1)
+"116
+[; ;main.c: 116:           moveForward(&motorL, &motorR,75);
+[e ( _moveForward (3 , , &U _motorL &U _motorR -> 75 `i ]
+"119
+[; ;main.c: 119:           while(robot_mode == 1)
 [e $U 335  ]
 [e :U 336 ]
-"133
-[; ;main.c: 133:           {
+"120
+[; ;main.c: 120:           {
 {
-"134
-[; ;main.c: 134:               _delay((unsigned long)((1)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"135
-[; ;main.c: 135:               movementMillis += 1;
-[e =+ _movementMillis -> -> -> 1 `i `l `ul ]
-"139
-[; ;main.c: 139:               if(RFID_flag == 1)
+"121
+[; ;main.c: 121:               _delay((unsigned long)((1)*(8000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+"122
+[; ;main.c: 122:               movementMicros += 1;
+[e =+ _movementMicros -> -> -> 1 `i `l `ul ]
+"126
+[; ;main.c: 126:               if(RFID_flag == 1)
 [e $ ! == -> _RFID_flag `i -> 1 `i 338  ]
-"140
-[; ;main.c: 140:               {
+"127
+[; ;main.c: 127:               {
 {
-"141
-[; ;main.c: 141:                   display_RFID(RFIDbuf);
+"128
+[; ;main.c: 128:                   display_RFID(RFIDbuf);
 [e ( _display_RFID (1 -> &U _RFIDbuf `*uc ]
-"142
-[; ;main.c: 142:                   check_RFID(RFIDbuf);
+"129
+[; ;main.c: 129:                   check_RFID(RFIDbuf);
 [e ( _check_RFID (1 -> &U _RFIDbuf `*uc ]
-"143
-[; ;main.c: 143:                   robot_mode = 2;
+"130
+[; ;main.c: 130:                   robot_mode = 2;
 [e = _robot_mode -> -> 2 `i `uc ]
-"144
-[; ;main.c: 144:                   RFID_flag = 0;
+"131
+[; ;main.c: 131:                   RFID_flag = 0;
 [e = _RFID_flag -> -> 0 `i `uc ]
-"145
-[; ;main.c: 145:               }
+"132
+[; ;main.c: 132:               }
 }
 [e :U 338 ]
-"146
-[; ;main.c: 146:           }
+"133
+[; ;main.c: 133:           }
 }
 [e :U 335 ]
-"132
-[; ;main.c: 132:           while(robot_mode == 1)
+"119
+[; ;main.c: 119:           while(robot_mode == 1)
 [e $ == -> _robot_mode `i -> 1 `i 336  ]
 [e :U 337 ]
-"147
-[; ;main.c: 147:       }
+"134
+[; ;main.c: 134:       }
 }
 [e :U 334 ]
-"150
-[; ;main.c: 150:       if(robot_mode == 2)
+"137
+[; ;main.c: 137:       if(robot_mode == 2)
 [e $ ! == -> _robot_mode `i -> 2 `i 339  ]
-"151
-[; ;main.c: 151:       {
+"138
+[; ;main.c: 138:       {
 {
-"152
-[; ;main.c: 152:           moveBackward(&motorL,&motorR);
-[e ( _moveBackward (2 , &U _motorL &U _motorR ]
-"154
-[; ;main.c: 154:           for(unsigned long i=0; i<movementMillis;i++)
+"139
+[; ;main.c: 139:           moveBackward(&motorL,&motorR,75);
+[e ( _moveBackward (3 , , &U _motorL &U _motorR -> 75 `i ]
+"141
+[; ;main.c: 141:           for(unsigned long i=0; i<movementMicros;i++)
 {
 [v _i `ul ~T0 @X0 1 a ]
 [e = _i -> -> -> 0 `i `l `ul ]
 [e $U 343  ]
 [e :U 340 ]
-"155
-[; ;main.c: 155:           {
+"142
+[; ;main.c: 142:           {
 {
-"156
-[; ;main.c: 156:               _delay((unsigned long)((1)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"157
-[; ;main.c: 157:           }
+"143
+[; ;main.c: 143:               _delay((unsigned long)((1)*(8000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000000.0 `ul ]
+"144
+[; ;main.c: 144:           }
 }
 [e ++ _i -> -> -> 1 `i `l `ul ]
 [e :U 343 ]
-[e $ < _i _movementMillis 340  ]
+[e $ < _i _movementMicros 340  ]
 [e :U 341 ]
 }
-"158
-[; ;main.c: 158:           robot_mode = 3;
+"145
+[; ;main.c: 145:           robot_mode = 3;
 [e = _robot_mode -> -> 3 `i `uc ]
-"159
-[; ;main.c: 159:       }
+"146
+[; ;main.c: 146:       }
 }
 [e :U 339 ]
-"162
-[; ;main.c: 162:       if(robot_mode == 3)
+"149
+[; ;main.c: 149:       if(robot_mode == 3)
 [e $ ! == -> _robot_mode `i -> 3 `i 344  ]
-"163
-[; ;main.c: 163:       {
+"150
+[; ;main.c: 150:       {
 {
-"164
-[; ;main.c: 164:           stop(&motorL, &motorR);
+"151
+[; ;main.c: 151:           stop(&motorL, &motorR);
 [e ( _stop (2 , &U _motorL &U _motorR ]
-"166
-[; ;main.c: 166:           while(robot_mode == 3)
+"153
+[; ;main.c: 153:           while(robot_mode == 3)
 [e $U 345  ]
 [e :U 346 ]
-"167
-[; ;main.c: 167:           {
+"154
+[; ;main.c: 154:           {
 {
-"168
-[; ;main.c: 168:               while(PORTDbits.RD2 == 1)
+"155
+[; ;main.c: 155:               while(PORTDbits.RD2 == 1)
 [e $U 348  ]
 [e :U 349 ]
-"169
-[; ;main.c: 169:               {
+"156
+[; ;main.c: 156:               {
 {
-"170
-[; ;main.c: 170:                   ClearLCD();
+"157
+[; ;main.c: 157:                   ClearLCD();
 [e ( _ClearLCD ..  ]
-"171
-[; ;main.c: 171:                   LCD_String("RESETTING ROBOT");
-[e ( _LCD_String (1 :s 2C ]
-"172
-[; ;main.c: 172:                   for(int i=0; i<10;i++)
+"158
+[; ;main.c: 158:                   LCD_String("RESETTING ROBOT");
+[e ( _LCD_String (1 :s 1C ]
+"159
+[; ;main.c: 159:                   for(int i=0; i<10;i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
 [e $ < _i -> 10 `i 351  ]
 [e $U 352  ]
 [e :U 351 ]
-"173
-[; ;main.c: 173:                   {
+"160
+[; ;main.c: 160:                   {
 {
-"174
-[; ;main.c: 174:                       _delay((unsigned long)((100)*(8000000/4000.0)));
+"161
+[; ;main.c: 161:                       _delay((unsigned long)((100)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"175
-[; ;main.c: 175:                   }
+"162
+[; ;main.c: 162:                   }
 }
 [e ++ _i -> 1 `i ]
 [e $ < _i -> 10 `i 351  ]
 [e :U 352 ]
 }
-"176
-[; ;main.c: 176:                   ClearLCD();
+"163
+[; ;main.c: 163:                   ClearLCD();
 [e ( _ClearLCD ..  ]
-"177
-[; ;main.c: 177:                   robot_mode = 0;
+"164
+[; ;main.c: 164:                   robot_mode = 0;
 [e = _robot_mode -> -> 0 `i `uc ]
-"178
-[; ;main.c: 178:               }
+"165
+[; ;main.c: 165:               }
 }
 [e :U 348 ]
-"168
-[; ;main.c: 168:               while(PORTDbits.RD2 == 1)
+"155
+[; ;main.c: 155:               while(PORTDbits.RD2 == 1)
 [e $ == -> . . _PORTDbits 0 2 `i -> 1 `i 349  ]
 [e :U 350 ]
-"179
-[; ;main.c: 179:           }
+"166
+[; ;main.c: 166:           }
 }
 [e :U 345 ]
-"166
-[; ;main.c: 166:           while(robot_mode == 3)
+"153
+[; ;main.c: 153:           while(robot_mode == 3)
 [e $ == -> _robot_mode `i -> 3 `i 346  ]
 [e :U 347 ]
-"180
-[; ;main.c: 180:       }
+"167
+[; ;main.c: 167:       }
 }
 [e :U 344 ]
-"181
-[; ;main.c: 181:   }
+"168
+[; ;main.c: 168:   }
 }
 [e :U 326 ]
 [e $U 327  ]
 [e :U 328 ]
-"182
-[; ;main.c: 182: }
+"169
+[; ;main.c: 169: }
 [e :UE 325 ]
 }
-[p f _sprintf 8389632 ]
-[a 2C 82 69 83 69 84 84 73 78 71 32 82 79 66 79 84 0 ]
-[a 1C 115 109 111 111 116 104 101 100 32 37 117 32 0 ]
+[a 1C 82 69 83 69 84 84 73 78 71 32 82 79 66 79 84 0 ]

@@ -113,7 +113,7 @@ void main(void)
       // Subroutine to move towards bomb
       if(robot_mode == 1)
       {
-          moveForward(&motorL, &motorR); // move robot forwards
+          moveForward(&motorL, &motorR,75); // move robot forwards
       
           // Runs until RFID has been scanned and break statement executes
           while(robot_mode == 1)
@@ -136,7 +136,7 @@ void main(void)
       // Subroutine to return to starting position
       if(robot_mode == 2)
       {
-          moveBackward(&motorL,&motorR); // move robot backwards
+          moveBackward(&motorL,&motorR,75); // move robot backwards
           
           for(unsigned long i=0; i<movementMicros;i++)
           {

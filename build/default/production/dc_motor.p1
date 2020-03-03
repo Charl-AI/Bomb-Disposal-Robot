@@ -826,16 +826,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 327 ]
 }
 "85
-[; ;dc_motor.c: 85: void moveForward(struct DC_motor *mL, struct DC_motor *mR)
-[v _moveForward `(v ~T0 @X0 1 ef2`*S314`*S314 ]
+[; ;dc_motor.c: 85: void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
+[v _moveForward `(v ~T0 @X0 1 ef3`*S314`*S314`i ]
 "86
 [; ;dc_motor.c: 86: {
 {
 [e :U _moveForward ]
 "85
-[; ;dc_motor.c: 85: void moveForward(struct DC_motor *mL, struct DC_motor *mR)
+[; ;dc_motor.c: 85: void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 [v _mL `*S314 ~T0 @X0 1 r1 ]
 [v _mR `*S314 ~T0 @X0 1 r2 ]
+[v _max_power `i ~T0 @X0 1 r3 ]
 "86
 [; ;dc_motor.c: 86: {
 [f ]
@@ -846,12 +847,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;dc_motor.c: 88:     mR->direction = 1;
 [e = . *U _mR 1 -> -> 1 `i `uc ]
 "89
-[; ;dc_motor.c: 89:     for(int i = 0; i < 50; i++)
+[; ;dc_motor.c: 89:     for(int i = 0; i < max_power; i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 50 `i 332  ]
-[e $U 333  ]
+[e $U 335  ]
 [e :U 332 ]
 "90
 [; ;dc_motor.c: 90:     {
@@ -872,7 +872,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;dc_motor.c: 95:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 50 `i 332  ]
+[e :U 335 ]
+[e $ < _i _max_power 332  ]
 [e :U 333 ]
 }
 "96
@@ -880,16 +881,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 331 ]
 }
 "99
-[; ;dc_motor.c: 99: void moveBackward(struct DC_motor *mL, struct DC_motor *mR)
-[v _moveBackward `(v ~T0 @X0 1 ef2`*S314`*S314 ]
+[; ;dc_motor.c: 99: void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
+[v _moveBackward `(v ~T0 @X0 1 ef3`*S314`*S314`i ]
 "100
 [; ;dc_motor.c: 100: {
 {
 [e :U _moveBackward ]
 "99
-[; ;dc_motor.c: 99: void moveBackward(struct DC_motor *mL, struct DC_motor *mR)
+[; ;dc_motor.c: 99: void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 [v _mL `*S314 ~T0 @X0 1 r1 ]
 [v _mR `*S314 ~T0 @X0 1 r2 ]
+[v _max_power `i ~T0 @X0 1 r3 ]
 "100
 [; ;dc_motor.c: 100: {
 [f ]
@@ -900,13 +902,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;dc_motor.c: 102:     mR->direction = 0;
 [e = . *U _mR 1 -> -> 0 `i `uc ]
 "103
-[; ;dc_motor.c: 103:     for(int i = 0; i < 50; i++)
+[; ;dc_motor.c: 103:     for(int i = 0; i < max_power; i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 50 `i 336  ]
-[e $U 337  ]
-[e :U 336 ]
+[e $U 340  ]
+[e :U 337 ]
 "104
 [; ;dc_motor.c: 104:     {
 {
@@ -926,12 +927,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;dc_motor.c: 109:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 50 `i 336  ]
-[e :U 337 ]
+[e :U 340 ]
+[e $ < _i _max_power 337  ]
+[e :U 338 ]
 }
 "110
 [; ;dc_motor.c: 110: }
-[e :UE 335 ]
+[e :UE 336 ]
 }
 "112
 [; ;dc_motor.c: 112: void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR)
@@ -991,5 +993,5 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _setMotorPWM (1 _mR ]
 "131
 [; ;dc_motor.c: 131: }
-[e :UE 339 ]
+[e :UE 341 ]
 }
