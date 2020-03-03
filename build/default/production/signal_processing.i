@@ -4980,7 +4980,7 @@ char classify_data(int left_smoothed, int right_smoothed);
 
 void init_sensors(void)
 {
-    T5CON =0b00011001;
+    T5CON =0b00000001;
     TRISAbits.RA2 = 1;
     TRISAbits.RA3 = 1;
 
@@ -4988,9 +4988,9 @@ void init_sensors(void)
     ANSEL0 = 0;
     ANSEL1 = 0;
 
-    DFLTCON = 0b00011000;
-    CAP1CON = 0b01000110;
-    CAP2CON = 0b01000110;
+
+    CAP1CON = 0b01000111;
+    CAP2CON = 0b01000111;
 }
 
 
@@ -4998,7 +4998,7 @@ void init_sensors(void)
 
 void process_signal(struct Sensor *S)
 {
-    char smoothing_constant = 50;
+    int smoothing_constant = 10;
 
     S->smoothed_signal *= (100-smoothing_constant)/100;
     S->smoothed_signal += (S->raw_data * smoothing_constant)/100;
@@ -5014,7 +5014,7 @@ char classify_data(int left_smoothed, int right_smoothed)
     int difference = left_smoothed - right_smoothed;
 
 
-    if(difference < 5 && difference > -5)
+    if(difference < 50 && difference > -50)
     {
         return 3;
     }

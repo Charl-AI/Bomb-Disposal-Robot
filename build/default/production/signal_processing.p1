@@ -23,9 +23,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "5214
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 5214: extern volatile unsigned char ANSEL1 __attribute__((address(0xFB9)));
 [v _ANSEL1 `Vuc ~T0 @X0 0 e@4025 ]
-"52
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 52: extern volatile unsigned char DFLTCON __attribute__((address(0xF60)));
-[v _DFLTCON `Vuc ~T0 @X0 0 e@3936 ]
 "234
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 234: extern volatile unsigned char CAP1CON __attribute__((address(0xF63)));
 [v _CAP1CON `Vuc ~T0 @X0 0 e@3939 ]
@@ -585,8 +582,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _init_sensors ]
 [f ]
 "16
-[; ;signal_processing.c: 16:     T5CON =0b00011001;
-[e = _T5CON -> -> 25 `i `uc ]
+[; ;signal_processing.c: 16:     T5CON =0b00000001;
+[e = _T5CON -> -> 1 `i `uc ]
 "17
 [; ;signal_processing.c: 17:     TRISAbits.RA2 = 1;
 [e = . . _TRISAbits 1 2 -> -> 1 `i `uc ]
@@ -599,15 +596,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "22
 [; ;signal_processing.c: 22:     ANSEL1 = 0;
 [e = _ANSEL1 -> -> 0 `i `uc ]
-"24
-[; ;signal_processing.c: 24:     DFLTCON = 0b00011000;
-[e = _DFLTCON -> -> 24 `i `uc ]
 "25
-[; ;signal_processing.c: 25:     CAP1CON = 0b01000110;
-[e = _CAP1CON -> -> 70 `i `uc ]
+[; ;signal_processing.c: 25:     CAP1CON = 0b01000111;
+[e = _CAP1CON -> -> 71 `i `uc ]
 "26
-[; ;signal_processing.c: 26:     CAP2CON = 0b01000110;
-[e = _CAP2CON -> -> 70 `i `uc ]
+[; ;signal_processing.c: 26:     CAP2CON = 0b01000111;
+[e = _CAP2CON -> -> 71 `i `uc ]
 "27
 [; ;signal_processing.c: 27: }
 [e :UE 310 ]
@@ -626,15 +620,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;signal_processing.c: 33: {
 [f ]
 "34
-[; ;signal_processing.c: 34:     char smoothing_constant = 50;
-[v _smoothing_constant `uc ~T0 @X0 1 a ]
-[e = _smoothing_constant -> -> 50 `i `uc ]
+[; ;signal_processing.c: 34:     int smoothing_constant = 10;
+[v _smoothing_constant `i ~T0 @X0 1 a ]
+[e = _smoothing_constant -> 10 `i ]
 "36
 [; ;signal_processing.c: 36:     S->smoothed_signal *= (100-smoothing_constant)/100;
-[e =* . *U _S 1 / - -> 100 `i -> _smoothing_constant `i -> 100 `i ]
+[e =* . *U _S 1 / - -> 100 `i _smoothing_constant -> 100 `i ]
 "37
 [; ;signal_processing.c: 37:     S->smoothed_signal += (S->raw_data * smoothing_constant)/100;
-[e =+ . *U _S 1 / * . *U _S 0 -> _smoothing_constant `i -> 100 `i ]
+[e =+ . *U _S 1 / * . *U _S 0 _smoothing_constant -> 100 `i ]
 "38
 [; ;signal_processing.c: 38: }
 [e :UE 311 ]
@@ -658,8 +652,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _difference `i ~T0 @X0 1 a ]
 [e = _difference - _left_smoothed _right_smoothed ]
 "50
-[; ;signal_processing.c: 50:     if(difference < 5 && difference > -5)
-[e $ ! && < _difference -> 5 `i > _difference -U -> 5 `i 313  ]
+[; ;signal_processing.c: 50:     if(difference < 50 && difference > -50)
+[e $ ! && < _difference -> 50 `i > _difference -U -> 50 `i 313  ]
 "51
 [; ;signal_processing.c: 51:     {
 {

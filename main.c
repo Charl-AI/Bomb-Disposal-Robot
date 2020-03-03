@@ -62,7 +62,7 @@ void __interrupt(high_priority) InterruptHandlerHigh (void)
     // this can only occur when the robot is in searching mode
     if((PIR1bits.RCIF) && (robot_mode == 0))
     {
-        // process the RFID data, once all the data has been read, set flag=1
+        //read RFID data into buffer, once all the data has been read set flag=1
         RFID_flag = processRFID(RFIDbuf, RCREG);
     }
     // this runs if you try to scan an RFID when the robot is not searching
@@ -98,6 +98,8 @@ void main(void)
       // Subroutine to search for bomb
       while(robot_mode == 0)
       {
+          static char beacon_location;
+          
           // First, acquire the PWM duty cycle using the motion feedback module
           sensorL.raw_data = (int)((CAP2BUFH << 8) | CAP2BUFL);
           sensorR.raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
@@ -106,13 +108,15 @@ void main(void)
           process_signal(&sensorL);
           process_signal(&sensorR);
           
+          char previous_location = beacon_location;
+          
           // Now, classify the signals to find the beacon location
-          char beacon_location = classify_data(sensorL.smoothed_signal, 
-                                               sensorR.smoothed_signal);
+          beacon_location = classify_data(sensorL.smoothed_signal, 
+                                          sensorR.smoothed_signal);
           
           // if the beacon is straight ahead, move towards it, otherwise, stop
           // and align the robot with the beacon direction
-          //moveToBeacon(beacon_location, &motorL, &motorR);
+          moveToBeacon(beacon_location, previous_location, &motorL, &motorR);
            
           //print to LCD for debugging (remove later)
           ClearLCD();

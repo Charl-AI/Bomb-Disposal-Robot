@@ -114,7 +114,8 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 	
 }
 
-void moveToBeacon(char beacon_location, struct DC_motor *mL, struct DC_motor *mR)
+void moveToBeacon(char beacon_location, char prev_location,
+                    struct DC_motor *mL, struct DC_motor *mR)
 {
     // if beacon is lost
     if(beacon_location == 0)
@@ -124,21 +125,28 @@ void moveToBeacon(char beacon_location, struct DC_motor *mL, struct DC_motor *mR
     // if beacon is to left
     if(beacon_location == 1)
     {
-        
+        if(prev_location != beacon_location)
+        {
         turnLeft(mL, mR);
+        }
         
     }
     // if beacon is to right
     if(beacon_location == 2)
     {
-        
+        if(prev_location != beacon_location)
+        {
         turnRight(mL, mR);
+        }
         
     }
     // if beacon is straight ahead
     if(beacon_location == 3)
     {
+        if(prev_location != beacon_location)
+        {
         fullSpeedAhead(mL,mR);
+        }
         
     }
 }

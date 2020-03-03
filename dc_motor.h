@@ -22,7 +22,7 @@ void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void moveToBeacon(char beacon_location, struct DC_motor *mL, struct DC_motor *mR);
+void moveToBeacon(char beacon_location, char prev_location, struct DC_motor *mL, struct DC_motor *mR);
 void init_motors(struct DC_motor *mL, struct DC_motor *mR);
 
 

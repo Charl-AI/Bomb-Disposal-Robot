@@ -5315,7 +5315,7 @@ void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void moveToBeacon(char beacon_location, struct DC_motor *mL, struct DC_motor *mR);
+void moveToBeacon(char beacon_location, char prev_location, struct DC_motor *mL, struct DC_motor *mR);
 void init_motors(struct DC_motor *mL, struct DC_motor *mR);
 # 18 "main.c" 2
 
@@ -5412,6 +5412,8 @@ void main(void)
 
       while(robot_mode == 0)
       {
+          static char beacon_location;
+
 
           sensorL.raw_data = (int)((CAP2BUFH << 8) | CAP2BUFL);
           sensorR.raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
@@ -5420,13 +5422,15 @@ void main(void)
           process_signal(&sensorL);
           process_signal(&sensorR);
 
-
-          char beacon_location = classify_data(sensorL.smoothed_signal,
-                                               sensorR.smoothed_signal);
+          char previous_location = beacon_location;
 
 
+          beacon_location = classify_data(sensorL.smoothed_signal,
+                                          sensorR.smoothed_signal);
 
 
+
+          moveToBeacon(beacon_location, previous_location, &motorL, &motorR);
 
 
           ClearLCD();
