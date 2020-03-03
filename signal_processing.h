@@ -15,7 +15,7 @@ struct Sensor {
     int smoothed_signal; // signal after smoothing and processing
 };
 
-void init_sensors(void);
+void init_sensor(void);
 void process_signal(struct Sensor *S);
 char classify_data(int left_smoothed, int right_smoothed);
 

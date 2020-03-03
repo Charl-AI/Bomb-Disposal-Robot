@@ -120,28 +120,13 @@ void moveToBeacon(char beacon_location, char prev_location,
     // if beacon is lost
     if(beacon_location == 0)
     {
-        
-    }
-    // if beacon is to left
-    if(beacon_location == 1)
-    {
-        if(prev_location != beacon_location)
+        if(prev_location!= beacon_location)
         {
-        turnLeft(mL, mR);
+            turnRight(mL, mR);
         }
-        
-    }
-    // if beacon is to right
-    if(beacon_location == 2)
-    {
-        if(prev_location != beacon_location)
-        {
-        turnRight(mL, mR);
-        }
-        
     }
     // if beacon is straight ahead
-    if(beacon_location == 3)
+    if(beacon_location == 1)
     {
         if(prev_location != beacon_location)
         {
