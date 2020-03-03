@@ -11,13 +11,12 @@
 
 // structure to store properties for each sensor
 struct Sensor { 
-    int raw_data; // raw PWM duty cycle
-    int smoothed_signal; // signal after smoothing and processing
+    unsigned int raw_data; // raw PWM duty cycle
+    unsigned int smoothed_signal; // signal after smoothing and processing
 };
 
-void init_sensors(void);
-void process_signal(struct Sensor *S);
-char classify_data(int left_smoothed, int right_smoothed);
+void init_sensor(void);
+char classify_data(int smoothed_data);
 
 #endif	/* SIGNAL_PROCESSING_H */
 

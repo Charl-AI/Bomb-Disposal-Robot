@@ -36,24 +36,6 @@ void setMotorPWM(struct DC_motor *m)
     *(m->dutyHighByte)=PWMduty>>6;
 }
 
-//increases a motor to full power over a period of time
-void setMotorFullSpeed(struct DC_motor *m)
-{
-	for (m->power; (m->power)<=100; m->power++){ //increase motor power until 100
-		setMotorPWM(m);	//pass pointer to m to setMotorSpeed function (not &m)
-		__delay_ms(1);	//delay of 1 ms (100 ms from 0 to 100 full power)
-	}
-}
-
-//function to stop a motor gradually 
-void stopMotor(struct DC_motor *m)
-{
-	for (m->power; (m->power)>0; m->power--){ //increase motor power until 100
-		setMotorPWM(m);	//pass pointer to m to setMotorSpeed function (not &m)
-		__delay_ms(1);	//delay of 1 ms (100 ms from 0 to 100 full power)
-	}
-}
-
 //function to stop the robot gradually 
 void stop(struct DC_motor *mL, struct DC_motor *mR)
 {
@@ -100,58 +82,34 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR)
 }
 
 //function to make the robot go straight
-void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
+void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
     mL->direction = 1;
     mR->direction = 1;
-    for(int i = 0; i < 50; i++)
+    for(int i = 0; i < max_power; i++)
     {
         mL->power = i;
         mR->power = i;
         setMotorPWM(mL);
         setMotorPWM(mR);
     }
-	
 }
 
-void moveToBeacon(char beacon_location, char prev_location,
-                    struct DC_motor *mL, struct DC_motor *mR)
+//function to make the robot go straight
+void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
-    // if beacon is lost
-    if(beacon_location == 0)
+    mL->direction = 0;
+    mR->direction = 0;
+    for(int i = 0; i < max_power; i++)
     {
-        
-    }
-    // if beacon is to left
-    if(beacon_location == 1)
-    {
-        if(prev_location != beacon_location)
-        {
-        turnLeft(mL, mR);
-        }
-        
-    }
-    // if beacon is to right
-    if(beacon_location == 2)
-    {
-        if(prev_location != beacon_location)
-        {
-        turnRight(mL, mR);
-        }
-        
-    }
-    // if beacon is straight ahead
-    if(beacon_location == 3)
-    {
-        if(prev_location != beacon_location)
-        {
-        fullSpeedAhead(mL,mR);
-        }
-        
+        mL->power = i;
+        mR->power = i;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
     }
 }
 
-void init_motors(struct DC_motor *mL, struct DC_motor *mR)
+void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR)
 {
     //some code to set initial values of each structure
 mL->power = 0;

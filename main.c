@@ -5,7 +5,6 @@
  * 
  * This project is to develop the software and hardware for an autonomous
  * bomb disposal robot.
- 
  */
 /*****************************************************************************/
 // Include statements and boilerplate code
@@ -23,9 +22,10 @@
 //Global variables defined here
 
 // this defines the subroutine that the robot will operate on:
-// 0 represents searching for bomb
-// 1 represents returning to starting position
-// 2 represents finished (robot has found bomb and returned)
+// 0 represents the initial sweep to look for bomb
+// 1 represents moving towards bomb
+// 2 represents returning to starting position
+// 3 represents finished (robot has found bomb and returned)
 volatile char robot_mode = 0;
 
 // stores characters read from RFID (10 data bits and 2 checksum)
@@ -47,7 +47,7 @@ void setup(void)
     // Initialise pins to enable LCD, RFID, motors, etc.
     init_LCD();
     init_RFID();
-    init_sensors();
+    init_sensor();
     initPWM(199);
     
     TRISBbits.RB0 = 0; // motor direction pins
@@ -60,7 +60,7 @@ void __interrupt(high_priority) InterruptHandlerHigh (void)
 {
     // Trigger interrupt when a character is read from the RFID
     // this can only occur when the robot is in searching mode
-    if((PIR1bits.RCIF) && (robot_mode == 0))
+    if((PIR1bits.RCIF) && (robot_mode == 1))
     {
         //read RFID data into buffer, once all the data has been read set flag=1
         RFID_flag = processRFID(RFIDbuf, RCREG);
@@ -73,13 +73,6 @@ void __interrupt(high_priority) InterruptHandlerHigh (void)
     }
 }
 /*****************************************************************************/
-// Low priority interrupt service routine
-void __interrupt(low_priority) InterruptHandlerLow (void)
-{
-    
-    
-}
-/*****************************************************************************/
 // main function
 void main(void)
 {
@@ -88,79 +81,88 @@ void main(void)
   
   //now, we declare the structures that need to be visible to the main function
   struct DC_motor motorL, motorR; //declare 2 motor structures
-  init_motors(&motorL, &motorR); // initialise values in each struct
+  init_motor_struct(&motorL, &motorR); // initialise values in each struct
   
-  struct Sensor sensorL, sensorR; // declare structures for both sensors
+  unsigned long movementMicros=0; // stores time taken moving forward
   
   // loop, this runs forever
   while(1)
   {
-      // Subroutine to search for bomb
-      while(robot_mode == 0)
+      // Subroutine for initial sweep to search for bomb
+      if(robot_mode == 0)
       {
-          static char beacon_location;
-          
-          // First, acquire the PWM duty cycle using the motion feedback module
-          sensorL.raw_data = (int)((CAP2BUFH << 8) | CAP2BUFL);
-          sensorR.raw_data = (int)((CAP1BUFH << 8) | CAP1BUFL);
-          
-          // Next, process the signal by passing through a smoothing algorithm
-          process_signal(&sensorL);
-          process_signal(&sensorR);
-          
-          char previous_location = beacon_location;
-          
-          // Now, classify the signals to find the beacon location
-          beacon_location = classify_data(sensorL.smoothed_signal, 
-                                          sensorR.smoothed_signal);
-          
-          // if the beacon is straight ahead, move towards it, otherwise, stop
-          // and align the robot with the beacon direction
-          moveToBeacon(beacon_location, previous_location, &motorL, &motorR);
-           
-          //print to LCD for debugging (remove later)
-          ClearLCD();
-          SetLine(1);
-          char temp2[16];
-          sprintf(temp2,"LEFT %u ",sensorL.smoothed_signal);
-          LCD_String(temp2);
-          SetLine(2);
-          char temp1[16];
-          sprintf(temp1,"RIGHT %u ",sensorR.smoothed_signal);
-          LCD_String(temp1);
-          __delay_ms(100);
-          
-          // once RFID fully read, check against checksum, display it and change
-          // robot mode to return home
-          if(RFID_flag == 1)
+          turnRight(&motorL, &motorR); // continuously turn right
+      
+          // Runs until the beacon is found and the break statement executes
+          while(robot_mode == 0)
           {
-              display_RFID(RFIDbuf);
-              check_RFID(RFIDbuf);
-              robot_mode = 1;
-              RFID_flag = 0;
+            // First, acquire the PWM duty cycle using the motion feedback module
+            unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+
+            // Now, classify the signals to find if we are looking at the beacon
+            char beacon_location = classify_data(raw_data); 
+
+            // if beacon is straight ahead, exit this subroutine
+            if(beacon_location == 1)
+            {
+                robot_mode = 1;
+            }
+         }
+      }
+      
+      // Subroutine to move towards bomb
+      if(robot_mode == 1)
+      {
+          moveForward(&motorL, &motorR,75); // move robot forwards
+      
+          // Runs until RFID has been scanned and break statement executes
+          while(robot_mode == 1)
+          {
+              __delay_us(1);
+              movementMicros += 1;
+
+              // once RFID fully read, check against checksum, display it,
+              // break loop and set robot mode to return home
+              if(RFID_flag == 1)
+              {
+                  display_RFID(RFIDbuf);
+                  check_RFID(RFIDbuf);
+                  robot_mode = 2;
+                  RFID_flag = 0;
+              }
           }
       }
     
       // Subroutine to return to starting position
-      while(robot_mode == 1)
+      if(robot_mode == 2)
       {
-          // for debugging only, remove later
-          robot_mode = 2;
+          moveBackward(&motorL,&motorR,75); // move robot backwards
+          
+          for(unsigned long i=0; i<movementMicros;i++)
+          {
+              __delay_us(1);
+          }
+          robot_mode = 3;
       }
       
       // Subroutine for once bomb has been found and robot has returned
-      while(robot_mode == 2)
+      if(robot_mode == 3)
       {
-          while(PORTDbits.RD2 == 1)
+          stop(&motorL, &motorR); // stop moving
+          
+          while(robot_mode == 3)
           {
-              ClearLCD();
-              LCD_String("RESETTING ROBOT");
-              for(int i=0; i<10;i++)
+              while(PORTDbits.RD2 == 1)
               {
-                  __delay_ms(100);
+                  ClearLCD();
+                  LCD_String("RESETTING ROBOT");
+                  for(int i=0; i<10;i++)
+                  {
+                      __delay_ms(100);
+                  }
+                  ClearLCD();
+                  robot_mode = 0;
               }
-              ClearLCD();
-              robot_mode = 0;
           }
       }
   }
