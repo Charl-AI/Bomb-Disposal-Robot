@@ -83,6 +83,8 @@ void main(void)
   struct DC_motor motorL, motorR; //declare 2 motor structures
   init_motor_struct(&motorL, &motorR); // initialise values in each struct
   
+  unsigned long movementMicros=0; // stores time taken moving forward
+  
   // loop, this runs forever
   while(1)
   {
@@ -105,19 +107,6 @@ void main(void)
             {
                 robot_mode = 1;
             }
-
-            //print to LCD for debugging (remove later)
-            ClearLCD();
-            SetLine(1);
-            char temp2[16];
-            sprintf(temp2,"smoothed %u ",raw_data);
-            LCD_String(temp2);
-            SetLine(2);
-            //char temp1[16];
-            //sprintf(temp1,"raw %u ",sensor.raw_data);
-            //LCD_String(temp1);
-            __delay_ms(100);
-
          }
       }
       
@@ -129,6 +118,8 @@ void main(void)
           // Runs until RFID has been scanned and break statement executes
           while(robot_mode == 1)
           {
+              __delay_us(1);
+              movementMicros += 1;
 
               // once RFID fully read, check against checksum, display it,
               // break loop and set robot mode to return home
@@ -136,7 +127,7 @@ void main(void)
               {
                   display_RFID(RFIDbuf);
                   check_RFID(RFIDbuf);
-                  robot_mode = 1;
+                  robot_mode = 2;
                   RFID_flag = 0;
               }
           }
@@ -147,11 +138,11 @@ void main(void)
       {
           moveBackward(&motorL,&motorR); // move robot backwards
           
-          while(robot_mode == 2)
+          for(unsigned long i=0; i<movementMicros;i++)
           {
-              // for debugging only, remove later
-              robot_mode = 3;
+              __delay_us(1);
           }
+          robot_mode = 3;
       }
       
       // Subroutine for once bomb has been found and robot has returned
