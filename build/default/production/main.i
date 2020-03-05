@@ -5351,6 +5351,8 @@ volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
 volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed);
 
 void debug(void);
+
+void waitForInput(void);
 # 20 "main.c" 2
 # 30 "main.c"
 volatile char robot_mode = 0;
@@ -5415,6 +5417,8 @@ void main(void)
   int moving_speed = 75;
 
   unsigned long movementMicros=0;
+
+  waitForInput();
 
 
   while(1)

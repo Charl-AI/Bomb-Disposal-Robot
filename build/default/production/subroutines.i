@@ -5193,6 +5193,8 @@ volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
 volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed);
 
 void debug(void);
+
+void waitForInput(void);
 # 13 "subroutines.c" 2
 
 # 1 "./LCDIO.h" 1
@@ -5459,4 +5461,23 @@ void debug(void)
 
 
     }
+}
+
+void waitForInput(void)
+{
+    ClearLCD();
+    SetLine(1);
+    LCD_String("PRESS BUTTON");
+    SetLine(2);
+    LCD_String("TO START SEARCH");
+    while(PORTDbits.RD2 == 0);
+
+    ClearLCD();
+    LCD_String("STARTING SEARCH");
+    for(int i=0; i<10;i++)
+    {
+        _delay((unsigned long)((100)*(8000000/4000.0)));
+    }
+    ClearLCD();
+
 }

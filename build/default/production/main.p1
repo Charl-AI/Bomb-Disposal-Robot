@@ -156,7 +156,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "27
 [; ;./dc_motor.h: 27: void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR);
 [v _init_motor_struct `(v ~T0 @X0 0 ef2`*S316`*S316 ]
-"15 ./subroutines.h
+"27 ./subroutines.h
+[; ;./subroutines.h: 27: void waitForInput(void);
+[v _waitForInput `(v ~T0 @X0 0 ef ]
+"15
 [; ;./subroutines.h: 15: volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed);
 [v _scanForBeacon `(Vuc ~T0 @X0 0 ef3`*S316`*S316`i ]
 "17
@@ -851,91 +854,94 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 91:   unsigned long movementMicros=0;
 [v _movementMicros `ul ~T0 @X0 1 a ]
 [e = _movementMicros -> -> -> 0 `i `l `ul ]
-"94
-[; ;main.c: 94:   while(1)
+"93
+[; ;main.c: 93:   waitForInput();
+[e ( _waitForInput ..  ]
+"96
+[; ;main.c: 96:   while(1)
 [e :U 327 ]
-"95
-[; ;main.c: 95:   {
-{
 "97
-[; ;main.c: 97:       if(robot_mode == 0)
-[e $ ! == -> _robot_mode `i -> 0 `i 329  ]
-"98
-[; ;main.c: 98:       {
+[; ;main.c: 97:   {
 {
 "99
-[; ;main.c: 99:           robot_mode = scanForBeacon(&motorL, &motorR, searching_speed);
-[e = _robot_mode ( _scanForBeacon (3 , , &U _motorL &U _motorR _searching_speed ]
+[; ;main.c: 99:       if(robot_mode == 0)
+[e $ ! == -> _robot_mode `i -> 0 `i 329  ]
+"100
+[; ;main.c: 100:       {
+{
 "101
-[; ;main.c: 101:       }
+[; ;main.c: 101:           robot_mode = scanForBeacon(&motorL, &motorR, searching_speed);
+[e = _robot_mode ( _scanForBeacon (3 , , &U _motorL &U _motorR _searching_speed ]
+"103
+[; ;main.c: 103:       }
 }
 [e $U 330  ]
-"104
-[; ;main.c: 104:       else if(robot_mode == 1)
+"106
+[; ;main.c: 106:       else if(robot_mode == 1)
 [e :U 329 ]
 [e $ ! == -> _robot_mode `i -> 1 `i 331  ]
-"105
-[; ;main.c: 105:       {
+"107
+[; ;main.c: 107:       {
 {
-"106
-[; ;main.c: 106:           robot_mode = moveToBeacon(&motorL, &motorR, moving_speed,
-[e = _robot_mode ( _moveToBeacon (4 , , , , , &U _motorL &U _motorR _moving_speed &U _movementMicros &U _RFIDbuf &U _RFID_flag ]
 "108
-[; ;main.c: 108:       }
+[; ;main.c: 108:           robot_mode = moveToBeacon(&motorL, &motorR, moving_speed,
+[e = _robot_mode ( _moveToBeacon (4 , , , , , &U _motorL &U _motorR _moving_speed &U _movementMicros &U _RFIDbuf &U _RFID_flag ]
+"110
+[; ;main.c: 110:       }
 }
 [e $U 332  ]
-"111
-[; ;main.c: 111:       else if(robot_mode == 2)
+"113
+[; ;main.c: 113:       else if(robot_mode == 2)
 [e :U 331 ]
 [e $ ! == -> _robot_mode `i -> 2 `i 333  ]
-"112
-[; ;main.c: 112:       {
+"114
+[; ;main.c: 114:       {
 {
-"113
-[; ;main.c: 113:           robot_mode = returnHome(&motorL, &motorR, moving_speed,
-[e = _robot_mode ( _returnHome (4 , , , &U _motorL &U _motorR _moving_speed &U _movementMicros ]
 "115
-[; ;main.c: 115:       }
+[; ;main.c: 115:           robot_mode = returnHome(&motorL, &motorR, moving_speed,
+[e = _robot_mode ( _returnHome (4 , , , &U _motorL &U _motorR _moving_speed &U _movementMicros ]
+"117
+[; ;main.c: 117:       }
 }
 [e $U 334  ]
-"118
-[; ;main.c: 118:       else if(robot_mode == 3)
+"120
+[; ;main.c: 120:       else if(robot_mode == 3)
 [e :U 333 ]
 [e $ ! == -> _robot_mode `i -> 3 `i 335  ]
-"119
-[; ;main.c: 119:       {
-{
-"120
-[; ;main.c: 120:           robot_mode = stopAndDisplay(&motorL, &motorR, moving_speed);
-[e = _robot_mode ( _stopAndDisplay (3 , , &U _motorL &U _motorR _moving_speed ]
 "121
-[; ;main.c: 121:       }
+[; ;main.c: 121:       {
+{
+"122
+[; ;main.c: 122:           robot_mode = stopAndDisplay(&motorL, &motorR, moving_speed);
+[e = _robot_mode ( _stopAndDisplay (3 , , &U _motorL &U _motorR _moving_speed ]
+"123
+[; ;main.c: 123:       }
 }
 [e $U 336  ]
-"123
-[; ;main.c: 123:       else
-[e :U 335 ]
-"124
-[; ;main.c: 124:       {
-{
 "125
-[; ;main.c: 125:           LCD_String("Critical Error");
-[e ( _LCD_String (1 :s 1C ]
+[; ;main.c: 125:       else
+[e :U 335 ]
 "126
-[; ;main.c: 126:       }
+[; ;main.c: 126:       {
+{
+"127
+[; ;main.c: 127:           LCD_String("Critical Error");
+[e ( _LCD_String (1 :s 1C ]
+"128
+[; ;main.c: 128:       }
 }
 [e :U 336 ]
 [e :U 334 ]
 [e :U 332 ]
 [e :U 330 ]
-"127
-[; ;main.c: 127:   }
+"129
+[; ;main.c: 129:   }
 }
 [e :U 326 ]
 [e $U 327  ]
 [e :U 328 ]
-"128
-[; ;main.c: 128: }
+"130
+[; ;main.c: 130: }
 [e :UE 325 ]
 }
 [a 1C 67 114 105 116 105 99 97 108 32 69 114 114 111 114 0 ]

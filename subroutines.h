@@ -24,6 +24,8 @@ volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed
 
 void debug(void);
 
+void waitForInput(void);
+
 #ifdef	__cplusplus
 }
 #endif

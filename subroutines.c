@@ -17,11 +17,14 @@
 volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed)
 {
     turnRight(mL,mR,speed); // continuously turn right
+    
+    // initialise smoothed data with the first raw value
     unsigned int smoothed_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+    
     // Runs until the beacon is found and the break statement executes
     while(1)
     {
-        // First, acquire the PWM duty cycle using the motion feedback module
+        // First, acquire the raw signal using the motion feedback module
         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
         
         // Now, classify the signals to find if we are looking at the beacon
@@ -76,7 +79,7 @@ volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed
     
         while(1)
         {
-            while(PORTDbits.RD2 == 1)
+            while(PORTDbits.RD2 == 1) // when button is pressed
             {
                 ClearLCD();
                 LCD_String("RESETTING ROBOT");
@@ -116,5 +119,29 @@ void debug(void)
         //char beacon_location = classify_data(raw_data); 
     
     }
+}
+
+// This function is allows the user to press the button to start the search
+void waitForInput(void)
+{
+    // display some text for the user
+    ClearLCD();
+    SetLine(1);
+    LCD_String("PRESS BUTTON");
+    SetLine(2);
+    LCD_String("TO START SEARCH");
+    
+    // wait until button is pressed
+    while(PORTDbits.RD2 == 0);
+
+    // display text to confirm start
+    ClearLCD();
+    SetLine(1);
+    LCD_String("STARTING SEARCH");
+    for(int i=0; i<10;i++)
+    {
+        __delay_ms(100);
+    }
+    ClearLCD();     
 }
     

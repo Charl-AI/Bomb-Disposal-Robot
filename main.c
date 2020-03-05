@@ -90,6 +90,8 @@ void main(void)
   
   unsigned long movementMicros=0; // stores time taken moving forward
   
+  waitForInput(); // wait until user presses button to start
+  
   // loop, this runs forever
   while(1)
   {

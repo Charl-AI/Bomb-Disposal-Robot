@@ -880,10 +880,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _raw_data -> | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i `ui ]
 "101
 [; ;subroutines.c: 101:         static unsigned int smoothed_data;
-[v F3195 `ui ~T0 @X0 1 s smoothed_data ]
+[v F3196 `ui ~T0 @X0 1 s smoothed_data ]
 "102
 [; ;subroutines.c: 102:         smoothed_data = smoothed_data + ((raw_data - smoothed_data) >> 1);
-[e = F3195 + F3195 >> - _raw_data F3195 -> 1 `i ]
+[e = F3196 + F3196 >> - _raw_data F3196 -> 1 `i ]
 "103
 [; ;subroutines.c: 103:         ClearLCD();
 [e ( _ClearLCD ..  ]
@@ -907,7 +907,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _buf2 `uc ~T0 @X0 -> 16 `i a ]
 "110
 [; ;subroutines.c: 110:         sprintf(buf2, "%u",smoothed_data);
-[e ( _sprintf (1 , (. , &U _buf2 :s 3C F3195 ]
+[e ( _sprintf (1 , (. , &U _buf2 :s 3C F3196 ]
 "111
 [; ;subroutines.c: 111:         LCD_String(buf2);
 [e ( _LCD_String (1 &U _buf2 ]
@@ -924,7 +924,74 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;subroutines.c: 119: }
 [e :UE 343 ]
 }
+"121
+[; ;subroutines.c: 121: void waitForInput(void)
+[v _waitForInput `(v ~T0 @X0 1 ef ]
+"122
+[; ;subroutines.c: 122: {
+{
+[e :U _waitForInput ]
+[f ]
+"123
+[; ;subroutines.c: 123:     ClearLCD();
+[e ( _ClearLCD ..  ]
+"124
+[; ;subroutines.c: 124:     SetLine(1);
+[e ( _SetLine (1 -> -> 1 `i `uc ]
+"125
+[; ;subroutines.c: 125:     LCD_String("PRESS BUTTON");
+[e ( _LCD_String (1 :s 4C ]
+"126
+[; ;subroutines.c: 126:     SetLine(2);
+[e ( _SetLine (1 -> -> 2 `i `uc ]
+"127
+[; ;subroutines.c: 127:     LCD_String("TO START SEARCH");
+[e ( _LCD_String (1 :s 5C ]
+"128
+[; ;subroutines.c: 128:     while(PORTDbits.RD2 == 0);
+[e $U 348  ]
+[e :U 349 ]
+[e :U 348 ]
+[e $ == -> . . _PORTDbits 0 2 `i -> 0 `i 349  ]
+[e :U 350 ]
+"130
+[; ;subroutines.c: 130:     ClearLCD();
+[e ( _ClearLCD ..  ]
+"131
+[; ;subroutines.c: 131:     LCD_String("STARTING SEARCH");
+[e ( _LCD_String (1 :s 6C ]
+"132
+[; ;subroutines.c: 132:     for(int i=0; i<10;i++)
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 10 `i 351  ]
+[e $U 352  ]
+[e :U 351 ]
+"133
+[; ;subroutines.c: 133:     {
+{
+"134
+[; ;subroutines.c: 134:         _delay((unsigned long)((100)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"135
+[; ;subroutines.c: 135:     }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 10 `i 351  ]
+[e :U 352 ]
+}
+"136
+[; ;subroutines.c: 136:     ClearLCD();
+[e ( _ClearLCD ..  ]
+"138
+[; ;subroutines.c: 138: }
+[e :UE 347 ]
+}
 [p f _sprintf 8389632 ]
 [a 2C 37 117 0 ]
 [a 3C 37 117 0 ]
 [a 1C 82 69 83 69 84 84 73 78 71 32 82 79 66 79 84 0 ]
+[a 4C 80 82 69 83 83 32 66 85 84 84 79 78 0 ]
+[a 5C 84 79 32 83 84 65 82 84 32 83 69 65 82 67 72 0 ]
+[a 6C 83 84 65 82 84 73 78 71 32 83 69 65 82 67 72 0 ]
