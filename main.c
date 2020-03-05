@@ -17,6 +17,7 @@
 #include "dc_motor.h"
 #include "RFID.h"
 #include "signal_processing.h"
+#include "subroutines.h"
 
 /*****************************************************************************/
 //Global variables defined here
@@ -95,62 +96,25 @@ void main(void)
       // Subroutine for initial sweep to search for bomb
       if(robot_mode == 0)
       {
-          turnRight(&motorL, &motorR,searching_speed); // continuously turn right
-      
-          // Runs until the beacon is found and the break statement executes
-          while(robot_mode == 0)
-          {
-            // First, acquire the PWM duty cycle using the motion feedback module
-            unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
-
-            // Now, classify the signals to find if we are looking at the beacon
-            char beacon_location = classify_data(raw_data); 
-
-            // if beacon is straight ahead, exit this subroutine
-            if(beacon_location == 1)
-            {
-                robot_mode = 1;
-            }
-         }
+          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed);
       }
       
       // Subroutine to move towards bomb
-      if(robot_mode == 1)
+      else if(robot_mode == 1)
       {
-          moveForward(&motorL, &motorR,moving_speed); // move robot forwards
-      
-          // Runs until RFID has been scanned and break statement executes
-          while(robot_mode == 1)
-          {
-              __delay_us(1);
-              movementMicros += 1;
-
-              // once RFID fully read, check against checksum, display it,
-              // break loop and set robot mode to return home
-              if(RFID_flag == 1)
-              {
-                  display_RFID(RFIDbuf);
-                  check_RFID(RFIDbuf);
-                  robot_mode = 2;
-                  RFID_flag = 0;
-              }
-          }
+          robot_mode = moveToBeacon(&motorL, &motorR, moving_speed,
+                                    &movementMicros, RFIDbuf, &RFID_flag);
       }
     
       // Subroutine to return to starting position
-      if(robot_mode == 2)
+      else if(robot_mode == 2)
       {
-          moveBackward(&motorL,&motorR,moving_speed); // move robot backwards
-          
-          for(unsigned long i=0; i<movementMicros;i++)
-          {
-              __delay_us(1);
-          }
-          robot_mode = 3;
+          robot_mode = returnHome(&motorL, &motorR, moving_speed, 
+                  &movementMicros);
       }
       
       // Subroutine for once bomb has been found and robot has returned
-      if(robot_mode == 3)
+      else if(robot_mode == 3)
       {
           stop(&motorL, &motorR,moving_speed); // stop moving
           
@@ -168,6 +132,11 @@ void main(void)
                   robot_mode = 0;
               }
           }
+      }
+      // Program should never reach here, so print error message if it does
+      else 
+      {
+          LCD_String("Critical Error");
       }
   }
 }

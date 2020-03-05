@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "subroutines.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,8 +6,14 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
-# 11 "main.c"
+# 1 "subroutines.c" 2
+
+
+
+
+
+
+
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -5121,172 +5127,8 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 2 3
-# 11 "main.c" 2
+# 8 "subroutines.c" 2
 
-
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdio.h" 1 3
-# 24 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdio.h" 3
-# 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 1 3
-# 10 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef void * va_list[1];
-
-
-
-
-typedef void * __isoc_va_list[1];
-# 145 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long ssize_t;
-# 254 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef long long off_t;
-# 407 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef struct _IO_FILE FILE;
-# 24 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdio.h" 2 3
-# 52 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdio.h" 3
-typedef union _G_fpos64_t {
- char __opaque[16];
- double __align;
-} fpos_t;
-
-extern FILE *const stdin;
-extern FILE *const stdout;
-extern FILE *const stderr;
-
-
-
-
-
-FILE *fopen(const char *restrict, const char *restrict);
-FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
-int fclose(FILE *);
-
-int remove(const char *);
-int rename(const char *, const char *);
-
-int feof(FILE *);
-int ferror(FILE *);
-int fflush(FILE *);
-void clearerr(FILE *);
-
-int fseek(FILE *, long, int);
-long ftell(FILE *);
-void rewind(FILE *);
-
-int fgetpos(FILE *restrict, fpos_t *restrict);
-int fsetpos(FILE *, const fpos_t *);
-
-size_t fread(void *restrict, size_t, size_t, FILE *restrict);
-size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
-
-int fgetc(FILE *);
-int getc(FILE *);
-int getchar(void);
-int ungetc(int, FILE *);
-
-int fputc(int, FILE *);
-int putc(int, FILE *);
-int putchar(int);
-
-char *fgets(char *restrict, int, FILE *restrict);
-
-char *gets(char *);
-
-
-int fputs(const char *restrict, FILE *restrict);
-int puts(const char *);
-
-
-#pragma printf_check(printf) const
-#pragma printf_check(vprintf) const
-#pragma printf_check(sprintf) const
-#pragma printf_check(snprintf) const
-#pragma printf_check(vsprintf) const
-#pragma printf_check(vsnprintf) const
-
-
-int printf(const char *restrict, ...);
-int fprintf(FILE *restrict, const char *restrict, ...);
-int sprintf(char *restrict, const char *restrict, ...);
-int snprintf(char *restrict, size_t, const char *restrict, ...);
-
-int vprintf(const char *restrict, __isoc_va_list);
-int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
-int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
-int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
-
-int scanf(const char *restrict, ...);
-int fscanf(FILE *restrict, const char *restrict, ...);
-int sscanf(const char *restrict, const char *restrict, ...);
-int vscanf(const char *restrict, __isoc_va_list);
-int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
-int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
-
-void perror(const char *);
-
-int setvbuf(FILE *restrict, char *restrict, int, size_t);
-void setbuf(FILE *restrict, char *restrict);
-
-char *tmpnam(char *);
-FILE *tmpfile(void);
-
-
-
-
-FILE *fmemopen(void *restrict, size_t, const char *restrict);
-FILE *open_memstream(char **, size_t *);
-FILE *fdopen(int, const char *);
-FILE *popen(const char *, const char *);
-int pclose(FILE *);
-int fileno(FILE *);
-int fseeko(FILE *, off_t, int);
-off_t ftello(FILE *);
-int dprintf(int, const char *restrict, ...);
-int vdprintf(int, const char *restrict, __isoc_va_list);
-void flockfile(FILE *);
-int ftrylockfile(FILE *);
-void funlockfile(FILE *);
-int getc_unlocked(FILE *);
-int getchar_unlocked(void);
-int putc_unlocked(int, FILE *);
-int putchar_unlocked(int);
-ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
-ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
-int renameat(int, const char *, int, const char *);
-char *ctermid(char *);
-
-
-
-
-
-
-
-char *tempnam(const char *, const char *);
-# 13 "main.c" 2
-
-#pragma config OSC = IRCIO, MCLRE=OFF, LVP=OFF
-
-
-# 1 "./LCDIO.h" 1
-# 26 "./LCDIO.h"
-void E_TOG(void);
-
-
-void LCDout(unsigned char number);
-
-
-void SendLCD(unsigned char Byte, char type);
-
-
-void init_LCD(void);
-
-
-void SetLine (char line);
-
-
-void LCD_String(char *string);
-
-
-void ClearLCD(void);
-# 16 "main.c" 2
 
 # 1 "./dc_motor.h" 1
 
@@ -5316,7 +5158,7 @@ void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 
 
 void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR);
-# 17 "main.c" 2
+# 10 "subroutines.c" 2
 
 # 1 "./RFID.h" 1
 # 11 "./RFID.h"
@@ -5325,7 +5167,7 @@ char getCharSerial(void);
 char processRFID(volatile char RFIDbuf[], char latestChar);
 void check_RFID(volatile char dataBuf[]);
 void display_RFID(volatile char RFIDBuf[]);
-# 18 "main.c" 2
+# 11 "subroutines.c" 2
 
 # 1 "./signal_processing.h" 1
 # 13 "./signal_processing.h"
@@ -5336,7 +5178,7 @@ struct Sensor {
 
 void init_sensor(void);
 char classify_data(int smoothed_data);
-# 19 "main.c" 2
+# 12 "subroutines.c" 2
 
 # 1 "./subroutines.h" 1
 # 15 "./subroutines.h"
@@ -5347,118 +5189,61 @@ unsigned long *micros, volatile char RFID_buffer[], volatile char *exit_flag);
 
 volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
                         unsigned long *micros);
-# 20 "main.c" 2
-# 30 "main.c"
-volatile char robot_mode = 0;
+# 13 "subroutines.c" 2
 
 
-volatile char RFIDbuf[12];
-
-
-volatile char RFID_flag = 0;
-
-
-void setup(void)
+volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed)
 {
-
-    OSCCON = 0x72;
-    while(!OSCCONbits.IOFS);
-    INTCONbits.GIEH = 1;
-    INTCONbits.GIEL = 1;
-    RCONbits.IPEN=1;
+    turnRight(mL,mR,speed);
 
 
-    init_LCD();
-    init_RFID();
-    init_sensor();
-    initPWM(199);
-
-    TRISBbits.RB0 = 0;
-    TRISBbits.RB2 = 0;
-    TRISDbits.RD2 = 1;
-}
-
-
-void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void)
-{
-
-
-    if((PIR1bits.RCIF) && (robot_mode == 1))
+    while(1)
     {
 
-        RFID_flag = processRFID(RFIDbuf, RCREG);
-    }
+        unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 
-    else
-    {
 
-        char throwaway = RCREG;
+        char beacon_location = classify_data(raw_data);
+
+
+        if(beacon_location == 1)
+        {
+            return 1;
+        }
     }
 }
 
-
-void main(void)
+volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+unsigned long *micros, volatile char RFID_buffer[], volatile char *exit_flag)
 {
-
-  setup();
-
-
-  struct DC_motor motorL, motorR;
-  init_motor_struct(&motorL, &motorR);
+    moveForward(mL,mR,speed);
 
 
-  int searching_speed = 50;
-  int moving_speed = 75;
-
-  unsigned long movementMicros=0;
-
-
-  while(1)
-  {
-
-      if(robot_mode == 0)
-      {
-          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed);
-      }
-
-
-      else if(robot_mode == 1)
-      {
-          robot_mode = moveToBeacon(&motorL, &motorR, moving_speed,
-                                    &movementMicros, RFIDbuf, &RFID_flag);
-      }
-
-
-      else if(robot_mode == 2)
-      {
-          robot_mode = returnHome(&motorL, &motorR, moving_speed,
-                  &movementMicros);
-      }
-
-
-      else if(robot_mode == 3)
-      {
-          stop(&motorL, &motorR,moving_speed);
-
-          while(robot_mode == 3)
+          while(1)
           {
-              while(PORTDbits.RD2 == 1)
+              _delay((unsigned long)((1)*(8000000/4000000.0)));
+              *micros += 1;
+
+
+
+              if(*exit_flag == 1)
               {
-                  ClearLCD();
-                  LCD_String("RESETTING ROBOT");
-                  for(int i=0; i<10;i++)
-                  {
-                      _delay((unsigned long)((100)*(8000000/4000.0)));
-                  }
-                  ClearLCD();
-                  robot_mode = 0;
+                  display_RFID(RFID_buffer);
+                  check_RFID(RFID_buffer);
+                  exit_flag = 0;
+                  return 2;
               }
           }
-      }
+}
 
-      else
-      {
-          LCD_String("Critical Error");
-      }
-  }
+volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
+                        unsigned long *micros)
+{
+    moveBackward(mL,mR,speed);
+
+    for(unsigned long i=0; i<*micros;i++)
+    {
+        _delay((unsigned long)((1)*(8000000/4000000.0)));
+    }
+    return 3;
 }

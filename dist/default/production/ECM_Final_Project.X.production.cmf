@@ -11,67 +11,71 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\charl\AppData\Local\Temp\sbl0.o
+$C:\Users\charl\AppData\Local\Temp\shto.o
 idloc IDLOC 0 200000 200000 8 1
 init CODE 0 3E 3E 4 1
 reset_vec CODE 0 0 0 4 1
 config CONFIG 0 300000 300000 E 1
 $dist/default/production\ECM_Final_Project.X.production.o
-cinit CODE 0 D5A D5A 1E 1
-text0 CODE 0 332 332 1DA 1
-text1 CODE 0 9B6 9B6 82 1
-text2 CODE 0 B98 B98 4E 1
-text3 CODE 0 CD8 CD8 2E 1
-text4 CODE 0 DC6 DC6 18 1
-text5 CODE 0 D78 D78 1A 1
-text6 CODE 0 86A 86A C8 1
-text7 CODE 0 D92 D92 1A 1
-text8 CODE 0 AB0 AB0 74 1
-text9 CODE 0 B24 B24 74 1
-text10 CODE 0 780 780 EA 1
-text11 CODE 0 65C 65C 124 1
-text12 CODE 0 D34 D34 26 1
-text13 CODE 0 932 932 84 1
-text14 CODE 0 C32 C32 40 1
-text15 CODE 0 DAC DAC 1A 1
-text16 CODE 0 DDE DDE 18 1
-text17 CODE 0 50C 50C 150 1
-text18 CODE 0 D06 D06 2E 1
-text19 CODE 0 C72 C72 36 1
-text20 CODE 0 CA8 CA8 30 1
-text21 CODE 0 A38 A38 78 1
-text22 CODE 0 DF6 DF6 E 1
-text24 CODE 0 BE6 BE6 4C 1
-cstackCOMRAM COMRAM 1 1 1 29 1
-cstackBANK0 BANK0 1 60 60 23 1
-temp COMRAM 1 39 39 1 1
+cinit CODE 0 DEC DEC 24 1
+text0 CODE 0 342 342 15C 1
+text1 CODE 0 BE0 BE0 4E 1
+text2 CODE 0 D6A D6A 2E 1
+text3 CODE 0 E5E E5E 18 1
+text4 CODE 0 E10 E10 1A 1
+text5 CODE 0 7FC 7FC C8 1
+text6 CODE 0 E2A E2A 1A 1
+text7 CODE 0 C7A C7A 4A 1
+text8 CODE 0 948 948 82 1
+text9 CODE 0 E76 E76 18 1
+text10 CODE 0 B2A B2A 5C 1
+text11 CODE 0 A42 A42 74 1
+text12 CODE 0 B86 B86 5A 1
+text13 CODE 0 AB6 AB6 74 1
+text14 CODE 0 CC4 CC4 40 1
+text15 CODE 0 E44 E44 1A 1
+text16 CODE 0 49E 49E 150 1
+text17 CODE 0 D98 D98 2E 1
+text18 CODE 0 D04 D04 36 1
+text19 CODE 0 D3A D3A 30 1
+text20 CODE 0 9CA 9CA 78 1
+text21 CODE 0 E8E E8E E 1
+text22 CODE 0 712 712 EA 1
+text23 CODE 0 5EE 5EE 124 1
+text24 CODE 0 DC6 DC6 26 1
+text25 CODE 0 8C4 8C4 84 1
+text27 CODE 0 C2E C2E 4C 1
+cstackCOMRAM COMRAM 1 1 1 39 1
+cstackBANK0 BANK0 1 60 60 1C 1
+temp COMRAM 1 3D 3D 1 1
+bssBANK0 BANK0 1 7C 7C C 1
 intcode CODE 0 8 8 36 1
-smallconst SMALLCONST 0 300 300 32 1
-bssCOMRAM COMRAM 1 2A 2A F 1
+smallconst SMALLCONST 0 300 300 42 1
+bssCOMRAM COMRAM 1 3A 3A 3 1
 # %UNUSED Section
 # This section enumerates the unused ranges of each CLASS. Each entry
 # is described on a single line as follows:
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 83-2FF 1
+RAM 88-2FF 1
 SFR F60-FFF 1
-BANK0 83-FF 1
+BANK0 88-FF 1
 BANK1 100-1FF 1
 BANK2 200-2FF 1
 CONST 4-7 1
 CONST 42-2FF 1
-CONST E04-1FFF 1
-STACK 83-2FF 1
-SMALLCONST E04-1FFF 1
+CONST E9C-1FFF 1
+STACK 88-2FF 1
+SMALLCONST E9C-1FFF 1
 CODE 4-7 1
 CODE 42-2FF 1
-CODE E04-1FFF 1
-BIGRAM 3A-5F 1
-BIGRAM 83-2FF 1
-COMRAM 3A-5F 1
+CODE E9C-1FFF 1
+BIGRAM 3E-5F 1
+BIGRAM 88-2FF 1
+COMRAM 3E-5F 1
 EEDATA F00000-F000FF 1
-MEDIUMCONST E04-1FFF 1
+MEDIUMCONST E9C-1FFF 1
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -86,323 +90,331 @@ MEDIUMCONST E04-1FFF 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\ECM_Final_Project.X.production.o
-8 intcode CODE >28:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-8 intcode CODE >59:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-12 intcode CODE >63:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-1C intcode CODE >66:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-2E intcode CODE >67:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-30 intcode CODE >69:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-30 intcode CODE >72:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-32 intcode CODE >74:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-BE6 text24 CODE >34:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-BE6 text24 CODE >42:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-BEE text24 CODE >44:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-BF2 text24 CODE >50:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-BFA text24 CODE >52:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-BFE text24 CODE >53:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-C02 text24 CODE >55:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-C12 text24 CODE >56:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-C1A text24 CODE >58:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-C1E text24 CODE >63:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-C2E text24 CODE >64:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-DF6 text22 CODE >23:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-DF6 text22 CODE >25:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-DF8 text22 CODE >26:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-E00 text22 CODE >27:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-E02 text22 CODE >28:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-A38 text21 CODE >31:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-A3A text21 CODE >33:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-A4C text21 CODE >34:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-A68 text21 CODE >35:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-A82 text21 CODE >36:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-AA2 text21 CODE >39:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-AA6 text21 CODE >40:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-AAE text21 CODE >41:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-CA8 text20 CODE >44:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-CAA text20 CODE >47:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-CB4 text20 CODE >49:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-CBE text20 CODE >50:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-CC6 text20 CODE >53:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-CCE text20 CODE >54:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-CD6 text20 CODE >55:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-C72 text19 CODE >119:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-C72 text19 CODE >121:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-C74 text19 CODE >124:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-C8C text19 CODE >125:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-C94 text19 CODE >121:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-D06 text18 CODE >107:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-D08 text18 CODE >109:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-D0E text18 CODE >110:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-D18 text18 CODE >113:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-D20 text18 CODE >114:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-D2A text18 CODE >116:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-D32 text18 CODE >117:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-50C text17 CODE >72:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-50C text17 CODE >77:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-514 text17 CODE >79:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-538 text17 CODE >81:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-556 text17 CODE >82:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-57A text17 CODE >84:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-598 text17 CODE >86:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-5AC text17 CODE >88:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-5BC text17 CODE >89:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-5CC text17 CODE >90:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-5DC text17 CODE >91:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-5EC text17 CODE >92:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-5FC text17 CODE >93:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-60C text17 CODE >96:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-634 text17 CODE >99:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-63A text17 CODE >100:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-646 text17 CODE >101:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-648 text17 CODE >104:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-64E text17 CODE >105:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-65A text17 CODE >107:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-DDE text16 CODE >30:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
-DDE text16 CODE >32:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
-DEE text16 CODE >34:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
-DF2 text16 CODE >38:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
-DF4 text16 CODE >40:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
-DAC text15 CODE >131:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-DAC text15 CODE >132:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-DB6 text15 CODE >133:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-DC4 text15 CODE >134:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-C32 text14 CODE >109:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-C32 text14 CODE >111:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-C36 text14 CODE >112:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-C3C text14 CODE >113:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-C44 text14 CODE >115:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-C5A text14 CODE >116:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-C70 text14 CODE >117:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-932 text13 CODE >7:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-932 text13 CODE >13:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-936 text13 CODE >14:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-93A text13 CODE >15:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-942 text13 CODE >16:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-946 text13 CODE >18:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-94A text13 CODE >19:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-952 text13 CODE >20:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-956 text13 CODE >22:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-95E text13 CODE >23:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-966 text13 CODE >24:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-96A text13 CODE >25:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-96C text13 CODE >26:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-972 text13 CODE >27:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-974 text13 CODE >25:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-978 text13 CODE >30:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-97E text13 CODE >31:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-98A text13 CODE >32:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-992 text13 CODE >33:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-994 text13 CODE >35:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-99A text13 CODE >36:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-99E text13 CODE >38:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-9A4 text13 CODE >39:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-9AC text13 CODE >40:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-9B4 text13 CODE >41:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
-D34 text12 CODE >15:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul16.c
-D34 text12 CODE >37:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul16.c
-D40 text12 CODE >38:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul16.c
-D48 text12 CODE >39:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul16.c
-D50 text12 CODE >52:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul16.c
-D58 text12 CODE >53:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul16.c
-65C text11 CODE >18:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-65C text11 CODE >22:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-6A2 text11 CODE >24:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-6B4 text11 CODE >26:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-6DA text11 CODE >27:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-6FA text11 CODE >28:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-6FC text11 CODE >31:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-724 text11 CODE >32:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-724 text11 CODE >35:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-748 text11 CODE >36:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-77E text11 CODE >37:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-780 text10 CODE >96:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-780 text10 CODE >99:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-78C text10 CODE >100:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-79C text10 CODE >101:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-7B0 text10 CODE >102:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-7C4 text10 CODE >103:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-7D4 text10 CODE >104:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-7E8 text10 CODE >106:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-7F4 text10 CODE >107:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-804 text10 CODE >108:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-818 text10 CODE >109:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-82C text10 CODE >110:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-83C text10 CODE >111:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-850 text10 CODE >113:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-85C text10 CODE >114:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-868 text10 CODE >115:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-B24 text9 CODE >83:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-B24 text9 CODE >85:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-B34 text9 CODE >86:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-B44 text9 CODE >87:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-B4E text9 CODE >89:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-B5A text9 CODE >90:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-B66 text9 CODE >91:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-B72 text9 CODE >92:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-B7E text9 CODE >93:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-AB0 text8 CODE >69:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-AB0 text8 CODE >71:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-AC0 text8 CODE >72:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-AD0 text8 CODE >73:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-ADA text8 CODE >75:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-AE6 text8 CODE >76:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-AF2 text8 CODE >77:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-AFE text8 CODE >78:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-B0A text8 CODE >79:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-D92 text7 CODE >5:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-D92 text7 CODE >7:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-D96 text7 CODE >8:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-D9A text7 CODE >10:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-D9E text7 CODE >11:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-DA2 text7 CODE >13:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-DA6 text7 CODE >14:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-DAA text7 CODE >15:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-86A text6 CODE >56:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-86A text6 CODE >59:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-86C text6 CODE >60:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-86E text6 CODE >61:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-870 text6 CODE >62:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-872 text6 CODE >63:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-874 text6 CODE >64:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-876 text6 CODE >67:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-878 text6 CODE >68:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-87A text6 CODE >69:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-87C text6 CODE >70:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-87E text6 CODE >71:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-880 text6 CODE >72:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-882 text6 CODE >75:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-892 text6 CODE >76:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-898 text6 CODE >77:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-8A6 text6 CODE >78:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-8AC text6 CODE >79:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-8B4 text6 CODE >80:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-8BA text6 CODE >81:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-8C2 text6 CODE >82:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-8C8 text6 CODE >83:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-8D0 text6 CODE >86:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-8DA text6 CODE >87:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-8E2 text6 CODE >90:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-8EC text6 CODE >91:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-8F4 text6 CODE >94:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-8FE text6 CODE >95:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-90C text6 CODE >98:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-916 text6 CODE >99:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-91E text6 CODE >102:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-928 text6 CODE >103:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-930 text6 CODE >104:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
-D78 text5 CODE >13:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-D78 text5 CODE >16:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-D7A text5 CODE >19:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-D7E text5 CODE >20:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-D82 text5 CODE >22:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-D84 text5 CODE >23:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-D86 text5 CODE >24:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-D88 text5 CODE >25:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-D8A text5 CODE >26:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-D8C text5 CODE >28:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-D8E text5 CODE >29:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-D90 text5 CODE >30:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
-DC6 text4 CODE >14:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
-DC6 text4 CODE >16:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
-DCA text4 CODE >17:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
-DCC text4 CODE >20:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
-DD0 text4 CODE >21:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
-DD4 text4 CODE >23:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
-DD8 text4 CODE >24:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
-DDC text4 CODE >25:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
-CD8 text3 CODE >38:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-CD8 text3 CODE >41:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-CDC text3 CODE >42:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-CE0 text3 CODE >43:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-CE2 text3 CODE >44:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-CE4 text3 CODE >45:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-CE6 text3 CODE >48:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-CEA text3 CODE >49:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-CEE text3 CODE >50:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-CF2 text3 CODE >51:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-CFE text3 CODE >53:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-D00 text3 CODE >54:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-D02 text3 CODE >55:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-D04 text3 CODE >56:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-B98 text2 CODE >40:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-B98 text2 CODE >42:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-BAE text2 CODE >44:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-BBA text2 CODE >45:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-BC6 text2 CODE >46:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-BD2 text2 CODE >47:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-BDE text2 CODE >48:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-9B6 text1 CODE >52:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-9B6 text1 CODE >55:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-9C6 text1 CODE >56:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-9D6 text1 CODE >58:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-9E0 text1 CODE >59:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-9EC text1 CODE >60:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-9F8 text1 CODE >62:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-A04 text1 CODE >63:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-A10 text1 CODE >64:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-A1E text1 CODE >65:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
-332 text0 CODE >77:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-332 text0 CODE >80:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-336 text0 CODE >84:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-34A text0 CODE >87:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-354 text0 CODE >88:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-35C text0 CODE >90:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-36C text0 CODE >96:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-372 text0 CODE >98:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-38E text0 CODE >101:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-390 text0 CODE >104:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-3A8 text0 CODE >107:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-3B8 text0 CODE >110:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-3BE text0 CODE >112:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-3C2 text0 CODE >101:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-3C2 text0 CODE >114:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-3C8 text0 CODE >118:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-3CE text0 CODE >120:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-3EA text0 CODE >123:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-3EC text0 CODE >125:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-3EE text0 CODE >126:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-3FC text0 CODE >130:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-402 text0 CODE >132:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-40E text0 CODE >133:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-41A text0 CODE >134:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-41E text0 CODE >135:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-422 text0 CODE >123:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-428 text0 CODE >141:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-430 text0 CODE >143:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-44C text0 CODE >145:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-460 text0 CODE >147:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-462 text0 CODE >148:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-484 text0 CODE >149:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-488 text0 CODE >153:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-490 text0 CODE >155:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-4AC text0 CODE >157:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-4AE text0 CODE >161:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-4B2 text0 CODE >162:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-4BE text0 CODE >163:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-4C8 text0 CODE >165:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-4E0 text0 CODE >166:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-4F6 text0 CODE >167:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-4FA text0 CODE >168:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-4FE text0 CODE >159:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-502 text0 CODE >157:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-D5A cinit CODE >2098:C:\Users\charl\AppData\Local\Temp\sbl0.
-D5A cinit CODE >2100:C:\Users\charl\AppData\Local\Temp\sbl0.
-D5A cinit CODE >2103:C:\Users\charl\AppData\Local\Temp\sbl0.
-D5A cinit CODE >2123:C:\Users\charl\AppData\Local\Temp\sbl0.
-D5E cinit CODE >2124:C:\Users\charl\AppData\Local\Temp\sbl0.
-D60 cinit CODE >2125:C:\Users\charl\AppData\Local\Temp\sbl0.
-D60 cinit CODE >2126:C:\Users\charl\AppData\Local\Temp\sbl0.
-D62 cinit CODE >2127:C:\Users\charl\AppData\Local\Temp\sbl0.
-D64 cinit CODE >2128:C:\Users\charl\AppData\Local\Temp\sbl0.
-D66 cinit CODE >2134:C:\Users\charl\AppData\Local\Temp\sbl0.
-D66 cinit CODE >2136:C:\Users\charl\AppData\Local\Temp\sbl0.
-D68 cinit CODE >2137:C:\Users\charl\AppData\Local\Temp\sbl0.
-D6A cinit CODE >2139:C:\Users\charl\AppData\Local\Temp\sbl0.
-D6C cinit CODE >2140:C:\Users\charl\AppData\Local\Temp\sbl0.
-D6E cinit CODE >2141:C:\Users\charl\AppData\Local\Temp\sbl0.
-D70 cinit CODE >2142:C:\Users\charl\AppData\Local\Temp\sbl0.
-D72 cinit CODE >2143:C:\Users\charl\AppData\Local\Temp\sbl0.
-D74 cinit CODE >2144:C:\Users\charl\AppData\Local\Temp\sbl0.
+8 intcode CODE >41:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+8 intcode CODE >60:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+12 intcode CODE >64:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+1C intcode CODE >67:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+2E intcode CODE >68:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+30 intcode CODE >70:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+30 intcode CODE >73:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+32 intcode CODE >75:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+C2E text27 CODE >34:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+C2E text27 CODE >42:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+C36 text27 CODE >44:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+C3A text27 CODE >50:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+C42 text27 CODE >52:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+C46 text27 CODE >53:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+C4A text27 CODE >55:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+C5A text27 CODE >56:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+C62 text27 CODE >58:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+C66 text27 CODE >63:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+C76 text27 CODE >64:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+8C4 text25 CODE >7:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+8C4 text25 CODE >13:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+8C8 text25 CODE >14:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+8CC text25 CODE >15:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+8D4 text25 CODE >16:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+8D8 text25 CODE >18:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+8DC text25 CODE >19:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+8E4 text25 CODE >20:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+8E8 text25 CODE >22:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+8F0 text25 CODE >23:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+8F8 text25 CODE >24:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+8FC text25 CODE >25:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+8FE text25 CODE >26:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+904 text25 CODE >27:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+906 text25 CODE >25:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+90A text25 CODE >30:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+910 text25 CODE >31:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+91C text25 CODE >32:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+924 text25 CODE >33:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+926 text25 CODE >35:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+92C text25 CODE >36:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+930 text25 CODE >38:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+936 text25 CODE >39:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+93E text25 CODE >40:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+946 text25 CODE >41:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
+DC6 text24 CODE >15:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul16.c
+DC6 text24 CODE >37:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul16.c
+DD2 text24 CODE >38:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul16.c
+DDA text24 CODE >39:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul16.c
+DE2 text24 CODE >52:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul16.c
+DEA text24 CODE >53:C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul16.c
+5EE text23 CODE >18:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+5EE text23 CODE >22:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+634 text23 CODE >24:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+646 text23 CODE >26:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+66C text23 CODE >27:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+68C text23 CODE >28:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+68E text23 CODE >31:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+6B6 text23 CODE >32:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+6B6 text23 CODE >35:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+6DA text23 CODE >36:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+710 text23 CODE >37:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+712 text22 CODE >96:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+712 text22 CODE >99:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+71E text22 CODE >100:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+72E text22 CODE >101:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+742 text22 CODE >102:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+756 text22 CODE >103:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+766 text22 CODE >104:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+77A text22 CODE >106:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+786 text22 CODE >107:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+796 text22 CODE >108:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+7AA text22 CODE >109:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+7BE text22 CODE >110:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+7CE text22 CODE >111:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+7E2 text22 CODE >113:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+7EE text22 CODE >114:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+7FA text22 CODE >115:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+E8E text21 CODE >23:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+E8E text21 CODE >25:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+E90 text21 CODE >26:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+E98 text21 CODE >27:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+E9A text21 CODE >28:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+9CA text20 CODE >31:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+9CC text20 CODE >33:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+9DE text20 CODE >34:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+9FA text20 CODE >35:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+A14 text20 CODE >36:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+A34 text20 CODE >39:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+A38 text20 CODE >40:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+A40 text20 CODE >41:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+D3A text19 CODE >44:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+D3C text19 CODE >47:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+D46 text19 CODE >49:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+D50 text19 CODE >50:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+D58 text19 CODE >53:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+D60 text19 CODE >54:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+D68 text19 CODE >55:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+D04 text18 CODE >119:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+D04 text18 CODE >121:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+D06 text18 CODE >124:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+D1E text18 CODE >125:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+D26 text18 CODE >121:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+D98 text17 CODE >107:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+D9A text17 CODE >109:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+DA0 text17 CODE >110:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+DAA text17 CODE >113:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+DB2 text17 CODE >114:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+DBC text17 CODE >116:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+DC4 text17 CODE >117:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+49E text16 CODE >72:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+49E text16 CODE >77:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+4A6 text16 CODE >79:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+4CA text16 CODE >81:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+4E8 text16 CODE >82:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+50C text16 CODE >84:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+52A text16 CODE >86:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+53E text16 CODE >88:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+54E text16 CODE >89:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+55E text16 CODE >90:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+56E text16 CODE >91:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+57E text16 CODE >92:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+58E text16 CODE >93:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+59E text16 CODE >96:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+5C6 text16 CODE >99:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+5CC text16 CODE >100:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+5D8 text16 CODE >101:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+5DA text16 CODE >104:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+5E0 text16 CODE >105:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+5EC text16 CODE >107:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+E44 text15 CODE >131:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+E44 text15 CODE >132:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+E4E text15 CODE >133:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+E5C text15 CODE >134:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+CC4 text14 CODE >109:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+CC4 text14 CODE >111:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+CC8 text14 CODE >112:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+CCE text14 CODE >113:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+CD6 text14 CODE >115:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+CEC text14 CODE >116:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+D02 text14 CODE >117:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+AB6 text13 CODE >69:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+AB6 text13 CODE >71:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+AC6 text13 CODE >72:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+AD6 text13 CODE >73:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+AE0 text13 CODE >75:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+AEC text13 CODE >76:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+AF8 text13 CODE >77:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+B04 text13 CODE >78:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+B10 text13 CODE >79:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+B86 text12 CODE >36:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+B86 text12 CODE >39:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+BA2 text12 CODE >44:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+BA4 text12 CODE >45:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+BB6 text12 CODE >49:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+BC4 text12 CODE >51:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+BD0 text12 CODE >52:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+BDC text12 CODE >54:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+BDE text12 CODE >57:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+A42 text11 CODE >83:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+A42 text11 CODE >85:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+A52 text11 CODE >86:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+A62 text11 CODE >87:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+A6C text11 CODE >89:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+A78 text11 CODE >90:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+A84 text11 CODE >91:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+A90 text11 CODE >92:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+A9C text11 CODE >93:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+B2A text10 CODE >59:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+B2A text10 CODE >62:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+B46 text10 CODE >64:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+B58 text10 CODE >66:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+B5A text10 CODE >67:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+B82 text10 CODE >68:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+B84 text10 CODE >69:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+E76 text9 CODE >30:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
+E76 text9 CODE >32:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
+E86 text9 CODE >34:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
+E8A text9 CODE >38:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
+E8C text9 CODE >40:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
+948 text8 CODE >52:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+948 text8 CODE >55:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+958 text8 CODE >56:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+968 text8 CODE >58:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+972 text8 CODE >59:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+97E text8 CODE >60:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+98A text8 CODE >62:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+996 text8 CODE >63:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+9A2 text8 CODE >64:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+9B0 text8 CODE >65:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+C7A text7 CODE >15:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+C7A text7 CODE >17:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+C96 text7 CODE >23:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+CAC text7 CODE >26:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+CBA text7 CODE >29:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+CC0 text7 CODE >31:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+CC2 text7 CODE >34:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+E2A text6 CODE >5:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+E2A text6 CODE >7:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+E2E text6 CODE >8:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+E32 text6 CODE >10:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+E36 text6 CODE >11:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+E3A text6 CODE >13:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+E3E text6 CODE >14:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+E42 text6 CODE >15:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+7FC text5 CODE >56:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+7FC text5 CODE >59:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+7FE text5 CODE >60:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+800 text5 CODE >61:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+802 text5 CODE >62:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+804 text5 CODE >63:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+806 text5 CODE >64:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+808 text5 CODE >67:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+80A text5 CODE >68:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+80C text5 CODE >69:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+80E text5 CODE >70:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+810 text5 CODE >71:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+812 text5 CODE >72:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+814 text5 CODE >75:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+824 text5 CODE >76:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+82A text5 CODE >77:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+838 text5 CODE >78:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+83E text5 CODE >79:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+846 text5 CODE >80:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+84C text5 CODE >81:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+854 text5 CODE >82:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+85A text5 CODE >83:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+862 text5 CODE >86:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+86C text5 CODE >87:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+874 text5 CODE >90:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+87E text5 CODE >91:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+886 text5 CODE >94:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+890 text5 CODE >95:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+89E text5 CODE >98:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+8A8 text5 CODE >99:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+8B0 text5 CODE >102:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+8BA text5 CODE >103:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+8C2 text5 CODE >104:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
+E10 text4 CODE >13:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+E10 text4 CODE >16:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+E12 text4 CODE >19:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+E16 text4 CODE >20:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+E1A text4 CODE >22:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+E1C text4 CODE >23:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+E1E text4 CODE >24:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+E20 text4 CODE >25:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+E22 text4 CODE >26:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+E24 text4 CODE >28:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+E26 text4 CODE >29:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+E28 text4 CODE >30:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
+E5E text3 CODE >14:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
+E5E text3 CODE >16:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
+E62 text3 CODE >17:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
+E64 text3 CODE >20:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
+E68 text3 CODE >21:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
+E6C text3 CODE >23:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
+E70 text3 CODE >24:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
+E74 text3 CODE >25:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
+D6A text2 CODE >39:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+D6A text2 CODE >42:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+D6E text2 CODE >43:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+D72 text2 CODE >44:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+D74 text2 CODE >45:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+D76 text2 CODE >46:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+D78 text2 CODE >49:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+D7C text2 CODE >50:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+D80 text2 CODE >51:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+D84 text2 CODE >52:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+D90 text2 CODE >54:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+D92 text2 CODE >55:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+D94 text2 CODE >56:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+D96 text2 CODE >57:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+BE0 text1 CODE >40:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+BE0 text1 CODE >42:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+BF6 text1 CODE >44:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+C02 text1 CODE >45:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+C0E text1 CODE >46:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+C1A text1 CODE >47:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+C26 text1 CODE >48:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
+342 text0 CODE >78:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+342 text0 CODE >81:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+346 text0 CODE >85:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+35A text0 CODE >88:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+364 text0 CODE >89:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+36C text0 CODE >91:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+37C text0 CODE >97:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+382 text0 CODE >99:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+3A0 text0 CODE >103:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+3A6 text0 CODE >105:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+3DC text0 CODE >110:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+3E4 text0 CODE >112:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+40A text0 CODE >114:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+40C text0 CODE >117:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+414 text0 CODE >119:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+430 text0 CODE >121:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+432 text0 CODE >125:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+436 text0 CODE >126:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+442 text0 CODE >127:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+44C text0 CODE >129:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+464 text0 CODE >130:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+47A text0 CODE >131:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+47E text0 CODE >132:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+482 text0 CODE >123:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+486 text0 CODE >121:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+490 text0 CODE >139:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
+DEC cinit CODE >2478:C:\Users\charl\AppData\Local\Temp\shto.
+DEC cinit CODE >2480:C:\Users\charl\AppData\Local\Temp\shto.
+DEC cinit CODE >2483:C:\Users\charl\AppData\Local\Temp\shto.
+DEC cinit CODE >2506:C:\Users\charl\AppData\Local\Temp\shto.
+DF0 cinit CODE >2507:C:\Users\charl\AppData\Local\Temp\shto.
+DF2 cinit CODE >2508:C:\Users\charl\AppData\Local\Temp\shto.
+DF2 cinit CODE >2509:C:\Users\charl\AppData\Local\Temp\shto.
+DF4 cinit CODE >2510:C:\Users\charl\AppData\Local\Temp\shto.
+DF6 cinit CODE >2511:C:\Users\charl\AppData\Local\Temp\shto.
+DF8 cinit CODE >2514:C:\Users\charl\AppData\Local\Temp\shto.
+DFA cinit CODE >2515:C:\Users\charl\AppData\Local\Temp\shto.
+DFC cinit CODE >2516:C:\Users\charl\AppData\Local\Temp\shto.
+DFE cinit CODE >2522:C:\Users\charl\AppData\Local\Temp\shto.
+DFE cinit CODE >2524:C:\Users\charl\AppData\Local\Temp\shto.
+E00 cinit CODE >2525:C:\Users\charl\AppData\Local\Temp\shto.
+E02 cinit CODE >2527:C:\Users\charl\AppData\Local\Temp\shto.
+E04 cinit CODE >2528:C:\Users\charl\AppData\Local\Temp\shto.
+E06 cinit CODE >2529:C:\Users\charl\AppData\Local\Temp\shto.
+E08 cinit CODE >2530:C:\Users\charl\AppData\Local\Temp\shto.
+E0A cinit CODE >2531:C:\Users\charl\AppData\Local\Temp\shto.
+E0C cinit CODE >2532:C:\Users\charl\AppData\Local\Temp\shto.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -419,86 +431,95 @@ ___awdiv@counter 12 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Pr
 __Lmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production\ECM_Final_Project.X.production.o
 LCD_String@string C 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __Hspace_0 30000E 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-__Hspace_1 83 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
+__Hspace_1 88 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Hspace_2 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __size_of_init_LCD 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _PWMCON0 F6F 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _PWMCON1 F6E 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\ECM_Final_Project.X.production.o
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\charl\AppData\Local\Temp\sbl0.o
-__end_of_classify_data DF6 0 CODE 0 text16 dist/default/production\ECM_Final_Project.X.production.o
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\charl\AppData\Local\Temp\shto.o
+__end_of_classify_data E8E 0 CODE 0 text9 dist/default/production\ECM_Final_Project.X.production.o
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\ECM_Final_Project.X.production.o
-__end_of_LCDout AB0 0 CODE 0 text21 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_LCDout A42 0 CODE 0 text20 dist/default/production\ECM_Final_Project.X.production.o
 setMotorPWM@m 16 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-main@beacon_location 6C 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
-_moveForward AB0 0 CODE 0 text8 dist/default/production\ECM_Final_Project.X.production.o
-main@i 68 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
+_moveForward AB6 0 CODE 0 text13 dist/default/production\ECM_Final_Project.X.production.o
+returnHome@speed 2C 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
+main@i 62 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_moveToBeacon BE0 0 CODE 0 text12 dist/default/production\ECM_Final_Project.X.production.o
 __Lsmallconst 300 0 SMALLCONST 0 smallconst dist/default/production\ECM_Final_Project.X.production.o
 _LATB F8A 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\charl\AppData\Local\Temp\sbl0.o
-_main 332 0 CODE 0 text0 dist/default/production\ECM_Final_Project.X.production.o
-_stop B98 0 CODE 0 text2 dist/default/production\ECM_Final_Project.X.production.o
-btemp 39 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
-start 3E 0 CODE 0 init C:\Users\charl\AppData\Local\Temp\sbl0.o
-_SendLCD CA8 0 CODE 0 text20 dist/default/production\ECM_Final_Project.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\charl\AppData\Local\Temp\shto.o
+_main 342 0 CODE 0 text0 dist/default/production\ECM_Final_Project.X.production.o
+_stop BE0 0 CODE 0 text1 dist/default/production\ECM_Final_Project.X.production.o
+btemp 3D 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
+start 3E 0 CODE 0 init C:\Users\charl\AppData\Local\Temp\shto.o
+_SendLCD D3A 0 CODE 0 text19 dist/default/production\ECM_Final_Project.X.production.o
 __size_of___awdiv 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-_SetLine D06 0 CODE 0 text18 dist/default/production\ECM_Final_Project.X.production.o
+_SetLine D98 0 CODE 0 text17 dist/default/production\ECM_Final_Project.X.production.o
 __size_of_main 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __size_of_stop 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __HbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 ?___wmul 8 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
+_scanForBeacon C7A 0 CODE 0 text7 dist/default/production\ECM_Final_Project.X.production.o
 __size_of_init_sensor 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Hpowerup 3E 0 CODE 0 powerup dist/default/production\ECM_Final_Project.X.production.o
 stop@i 25 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 moveBackward@mL 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 moveBackward@mR 21 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-ttemp5 3A 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
-ttemp6 3D 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
-ttemp7 41 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
-__accesstop 60 0 ABS 0 - C:\Users\charl\AppData\Local\Temp\sbl0.o
-intlevel0 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\sbl0.o
-intlevel1 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\sbl0.o
-intlevel2 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\sbl0.o
-intlevel3 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\sbl0.o
+ttemp5 3E 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
+ttemp6 41 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
+ttemp7 45 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
+__accesstop 60 0 ABS 0 - C:\Users\charl\AppData\Local\Temp\shto.o
+intlevel0 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\shto.o
+intlevel1 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\shto.o
+intlevel2 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\shto.o
+intlevel3 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\shto.o
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-_init_LCD 86A 0 CODE 0 text6 dist/default/production\ECM_Final_Project.X.production.o
+_init_LCD 7FC 0 CODE 0 text5 dist/default/production\ECM_Final_Project.X.production.o
 init_motor_struct@mL 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 init_motor_struct@mR 21 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 _OSCCONbits FD3 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\ECM_Final_Project.X.production.o
-wtemp8 3A 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
-__end_of_init_motor_struct 86A 0 CODE 0 text10 dist/default/production\ECM_Final_Project.X.production.o
+wtemp8 3E 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
+__end_of_init_motor_struct 7FC 0 CODE 0 text22 dist/default/production\ECM_Final_Project.X.production.o
+scanForBeacon@beacon_location 32 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __Hifardata 0 0 CODE 0 ifardata dist/default/production\ECM_Final_Project.X.production.o
 SetLine@line C 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 ___awdiv@sign 13 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __Hclrtext 0 0 ABS 0 clrtext dist/default/production\ECM_Final_Project.X.production.o
-__end_of_init_LCD 932 0 CODE 0 text6 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_init_LCD 8C4 0 CODE 0 text5 dist/default/production\ECM_Final_Project.X.production.o
 check_RFID@i 24 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
+moveToBeacon@RFID_buffer 30 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 ___wmul@multiplicand A 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 moveForward@i 26 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 stop@initial_speed 23 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 _ANSEL0 FB8 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _ANSEL1 FB9 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 ___awdiv@dividend E 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-___inthi_sp 0 0 STACK 2 stack C:\Users\charl\AppData\Local\Temp\sbl0.o
-___intlo_sp 0 0 STACK 2 stack C:\Users\charl\AppData\Local\Temp\sbl0.o
-_LCD_String C72 0 CODE 0 text19 dist/default/production\ECM_Final_Project.X.production.o
+___inthi_sp 0 0 STACK 2 stack C:\Users\charl\AppData\Local\Temp\shto.o
+___intlo_sp 0 0 STACK 2 stack C:\Users\charl\AppData\Local\Temp\shto.o
+_LCD_String D04 0 CODE 0 text18 dist/default/production\ECM_Final_Project.X.production.o
 __size_of_initPWM 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Hintcode_body 0 0 ABS 0 intcode_body dist/default/production\ECM_Final_Project.X.production.o
 initPWM@PWMperiod 8 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-__end_of___wmul D5A 0 CODE 0 text12 dist/default/production\ECM_Final_Project.X.production.o
-_RFID_flag 2B 0 COMRAM 1 bssCOMRAM dist/default/production\ECM_Final_Project.X.production.o
+__end_of___wmul DEC 0 CODE 0 text24 dist/default/production\ECM_Final_Project.X.production.o
+_RFID_flag 3C 0 COMRAM 1 bssCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 turnRight@i 26 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\ECM_Final_Project.X.production.o
+scanForBeacon@speed 2C 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 _BAUDCONbits FAA 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Hmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production\ECM_Final_Project.X.production.o
 __Hintcodelo 3E 0 CODE 0 intcodelo dist/default/production\ECM_Final_Project.X.production.o
 ___awdiv@divisor 10 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-__end_of___awdiv 9B6 0 CODE 0 text13 dist/default/production\ECM_Final_Project.X.production.o
+__end_of___awdiv 948 0 CODE 0 text25 dist/default/production\ECM_Final_Project.X.production.o
 _DFLTCON F60 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-_check_RFID 50C 0 CODE 0 text17 dist/default/production\ECM_Final_Project.X.production.o
+moveToBeacon@speed 2C 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
+_check_RFID 49E 0 CODE 0 text16 dist/default/production\ECM_Final_Project.X.production.o
+scanForBeacon@mL 28 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
+scanForBeacon@mR 2A 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __size_of_E_TOG 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-_LCDout A38 0 CODE 0 text21 dist/default/production\ECM_Final_Project.X.production.o
+__size_of_scanForBeacon 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
+_LCDout 9CA 0 CODE 0 text20 dist/default/production\ECM_Final_Project.X.production.o
 _CAP1BUFH F69 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _CAP1BUFL F68 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __size_of_setup 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
@@ -506,11 +527,11 @@ processRFID@RFIDbuf 1 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_
 __size_of_ClearLCD 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Lintcodelo 3E 0 CODE 0 intcodelo dist/default/production\ECM_Final_Project.X.production.o
 __CFG_MCLRE$OFF 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-start_initialization D5A 0 CODE 0 cinit dist/default/production\ECM_Final_Project.X.production.o
+start_initialization DEC 0 CODE 0 cinit dist/default/production\ECM_Final_Project.X.production.o
 _OSCCON FD3 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-_setMotorPWM 65C 0 CODE 0 text11 dist/default/production\ECM_Final_Project.X.production.o
+_setMotorPWM 5EE 0 CODE 0 text23 dist/default/production\ECM_Final_Project.X.production.o
 __HnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\ECM_Final_Project.X.production.o
-_init_motor_struct 780 0 CODE 0 text10 dist/default/production\ECM_Final_Project.X.production.o
+_init_motor_struct 712 0 CODE 0 text22 dist/default/production\ECM_Final_Project.X.production.o
 _TRISAbits F92 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _PTCON0 F7F 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _PTCON1 F7E 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
@@ -519,14 +540,16 @@ _PTPERL F7B 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _TRISBbits F93 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _TRISCbits F94 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _TRISDbits F95 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-__end_of_LCD_String CA8 0 CODE 0 text19 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_LCD_String D3A 0 CODE 0 text18 dist/default/production\ECM_Final_Project.X.production.o
 ___rparam_used 1 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _SPBRGH FB0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __pcstackBANK0 60 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
 _IPR1bits F9F 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 main@searching_speed 60 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
-_moveBackward B24 0 CODE 0 text9 dist/default/production\ECM_Final_Project.X.production.o
-__end_of_processRFID C32 0 CODE 0 text24 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_scanForBeacon CC4 0 CODE 0 text7 dist/default/production\ECM_Final_Project.X.production.o
+scanForBeacon@raw_data 30 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
+_moveBackward A42 0 CODE 0 text11 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_processRFID C7A 0 CODE 0 text27 dist/default/production\ECM_Final_Project.X.production.o
 check_RFID@byte1 1E 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 check_RFID@byte2 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 check_RFID@byte3 20 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
@@ -535,7 +558,7 @@ check_RFID@byte5 22 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Pr
 moveForward@mL 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 moveForward@mR 21 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __size_of_LCDout 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-__end_of_initPWM DAC 0 CODE 0 text7 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_initPWM E44 0 CODE 0 text6 dist/default/production\ECM_Final_Project.X.production.o
 __Hbank0 0 0 ABS 0 bank0 dist/default/production\ECM_Final_Project.X.production.o
 __Hbank1 0 0 ABS 0 bank1 dist/default/production\ECM_Final_Project.X.production.o
 __Hbank2 0 0 ABS 0 bank2 dist/default/production\ECM_Final_Project.X.production.o
@@ -543,7 +566,7 @@ __Hcinit 0 0 ABS 0 cinit dist/default/production\ECM_Final_Project.X.production.
 __Hconst 0 0 CONST 0 const dist/default/production\ECM_Final_Project.X.production.o
 __Hidata 0 0 CODE 0 idata dist/default/production\ECM_Final_Project.X.production.o
 __Hidloc 200008 0 IDLOC 0 idloc dist/default/production\ECM_Final_Project.X.production.o
-__end_of_check_RFID 65C 0 CODE 0 text17 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_check_RFID 5EE 0 CODE 0 text16 dist/default/production\ECM_Final_Project.X.production.o
 __Hnvbit 0 0 COMRAM 1 nvbit dist/default/production\ECM_Final_Project.X.production.o
 __Hparam 0 0 COMRAM 1 rparam dist/default/production\ECM_Final_Project.X.production.o
 __Hrdata 0 0 COMRAM 1 rdata dist/default/production\ECM_Final_Project.X.production.o
@@ -561,12 +584,14 @@ __Htext9 0 0 ABS 0 text9 dist/default/production\ECM_Final_Project.X.production.
 _InterruptHandlerHigh 8 0 CODE 0 intcode dist/default/production\ECM_Final_Project.X.production.o
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\ECM_Final_Project.X.production.o
 __Hbigram 0 0 ABS 0 bigram dist/default/production\ECM_Final_Project.X.production.o
-__smallconst 300 0 SMALLCONST 0 smallconst C:\Users\charl\AppData\Local\Temp\sbl0.o
-_init_sensor DC6 0 CODE 0 text4 dist/default/production\ECM_Final_Project.X.production.o
-_ClearLCD DAC 0 CODE 0 text15 dist/default/production\ECM_Final_Project.X.production.o
+__smallconst 300 0 SMALLCONST 0 smallconst C:\Users\charl\AppData\Local\Temp\shto.o
+_init_sensor E5E 0 CODE 0 text3 dist/default/production\ECM_Final_Project.X.production.o
+_ClearLCD E44 0 CODE 0 text15 dist/default/production\ECM_Final_Project.X.production.o
 __Hcomram 0 0 ABS 0 comram dist/default/production\ECM_Final_Project.X.production.o
 __Hconfig 30000E 0 CONFIG 0 config dist/default/production\ECM_Final_Project.X.production.o
-__end_of_moveForward B24 0 CODE 0 text8 dist/default/production\ECM_Final_Project.X.production.o
+returnHome@mL 28 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
+returnHome@mR 2A 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
+__end_of_moveForward B2A 0 CODE 0 text13 dist/default/production\ECM_Final_Project.X.production.o
 __Lbank0 0 0 ABS 0 bank0 dist/default/production\ECM_Final_Project.X.production.o
 __Lbank1 0 0 ABS 0 bank1 dist/default/production\ECM_Final_Project.X.production.o
 __Lbank2 0 0 ABS 0 bank2 dist/default/production\ECM_Final_Project.X.production.o
@@ -574,7 +599,7 @@ __Lcinit 0 0 ABS 0 cinit dist/default/production\ECM_Final_Project.X.production.
 __Lconst 0 0 CONST 0 const dist/default/production\ECM_Final_Project.X.production.o
 __Lidata 0 0 CODE 0 idata dist/default/production\ECM_Final_Project.X.production.o
 __Lidloc 200000 0 IDLOC 0 idloc dist/default/production\ECM_Final_Project.X.production.o
-_display_RFID C32 0 CODE 0 text14 dist/default/production\ECM_Final_Project.X.production.o
+_display_RFID CC4 0 CODE 0 text14 dist/default/production\ECM_Final_Project.X.production.o
 __Lnvbit 0 0 COMRAM 1 nvbit dist/default/production\ECM_Final_Project.X.production.o
 __Lparam 0 0 COMRAM 1 rparam dist/default/production\ECM_Final_Project.X.production.o
 __Lrdata 0 0 COMRAM 1 rdata dist/default/production\ECM_Final_Project.X.production.o
@@ -590,8 +615,9 @@ __Ltext7 0 0 ABS 0 text7 dist/default/production\ECM_Final_Project.X.production.
 __Ltext8 0 0 ABS 0 text8 dist/default/production\ECM_Final_Project.X.production.o
 __Ltext9 0 0 ABS 0 text9 dist/default/production\ECM_Final_Project.X.production.o
 __Hfarbss 0 0 FARRAM 0 farbss dist/default/production\ECM_Final_Project.X.production.o
+returnHome@micros 2E 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __Lintcode_body 0 0 ABS 0 intcode_body dist/default/production\ECM_Final_Project.X.production.o
-__end_of_ClearLCD DC6 0 CODE 0 text15 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_ClearLCD E5E 0 CODE 0 text15 dist/default/production\ECM_Final_Project.X.production.o
 _PORTDbits F83 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _INTCONbits FF2 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Habs1 0 0 ABS 0 abs1 dist/default/production\ECM_Final_Project.X.production.o
@@ -599,42 +625,47 @@ __Hdata 0 0 ABS 0 data dist/default/production\ECM_Final_Project.X.production.o
 __Hinit 42 0 CODE 0 init dist/default/production\ECM_Final_Project.X.production.o
 __Hrbit 0 0 COMRAM 1 rbit dist/default/production\ECM_Final_Project.X.production.o
 __Hrbss 0 0 COMRAM 1 rbss dist/default/production\ECM_Final_Project.X.production.o
-__Htemp 3A 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
+__Htemp 3E 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
 __Htext 0 0 ABS 0 text dist/default/production\ECM_Final_Project.X.production.o
 __Labs1 0 0 ABS 0 abs1 dist/default/production\ECM_Final_Project.X.production.o
 __Ldata 0 0 ABS 0 data dist/default/production\ECM_Final_Project.X.production.o
 __Linit 3E 0 CODE 0 init dist/default/production\ECM_Final_Project.X.production.o
 __Lrbit 0 0 COMRAM 1 rbit dist/default/production\ECM_Final_Project.X.production.o
 __Lrbss 0 0 COMRAM 1 rbss dist/default/production\ECM_Final_Project.X.production.o
-__Ltemp 39 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
+__Ltemp 3D 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
 __Ltext 0 0 ABS 0 text dist/default/production\ECM_Final_Project.X.production.o
-_RFIDbuf 2D 0 COMRAM 1 bssCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-___wmul D34 0 CODE 0 text12 dist/default/production\ECM_Final_Project.X.production.o
+_returnHome B2A 0 CODE 0 text10 dist/default/production\ECM_Final_Project.X.production.o
+_RFIDbuf 7C 0 BANK0 1 bssBANK0 dist/default/production\ECM_Final_Project.X.production.o
+___wmul DC6 0 CODE 0 text24 dist/default/production\ECM_Final_Project.X.production.o
 __size_of_moveBackward 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
-int$flags 39 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
+int$flags 3D 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
 __HcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __Hintret 0 0 ABS 0 intret dist/default/production\ECM_Final_Project.X.production.o
 __Hirdata 0 0 CODE 0 irdata dist/default/production\ECM_Final_Project.X.production.o
 __S0 30000E 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-__S1 83 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
+__S1 88 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __S2 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __size_of_SendLCD 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __size_of_SetLine 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Lbigdata 0 0 BIGRAM 1 bigdata dist/default/production\ECM_Final_Project.X.production.o
 __Hnvrram 0 0 COMRAM 1 nvrram dist/default/production\ECM_Final_Project.X.production.o
-__end_of_moveBackward B98 0 CODE 0 text9 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_moveBackward AB6 0 CODE 0 text11 dist/default/production\ECM_Final_Project.X.production.o
 __size_of_display_RFID 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 turnRight@mL 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 turnRight@mR 21 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 LCDout@number 9 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __Lintentry 0 0 ABS 0 intentry dist/default/production\ECM_Final_Project.X.production.o
+moveToBeacon@exit_flag 32 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
+moveToBeacon@mL 28 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
+moveToBeacon@mR 2A 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __Hramtop 300 0 RAM 0 ramtop dist/default/production\ECM_Final_Project.X.production.o
 __Hrparam 0 0 COMRAM 1 rparam dist/default/production\ECM_Final_Project.X.production.o
 check_RFID@dataBuf E 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __activetblptr 1 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Hstruct 0 0 COMRAM 1 struct dist/default/production\ECM_Final_Project.X.production.o
 __size_of___wmul 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
+__LbssBANK0 0 0 ABS 0 bssBANK0 dist/default/production\ECM_Final_Project.X.production.o
 __Htext10 0 0 ABS 0 text10 dist/default/production\ECM_Final_Project.X.production.o
 __Htext11 0 0 ABS 0 text11 dist/default/production\ECM_Final_Project.X.production.o
 __Htext12 0 0 ABS 0 text12 dist/default/production\ECM_Final_Project.X.production.o
@@ -648,33 +679,40 @@ __Htext19 0 0 ABS 0 text19 dist/default/production\ECM_Final_Project.X.productio
 __Htext20 0 0 ABS 0 text20 dist/default/production\ECM_Final_Project.X.production.o
 __Htext21 0 0 ABS 0 text21 dist/default/production\ECM_Final_Project.X.production.o
 __Htext22 0 0 ABS 0 text22 dist/default/production\ECM_Final_Project.X.production.o
+__Htext23 0 0 ABS 0 text23 dist/default/production\ECM_Final_Project.X.production.o
 __Htext24 0 0 ABS 0 text24 dist/default/production\ECM_Final_Project.X.production.o
-main@moving_speed 6F 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
+__Htext25 0 0 ABS 0 text25 dist/default/production\ECM_Final_Project.X.production.o
+__Htext27 0 0 ABS 0 text27 dist/default/production\ECM_Final_Project.X.production.o
+main@moving_speed 68 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
 _RCSTAbits FAB 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _PIE1bits F9D 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-__end_of_init_RFID D92 0 CODE 0 text5 dist/default/production\ECM_Final_Project.X.production.o
-__end_of_display_RFID C72 0 CODE 0 text14 dist/default/production\ECM_Final_Project.X.production.o
-__ptext10 780 0 CODE 0 text10 dist/default/production\ECM_Final_Project.X.production.o
-__ptext11 65C 0 CODE 0 text11 dist/default/production\ECM_Final_Project.X.production.o
-__ptext12 D34 0 CODE 0 text12 dist/default/production\ECM_Final_Project.X.production.o
-__ptext13 932 0 CODE 0 text13 dist/default/production\ECM_Final_Project.X.production.o
-__ptext14 C32 0 CODE 0 text14 dist/default/production\ECM_Final_Project.X.production.o
-__ptext15 DAC 0 CODE 0 text15 dist/default/production\ECM_Final_Project.X.production.o
-__ptext16 DDE 0 CODE 0 text16 dist/default/production\ECM_Final_Project.X.production.o
-__ptext17 50C 0 CODE 0 text17 dist/default/production\ECM_Final_Project.X.production.o
-__ptext18 D06 0 CODE 0 text18 dist/default/production\ECM_Final_Project.X.production.o
-__ptext19 C72 0 CODE 0 text19 dist/default/production\ECM_Final_Project.X.production.o
-__ptext20 CA8 0 CODE 0 text20 dist/default/production\ECM_Final_Project.X.production.o
-__ptext21 A38 0 CODE 0 text21 dist/default/production\ECM_Final_Project.X.production.o
-__ptext22 DF6 0 CODE 0 text22 dist/default/production\ECM_Final_Project.X.production.o
-__ptext24 BE6 0 CODE 0 text24 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_init_RFID E2A 0 CODE 0 text4 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_returnHome B86 0 CODE 0 text10 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_display_RFID D04 0 CODE 0 text14 dist/default/production\ECM_Final_Project.X.production.o
+__ptext10 B2A 0 CODE 0 text10 dist/default/production\ECM_Final_Project.X.production.o
+__ptext11 A42 0 CODE 0 text11 dist/default/production\ECM_Final_Project.X.production.o
+__ptext12 B86 0 CODE 0 text12 dist/default/production\ECM_Final_Project.X.production.o
+__ptext13 AB6 0 CODE 0 text13 dist/default/production\ECM_Final_Project.X.production.o
+__ptext14 CC4 0 CODE 0 text14 dist/default/production\ECM_Final_Project.X.production.o
+__ptext15 E44 0 CODE 0 text15 dist/default/production\ECM_Final_Project.X.production.o
+__ptext16 49E 0 CODE 0 text16 dist/default/production\ECM_Final_Project.X.production.o
+__ptext17 D98 0 CODE 0 text17 dist/default/production\ECM_Final_Project.X.production.o
+__ptext18 D04 0 CODE 0 text18 dist/default/production\ECM_Final_Project.X.production.o
+__ptext19 D3A 0 CODE 0 text19 dist/default/production\ECM_Final_Project.X.production.o
+__ptext20 9CA 0 CODE 0 text20 dist/default/production\ECM_Final_Project.X.production.o
+__ptext21 E8E 0 CODE 0 text21 dist/default/production\ECM_Final_Project.X.production.o
+__ptext22 712 0 CODE 0 text22 dist/default/production\ECM_Final_Project.X.production.o
+__ptext23 5EE 0 CODE 0 text23 dist/default/production\ECM_Final_Project.X.production.o
+__ptext24 DC6 0 CODE 0 text24 dist/default/production\ECM_Final_Project.X.production.o
+__ptext25 8C4 0 CODE 0 text25 dist/default/production\ECM_Final_Project.X.production.o
+__ptext27 C2E 0 CODE 0 text27 dist/default/production\ECM_Final_Project.X.production.o
 __size_of_init_RFID 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-___awdiv 932 0 CODE 0 text13 dist/default/production\ECM_Final_Project.X.production.o
-_robot_mode 2C 0 COMRAM 1 bssCOMRAM dist/default/production\ECM_Final_Project.X.production.o
+___awdiv 8C4 0 CODE 0 text25 dist/default/production\ECM_Final_Project.X.production.o
+_robot_mode 3B 0 COMRAM 1 bssCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __Lbigbss 0 0 BIGRAM 1 bigbss dist/default/production\ECM_Final_Project.X.production.o
 __Lbigram 0 0 ABS 0 bigram dist/default/production\ECM_Final_Project.X.production.o
 moveForward@max_power 23 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-processRFID@position_in_buf 2A 0 COMRAM 1 bssCOMRAM dist/default/production\ECM_Final_Project.X.production.o
+processRFID@position_in_buf 3A 0 COMRAM 1 bssCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __Lcomram 0 0 ABS 0 comram dist/default/production\ECM_Final_Project.X.production.o
 __Lconfig 300000 0 CONFIG 0 config dist/default/production\ECM_Final_Project.X.production.o
 main@movementMicros 64 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
@@ -685,12 +723,12 @@ _LATDbits F8C 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __size_of_processRFID 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __size_of_LCD_String 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Lfarbss 0 0 FARRAM 0 farbss dist/default/production\ECM_Final_Project.X.production.o
-main@i_502 6D 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
-_init_RFID D78 0 CODE 0 text5 dist/default/production\ECM_Final_Project.X.production.o
+_init_RFID E10 0 CODE 0 text4 dist/default/production\ECM_Final_Project.X.production.o
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production\ECM_Final_Project.X.production.o
+moveToBeacon@micros 2E 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 setMotorPWM@PWMduty 1D 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-stackhi 2FF 0 ABS 0 - C:\Users\charl\AppData\Local\Temp\sbl0.o
-stacklo 83 0 ABS 0 - C:\Users\charl\AppData\Local\Temp\sbl0.o
+stackhi 2FF 0 ABS 0 - C:\Users\charl\AppData\Local\Temp\shto.o
+stacklo 88 0 ABS 0 - C:\Users\charl\AppData\Local\Temp\shto.o
 stop@mL 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 stop@mR 21 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __Lintcode 8 0 CODE 0 intcode dist/default/production\ECM_Final_Project.X.production.o
@@ -699,21 +737,21 @@ __Lirdata 0 0 CODE 0 irdata dist/default/production\ECM_Final_Project.X.producti
 __CFG_LVP$OFF 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 processRFID@latestChar 3 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 moveBackward@i 26 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-__end_of_SendLCD CD8 0 CODE 0 text20 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_SendLCD D6A 0 CODE 0 text19 dist/default/production\ECM_Final_Project.X.production.o
 __Lspace_0 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Lspace_1 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Lspace_2 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-__end_of_SetLine D34 0 CODE 0 text18 dist/default/production\ECM_Final_Project.X.production.o
-__pbssCOMRAM 2A 0 COMRAM 1 bssCOMRAM dist/default/production\ECM_Final_Project.X.production.o
+__end_of_SetLine DC6 0 CODE 0 text17 dist/default/production\ECM_Final_Project.X.production.o
+__pbssCOMRAM 3A 0 COMRAM 1 bssCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __HcstackBANK0 0 0 ABS 0 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
 __size_of_moveForward 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _PIR1bits F9E 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-__end_of_turnRight A38 0 CODE 0 text1 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_turnRight 9CA 0 CODE 0 text8 dist/default/production\ECM_Final_Project.X.production.o
 __size_of_check_RFID 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __LcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-__end_of_setMotorPWM 780 0 CODE 0 text11 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_setMotorPWM 712 0 CODE 0 text23 dist/default/production\ECM_Final_Project.X.production.o
 __size_of_turnRight 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-end_of_initialization D66 0 CODE 0 cinit dist/default/production\ECM_Final_Project.X.production.o
+end_of_initialization DFE 0 CODE 0 cinit dist/default/production\ECM_Final_Project.X.production.o
 __Lnvrram 0 0 COMRAM 1 nvrram dist/default/production\ECM_Final_Project.X.production.o
 __Hintentry 0 0 ABS 0 intentry dist/default/production\ECM_Final_Project.X.production.o
 _RCONbits FD0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
@@ -721,24 +759,25 @@ ___awdiv@quotient 14 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_P
 ?___awdiv E 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 turnRight@max_power 23 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __Hreset_vec 4 0 CODE 0 reset_vec dist/default/production\ECM_Final_Project.X.production.o
-_classify_data DDE 0 CODE 0 text16 dist/default/production\ECM_Final_Project.X.production.o
-_initPWM D92 0 CODE 0 text7 dist/default/production\ECM_Final_Project.X.production.o
+_classify_data E76 0 CODE 0 text9 dist/default/production\ECM_Final_Project.X.production.o
+__HbssBANK0 0 0 ABS 0 bssBANK0 dist/default/production\ECM_Final_Project.X.production.o
+_initPWM E2A 0 CODE 0 text6 dist/default/production\ECM_Final_Project.X.production.o
 moveBackward@max_power 23 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __Lramtop 300 0 RAM 0 ramtop dist/default/production\ECM_Final_Project.X.production.o
 __Lrparam 0 0 COMRAM 1 rparam dist/default/production\ECM_Final_Project.X.production.o
-__pcinit D5A 0 CODE 0 cinit dist/default/production\ECM_Final_Project.X.production.o
+__pcinit DEC 0 CODE 0 cinit dist/default/production\ECM_Final_Project.X.production.o
 processRFID@i 4 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-_turnRight 9B6 0 CODE 0 text1 dist/default/production\ECM_Final_Project.X.production.o
-__ptext0 332 0 CODE 0 text0 dist/default/production\ECM_Final_Project.X.production.o
-__ptext1 9B6 0 CODE 0 text1 dist/default/production\ECM_Final_Project.X.production.o
-__ptext2 B98 0 CODE 0 text2 dist/default/production\ECM_Final_Project.X.production.o
-__ptext3 CD8 0 CODE 0 text3 dist/default/production\ECM_Final_Project.X.production.o
-__ptext4 DC6 0 CODE 0 text4 dist/default/production\ECM_Final_Project.X.production.o
-__ptext5 D78 0 CODE 0 text5 dist/default/production\ECM_Final_Project.X.production.o
-__ptext6 86A 0 CODE 0 text6 dist/default/production\ECM_Final_Project.X.production.o
-__ptext7 D92 0 CODE 0 text7 dist/default/production\ECM_Final_Project.X.production.o
-__ptext8 AB0 0 CODE 0 text8 dist/default/production\ECM_Final_Project.X.production.o
-__ptext9 B24 0 CODE 0 text9 dist/default/production\ECM_Final_Project.X.production.o
+_turnRight 948 0 CODE 0 text8 dist/default/production\ECM_Final_Project.X.production.o
+__ptext0 342 0 CODE 0 text0 dist/default/production\ECM_Final_Project.X.production.o
+__ptext1 BE0 0 CODE 0 text1 dist/default/production\ECM_Final_Project.X.production.o
+__ptext2 D6A 0 CODE 0 text2 dist/default/production\ECM_Final_Project.X.production.o
+__ptext3 E5E 0 CODE 0 text3 dist/default/production\ECM_Final_Project.X.production.o
+__ptext4 E10 0 CODE 0 text4 dist/default/production\ECM_Final_Project.X.production.o
+__ptext5 7FC 0 CODE 0 text5 dist/default/production\ECM_Final_Project.X.production.o
+__ptext6 E2A 0 CODE 0 text6 dist/default/production\ECM_Final_Project.X.production.o
+__ptext7 C7A 0 CODE 0 text7 dist/default/production\ECM_Final_Project.X.production.o
+__ptext8 948 0 CODE 0 text8 dist/default/production\ECM_Final_Project.X.production.o
+__ptext9 E76 0 CODE 0 text9 dist/default/production\ECM_Final_Project.X.production.o
 __Lstruct 0 0 COMRAM 1 struct dist/default/production\ECM_Final_Project.X.production.o
 __Ltext10 0 0 ABS 0 text10 dist/default/production\ECM_Final_Project.X.production.o
 __Ltext11 0 0 ABS 0 text11 dist/default/production\ECM_Final_Project.X.production.o
@@ -753,32 +792,37 @@ __Ltext19 0 0 ABS 0 text19 dist/default/production\ECM_Final_Project.X.productio
 __Ltext20 0 0 ABS 0 text20 dist/default/production\ECM_Final_Project.X.production.o
 __Ltext21 0 0 ABS 0 text21 dist/default/production\ECM_Final_Project.X.production.o
 __Ltext22 0 0 ABS 0 text22 dist/default/production\ECM_Final_Project.X.production.o
+__Ltext23 0 0 ABS 0 text23 dist/default/production\ECM_Final_Project.X.production.o
 __Ltext24 0 0 ABS 0 text24 dist/default/production\ECM_Final_Project.X.production.o
-__ramtop 300 0 RAM 0 ramtop C:\Users\charl\AppData\Local\Temp\sbl0.o
-main@motorL 71 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
-main@motorR 7A 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
+__Ltext25 0 0 ABS 0 text25 dist/default/production\ECM_Final_Project.X.production.o
+__Ltext27 0 0 ABS 0 text27 dist/default/production\ECM_Final_Project.X.production.o
+__ramtop 300 0 RAM 0 ramtop C:\Users\charl\AppData\Local\Temp\shto.o
+main@motorL 6A 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
+main@motorR 73 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
 __Lpowerup 3E 0 CODE 0 powerup dist/default/production\ECM_Final_Project.X.production.o
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\ECM_Final_Project.X.production.o
+returnHome@i 34 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __psmallconst 300 0 SMALLCONST 0 smallconst dist/default/production\ECM_Final_Project.X.production.o
-main@raw_data 62 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
 __Lreset_vec 0 0 CODE 0 reset_vec dist/default/production\ECM_Final_Project.X.production.o
-__end_of_init_sensor DDE 0 CODE 0 text4 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_init_sensor E76 0 CODE 0 text3 dist/default/production\ECM_Final_Project.X.production.o
 check_RFID@checksum 23 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 ___param_bank 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Hbigdata 0 0 BIGRAM 1 bigdata dist/default/production\ECM_Final_Project.X.production.o
-__end_of__initialization D66 0 CODE 0 cinit dist/default/production\ECM_Final_Project.X.production.o
+__end_of__initialization DFE 0 CODE 0 cinit dist/default/production\ECM_Final_Project.X.production.o
 __Libigdata 0 0 CODE 0 ibigdata dist/default/production\ECM_Final_Project.X.production.o
 __Lclrtext 0 0 ABS 0 clrtext dist/default/production\ECM_Final_Project.X.production.o
 __CFG_OSC$IRCIO 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __pcstackCOMRAM 1 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 _TXSTAbits FAC 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
+_moveToBeacon B86 0 CODE 0 text12 dist/default/production\ECM_Final_Project.X.production.o
 display_RFID@dataBuf D 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 check_RFID@hexBuf 12 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-__end_of_main 50C 0 CODE 0 text0 dist/default/production\ECM_Final_Project.X.production.o
-__end_of_stop BE6 0 CODE 0 text2 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_main 49E 0 CODE 0 text0 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_stop C2E 0 CODE 0 text1 dist/default/production\ECM_Final_Project.X.production.o
 __pintcode 8 0 CODE 0 intcode dist/default/production\ECM_Final_Project.X.production.o
-__end_of_E_TOG E04 0 CODE 0 text22 dist/default/production\ECM_Final_Project.X.production.o
-_E_TOG DF6 0 CODE 0 text22 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_E_TOG E9C 0 CODE 0 text21 dist/default/production\ECM_Final_Project.X.production.o
+__size_of_returnHome 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
+_E_TOG E8E 0 CODE 0 text21 dist/default/production\ECM_Final_Project.X.production.o
 _CAP1CON F63 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _PDC0H F78 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _PDC0L F79 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
@@ -788,7 +832,7 @@ __size_of_init_motor_struct 0 0 ABS 0 - dist/default/production\ECM_Final_Projec
 _RCREG FAE 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _SPBRG FAF 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _T5CON FB7 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-__end_of_setup D06 0 CODE 0 text3 dist/default/production\ECM_Final_Project.X.production.o
+__end_of_setup D98 0 CODE 0 text2 dist/default/production\ECM_Final_Project.X.production.o
 __HRAM 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Hbss 0 0 RAM 1 bss dist/default/production\ECM_Final_Project.X.production.o
 __Hram 0 0 ABS 0 ram dist/default/production\ECM_Final_Project.X.production.o
@@ -798,19 +842,21 @@ __Lbss 0 0 RAM 1 bss dist/default/production\ECM_Final_Project.X.production.o
 __Lram 0 0 ABS 0 ram dist/default/production\ECM_Final_Project.X.production.o
 __Lsfr 0 0 ABS 0 sfr dist/default/production\ECM_Final_Project.X.production.o
 display_RFID@i F 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-_setup CD8 0 CODE 0 text3 dist/default/production\ECM_Final_Project.X.production.o
+_setup D6A 0 CODE 0 text2 dist/default/production\ECM_Final_Project.X.production.o
 __size_of_InterruptHandlerHigh 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-__initialization D5A 0 CODE 0 cinit dist/default/production\ECM_Final_Project.X.production.o
+__initialization DEC 0 CODE 0 cinit dist/default/production\ECM_Final_Project.X.production.o
 __size_of_classify_data 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
+__pbssBANK0 7C 0 BANK0 1 bssBANK0 dist/default/production\ECM_Final_Project.X.production.o
 __Hfardata 0 0 FARRAM 0 fardata dist/default/production\ECM_Final_Project.X.production.o
 ___wmul@product C 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-__Hsmallconst 332 0 SMALLCONST 0 smallconst dist/default/production\ECM_Final_Project.X.production.o
-_processRFID BE6 0 CODE 0 text24 dist/default/production\ECM_Final_Project.X.production.o
+__Hsmallconst 342 0 SMALLCONST 0 smallconst dist/default/production\ECM_Final_Project.X.production.o
+_processRFID C2E 0 CODE 0 text27 dist/default/production\ECM_Final_Project.X.production.o
 __Lifardata 0 0 CODE 0 ifardata dist/default/production\ECM_Final_Project.X.production.o
 classify_data@raw_data 8 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __Hintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\ECM_Final_Project.X.production.o
 __end_of_InterruptHandlerHigh 3E 0 CODE 0 intcode dist/default/production\ECM_Final_Project.X.production.o
 __Hintcode 3E 0 CODE 0 intcode dist/default/production\ECM_Final_Project.X.production.o
+__size_of_moveToBeacon 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __size_of_setMotorPWM 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 SendLCD@Byte B 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 SendLCD@type A 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
@@ -839,10 +885,10 @@ SendLCD@type A 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project
 # All other numeric quantities are in decimal.
 %SEGMENTS
 idloc 0 200000 200000 8 1
-text0 0 332 332 AD2 1
-cstackCOMRAM 1 1 1 39 1
-cstackBANK0 1 60 60 23 1
+text0 0 342 342 B5A 1
+cstackCOMRAM 1 1 1 3D 1
+cstackBANK0 1 60 60 28 1
 reset_vec 0 0 0 4 1
 intcode 0 8 8 3A 1
-smallconst 0 300 300 32 1
+smallconst 0 300 300 42 1
 config 0 300000 300000 E 1
