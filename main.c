@@ -52,10 +52,10 @@ void setup(void)
     
     TRISBbits.RB0 = 0; // motor direction pins
     TRISBbits.RB2 = 0;
-    TRISDbits.RD2 = 1; // button attached to D2, used for reset
+    TRISDbits.RD2 = 1; // button attached to D2, used for reset         
 }
 /*****************************************************************************/
-// High priority interrupt service routine
+// High priority interrupt service routine for RFID reading
 void __interrupt(high_priority) InterruptHandlerHigh (void)
 {
     // Trigger interrupt when a character is read from the RFID
