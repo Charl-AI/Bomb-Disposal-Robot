@@ -5335,7 +5335,7 @@ struct Sensor {
 };
 
 void init_sensor(void);
-char classify_data(int smoothed_data);
+char classify_data(unsigned int smoothed_data, unsigned int *smoothed);
 # 19 "main.c" 2
 
 # 1 "./subroutines.h" 1
@@ -5347,6 +5347,10 @@ unsigned long *micros, volatile char RFID_buffer[], volatile char *exit_flag);
 
 volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
                         unsigned long *micros);
+
+volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed);
+
+void debug(void);
 # 20 "main.c" 2
 # 30 "main.c"
 volatile char robot_mode = 0;
@@ -5407,7 +5411,7 @@ void main(void)
   init_motor_struct(&motorL, &motorR);
 
 
-  int searching_speed = 50;
+  int searching_speed = 75;
   int moving_speed = 75;
 
   unsigned long movementMicros=0;
@@ -5419,6 +5423,7 @@ void main(void)
       if(robot_mode == 0)
       {
           robot_mode = scanForBeacon(&motorL, &motorR, searching_speed);
+
       }
 
 
@@ -5438,22 +5443,7 @@ void main(void)
 
       else if(robot_mode == 3)
       {
-          stop(&motorL, &motorR,moving_speed);
-
-          while(robot_mode == 3)
-          {
-              while(PORTDbits.RD2 == 1)
-              {
-                  ClearLCD();
-                  LCD_String("RESETTING ROBOT");
-                  for(int i=0; i<10;i++)
-                  {
-                      _delay((unsigned long)((100)*(8000000/4000.0)));
-                  }
-                  ClearLCD();
-                  robot_mode = 0;
-              }
-          }
+          robot_mode = stopAndDisplay(&motorL, &motorR, moving_speed);
       }
 
       else

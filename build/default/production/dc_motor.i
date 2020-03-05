@@ -5197,6 +5197,7 @@ void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed)
         mR->power = i;
         setMotorPWM(mL);
         setMotorPWM(mR);
+        _delay((unsigned long)((1)*(8000000/4000.0)));
     }
 }
 
@@ -5228,6 +5229,7 @@ void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
         mR->power = i;
         setMotorPWM(mL);
         setMotorPWM(mR);
+        _delay((unsigned long)((1)*(8000000/4000.0)));
     }
 }
 
@@ -5242,6 +5244,7 @@ void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
         mR->power = i;
         setMotorPWM(mL);
         setMotorPWM(mR);
+        _delay((unsigned long)((1)*(8000000/4000.0)));
     }
 }
 

@@ -85,7 +85,7 @@ void main(void)
   init_motor_struct(&motorL, &motorR); // initialise values in each struct
   
   // these define how fast the robot moves in each operation
-  int searching_speed = 50;
+  int searching_speed = 75;
   int moving_speed = 75;
   
   unsigned long movementMicros=0; // stores time taken moving forward
@@ -97,6 +97,7 @@ void main(void)
       if(robot_mode == 0)
       {
           robot_mode = scanForBeacon(&motorL, &motorR, searching_speed);
+          //debug();
       }
       
       // Subroutine to move towards bomb
@@ -116,22 +117,7 @@ void main(void)
       // Subroutine for once bomb has been found and robot has returned
       else if(robot_mode == 3)
       {
-          stop(&motorL, &motorR,moving_speed); // stop moving
-          
-          while(robot_mode == 3)
-          {
-              while(PORTDbits.RD2 == 1)
-              {
-                  ClearLCD();
-                  LCD_String("RESETTING ROBOT");
-                  for(int i=0; i<10;i++)
-                  {
-                      __delay_ms(100);
-                  }
-                  ClearLCD();
-                  robot_mode = 0;
-              }
-          }
+          robot_mode = stopAndDisplay(&motorL, &motorR, moving_speed);
       }
       // Program should never reach here, so print error message if it does
       else 

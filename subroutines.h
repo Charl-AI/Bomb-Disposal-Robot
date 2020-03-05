@@ -20,6 +20,10 @@ unsigned long *micros, volatile char RFID_buffer[], volatile char *exit_flag);
 volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
                         unsigned long *micros);
 
+volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed);
+
+void debug(void);
+
 #ifdef	__cplusplus
 }
 #endif

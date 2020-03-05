@@ -20,16 +20,22 @@ void init_sensor(void)
     ANSEL0 = 0; 
     ANSEL1 = 0;
    
-    DFLTCON = 0b00011000; // noise filter for CAP1,2,3 inputs
+    DFLTCON = 0b00001000; // noise filter for CAP1 input
     CAP1CON = 0b01000111; //PWM measurement (falling to rising), time base reset
+    
+    unsigned int throwaway = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 }
 
 // This function takes the smoothed data and classifies it into a status
 // 0 means that the beacon has not been found
 // 1 means the beacon is straight ahead
-char classify_data(int raw_data)
-{
-    if(raw_data > 10000)
+char classify_data(unsigned int raw_data, unsigned int *smoothed)
+{  
+    
+    unsigned int previous = *smoothed;
+    *smoothed = *smoothed + ((raw_data - *smoothed) >> 1);
+    
+    if(*smoothed - previous >= 2000)
     {
         return 1;
     }
