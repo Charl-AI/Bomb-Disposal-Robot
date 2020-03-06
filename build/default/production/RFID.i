@@ -5048,7 +5048,6 @@ char processRFID(volatile char RFIDbuf[], char latestChar)
            {
                RFIDbuf[i] = 0;
            }
-
            return 0;
         }
 
@@ -5056,7 +5055,6 @@ char processRFID(volatile char RFIDbuf[], char latestChar)
         {
             RFIDbuf[position_in_buf] = latestChar;
             position_in_buf++;
-
             return 0;
         }
     }

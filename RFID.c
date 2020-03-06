@@ -54,16 +54,14 @@ char processRFID(volatile char RFIDbuf[], char latestChar)
            {
                RFIDbuf[i] = 0;
            }
-           // not finished reading RFID, so return 0
-           return 0;
+           return 0; // not finished reading RFID, so return 0
         } 
        // if any other data is received, add it to the buffer
        else
         {
             RFIDbuf[position_in_buf] = latestChar;
-            position_in_buf++;
-            // not finished reading RFID, so return 0
-            return 0;
+            position_in_buf++; // increment position in buffer
+            return 0; // not finished reading RFID, so return 0
         }
     } 
 }

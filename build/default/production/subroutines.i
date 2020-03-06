@@ -5188,7 +5188,7 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 unsigned long *micros, volatile char RFID_buffer[], volatile char *exit_flag);
 
 volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                        unsigned long *micros);
+                        volatile unsigned long *time);
 
 volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed);
 
@@ -5362,7 +5362,10 @@ char *tempnam(const char *, const char *);
 volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed)
 {
     turnRight(mL,mR,speed);
+
+
     unsigned int smoothed_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+
 
     while(1)
     {
@@ -5388,9 +5391,6 @@ unsigned long *micros, volatile char RFID_buffer[], volatile char *exit_flag)
 
           while(1)
           {
-              _delay((unsigned long)((1)*(8000000/4000000.0)));
-              *micros += 1;
-
 
 
               if(*exit_flag == 1)
@@ -5404,14 +5404,11 @@ unsigned long *micros, volatile char RFID_buffer[], volatile char *exit_flag)
 }
 
 volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                        unsigned long *micros)
+                       volatile unsigned long *time)
 {
     moveBackward(mL,mR,speed);
 
-    for(unsigned long i=0; i<*micros;i++)
-    {
-        _delay((unsigned long)((1)*(8000000/4000000.0)));
-    }
+    while(*time != 0);
     return 3;
 }
 
@@ -5463,21 +5460,26 @@ void debug(void)
     }
 }
 
+
 void waitForInput(void)
 {
+
     ClearLCD();
     SetLine(1);
     LCD_String("PRESS BUTTON");
     SetLine(2);
     LCD_String("TO START SEARCH");
+
+
     while(PORTDbits.RD2 == 0);
 
+
     ClearLCD();
+    SetLine(1);
     LCD_String("STARTING SEARCH");
     for(int i=0; i<10;i++)
     {
         _delay((unsigned long)((100)*(8000000/4000.0)));
     }
     ClearLCD();
-
 }

@@ -7,7 +7,7 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-# 11 "main.c"
+# 15 "main.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -5121,7 +5121,7 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 2 3
-# 11 "main.c" 2
+# 15 "main.c" 2
 
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdio.h" 1 3
@@ -5260,7 +5260,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 13 "main.c" 2
+# 17 "main.c" 2
 
 #pragma config OSC = IRCIO, MCLRE=OFF, LVP=OFF
 
@@ -5286,7 +5286,7 @@ void LCD_String(char *string);
 
 
 void ClearLCD(void);
-# 16 "main.c" 2
+# 20 "main.c" 2
 
 # 1 "./dc_motor.h" 1
 
@@ -5316,7 +5316,7 @@ void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 
 
 void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR);
-# 17 "main.c" 2
+# 21 "main.c" 2
 
 # 1 "./RFID.h" 1
 # 11 "./RFID.h"
@@ -5325,7 +5325,7 @@ char getCharSerial(void);
 char processRFID(volatile char RFIDbuf[], char latestChar);
 void check_RFID(volatile char dataBuf[]);
 void display_RFID(volatile char RFIDBuf[]);
-# 18 "main.c" 2
+# 22 "main.c" 2
 
 # 1 "./signal_processing.h" 1
 # 13 "./signal_processing.h"
@@ -5336,7 +5336,7 @@ struct Sensor {
 
 void init_sensor(void);
 char classify_data(unsigned int smoothed_data, unsigned int *smoothed);
-# 19 "main.c" 2
+# 23 "main.c" 2
 
 # 1 "./subroutines.h" 1
 # 15 "./subroutines.h"
@@ -5346,15 +5346,15 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 unsigned long *micros, volatile char RFID_buffer[], volatile char *exit_flag);
 
 volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                        unsigned long *micros);
+                        volatile unsigned long *time);
 
 volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed);
 
 void debug(void);
 
 void waitForInput(void);
-# 20 "main.c" 2
-# 30 "main.c"
+# 24 "main.c" 2
+# 33 "main.c"
 volatile char robot_mode = 0;
 
 
@@ -5362,6 +5362,9 @@ volatile char RFIDbuf[12];
 
 
 volatile char RFID_flag = 0;
+
+
+volatile unsigned long movement_time = 0;
 
 
 void setup(void)
@@ -5379,9 +5382,18 @@ void setup(void)
     init_sensor();
     initPWM(199);
 
+
     TRISBbits.RB0 = 0;
     TRISBbits.RB2 = 0;
+
     TRISDbits.RD2 = 1;
+
+    T0CON = 0b11001000;
+
+
+
+    INTCONbits.TMR0IE=1;
+    INTCON2bits.TMR0IP=0;
 }
 
 
@@ -5399,6 +5411,28 @@ void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void
     {
 
         char throwaway = RCREG;
+    }
+}
+
+
+void __attribute__((picinterrupt(("low_priority")))) InterruptHandlerLow(void)
+{
+
+    if((INTCONbits.TMR0IF) && (robot_mode == 1))
+    {
+        movement_time += 1;
+        INTCONbits.TMR0IF = 0;
+    }
+
+    else if((INTCONbits.TMR0IF) && robot_mode == 2)
+    {
+        movement_time -= 1;
+        INTCONbits.TMR0IF = 0;
+    }
+
+    else
+    {
+        INTCONbits.TMR0IF = 0;
     }
 }
 
@@ -5441,7 +5475,7 @@ void main(void)
       else if(robot_mode == 2)
       {
           robot_mode = returnHome(&motorL, &motorR, moving_speed,
-                  &movementMicros);
+                  &movement_time);
       }
 
 

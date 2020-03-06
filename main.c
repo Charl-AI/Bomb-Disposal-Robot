@@ -5,6 +5,10 @@
  * 
  * This project is to develop the software and hardware for an autonomous
  * bomb disposal robot.
+ * 
+ * The solution we use involves first scanning for the bomb, then moving
+ * straight towards it, scanning the RFID and moving straight back to the
+ * starting position. No adjustment is required in the process.
  */
 /*****************************************************************************/
 // Include statements and boilerplate code
@@ -18,7 +22,6 @@
 #include "RFID.h"
 #include "signal_processing.h"
 #include "subroutines.h"
-
 /*****************************************************************************/
 //Global variables defined here
 
@@ -34,6 +37,9 @@ volatile char RFIDbuf[12];
 
 // This flag is set to 1 once the RFID has been completely read
 volatile char RFID_flag = 0;
+
+// This stores the amount of time each 
+volatile unsigned long movement_time = 0;
 /*****************************************************************************/
 // setup function, initialise registers here
 void setup(void)
@@ -51,9 +57,18 @@ void setup(void)
     init_sensor();
     initPWM(199);
     
-    TRISBbits.RB0 = 0; // motor direction pins
+    // motor direction pins
+    TRISBbits.RB0 = 0; 
     TRISBbits.RB2 = 0;
-    TRISDbits.RD2 = 1; // button attached to D2, used for reset         
+    
+    TRISDbits.RD2 = 1; // button attached to D2, used for reset  
+    
+    T0CON = 0b11001000; // enable timer 0, no prescaler, 8 bit
+    // overflow every 128 us
+    
+    // generate interrupt on timer overflow
+    INTCONbits.TMR0IE=1; // enable TMR0 overflow interrupt
+    INTCON2bits.TMR0IP=0; // TMR0  Low priority
 }
 /*****************************************************************************/
 // High priority interrupt service routine for RFID reading
@@ -74,6 +89,28 @@ void __interrupt(high_priority) InterruptHandlerHigh (void)
     }
 }
 /*****************************************************************************/
+// Low priority ISR for timing movements
+void __interrupt(low_priority) InterruptHandlerLow(void)
+{
+    // Triggers on timer interrupt when robot is moving forwards
+    if((INTCONbits.TMR0IF) && (robot_mode == 1))
+    {
+        movement_time += 1; // add 1 to movement time
+        INTCONbits.TMR0IF = 0; // reset interrupt flag
+    }
+    // Triggers on timer interrupt when robot is returning home
+    else if((INTCONbits.TMR0IF) && robot_mode == 2)
+    {
+        movement_time -= 1; // subtract 1 from movement time
+        INTCONbits.TMR0IF = 0; // reset interrupt flag
+    }
+    // Triggers on timer interrupt when robot is in any other state
+    else
+    {
+        INTCONbits.TMR0IF = 0; // Simply reset interrupt flag
+    }
+}
+/*****************************************************************************/
 // main function
 void main(void)
 {
@@ -82,7 +119,7 @@ void main(void)
   
   //now, we declare the structures that need to be visible to the main function
   struct DC_motor motorL, motorR; //declare 2 motor structures
-  init_motor_struct(&motorL, &motorR); // initialise values in each struct
+  init_motor_struct(&motorL, &motorR); // initialise values in each structure
   
   // these define how fast the robot moves in each operation
   int searching_speed = 75;
@@ -113,7 +150,7 @@ void main(void)
       else if(robot_mode == 2)
       {
           robot_mode = returnHome(&motorL, &motorR, moving_speed, 
-                  &movementMicros);
+                  &movement_time);
       }
       
       // Subroutine for once bomb has been found and robot has returned

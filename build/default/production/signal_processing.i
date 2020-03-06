@@ -4995,11 +4995,15 @@ void init_sensor(void)
 
 
 
+
 char classify_data(unsigned int raw_data, unsigned int *smoothed)
 {
 
     unsigned int previous = *smoothed;
+
+
     *smoothed = *smoothed + ((raw_data - *smoothed) >> 1);
+
 
     if(*smoothed - previous >= 2000)
     {

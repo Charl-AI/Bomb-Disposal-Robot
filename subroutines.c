@@ -46,9 +46,6 @@ unsigned long *micros, volatile char RFID_buffer[], volatile char *exit_flag)
           // Runs until RFID has been scanned and break statement executes
           while(1)
           {
-              __delay_us(1);
-              *micros += 1;
-           
               // once RFID fully read, check against checksum, display it,
               // break loop and set robot mode to return home
               if(*exit_flag == 1)
@@ -62,14 +59,11 @@ unsigned long *micros, volatile char RFID_buffer[], volatile char *exit_flag)
 }
 
 volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                        unsigned long *micros)
+                       volatile unsigned long *time)
 {
     moveBackward(mL,mR,speed); // move robot backwards
           
-    for(unsigned long i=0; i<*micros;i++)
-    {
-        __delay_us(1);
-    }
+    while(*time != 0);
     return 3;
 }
 
