@@ -14,11 +14,14 @@
 #include "LCDIO.h"
 #include <stdio.h>
 
+// This subroutine scans for the beacon initially
 volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed)
 {
     turnRight(mL,mR,speed); // continuously turn right
+    ClearLCD();
+    LCD_String("SEARCHING");
     
-    // initialise smoothed data with the first raw value
+    // Initialise variable to store smoothed data
     unsigned int smoothed_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
     
     // Runs until the beacon is found and the break statement executes
@@ -28,20 +31,25 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed)
         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
         
         // Now, classify the signals to find if we are looking at the beacon
-        char beacon_location = classify_data(raw_data, &smoothed_data); 
-
+        char beacon_location = classify_data(raw_data, &smoothed_data);
+        
+        
         // if beacon is straight ahead, exit this subroutine
         if(beacon_location == 1)
         {
             return 1;
-        }
+        }       
     }
 }
 
+// This subroutine moves the robot forwards until it either finds the beacon
+// or reaches a time limit
 volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-unsigned long *micros, volatile char RFID_buffer[], volatile char *exit_flag)
+                        volatile unsigned long *time, volatile char *exit_flag)
 {
     moveForward(mL,mR,speed); // move robot forwards
+    ClearLCD();
+    LCD_String("MOVING TO BOMB");
       
           // Runs until RFID has been scanned and break statement executes
           while(1)
@@ -50,26 +58,37 @@ unsigned long *micros, volatile char RFID_buffer[], volatile char *exit_flag)
               // break loop and set robot mode to return home
               if(*exit_flag == 1)
               {
-                  display_RFID(RFID_buffer);
-                  check_RFID(RFID_buffer);
                   exit_flag = 0;
-                  return 2;
+                  return 2; // return home
+              }
+              // if moving for more than 15 seconds
+              else if(*time >= 117187)
+              {
+                  return 2; // time out and go home
               }
           }
 }
 
+// This subroutine makes the robot return to its starting position
 volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                       volatile unsigned long *time)
+                            volatile unsigned long *time)
 {
     moveBackward(mL,mR,speed); // move robot backwards
-          
+    
+    ClearLCD();
+    LCD_String("RETURNING HOME");
     while(*time != 0);
     return 3;
 }
 
-volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed)
+// This subroutine makes the robot stop and wait for further inputs at the end
+volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed,
+volatile char RFID_buffer[])
 {
     stop(mL, mR,speed); // stop moving
+    
+    display_RFID(RFID_buffer);
+    check_RFID(RFID_buffer);
     
         while(1)
         {
@@ -96,7 +115,9 @@ void debug(void)
         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
         
         static unsigned int smoothed_data;
-        smoothed_data = smoothed_data + ((raw_data - smoothed_data) >> 1);
+        smoothed_data = smoothed_data + ((raw_data - smoothed_data) >> 3);
+        
+        unsigned int dif = raw_data - smoothed_data;
         ClearLCD();
         char buf[16];
         SetLine(1);
@@ -104,7 +125,7 @@ void debug(void)
         LCD_String(buf);
         SetLine(2);
         char buf2[16];
-        sprintf(buf2, "%u",smoothed_data);
+        sprintf(buf2, "%u",dif);
         LCD_String(buf2);
         __delay_ms(100);
          

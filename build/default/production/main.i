@@ -5343,12 +5343,13 @@ char classify_data(unsigned int smoothed_data, unsigned int *smoothed);
 volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed);
 
 volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-unsigned long *micros, volatile char RFID_buffer[], volatile char *exit_flag);
+    volatile unsigned long *time, volatile char *exit_flag);
 
 volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
                         volatile unsigned long *time);
 
-volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed);
+volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed,
+volatile char RFID_buffer[]);
 
 void debug(void);
 
@@ -5447,10 +5448,8 @@ void main(void)
   init_motor_struct(&motorL, &motorR);
 
 
-  int searching_speed = 75;
-  int moving_speed = 75;
-
-  unsigned long movementMicros=0;
+  int searching_speed = 60;
+  int moving_speed = 100;
 
   waitForInput();
 
@@ -5468,7 +5467,7 @@ void main(void)
       else if(robot_mode == 1)
       {
           robot_mode = moveToBeacon(&motorL, &motorR, moving_speed,
-                                    &movementMicros, RFIDbuf, &RFID_flag);
+                                    &movement_time, &RFID_flag);
       }
 
 
@@ -5481,7 +5480,7 @@ void main(void)
 
       else if(robot_mode == 3)
       {
-          robot_mode = stopAndDisplay(&motorL, &motorR, moving_speed);
+          robot_mode = stopAndDisplay(&motorL, &motorR, moving_speed,RFIDbuf);
       }
 
       else

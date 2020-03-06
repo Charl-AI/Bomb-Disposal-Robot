@@ -122,10 +122,8 @@ void main(void)
   init_motor_struct(&motorL, &motorR); // initialise values in each structure
   
   // these define how fast the robot moves in each operation
-  int searching_speed = 75;
-  int moving_speed = 75;
-  
-  unsigned long movementMicros=0; // stores time taken moving forward
+  int searching_speed = 60;
+  int moving_speed = 100;
   
   waitForInput(); // wait until user presses button to start
   
@@ -143,7 +141,7 @@ void main(void)
       else if(robot_mode == 1)
       {
           robot_mode = moveToBeacon(&motorL, &motorR, moving_speed,
-                                    &movementMicros, RFIDbuf, &RFID_flag);
+                                    &movement_time, &RFID_flag);
       }
     
       // Subroutine to return to starting position
@@ -156,7 +154,7 @@ void main(void)
       // Subroutine for once bomb has been found and robot has returned
       else if(robot_mode == 3)
       {
-          robot_mode = stopAndDisplay(&motorL, &motorR, moving_speed);
+          robot_mode = stopAndDisplay(&motorL, &motorR, moving_speed,RFIDbuf);
       }
       // Program should never reach here, so print error message if it does
       else 

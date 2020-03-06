@@ -9,6 +9,9 @@
 
 #include <pic18f4331.h>
 #include "signal_processing.h"
+#include <stdio.h>
+#include <xc.h>
+#include "LCDIO.h"
 
 // This function is called in the setup to initialise the sensors
 void init_sensor(void)
@@ -33,13 +36,12 @@ void init_sensor(void)
 char classify_data(unsigned int raw_data, unsigned int *smoothed)
 {  
     
-    unsigned int previous = *smoothed; // store previous value for comparison
-    
     // Exponentially weighted moving average implementation
-    *smoothed = *smoothed + ((raw_data - *smoothed) >> 1);
+    *smoothed = *smoothed + ((raw_data - *smoothed) >> 5);
+    unsigned int filtered = raw_data - *smoothed;    
     
-    // Compare new smoothed value with previous to see if we've found the beacon
-    if(*smoothed - previous >= 2000)
+    // Compare raw data with smoothed data
+    if(filtered >= 100)
     {
         return 1;
     }

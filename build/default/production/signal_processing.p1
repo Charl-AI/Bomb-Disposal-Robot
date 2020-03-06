@@ -575,90 +575,90 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7616
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 7616: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"14 signal_processing.c
-[; ;signal_processing.c: 14: void init_sensor(void)
+"17 signal_processing.c
+[; ;signal_processing.c: 17: void init_sensor(void)
 [v _init_sensor `(v ~T0 @X0 1 ef ]
-"15
-[; ;signal_processing.c: 15: {
+"18
+[; ;signal_processing.c: 18: {
 {
 [e :U _init_sensor ]
 [f ]
-"16
-[; ;signal_processing.c: 16:     T5CON =0b00000001;
+"19
+[; ;signal_processing.c: 19:     T5CON =0b00000001;
 [e = _T5CON -> -> 1 `i `uc ]
-"17
-[; ;signal_processing.c: 17:     TRISAbits.RA2 = 1;
-[e = . . _TRISAbits 1 2 -> -> 1 `i `uc ]
 "20
-[; ;signal_processing.c: 20:     ANSEL0 = 0;
-[e = _ANSEL0 -> -> 0 `i `uc ]
-"21
-[; ;signal_processing.c: 21:     ANSEL1 = 0;
-[e = _ANSEL1 -> -> 0 `i `uc ]
+[; ;signal_processing.c: 20:     TRISAbits.RA2 = 1;
+[e = . . _TRISAbits 1 2 -> -> 1 `i `uc ]
 "23
-[; ;signal_processing.c: 23:     DFLTCON = 0b00001000;
-[e = _DFLTCON -> -> 8 `i `uc ]
+[; ;signal_processing.c: 23:     ANSEL0 = 0;
+[e = _ANSEL0 -> -> 0 `i `uc ]
 "24
-[; ;signal_processing.c: 24:     CAP1CON = 0b01000111;
-[e = _CAP1CON -> -> 71 `i `uc ]
+[; ;signal_processing.c: 24:     ANSEL1 = 0;
+[e = _ANSEL1 -> -> 0 `i `uc ]
 "26
-[; ;signal_processing.c: 26:     unsigned int throwaway = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+[; ;signal_processing.c: 26:     DFLTCON = 0b00001000;
+[e = _DFLTCON -> -> 8 `i `uc ]
+"27
+[; ;signal_processing.c: 27:     CAP1CON = 0b01000111;
+[e = _CAP1CON -> -> 71 `i `uc ]
+"29
+[; ;signal_processing.c: 29:     unsigned int throwaway = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 [v _throwaway `ui ~T0 @X0 1 a ]
 [e = _throwaway -> | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i `ui ]
-"27
-[; ;signal_processing.c: 27: }
-[e :UE 310 ]
+"30
+[; ;signal_processing.c: 30: }
+[e :UE 317 ]
 }
-"33
-[; ;signal_processing.c: 33: char classify_data(unsigned int raw_data, unsigned int *smoothed)
+"36
+[; ;signal_processing.c: 36: char classify_data(unsigned int raw_data, unsigned int *smoothed)
 [v _classify_data `(uc ~T0 @X0 1 ef2`ui`*ui ]
-"34
-[; ;signal_processing.c: 34: {
+"37
+[; ;signal_processing.c: 37: {
 {
 [e :U _classify_data ]
-"33
-[; ;signal_processing.c: 33: char classify_data(unsigned int raw_data, unsigned int *smoothed)
+"36
+[; ;signal_processing.c: 36: char classify_data(unsigned int raw_data, unsigned int *smoothed)
 [v _raw_data `ui ~T0 @X0 1 r1 ]
 [v _smoothed `*ui ~T0 @X0 1 r2 ]
-"34
-[; ;signal_processing.c: 34: {
+"37
+[; ;signal_processing.c: 37: {
 [f ]
-"36
-[; ;signal_processing.c: 36:     unsigned int previous = *smoothed;
-[v _previous `ui ~T0 @X0 1 a ]
-[e = _previous *U _smoothed ]
-"39
-[; ;signal_processing.c: 39:     *smoothed = *smoothed + ((raw_data - *smoothed) >> 1);
-[e = *U _smoothed + *U _smoothed >> - _raw_data *U _smoothed -> 1 `i ]
-"42
-[; ;signal_processing.c: 42:     if(*smoothed - previous >= 2000)
-[e $ ! >= - *U _smoothed _previous -> -> 2000 `i `ui 312  ]
-"43
-[; ;signal_processing.c: 43:     {
-{
+"40
+[; ;signal_processing.c: 40:     *smoothed = *smoothed + ((raw_data - *smoothed) >> 5);
+[e = *U _smoothed + *U _smoothed >> - _raw_data *U _smoothed -> 5 `i ]
+"41
+[; ;signal_processing.c: 41:     unsigned int filtered = raw_data - *smoothed;
+[v _filtered `ui ~T0 @X0 1 a ]
+[e = _filtered - _raw_data *U _smoothed ]
 "44
-[; ;signal_processing.c: 44:         return 1;
-[e ) -> -> 1 `i `uc ]
-[e $UE 311  ]
+[; ;signal_processing.c: 44:     if(filtered >= 100)
+[e $ ! >= _filtered -> -> 100 `i `ui 319  ]
 "45
-[; ;signal_processing.c: 45:     }
-}
-[e $U 313  ]
-"46
-[; ;signal_processing.c: 46:     else
-[e :U 312 ]
-"47
-[; ;signal_processing.c: 47:     {
+[; ;signal_processing.c: 45:     {
 {
-"48
-[; ;signal_processing.c: 48:         return 0;
-[e ) -> -> 0 `i `uc ]
-[e $UE 311  ]
-"49
-[; ;signal_processing.c: 49:     }
+"46
+[; ;signal_processing.c: 46:         return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 318  ]
+"47
+[; ;signal_processing.c: 47:     }
 }
-[e :U 313 ]
+[e $U 320  ]
+"48
+[; ;signal_processing.c: 48:     else
+[e :U 319 ]
+"49
+[; ;signal_processing.c: 49:     {
+{
 "50
-[; ;signal_processing.c: 50: }
-[e :UE 311 ]
+[; ;signal_processing.c: 50:         return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 318  ]
+"51
+[; ;signal_processing.c: 51:     }
+}
+[e :U 320 ]
+"52
+[; ;signal_processing.c: 52: }
+[e :UE 318 ]
 }
