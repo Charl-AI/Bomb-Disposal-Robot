@@ -38,7 +38,7 @@ volatile char RFIDbuf[12];
 // This flag is set to 1 once the RFID has been completely read
 volatile char RFID_flag = 0;
 
-// This stores the amount of time each 
+// This stores the amount of time each movement
 volatile unsigned long movement_time = 0;
 /*****************************************************************************/
 // setup function, initialise registers here
@@ -63,7 +63,7 @@ void setup(void)
     
     TRISDbits.RD2 = 1; // button attached to D2, used for reset  
     
-    T0CON = 0b11001000; // enable timer 0, no prescaler, 8 bit
+    T0CON = 0b11000111; // enable timer 0, no prescaler, 8 bit
     // overflow every 128 us
     
     // generate interrupt on timer overflow
@@ -93,7 +93,7 @@ void __interrupt(high_priority) InterruptHandlerHigh (void)
 void __interrupt(low_priority) InterruptHandlerLow(void)
 {
     // Triggers on timer interrupt when robot is moving forwards
-    if((INTCONbits.TMR0IF) && (robot_mode == 1))
+    if((INTCONbits.TMR0IF) && (robot_mode == 1 || robot_mode == 0))
     {
         movement_time += 1; // add 1 to movement time
         INTCONbits.TMR0IF = 0; // reset interrupt flag
@@ -122,7 +122,7 @@ void main(void)
   init_motor_struct(&motorL, &motorR); // initialise values in each structure
   
   // these define how fast the robot moves in each operation
-  int searching_speed = 60;
+  int searching_speed = 55;
   int moving_speed = 100;
   
   waitForInput(); // wait until user presses button to start
@@ -133,7 +133,8 @@ void main(void)
       // Subroutine for initial sweep to search for bomb
       if(robot_mode == 0)
       {
-          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed);
+          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed,
+                                     &movement_time);
           //debug();
       }
       
@@ -156,6 +157,7 @@ void main(void)
       {
           robot_mode = stopAndDisplay(&motorL, &motorR, moving_speed,RFIDbuf);
       }
+      
       // Program should never reach here, so print error message if it does
       else 
       {

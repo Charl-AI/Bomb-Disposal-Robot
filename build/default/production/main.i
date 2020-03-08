@@ -5340,7 +5340,8 @@ char classify_data(unsigned int smoothed_data, unsigned int *smoothed);
 
 # 1 "./subroutines.h" 1
 # 15 "./subroutines.h"
-volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed);
+volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+                            volatile unsigned long *time);
 
 volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
     volatile unsigned long *time, volatile char *exit_flag);
@@ -5389,7 +5390,7 @@ void setup(void)
 
     TRISDbits.RD2 = 1;
 
-    T0CON = 0b11001000;
+    T0CON = 0b11000111;
 
 
 
@@ -5419,7 +5420,7 @@ void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void
 void __attribute__((picinterrupt(("low_priority")))) InterruptHandlerLow(void)
 {
 
-    if((INTCONbits.TMR0IF) && (robot_mode == 1))
+    if((INTCONbits.TMR0IF) && (robot_mode == 1 || robot_mode == 0))
     {
         movement_time += 1;
         INTCONbits.TMR0IF = 0;
@@ -5448,7 +5449,7 @@ void main(void)
   init_motor_struct(&motorL, &motorR);
 
 
-  int searching_speed = 60;
+  int searching_speed = 55;
   int moving_speed = 100;
 
   waitForInput();
@@ -5459,7 +5460,8 @@ void main(void)
 
       if(robot_mode == 0)
       {
-          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed);
+          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed,
+                                     &movement_time);
 
       }
 
@@ -5482,6 +5484,7 @@ void main(void)
       {
           robot_mode = stopAndDisplay(&motorL, &motorR, moving_speed,RFIDbuf);
       }
+
 
       else
       {

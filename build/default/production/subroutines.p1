@@ -21,6 +21,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "19 ./signal_processing.h
 [; ;./signal_processing.h: 19: char classify_data(unsigned int smoothed_data, unsigned int *smoothed);
 [v _classify_data `(uc ~T0 @X0 0 ef2`ui`*ui ]
+"38 ./LCDIO.h
+[; ;./LCDIO.h: 38: void SetLine (char line);
+[v _SetLine `(v ~T0 @X0 0 ef1`uc ]
+"21 ./dc_motor.h
+[; ;./dc_motor.h: 21: void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed);
+[v _stop `(v ~T0 @X0 0 ef3`*S314`*S314`i ]
 [v F2763 `(v ~T0 @X0 1 tf1`ul ]
 "183 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18.h
 [v __delay `JF2763 ~T0 @X0 0 e ]
@@ -31,9 +37,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "24
 [; ;./dc_motor.h: 24: void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 [v _moveBackward `(v ~T0 @X0 0 ef3`*S314`*S314`i ]
-"21
-[; ;./dc_motor.h: 21: void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed);
-[v _stop `(v ~T0 @X0 0 ef3`*S314`*S314`i ]
 "15 ./RFID.h
 [; ;./RFID.h: 15: void display_RFID(volatile char RFIDBuf[]);
 [v _display_RFID `(v ~T0 @X0 0 ef1`*Vuc ]
@@ -55,9 +58,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1555
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1555: extern volatile PORTDbits_t PORTDbits __attribute__((address(0xF83)));
 [v _PORTDbits `VS59 ~T0 @X0 0 e@3971 ]
-"38 ./LCDIO.h
-[; ;./LCDIO.h: 38: void SetLine (char line);
-[v _SetLine `(v ~T0 @X0 0 ef1`uc ]
 "115 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\c99\stdio.h
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
@@ -601,45 +601,48 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 7616: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
 "18 subroutines.c
-[; ;subroutines.c: 18: volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed)
-[v _scanForBeacon `(Vuc ~T0 @X0 1 ef3`*S314`*S314`i ]
-"19
-[; ;subroutines.c: 19: {
+[; ;subroutines.c: 18: volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+[v _scanForBeacon `(Vuc ~T0 @X0 1 ef4`*S314`*S314`i`*Vul ]
+"20
+[; ;subroutines.c: 20: {
 {
 [e :U _scanForBeacon ]
 "18
-[; ;subroutines.c: 18: volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed)
+[; ;subroutines.c: 18: volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 [v _mL `*S314 ~T0 @X0 1 r1 ]
 [v _mR `*S314 ~T0 @X0 1 r2 ]
 [v _speed `i ~T0 @X0 1 r3 ]
 "19
-[; ;subroutines.c: 19: {
-[f ]
+[; ;subroutines.c: 19:                             volatile unsigned long *time)
+[v _time `*Vul ~T0 @X0 1 r4 ]
 "20
-[; ;subroutines.c: 20:     turnRight(mL,mR,speed);
-[e ( _turnRight (3 , , _mL _mR _speed ]
+[; ;subroutines.c: 20: {
+[f ]
 "21
-[; ;subroutines.c: 21:     ClearLCD();
-[e ( _ClearLCD ..  ]
+[; ;subroutines.c: 21:     turnRight(mL,mR,speed);
+[e ( _turnRight (3 , , _mL _mR _speed ]
 "22
-[; ;subroutines.c: 22:     LCD_String("SEARCHING");
+[; ;subroutines.c: 22:     ClearLCD();
+[e ( _ClearLCD ..  ]
+"23
+[; ;subroutines.c: 23:     LCD_String("SEARCHING");
 [e ( _LCD_String (1 :s 1C ]
-"25
-[; ;subroutines.c: 25:     unsigned int smoothed_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+"26
+[; ;subroutines.c: 26:     unsigned int smoothed_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 [v _smoothed_data `ui ~T0 @X0 1 a ]
 [e = _smoothed_data -> | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i `ui ]
-"28
-[; ;subroutines.c: 28:     while(1)
-[e :U 320 ]
 "29
-[; ;subroutines.c: 29:     {
+[; ;subroutines.c: 29:     while(1)
+[e :U 320 ]
+"30
+[; ;subroutines.c: 30:     {
 {
-"31
-[; ;subroutines.c: 31:         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+"32
+[; ;subroutines.c: 32:         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 [v _raw_data `ui ~T0 @X0 1 a ]
 [e = _raw_data -> | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i `ui ]
-"34
-[; ;subroutines.c: 34:         char beacon_location = classify_data(raw_data, &smoothed_data);
+"35
+[; ;subroutines.c: 35:         char beacon_location = classify_data(raw_data, &smoothed_data);
 [v _beacon_location `uc ~T0 @X0 1 a ]
 [e = _beacon_location ( _classify_data (2 , _raw_data &U _smoothed_data ]
 "38
@@ -649,378 +652,434 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;subroutines.c: 39:         {
 {
 "40
-[; ;subroutines.c: 40:             return 1;
+[; ;subroutines.c: 40:             *time = 0;
+[e = *U _time -> -> -> 0 `i `l `ul ]
+"41
+[; ;subroutines.c: 41:             return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 318  ]
-"41
-[; ;subroutines.c: 41:         }
-}
-[e :U 322 ]
 "42
-[; ;subroutines.c: 42:         _delay((unsigned long)((1)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"43
-[; ;subroutines.c: 43:     }
+[; ;subroutines.c: 42:         }
+}
+[e $U 323  ]
+"44
+[; ;subroutines.c: 44:         else if(*time >= 156250)
+[e :U 322 ]
+[e $ ! >= *U _time -> -> 156250 `l `ul 324  ]
+"45
+[; ;subroutines.c: 45:         {
+{
+"46
+[; ;subroutines.c: 46:             *time = 0;
+[e = *U _time -> -> -> 0 `i `l `ul ]
+"47
+[; ;subroutines.c: 47:             ClearLCD();
+[e ( _ClearLCD ..  ]
+"48
+[; ;subroutines.c: 48:             LCD_String("BOMB NOT FOUND");
+[e ( _LCD_String (1 :s 2C ]
+"49
+[; ;subroutines.c: 49:             SetLine(2);
+[e ( _SetLine (1 -> -> 2 `i `uc ]
+"50
+[; ;subroutines.c: 50:             LCD_String("RESETTING ROBOT");
+[e ( _LCD_String (1 :s 3C ]
+"51
+[; ;subroutines.c: 51:             stop(mL,mR,speed);
+[e ( _stop (3 , , _mL _mR _speed ]
+"52
+[; ;subroutines.c: 52:             for(int i=0; i<20;i++)
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 20 `i 325  ]
+[e $U 326  ]
+[e :U 325 ]
+"53
+[; ;subroutines.c: 53:             {
+{
+"54
+[; ;subroutines.c: 54:                 _delay((unsigned long)((100)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"55
+[; ;subroutines.c: 55:             }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 20 `i 325  ]
+[e :U 326 ]
+}
+"56
+[; ;subroutines.c: 56:             __asm(" reset");
+[; <"  reset ;# ">
+"57
+[; ;subroutines.c: 57:         }
+}
+[e :U 324 ]
+[e :U 323 ]
+"58
+[; ;subroutines.c: 58:     }
 }
 [e :U 319 ]
 [e $U 320  ]
 [e :U 321 ]
-"44
-[; ;subroutines.c: 44: }
+"59
+[; ;subroutines.c: 59: }
 [e :UE 318 ]
 }
-"48
-[; ;subroutines.c: 48: volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+"63
+[; ;subroutines.c: 63: volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 [v _moveToBeacon `(Vuc ~T0 @X0 1 ef5`*S314`*S314`i`*Vul`*Vuc ]
-"50
-[; ;subroutines.c: 50: {
+"65
+[; ;subroutines.c: 65: {
 {
 [e :U _moveToBeacon ]
-"48
-[; ;subroutines.c: 48: volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+"63
+[; ;subroutines.c: 63: volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 [v _mL `*S314 ~T0 @X0 1 r1 ]
 [v _mR `*S314 ~T0 @X0 1 r2 ]
 [v _speed `i ~T0 @X0 1 r3 ]
-"49
-[; ;subroutines.c: 49:                         volatile unsigned long *time, volatile char *exit_flag)
+"64
+[; ;subroutines.c: 64:                         volatile unsigned long *time, volatile char *exit_flag)
 [v _time `*Vul ~T0 @X0 1 r4 ]
 [v _exit_flag `*Vuc ~T0 @X0 1 r5 ]
-"50
-[; ;subroutines.c: 50: {
+"65
+[; ;subroutines.c: 65: {
 [f ]
-"51
-[; ;subroutines.c: 51:     moveForward(mL,mR,speed);
-[e ( _moveForward (3 , , _mL _mR _speed ]
-"52
-[; ;subroutines.c: 52:     ClearLCD();
-[e ( _ClearLCD ..  ]
-"53
-[; ;subroutines.c: 53:     LCD_String("MOVING TO BOMB");
-[e ( _LCD_String (1 :s 2C ]
-"56
-[; ;subroutines.c: 56:           while(1)
-[e :U 325 ]
-"57
-[; ;subroutines.c: 57:           {
-{
-"60
-[; ;subroutines.c: 60:               if(*exit_flag == 1)
-[e $ ! == -> *U _exit_flag `i -> 1 `i 327  ]
-"61
-[; ;subroutines.c: 61:               {
-{
-"62
-[; ;subroutines.c: 62:                   exit_flag = 0;
-[e = _exit_flag -> -> 0 `i `*Vuc ]
-"63
-[; ;subroutines.c: 63:                   return 2;
-[e ) -> -> 2 `i `uc ]
-[e $UE 323  ]
-"64
-[; ;subroutines.c: 64:               }
-}
-[e $U 328  ]
 "66
-[; ;subroutines.c: 66:               else if(*time >= 117187)
-[e :U 327 ]
-[e $ ! >= *U _time -> -> 117187 `l `ul 329  ]
+[; ;subroutines.c: 66:     moveForward(mL,mR,speed);
+[e ( _moveForward (3 , , _mL _mR _speed ]
 "67
-[; ;subroutines.c: 67:               {
-{
+[; ;subroutines.c: 67:     ClearLCD();
+[e ( _ClearLCD ..  ]
 "68
-[; ;subroutines.c: 68:                   return 2;
+[; ;subroutines.c: 68:     LCD_String("MOVING TO BOMB");
+[e ( _LCD_String (1 :s 4C ]
+"71
+[; ;subroutines.c: 71:           while(1)
+[e :U 330 ]
+"72
+[; ;subroutines.c: 72:           {
+{
+"75
+[; ;subroutines.c: 75:               if(*exit_flag == 1)
+[e $ ! == -> *U _exit_flag `i -> 1 `i 332  ]
+"76
+[; ;subroutines.c: 76:               {
+{
+"77
+[; ;subroutines.c: 77:                   exit_flag = 0;
+[e = _exit_flag -> -> 0 `i `*Vuc ]
+"78
+[; ;subroutines.c: 78:                   return 2;
 [e ) -> -> 2 `i `uc ]
-[e $UE 323  ]
-"69
-[; ;subroutines.c: 69:               }
+[e $UE 328  ]
+"79
+[; ;subroutines.c: 79:               }
+}
+[e $U 333  ]
+"81
+[; ;subroutines.c: 81:               else if(*time >= 78125)
+[e :U 332 ]
+[e $ ! >= *U _time -> -> 78125 `l `ul 334  ]
+"82
+[; ;subroutines.c: 82:               {
+{
+"83
+[; ;subroutines.c: 83:                   return 2;
+[e ) -> -> 2 `i `uc ]
+[e $UE 328  ]
+"84
+[; ;subroutines.c: 84:               }
+}
+[e :U 334 ]
+[e :U 333 ]
+"85
+[; ;subroutines.c: 85:           }
 }
 [e :U 329 ]
-[e :U 328 ]
-"70
-[; ;subroutines.c: 70:           }
+[e $U 330  ]
+[e :U 331 ]
+"86
+[; ;subroutines.c: 86: }
+[e :UE 328 ]
 }
-[e :U 324 ]
-[e $U 325  ]
-[e :U 326 ]
-"71
-[; ;subroutines.c: 71: }
-[e :UE 323 ]
-}
-"74
-[; ;subroutines.c: 74: volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
+"89
+[; ;subroutines.c: 89: volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
 [v _returnHome `(Vuc ~T0 @X0 1 ef4`*S314`*S314`i`*Vul ]
-"76
-[; ;subroutines.c: 76: {
+"91
+[; ;subroutines.c: 91: {
 {
 [e :U _returnHome ]
-"74
-[; ;subroutines.c: 74: volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
+"89
+[; ;subroutines.c: 89: volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
 [v _mL `*S314 ~T0 @X0 1 r1 ]
 [v _mR `*S314 ~T0 @X0 1 r2 ]
 [v _speed `i ~T0 @X0 1 r3 ]
-"75
-[; ;subroutines.c: 75:                             volatile unsigned long *time)
+"90
+[; ;subroutines.c: 90:                             volatile unsigned long *time)
 [v _time `*Vul ~T0 @X0 1 r4 ]
-"76
-[; ;subroutines.c: 76: {
+"91
+[; ;subroutines.c: 91: {
 [f ]
-"77
-[; ;subroutines.c: 77:     moveBackward(mL,mR,speed);
+"92
+[; ;subroutines.c: 92:     moveBackward(mL,mR,speed);
 [e ( _moveBackward (3 , , _mL _mR _speed ]
-"79
-[; ;subroutines.c: 79:     ClearLCD();
+"94
+[; ;subroutines.c: 94:     ClearLCD();
 [e ( _ClearLCD ..  ]
-"80
-[; ;subroutines.c: 80:     LCD_String("RETURNING HOME");
-[e ( _LCD_String (1 :s 3C ]
-"81
-[; ;subroutines.c: 81:     while(*time != 0);
-[e $U 331  ]
-[e :U 332 ]
-[e :U 331 ]
-[e $ != *U _time -> -> -> 0 `i `l `ul 332  ]
-[e :U 333 ]
-"82
-[; ;subroutines.c: 82:     return 3;
+"95
+[; ;subroutines.c: 95:     LCD_String("RETURNING HOME");
+[e ( _LCD_String (1 :s 5C ]
+"96
+[; ;subroutines.c: 96:     while(*time != 0);
+[e $U 336  ]
+[e :U 337 ]
+[e :U 336 ]
+[e $ != *U _time -> -> -> 0 `i `l `ul 337  ]
+[e :U 338 ]
+"97
+[; ;subroutines.c: 97:     return 3;
 [e ) -> -> 3 `i `uc ]
-[e $UE 330  ]
-"83
-[; ;subroutines.c: 83: }
-[e :UE 330 ]
+[e $UE 335  ]
+"98
+[; ;subroutines.c: 98: }
+[e :UE 335 ]
 }
-"86
-[; ;subroutines.c: 86: volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed,
+"101
+[; ;subroutines.c: 101: volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed,
 [v _stopAndDisplay `(Vuc ~T0 @X0 1 ef4`*S314`*S314`i`*Vuc ]
-"88
-[; ;subroutines.c: 88: {
+"103
+[; ;subroutines.c: 103: {
 {
 [e :U _stopAndDisplay ]
-"86
-[; ;subroutines.c: 86: volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed,
+"101
+[; ;subroutines.c: 101: volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed,
 [v _mL `*S314 ~T0 @X0 1 r1 ]
 [v _mR `*S314 ~T0 @X0 1 r2 ]
 [v _speed `i ~T0 @X0 1 r3 ]
-"87
-[; ;subroutines.c: 87: volatile char RFID_buffer[])
+"102
+[; ;subroutines.c: 102: volatile char RFID_buffer[])
 [v _RFID_buffer `*Vuc ~T0 @X0 1 r4 ]
-"88
-[; ;subroutines.c: 88: {
+"103
+[; ;subroutines.c: 103: {
 [f ]
-"89
-[; ;subroutines.c: 89:     stop(mL, mR,speed);
+"104
+[; ;subroutines.c: 104:     stop(mL, mR,speed);
 [e ( _stop (3 , , _mL _mR _speed ]
-"91
-[; ;subroutines.c: 91:     display_RFID(RFID_buffer);
+"106
+[; ;subroutines.c: 106:     display_RFID(RFID_buffer);
 [e ( _display_RFID (1 _RFID_buffer ]
-"92
-[; ;subroutines.c: 92:     check_RFID(RFID_buffer);
+"107
+[; ;subroutines.c: 107:     check_RFID(RFID_buffer);
 [e ( _check_RFID (1 _RFID_buffer ]
-"94
-[; ;subroutines.c: 94:         while(1)
-[e :U 336 ]
-"95
-[; ;subroutines.c: 95:         {
+"109
+[; ;subroutines.c: 109:         while(1)
+[e :U 341 ]
+"110
+[; ;subroutines.c: 110:         {
 {
-"96
-[; ;subroutines.c: 96:             while(PORTDbits.RD2 == 1)
-[e $U 338  ]
-[e :U 339 ]
-"97
-[; ;subroutines.c: 97:             {
+"111
+[; ;subroutines.c: 111:             while(PORTDbits.RD2 == 1)
+[e $U 343  ]
+[e :U 344 ]
+"112
+[; ;subroutines.c: 112:             {
 {
-"98
-[; ;subroutines.c: 98:                 ClearLCD();
+"113
+[; ;subroutines.c: 113:                 ClearLCD();
 [e ( _ClearLCD ..  ]
-"99
-[; ;subroutines.c: 99:                 LCD_String("RESETTING ROBOT");
-[e ( _LCD_String (1 :s 4C ]
-"100
-[; ;subroutines.c: 100:                 for(int i=0; i<10;i++)
+"114
+[; ;subroutines.c: 114:                 LCD_String("RESETTING ROBOT");
+[e ( _LCD_String (1 :s 6C ]
+"115
+[; ;subroutines.c: 115:                 for(int i=0; i<10;i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 10 `i 341  ]
-[e $U 342  ]
-[e :U 341 ]
-"101
-[; ;subroutines.c: 101:                 {
+[e $ < _i -> 10 `i 346  ]
+[e $U 347  ]
+[e :U 346 ]
+"116
+[; ;subroutines.c: 116:                 {
 {
-"102
-[; ;subroutines.c: 102:                     _delay((unsigned long)((100)*(8000000/4000.0)));
+"117
+[; ;subroutines.c: 117:                     _delay((unsigned long)((100)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"103
-[; ;subroutines.c: 103:                 }
+"118
+[; ;subroutines.c: 118:                 }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 10 `i 341  ]
-[e :U 342 ]
+[e $ < _i -> 10 `i 346  ]
+[e :U 347 ]
 }
-"104
-[; ;subroutines.c: 104:                 ClearLCD();
+"119
+[; ;subroutines.c: 119:                 ClearLCD();
 [e ( _ClearLCD ..  ]
-"105
-[; ;subroutines.c: 105:                 __asm(" reset");
+"120
+[; ;subroutines.c: 120:                 __asm(" reset");
 [; <"  reset ;# ">
-"106
-[; ;subroutines.c: 106:             }
+"121
+[; ;subroutines.c: 121:             }
 }
-[e :U 338 ]
-"96
-[; ;subroutines.c: 96:             while(PORTDbits.RD2 == 1)
-[e $ == -> . . _PORTDbits 0 2 `i -> 1 `i 339  ]
-[e :U 340 ]
-"107
-[; ;subroutines.c: 107:         }
-}
-[e :U 335 ]
-[e $U 336  ]
-[e :U 337 ]
-"108
-[; ;subroutines.c: 108: }
-[e :UE 334 ]
-}
-"110
-[; ;subroutines.c: 110: void debug(void)
-[v _debug `(v ~T0 @X0 1 ef ]
+[e :U 343 ]
 "111
-[; ;subroutines.c: 111: {
+[; ;subroutines.c: 111:             while(PORTDbits.RD2 == 1)
+[e $ == -> . . _PORTDbits 0 2 `i -> 1 `i 344  ]
+[e :U 345 ]
+"122
+[; ;subroutines.c: 122:         }
+}
+[e :U 340 ]
+[e $U 341  ]
+[e :U 342 ]
+"123
+[; ;subroutines.c: 123: }
+[e :UE 339 ]
+}
+"125
+[; ;subroutines.c: 125: void debug(void)
+[v _debug `(v ~T0 @X0 1 ef ]
+"126
+[; ;subroutines.c: 126: {
 {
 [e :U _debug ]
 [f ]
-"113
-[; ;subroutines.c: 113:     while(1)
-[e :U 346 ]
-"114
-[; ;subroutines.c: 114:     {
+"128
+[; ;subroutines.c: 128:     while(1)
+[e :U 351 ]
+"129
+[; ;subroutines.c: 129:     {
 {
-"116
-[; ;subroutines.c: 116:         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+"131
+[; ;subroutines.c: 131:         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 [v _raw_data `ui ~T0 @X0 1 a ]
 [e = _raw_data -> | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i `ui ]
-"118
-[; ;subroutines.c: 118:         static unsigned int smoothed_data;
-[v F3195 `ui ~T0 @X0 1 s smoothed_data ]
-"119
-[; ;subroutines.c: 119:         smoothed_data = smoothed_data + ((raw_data - smoothed_data) >> 3);
-[e = F3195 + F3195 >> - _raw_data F3195 -> 3 `i ]
-"121
-[; ;subroutines.c: 121:         unsigned int dif = raw_data - smoothed_data;
+"133
+[; ;subroutines.c: 133:         static unsigned int smoothed_data;
+[v F3198 `ui ~T0 @X0 1 s smoothed_data ]
+"134
+[; ;subroutines.c: 134:         smoothed_data = smoothed_data + ((raw_data - smoothed_data) >> 3);
+[e = F3198 + F3198 >> - _raw_data F3198 -> 3 `i ]
+"136
+[; ;subroutines.c: 136:         unsigned int dif = raw_data - smoothed_data;
 [v _dif `ui ~T0 @X0 1 a ]
-[e = _dif - _raw_data F3195 ]
-"122
-[; ;subroutines.c: 122:         ClearLCD();
-[e ( _ClearLCD ..  ]
-"123
-[; ;subroutines.c: 123:         char buf[16];
-[v _buf `uc ~T0 @X0 -> 16 `i a ]
-"124
-[; ;subroutines.c: 124:         SetLine(1);
-[e ( _SetLine (1 -> -> 1 `i `uc ]
-"125
-[; ;subroutines.c: 125:         sprintf(buf,"%u",raw_data);
-[e ( _sprintf (1 , (. , &U _buf :s 5C _raw_data ]
-"126
-[; ;subroutines.c: 126:         LCD_String(buf);
-[e ( _LCD_String (1 &U _buf ]
-"127
-[; ;subroutines.c: 127:         SetLine(2);
-[e ( _SetLine (1 -> -> 2 `i `uc ]
-"128
-[; ;subroutines.c: 128:         char buf2[16];
-[v _buf2 `uc ~T0 @X0 -> 16 `i a ]
-"129
-[; ;subroutines.c: 129:         sprintf(buf2, "%u",dif);
-[e ( _sprintf (1 , (. , &U _buf2 :s 6C _dif ]
-"130
-[; ;subroutines.c: 130:         LCD_String(buf2);
-[e ( _LCD_String (1 &U _buf2 ]
-"131
-[; ;subroutines.c: 131:         _delay((unsigned long)((100)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+[e = _dif - _raw_data F3198 ]
 "137
-[; ;subroutines.c: 137:     }
-}
-[e :U 345 ]
-[e $U 346  ]
-[e :U 347 ]
+[; ;subroutines.c: 137:         ClearLCD();
+[e ( _ClearLCD ..  ]
 "138
-[; ;subroutines.c: 138: }
-[e :UE 344 ]
-}
+[; ;subroutines.c: 138:         char buf[16];
+[v _buf `uc ~T0 @X0 -> 16 `i a ]
+"139
+[; ;subroutines.c: 139:         SetLine(1);
+[e ( _SetLine (1 -> -> 1 `i `uc ]
+"140
+[; ;subroutines.c: 140:         sprintf(buf,"%u",raw_data);
+[e ( _sprintf (1 , (. , &U _buf :s 7C _raw_data ]
 "141
-[; ;subroutines.c: 141: void waitForInput(void)
-[v _waitForInput `(v ~T0 @X0 1 ef ]
+[; ;subroutines.c: 141:         LCD_String(buf);
+[e ( _LCD_String (1 &U _buf ]
 "142
-[; ;subroutines.c: 142: {
+[; ;subroutines.c: 142:         SetLine(2);
+[e ( _SetLine (1 -> -> 2 `i `uc ]
+"143
+[; ;subroutines.c: 143:         char buf2[16];
+[v _buf2 `uc ~T0 @X0 -> 16 `i a ]
+"144
+[; ;subroutines.c: 144:         sprintf(buf2, "%u",dif);
+[e ( _sprintf (1 , (. , &U _buf2 :s 8C _dif ]
+"145
+[; ;subroutines.c: 145:         LCD_String(buf2);
+[e ( _LCD_String (1 &U _buf2 ]
+"146
+[; ;subroutines.c: 146:         _delay((unsigned long)((100)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"152
+[; ;subroutines.c: 152:     }
+}
+[e :U 350 ]
+[e $U 351  ]
+[e :U 352 ]
+"153
+[; ;subroutines.c: 153: }
+[e :UE 349 ]
+}
+"156
+[; ;subroutines.c: 156: void waitForInput(void)
+[v _waitForInput `(v ~T0 @X0 1 ef ]
+"157
+[; ;subroutines.c: 157: {
 {
 [e :U _waitForInput ]
 [f ]
-"144
-[; ;subroutines.c: 144:     ClearLCD();
+"159
+[; ;subroutines.c: 159:     ClearLCD();
 [e ( _ClearLCD ..  ]
-"145
-[; ;subroutines.c: 145:     SetLine(1);
+"160
+[; ;subroutines.c: 160:     SetLine(1);
 [e ( _SetLine (1 -> -> 1 `i `uc ]
-"146
-[; ;subroutines.c: 146:     LCD_String("PRESS BUTTON");
-[e ( _LCD_String (1 :s 7C ]
-"147
-[; ;subroutines.c: 147:     SetLine(2);
-[e ( _SetLine (1 -> -> 2 `i `uc ]
-"148
-[; ;subroutines.c: 148:     LCD_String("TO START SEARCH");
-[e ( _LCD_String (1 :s 8C ]
-"151
-[; ;subroutines.c: 151:     while(PORTDbits.RD2 == 0);
-[e $U 349  ]
-[e :U 350 ]
-[e :U 349 ]
-[e $ == -> . . _PORTDbits 0 2 `i -> 0 `i 350  ]
-[e :U 351 ]
-"154
-[; ;subroutines.c: 154:     ClearLCD();
-[e ( _ClearLCD ..  ]
-"155
-[; ;subroutines.c: 155:     SetLine(1);
-[e ( _SetLine (1 -> -> 1 `i `uc ]
-"156
-[; ;subroutines.c: 156:     LCD_String("STARTING SEARCH");
+"161
+[; ;subroutines.c: 161:     LCD_String("PRESS BUTTON");
 [e ( _LCD_String (1 :s 9C ]
-"157
-[; ;subroutines.c: 157:     for(int i=0; i<10;i++)
+"162
+[; ;subroutines.c: 162:     SetLine(2);
+[e ( _SetLine (1 -> -> 2 `i `uc ]
+"163
+[; ;subroutines.c: 163:     LCD_String("TO START SEARCH");
+[e ( _LCD_String (1 :s 10C ]
+"166
+[; ;subroutines.c: 166:     while(PORTDbits.RD2 == 0);
+[e $U 354  ]
+[e :U 355 ]
+[e :U 354 ]
+[e $ == -> . . _PORTDbits 0 2 `i -> 0 `i 355  ]
+[e :U 356 ]
+"169
+[; ;subroutines.c: 169:     ClearLCD();
+[e ( _ClearLCD ..  ]
+"170
+[; ;subroutines.c: 170:     SetLine(1);
+[e ( _SetLine (1 -> -> 1 `i `uc ]
+"171
+[; ;subroutines.c: 171:     LCD_String("STARTING SEARCH");
+[e ( _LCD_String (1 :s 11C ]
+"172
+[; ;subroutines.c: 172:     for(int i=0; i<10;i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 10 `i 352  ]
-[e $U 353  ]
-[e :U 352 ]
-"158
-[; ;subroutines.c: 158:     {
+[e $ < _i -> 10 `i 357  ]
+[e $U 358  ]
+[e :U 357 ]
+"173
+[; ;subroutines.c: 173:     {
 {
-"159
-[; ;subroutines.c: 159:         _delay((unsigned long)((100)*(8000000/4000.0)));
+"174
+[; ;subroutines.c: 174:         _delay((unsigned long)((100)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"160
-[; ;subroutines.c: 160:     }
+"175
+[; ;subroutines.c: 175:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 10 `i 352  ]
-[e :U 353 ]
+[e $ < _i -> 10 `i 357  ]
+[e :U 358 ]
 }
-"161
-[; ;subroutines.c: 161:     ClearLCD();
+"176
+[; ;subroutines.c: 176:     ClearLCD();
 [e ( _ClearLCD ..  ]
-"162
-[; ;subroutines.c: 162: }
-[e :UE 348 ]
+"177
+[; ;subroutines.c: 177: }
+[e :UE 353 ]
 }
 [p f _sprintf 8389632 ]
-[a 5C 37 117 0 ]
-[a 6C 37 117 0 ]
-[a 4C 82 69 83 69 84 84 73 78 71 32 82 79 66 79 84 0 ]
-[a 7C 80 82 69 83 83 32 66 85 84 84 79 78 0 ]
-[a 8C 84 79 32 83 84 65 82 84 32 83 69 65 82 67 72 0 ]
-[a 9C 83 84 65 82 84 73 78 71 32 83 69 65 82 67 72 0 ]
+[a 7C 37 117 0 ]
+[a 8C 37 117 0 ]
+[a 3C 82 69 83 69 84 84 73 78 71 32 82 79 66 79 84 0 ]
+[a 6C 82 69 83 69 84 84 73 78 71 32 82 79 66 79 84 0 ]
+[a 9C 80 82 69 83 83 32 66 85 84 84 79 78 0 ]
+[a 10C 84 79 32 83 84 65 82 84 32 83 69 65 82 67 72 0 ]
+[a 11C 83 84 65 82 84 73 78 71 32 83 69 65 82 67 72 0 ]
 [a 1C 83 69 65 82 67 72 73 78 71 0 ]
-[a 3C 82 69 84 85 82 78 73 78 71 32 72 79 77 69 0 ]
-[a 2C 77 79 86 73 78 71 32 84 79 32 66 79 77 66 0 ]
+[a 5C 82 69 84 85 82 78 73 78 71 32 72 79 77 69 0 ]
+[a 2C 66 79 77 66 32 78 79 84 32 70 79 85 78 68 0 ]
+[a 4C 77 79 86 73 78 71 32 84 79 32 66 79 77 66 0 ]

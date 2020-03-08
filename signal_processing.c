@@ -23,7 +23,7 @@ void init_sensor(void)
     ANSEL0 = 0; 
     ANSEL1 = 0;
    
-    DFLTCON = 0b00001000; // noise filter for CAP1 input
+    //DFLTCON = 0b00001000; // noise filter for CAP1 input
     CAP1CON = 0b01000111; //PWM measurement (falling to rising), time base reset
     
     unsigned int throwaway = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
@@ -37,11 +37,11 @@ char classify_data(unsigned int raw_data, unsigned int *smoothed)
 {  
     
     // Exponentially weighted moving average implementation
-    *smoothed = *smoothed + ((raw_data - *smoothed) >> 5);
-    unsigned int filtered = raw_data - *smoothed;    
-    
+    *smoothed = *smoothed + ((raw_data - *smoothed) >> 3);
+    unsigned int filtered = raw_data - *smoothed;  
+               
     // Compare raw data with smoothed data
-    if(filtered >= 100)
+    if(filtered >= 20)
     {
         return 1;
     }

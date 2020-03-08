@@ -5182,7 +5182,8 @@ char classify_data(unsigned int smoothed_data, unsigned int *smoothed);
 
 # 1 "./subroutines.h" 1
 # 15 "./subroutines.h"
-volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed);
+volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+                            volatile unsigned long *time);
 
 volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
     volatile unsigned long *time, volatile char *exit_flag);
@@ -5361,7 +5362,8 @@ char *tempnam(const char *, const char *);
 
 
 
-volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed)
+volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+                            volatile unsigned long *time)
 {
     turnRight(mL,mR,speed);
     ClearLCD();
@@ -5380,12 +5382,26 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed)
         char beacon_location = classify_data(raw_data, &smoothed_data);
 
 
-
         if(beacon_location == 1)
         {
+            *time = 0;
             return 1;
         }
-        _delay((unsigned long)((1)*(8000000/4000.0)));
+
+        else if(*time >= 156250)
+        {
+            *time = 0;
+            ClearLCD();
+            LCD_String("BOMB NOT FOUND");
+            SetLine(2);
+            LCD_String("RESETTING ROBOT");
+            stop(mL,mR,speed);
+            for(int i=0; i<20;i++)
+            {
+                _delay((unsigned long)((100)*(8000000/4000.0)));
+            }
+            __asm(" reset");
+        }
     }
 }
 
@@ -5409,7 +5425,7 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
                   return 2;
               }
 
-              else if(*time >= 117187)
+              else if(*time >= 78125)
               {
                   return 2;
               }

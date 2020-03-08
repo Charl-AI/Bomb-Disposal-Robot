@@ -23,9 +23,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "5214
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 5214: extern volatile unsigned char ANSEL1 __attribute__((address(0xFB9)));
 [v _ANSEL1 `Vuc ~T0 @X0 0 e@4025 ]
-"52
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 52: extern volatile unsigned char DFLTCON __attribute__((address(0xF60)));
-[v _DFLTCON `Vuc ~T0 @X0 0 e@3936 ]
 "234
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 234: extern volatile unsigned char CAP1CON __attribute__((address(0xF63)));
 [v _CAP1CON `Vuc ~T0 @X0 0 e@3939 ]
@@ -595,9 +592,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "24
 [; ;signal_processing.c: 24:     ANSEL1 = 0;
 [e = _ANSEL1 -> -> 0 `i `uc ]
-"26
-[; ;signal_processing.c: 26:     DFLTCON = 0b00001000;
-[e = _DFLTCON -> -> 8 `i `uc ]
 "27
 [; ;signal_processing.c: 27:     CAP1CON = 0b01000111;
 [e = _CAP1CON -> -> 71 `i `uc ]
@@ -624,15 +618,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;signal_processing.c: 37: {
 [f ]
 "40
-[; ;signal_processing.c: 40:     *smoothed = *smoothed + ((raw_data - *smoothed) >> 5);
-[e = *U _smoothed + *U _smoothed >> - _raw_data *U _smoothed -> 5 `i ]
+[; ;signal_processing.c: 40:     *smoothed = *smoothed + ((raw_data - *smoothed) >> 3);
+[e = *U _smoothed + *U _smoothed >> - _raw_data *U _smoothed -> 3 `i ]
 "41
 [; ;signal_processing.c: 41:     unsigned int filtered = raw_data - *smoothed;
 [v _filtered `ui ~T0 @X0 1 a ]
 [e = _filtered - _raw_data *U _smoothed ]
 "44
-[; ;signal_processing.c: 44:     if(filtered >= 100)
-[e $ ! >= _filtered -> -> 100 `i `ui 319  ]
+[; ;signal_processing.c: 44:     if(filtered >= 20)
+[e $ ! >= _filtered -> -> 20 `i `ui 319  ]
 "45
 [; ;signal_processing.c: 45:     {
 {
