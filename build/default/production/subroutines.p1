@@ -663,9 +663,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 323  ]
 "44
-[; ;subroutines.c: 44:         else if(*time >= 156250)
+[; ;subroutines.c: 44:         else if(*time >= 610)
 [e :U 322 ]
-[e $ ! >= *U _time -> -> 156250 `l `ul 324  ]
+[e $ ! >= *U _time -> -> -> 610 `i `l `ul 324  ]
 "45
 [; ;subroutines.c: 45:         {
 {
@@ -778,9 +778,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e $U 333  ]
 "81
-[; ;subroutines.c: 81:               else if(*time >= 78125)
+[; ;subroutines.c: 81:               else if(*time >= 305)
 [e :U 332 ]
-[e $ ! >= *U _time -> -> 78125 `l `ul 334  ]
+[e $ ! >= *U _time -> -> -> 305 `i `l `ul 334  ]
 "82
 [; ;subroutines.c: 82:               {
 {

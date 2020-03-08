@@ -5388,7 +5388,7 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
             return 1;
         }
 
-        else if(*time >= 156250)
+        else if(*time >= 610)
         {
             *time = 0;
             ClearLCD();
@@ -5425,7 +5425,7 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
                   return 2;
               }
 
-              else if(*time >= 78125)
+              else if(*time >= 305)
               {
                   return 2;
               }

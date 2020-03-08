@@ -63,9 +63,9 @@ void setup(void)
     
     TRISDbits.RD2 = 1; // button attached to D2, used for reset  
     
-    T0CON = 0b11000111; // enable timer 0, no prescaler, 8 bit
-    // overflow every 128 us
-    
+    T0CON = 0b11000111; // enable timer 0, 256 prescaler, 8 bit
+    // overflow every 32 ms
+  
     // generate interrupt on timer overflow
     INTCONbits.TMR0IE=1; // enable TMR0 overflow interrupt
     INTCON2bits.TMR0IP=0; // TMR0  Low priority

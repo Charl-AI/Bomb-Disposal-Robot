@@ -41,7 +41,7 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
             return 1;
         }  
         // if searching for more than 20 seconds, timeout and display error
-        else if(*time >= 156250)
+        else if(*time >= 610)
         {
             *time = 0;
             ClearLCD();
@@ -78,7 +78,7 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
                   return 2; // return home
               }
               // if moving for more than 10 seconds
-              else if(*time >= 78125)
+              else if(*time >= 305)
               {
                   return 2; // time out and go home
               }
