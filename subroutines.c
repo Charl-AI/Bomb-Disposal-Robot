@@ -46,21 +46,34 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
     moveForward(mL,mR,speed); // move robot forwards
     ClearLCD();
     LCD_String("MOVING TO BOMB");
-      
+    int count = 0;
     // Runs until RFID has been scanned and break statement executes
     while(1)
     {
-        // once RFID fully read, check against checksum, display it,
-        // break loop and set robot mode to return home
+        // First, acquire the raw signal using the motion feedback module
+        unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+        
+        // Now, classify the signals to find if we are looking at the beacon
+        char beacon_location = classify_data(raw_data);
+        
         if(*exit_flag == 1)
         {
             exit_flag = 0;
             return 2; // return home
         }
-        // if moving for more than 10 seconds
-        else if(*time >= 305)
+        
+        else if(beacon_location == 0)
         {
-            return 2; // time out and go home
+            count += 1;
+        }
+        else
+        {
+            count = 0;
+        }
+        
+        if(count >=20000)
+        {
+            return 0;
         }
     }
 }
@@ -118,7 +131,7 @@ void debug(void)
         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
         
         static unsigned int smoothed_data;
-        smoothed_data = smoothed_data + ((raw_data - smoothed_data) >> 3);
+        smoothed_data = smoothed_data + ((raw_data - smoothed_data) >> 2);
         
         unsigned int dif = raw_data - smoothed_data;
         ClearLCD();

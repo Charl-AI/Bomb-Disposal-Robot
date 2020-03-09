@@ -5392,23 +5392,36 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
     moveForward(mL,mR,speed);
     ClearLCD();
     LCD_String("MOVING TO BOMB");
+    int count = 0;
+
+    while(1)
+    {
+
+        unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 
 
-          while(1)
-          {
+        char beacon_location = classify_data(raw_data);
 
+        if(*exit_flag == 1)
+        {
+            exit_flag = 0;
+            return 2;
+        }
 
-              if(*exit_flag == 1)
-              {
-                  exit_flag = 0;
-                  return 2;
-              }
+        else if(beacon_location == 0)
+        {
+            count += 1;
+        }
+        else
+        {
+            count = 0;
+        }
 
-
-
-
-
-          }
+        if(count >=20000)
+        {
+            return 0;
+        }
+    }
 }
 
 
@@ -5464,7 +5477,7 @@ void debug(void)
         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 
         static unsigned int smoothed_data;
-        smoothed_data = smoothed_data + ((raw_data - smoothed_data) >> 3);
+        smoothed_data = smoothed_data + ((raw_data - smoothed_data) >> 2);
 
         unsigned int dif = raw_data - smoothed_data;
         ClearLCD();
