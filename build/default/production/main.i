@@ -5310,7 +5310,7 @@ void setMotorPWM(struct DC_motor *m);
 
 
 void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+void turn(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 
@@ -5335,7 +5335,7 @@ struct Sensor {
 };
 
 void init_sensor(void);
-char classify_data(unsigned int smoothed_data, unsigned int *smoothed);
+char classify_data(unsigned int smoothed_data);
 # 23 "main.c" 2
 
 # 1 "./subroutines.h" 1

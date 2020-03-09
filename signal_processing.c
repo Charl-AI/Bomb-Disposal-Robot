@@ -32,12 +32,12 @@ void init_sensor(void)
 // 0 means that the beacon has not been found
 // 1 means the beacon is straight ahead
 // (We use an exponential moving average to smooth the data)
-char classify_data(unsigned int raw_data, unsigned int *smoothed)
+char classify_data(unsigned int raw_data)
 {  
-    
+    static unsigned int smoothed;
     // Exponentially weighted moving average implementation
-    *smoothed = *smoothed + ((raw_data - *smoothed) >> 2);
-    unsigned int filtered = raw_data - *smoothed;  
+    smoothed = smoothed + ((raw_data - smoothed) >> 2);
+    unsigned int filtered = raw_data - smoothed;  
                
     // Compare raw data with smoothed data
     if(filtered >= 100)

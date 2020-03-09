@@ -16,7 +16,7 @@ struct Sensor {
 };
 
 void init_sensor(void);
-char classify_data(unsigned int smoothed_data, unsigned int *smoothed);
+char classify_data(unsigned int smoothed_data);
 
 #endif	/* SIGNAL_PROCESSING_H */
 

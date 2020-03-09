@@ -21,10 +21,7 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
     turn(mL,mR,speed); // continuously turn on the spot
     ClearLCD();
     LCD_String("SEARCHING"); // Display on LCD
-    
-    // Initialise variable to store smoothed data
-    unsigned int smoothed_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
-    
+        
     // Runs until the beacon is found and the return statement executes
     while(1)
     {
@@ -32,7 +29,7 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
         
         // Now, classify the signals to find if we are looking at the beacon
-        char beacon_location = classify_data(raw_data, &smoothed_data);
+        char beacon_location = classify_data(raw_data);
         
         // if beacon is straight ahead, exit this subroutine
         if(beacon_location == 1)
@@ -162,6 +159,13 @@ void debug(void)
 // This function is allows the user to press the button to start the search
 void waitForInput(void)
 {
+    // first, stabilise the smoothing algorithm by reading values
+    for(int i =0;i<500;i++)
+    {
+        unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+        char throwaway = classify_data(raw_data); // throw away the result
+    }
+    
     // display some text for the user
     ClearLCD();
     SetLine(1);

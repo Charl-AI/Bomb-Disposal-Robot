@@ -604,26 +604,28 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 317 ]
 }
 "35
-[; ;signal_processing.c: 35: char classify_data(unsigned int raw_data, unsigned int *smoothed)
-[v _classify_data `(uc ~T0 @X0 1 ef2`ui`*ui ]
+[; ;signal_processing.c: 35: char classify_data(unsigned int raw_data)
+[v _classify_data `(uc ~T0 @X0 1 ef1`ui ]
 "36
 [; ;signal_processing.c: 36: {
 {
 [e :U _classify_data ]
 "35
-[; ;signal_processing.c: 35: char classify_data(unsigned int raw_data, unsigned int *smoothed)
+[; ;signal_processing.c: 35: char classify_data(unsigned int raw_data)
 [v _raw_data `ui ~T0 @X0 1 r1 ]
-[v _smoothed `*ui ~T0 @X0 1 r2 ]
 "36
 [; ;signal_processing.c: 36: {
 [f ]
+"37
+[; ;signal_processing.c: 37:     static unsigned int smoothed;
+[v F3111 `ui ~T0 @X0 1 s smoothed ]
 "39
-[; ;signal_processing.c: 39:     *smoothed = *smoothed + ((raw_data - *smoothed) >> 2);
-[e = *U _smoothed + *U _smoothed >> - _raw_data *U _smoothed -> 2 `i ]
+[; ;signal_processing.c: 39:     smoothed = smoothed + ((raw_data - smoothed) >> 2);
+[e = F3111 + F3111 >> - _raw_data F3111 -> 2 `i ]
 "40
-[; ;signal_processing.c: 40:     unsigned int filtered = raw_data - *smoothed;
+[; ;signal_processing.c: 40:     unsigned int filtered = raw_data - smoothed;
 [v _filtered `ui ~T0 @X0 1 a ]
-[e = _filtered - _raw_data *U _smoothed ]
+[e = _filtered - _raw_data F3111 ]
 "43
 [; ;signal_processing.c: 43:     if(filtered >= 100)
 [e $ ! >= _filtered -> -> 100 `i `ui 319  ]

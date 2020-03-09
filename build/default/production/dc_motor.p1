@@ -720,14 +720,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 319 ]
 }
 "53
-[; ;dc_motor.c: 53: void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power)
-[v _turnRight `(v ~T0 @X0 1 ef3`*S314`*S314`i ]
+[; ;dc_motor.c: 53: void turn(struct DC_motor *mL, struct DC_motor *mR, int max_power)
+[v _turn `(v ~T0 @X0 1 ef3`*S314`*S314`i ]
 "54
 [; ;dc_motor.c: 54: {
 {
-[e :U _turnRight ]
+[e :U _turn ]
 "53
-[; ;dc_motor.c: 53: void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power)
+[; ;dc_motor.c: 53: void turn(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 [v _mL `*S314 ~T0 @X0 1 r1 ]
 [v _mR `*S314 ~T0 @X0 1 r2 ]
 [v _max_power `i ~T0 @X0 1 r3 ]

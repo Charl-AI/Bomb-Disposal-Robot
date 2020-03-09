@@ -5152,7 +5152,7 @@ void setMotorPWM(struct DC_motor *m);
 
 
 void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+void turn(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 
@@ -5177,7 +5177,7 @@ struct Sensor {
 };
 
 void init_sensor(void);
-char classify_data(unsigned int smoothed_data, unsigned int *smoothed);
+char classify_data(unsigned int smoothed_data);
 # 12 "subroutines.c" 2
 
 # 1 "./subroutines.h" 1
@@ -5365,12 +5365,9 @@ char *tempnam(const char *, const char *);
 volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
                             volatile unsigned long *time)
 {
-    turnRight(mL,mR,speed);
+    turn(mL,mR,speed);
     ClearLCD();
     LCD_String("SEARCHING");
-
-
-    unsigned int smoothed_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 
 
     while(1)
@@ -5379,7 +5376,7 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 
 
-        char beacon_location = classify_data(raw_data, &smoothed_data);
+        char beacon_location = classify_data(raw_data);
 
 
         if(beacon_location == 1)
@@ -5509,6 +5506,13 @@ void debug(void)
 
 void waitForInput(void)
 {
+
+    for(int i =0;i<500;i++)
+    {
+        unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+        char throwaway = classify_data(raw_data);
+    }
+
 
     ClearLCD();
     SetLine(1);

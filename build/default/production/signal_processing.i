@@ -4972,7 +4972,7 @@ struct Sensor {
 };
 
 void init_sensor(void);
-char classify_data(unsigned int smoothed_data, unsigned int *smoothed);
+char classify_data(unsigned int smoothed_data);
 # 11 "signal_processing.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdio.h" 1 3
@@ -5315,12 +5315,12 @@ void init_sensor(void)
 
 
 
-char classify_data(unsigned int raw_data, unsigned int *smoothed)
+char classify_data(unsigned int raw_data)
 {
+    static unsigned int smoothed;
 
-
-    *smoothed = *smoothed + ((raw_data - *smoothed) >> 2);
-    unsigned int filtered = raw_data - *smoothed;
+    smoothed = smoothed + ((raw_data - smoothed) >> 2);
+    unsigned int filtered = raw_data - smoothed;
 
 
     if(filtered >= 100)
