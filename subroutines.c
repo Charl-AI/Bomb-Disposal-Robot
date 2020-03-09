@@ -47,22 +47,22 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
     ClearLCD();
     LCD_String("MOVING TO BOMB");
       
-          // Runs until RFID has been scanned and break statement executes
-          while(1)
-          {
-              // once RFID fully read, check against checksum, display it,
-              // break loop and set robot mode to return home
-              if(*exit_flag == 1)
-              {
-                  exit_flag = 0;
-                  return 2; // return home
-              }
-              // if moving for more than 10 seconds
-              else if(*time >= 305)
-              {
-                  return 2; // time out and go home
-              }
-          }
+    // Runs until RFID has been scanned and break statement executes
+    while(1)
+    {
+        // once RFID fully read, check against checksum, display it,
+        // break loop and set robot mode to return home
+        if(*exit_flag == 1)
+        {
+            exit_flag = 0;
+            return 2; // return home
+        }
+        // if moving for more than 10 seconds
+        else if(*time >= 305)
+        {
+            return 2; // time out and go home
+        }
+    }
 }
 
 // This subroutine makes the robot return to its starting position

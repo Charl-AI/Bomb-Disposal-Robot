@@ -5404,10 +5404,10 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
                   return 2;
               }
 
-              else if(*time >= 305)
-              {
-                  return 2;
-              }
+
+
+
+
           }
 }
 
