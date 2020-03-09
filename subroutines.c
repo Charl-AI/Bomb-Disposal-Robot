@@ -93,10 +93,21 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
             error_counter = 0;
         }
         // if the beacon has been lost for a set amount of time, start searching
+        // 18000 is a paramater to adjust the sensitivity of how often it will 
+        // start searching again
         if(error_counter >=18000)
         {
             move-> move_number += 1; // increment move number
-            return 0;
+            
+            // if we run out of space to store the moves, return home
+            if(move->move_number >= 19)
+            {
+                return 2;
+            }
+            else
+            {
+                 return 0; // go back to sweep mode
+            }
         }
     }
 }
@@ -137,6 +148,7 @@ volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
 {
     stop(mL, mR,speed); // stop moving
     
+    // Display RFID and checksum result
     display_RFID(RFID_buffer);
     check_RFID(RFID_buffer);
     
