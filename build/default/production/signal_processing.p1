@@ -26,12 +26,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "234
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 234: extern volatile unsigned char CAP1CON __attribute__((address(0xF63)));
 [v _CAP1CON `Vuc ~T0 @X0 0 e@3939 ]
-"353
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 353: extern volatile unsigned char CAP1BUFH __attribute__((address(0xF69)));
-[v _CAP1BUFH `Vuc ~T0 @X0 0 e@3945 ]
-"341
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 341: extern volatile unsigned char CAP1BUFL __attribute__((address(0xF68)));
-[v _CAP1BUFL `Vuc ~T0 @X0 0 e@3944 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 54: __asm("DFLTCON equ 0F60h");
 [; <" DFLTCON equ 0F60h ;# ">
@@ -595,66 +589,62 @@ Version 4.0 HI-TECH Software Intermediate Code
 "26
 [; ;signal_processing.c: 26:     CAP1CON = 0b01000111;
 [e = _CAP1CON -> -> 71 `i `uc ]
-"28
-[; ;signal_processing.c: 28:     unsigned int throwaway = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
-[v _throwaway `ui ~T0 @X0 1 a ]
-[e = _throwaway -> | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i `ui ]
-"29
-[; ;signal_processing.c: 29: }
-[e :UE 317 ]
+"27
+[; ;signal_processing.c: 27: }
+[e :UE 316 ]
 }
-"35
-[; ;signal_processing.c: 35: char classify_data(unsigned int raw_data)
+"33
+[; ;signal_processing.c: 33: char classify_data(unsigned int raw_data)
 [v _classify_data `(uc ~T0 @X0 1 ef1`ui ]
-"36
-[; ;signal_processing.c: 36: {
+"34
+[; ;signal_processing.c: 34: {
 {
 [e :U _classify_data ]
-"35
-[; ;signal_processing.c: 35: char classify_data(unsigned int raw_data)
+"33
+[; ;signal_processing.c: 33: char classify_data(unsigned int raw_data)
 [v _raw_data `ui ~T0 @X0 1 r1 ]
-"36
-[; ;signal_processing.c: 36: {
+"34
+[; ;signal_processing.c: 34: {
 [f ]
 "37
 [; ;signal_processing.c: 37:     static unsigned int smoothed;
-[v F3111 `ui ~T0 @X0 1 s smoothed ]
-"39
-[; ;signal_processing.c: 39:     smoothed = smoothed + ((raw_data - smoothed) >> 2);
-[e = F3111 + F3111 >> - _raw_data F3111 -> 2 `i ]
-"40
-[; ;signal_processing.c: 40:     unsigned int filtered = raw_data - smoothed;
-[v _filtered `ui ~T0 @X0 1 a ]
-[e = _filtered - _raw_data F3111 ]
+[v F3107 `ui ~T0 @X0 1 s smoothed ]
+"42
+[; ;signal_processing.c: 42:     smoothed = smoothed + ((raw_data - smoothed) >> 2);
+[e = F3107 + F3107 >> - _raw_data F3107 -> 2 `i ]
 "43
-[; ;signal_processing.c: 43:     if(filtered >= 100)
-[e $ ! >= _filtered -> -> 100 `i `ui 319  ]
-"44
-[; ;signal_processing.c: 44:     {
-{
-"45
-[; ;signal_processing.c: 45:         return 1;
-[e ) -> -> 1 `i `uc ]
-[e $UE 318  ]
+[; ;signal_processing.c: 43:     unsigned int filtered = raw_data - smoothed;
+[v _filtered `ui ~T0 @X0 1 a ]
+[e = _filtered - _raw_data F3107 ]
 "46
-[; ;signal_processing.c: 46:     }
-}
-[e $U 320  ]
+[; ;signal_processing.c: 46:     if(filtered >= 100)
+[e $ ! >= _filtered -> -> 100 `i `ui 318  ]
 "47
-[; ;signal_processing.c: 47:     else
-[e :U 319 ]
-"48
-[; ;signal_processing.c: 48:     {
+[; ;signal_processing.c: 47:     {
 {
+"48
+[; ;signal_processing.c: 48:         return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 317  ]
 "49
-[; ;signal_processing.c: 49:         return 0;
-[e ) -> -> 0 `i `uc ]
-[e $UE 318  ]
-"50
-[; ;signal_processing.c: 50:     }
+[; ;signal_processing.c: 49:     }
 }
-[e :U 320 ]
+[e $U 319  ]
+"50
+[; ;signal_processing.c: 50:     else
+[e :U 318 ]
 "51
-[; ;signal_processing.c: 51: }
-[e :UE 318 ]
+[; ;signal_processing.c: 51:     {
+{
+"52
+[; ;signal_processing.c: 52:         return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 317  ]
+"53
+[; ;signal_processing.c: 53:     }
+}
+[e :U 319 ]
+"54
+[; ;signal_processing.c: 54: }
+[e :UE 317 ]
 }

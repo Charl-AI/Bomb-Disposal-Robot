@@ -22,20 +22,23 @@ struct Movements {
     char move_number;
 };
     
+// routine to scan for the beacon
 volatile char scanForBeacon(struct DC_motor *mL,struct DC_motor *mR, int speed,
                             struct Movements *move);
 
+// routine to move to beacon
 volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
                         struct Movements *move, volatile char *exit_flag);
 
+// routine to return home
 volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
                             int search_speed, struct Movements *move);
 
+// routine to stop and display the result
 volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed,
 volatile char RFID_buffer[]);
 
-void debug(void);
-
+// routine to wait for input at the start
 void waitForInput(void);
 
 #ifdef	__cplusplus

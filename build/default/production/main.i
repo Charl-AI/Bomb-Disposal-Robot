@@ -5330,14 +5330,11 @@ void display_RFID(volatile char RFIDBuf[]);
 # 22 "main.c" 2
 
 # 1 "./signal_processing.h" 1
-# 13 "./signal_processing.h"
-struct Sensor {
-    unsigned int raw_data;
-    unsigned int smoothed_signal;
-};
-
+# 12 "./signal_processing.h"
 void init_sensor(void);
-char classify_data(unsigned int smoothed_data);
+
+
+char classify_data(unsigned int raw_data);
 # 23 "main.c" 2
 
 # 1 "./subroutines.h" 1

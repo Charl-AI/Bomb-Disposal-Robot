@@ -4965,14 +4965,11 @@ extern volatile __bit nWRITE __attribute__((address(0x7E3A)));
 # 10 "signal_processing.c" 2
 
 # 1 "./signal_processing.h" 1
-# 13 "./signal_processing.h"
-struct Sensor {
-    unsigned int raw_data;
-    unsigned int smoothed_signal;
-};
-
+# 12 "./signal_processing.h"
 void init_sensor(void);
-char classify_data(unsigned int smoothed_data);
+
+
+char classify_data(unsigned int raw_data);
 # 11 "signal_processing.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdio.h" 1 3
@@ -5307,8 +5304,6 @@ void init_sensor(void)
     ANSEL1 = 0;
 
     CAP1CON = 0b01000111;
-
-    unsigned int throwaway = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 }
 
 
@@ -5317,7 +5312,12 @@ void init_sensor(void)
 
 char classify_data(unsigned int raw_data)
 {
+
+
     static unsigned int smoothed;
+
+
+
 
     smoothed = smoothed + ((raw_data - smoothed) >> 2);
     unsigned int filtered = raw_data - smoothed;

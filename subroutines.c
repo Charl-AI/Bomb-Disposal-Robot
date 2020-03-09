@@ -3,6 +3,12 @@
  mode. The code is placed in this source file in order to de-clutter the main
  function and improve readability.
  
+ The robot operates on 4 subroutines, searching, moving forwards, returning and
+ displaying the results
+ 
+ A 'wait for inputs' routine is also defined here and is used on startup to
+ stabilise the signal processing and to wait for a button press to start
+   
  05.03.20
  */
 #include <xc.h>
@@ -12,7 +18,6 @@
 #include "signal_processing.h"
 #include "subroutines.h"
 #include "LCDIO.h"
-#include <stdio.h>
 
 // This subroutine scans for the beacon initially
 volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
@@ -137,36 +142,6 @@ volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
     else 
     {
         return 0;
-    }
-}
-
-void debug(void)
-{
-    // Runs until the beacon is found and the break statement executes
-    while(1)
-    {
-        // First, acquire the PWM duty cycle using the motion feedback module
-        unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
-        
-        static unsigned int smoothed_data;
-        smoothed_data = smoothed_data + ((raw_data - smoothed_data) >> 2);
-        
-        unsigned int dif = raw_data - smoothed_data;
-        ClearLCD();
-        char buf[16];
-        SetLine(1);
-        sprintf(buf,"%u",raw_data);
-        LCD_String(buf);
-        SetLine(2);
-        char buf2[16];
-        sprintf(buf2, "%u",dif);
-        LCD_String(buf2);
-        __delay_ms(100);
-         
-        
-        // Now, classify the signals to find if we are looking at the beacon
-        //char beacon_location = classify_data(raw_data); 
-    
     }
 }
 

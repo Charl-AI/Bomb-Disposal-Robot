@@ -5,8 +5,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S314 DC_motor power direction dutyLowByte dutyHighByte dir_pin PWMperiod ]
 "16 ./subroutines.h
 [; ;./subroutines.h: 16: struct Movements {
-[s S316 `uc -> 20 `i `i -> 20 `i `uc 1 ]
-[n S316 Movements move_type time_taken move_number ]
+[s S315 `uc -> 20 `i `i -> 20 `i `uc 1 ]
+[n S315 Movements move_type time_taken move_number ]
 "22 ./dc_motor.h
 [; ;./dc_motor.h: 22: void turnLeft(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 [v _turnLeft `(v ~T0 @X0 0 ef3`*S314`*S314`i ]
@@ -22,8 +22,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "341
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 341: extern volatile unsigned char CAP1BUFL __attribute__((address(0xF68)));
 [v _CAP1BUFL `Vuc ~T0 @X0 0 e@3944 ]
-"19 ./signal_processing.h
-[; ;./signal_processing.h: 19: char classify_data(unsigned int smoothed_data);
+"15 ./signal_processing.h
+[; ;./signal_processing.h: 15: char classify_data(unsigned int raw_data);
 [v _classify_data `(uc ~T0 @X0 0 ef1`ui ]
 "25 ./dc_motor.h
 [; ;./dc_motor.h: 25: void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
@@ -65,8 +65,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "38 ./LCDIO.h
 [; ;./LCDIO.h: 38: void SetLine (char line);
 [v _SetLine `(v ~T0 @X0 0 ef1`uc ]
-"115 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\c99\stdio.h
-[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 54: __asm("DFLTCON equ 0F60h");
 [; <" DFLTCON equ 0F60h ;# ">
@@ -607,577 +605,506 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7616
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 7616: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"18 subroutines.c
-[; ;subroutines.c: 18: volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-[v _scanForBeacon `(Vuc ~T0 @X0 1 ef4`*S314`*S314`i`*S316 ]
-"20
-[; ;subroutines.c: 20: {
+"23 subroutines.c
+[; ;subroutines.c: 23: volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+[v _scanForBeacon `(Vuc ~T0 @X0 1 ef4`*S314`*S314`i`*S315 ]
+"25
+[; ;subroutines.c: 25: {
 {
 [e :U _scanForBeacon ]
-"18
-[; ;subroutines.c: 18: volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+"23
+[; ;subroutines.c: 23: volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 [v _mL `*S314 ~T0 @X0 1 r1 ]
 [v _mR `*S314 ~T0 @X0 1 r2 ]
 [v _speed `i ~T0 @X0 1 r3 ]
-"19
-[; ;subroutines.c: 19:                             struct Movements *move)
-[v _move `*S316 ~T0 @X0 1 r4 ]
-"20
-[; ;subroutines.c: 20: {
-[f ]
-"21
-[; ;subroutines.c: 21:     move-> move_type[move->move_number] = 1;
-[e = *U + &U . *U _move 0 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 0 `ui `ux -> -> 1 `i `uc ]
-"22
-[; ;subroutines.c: 22:     turnLeft(mL,mR,speed);
-[e ( _turnLeft (3 , , _mL _mR _speed ]
-"23
-[; ;subroutines.c: 23:     ClearLCD();
-[e ( _ClearLCD ..  ]
 "24
-[; ;subroutines.c: 24:     LCD_String("SEARCHING");
-[e ( _LCD_String (1 :s 1C ]
+[; ;subroutines.c: 24:                             struct Movements *move)
+[v _move `*S315 ~T0 @X0 1 r4 ]
+"25
+[; ;subroutines.c: 25: {
+[f ]
+"26
+[; ;subroutines.c: 26:     move-> move_type[move->move_number] = 1;
+[e = *U + &U . *U _move 0 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 0 `ui `ux -> -> 1 `i `uc ]
 "27
-[; ;subroutines.c: 27:     while(1)
-[e :U 321 ]
+[; ;subroutines.c: 27:     turnLeft(mL,mR,speed);
+[e ( _turnLeft (3 , , _mL _mR _speed ]
 "28
-[; ;subroutines.c: 28:     {
+[; ;subroutines.c: 28:     ClearLCD();
+[e ( _ClearLCD ..  ]
+"29
+[; ;subroutines.c: 29:     LCD_String("SEARCHING");
+[e ( _LCD_String (1 :s 1C ]
+"32
+[; ;subroutines.c: 32:     while(1)
+[e :U 318 ]
+"33
+[; ;subroutines.c: 33:     {
 {
-"30
-[; ;subroutines.c: 30:         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+"35
+[; ;subroutines.c: 35:         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 [v _raw_data `ui ~T0 @X0 1 a ]
 [e = _raw_data -> | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i `ui ]
-"33
-[; ;subroutines.c: 33:         char beacon_location = classify_data(raw_data);
+"38
+[; ;subroutines.c: 38:         char beacon_location = classify_data(raw_data);
 [v _beacon_location `uc ~T0 @X0 1 a ]
 [e = _beacon_location ( _classify_data (1 _raw_data ]
-"36
-[; ;subroutines.c: 36:         if(beacon_location == 1)
-[e $ ! == -> _beacon_location `i -> 1 `i 323  ]
-"37
-[; ;subroutines.c: 37:         {
-{
-"38
-[; ;subroutines.c: 38:             move-> move_number += 1;
-[e =+ . *U _move 2 -> -> 1 `i `uc ]
-"39
-[; ;subroutines.c: 39:             return 1;
-[e ) -> -> 1 `i `uc ]
-[e $UE 319  ]
-"40
-[; ;subroutines.c: 40:         }
-}
-[e :U 323 ]
 "41
-[; ;subroutines.c: 41:     }
+[; ;subroutines.c: 41:         if(beacon_location == 1)
+[e $ ! == -> _beacon_location `i -> 1 `i 320  ]
+"42
+[; ;subroutines.c: 42:         {
+{
+"43
+[; ;subroutines.c: 43:             move-> move_number += 1;
+[e =+ . *U _move 2 -> -> 1 `i `uc ]
+"44
+[; ;subroutines.c: 44:             return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 316  ]
+"45
+[; ;subroutines.c: 45:         }
 }
 [e :U 320 ]
-[e $U 321  ]
-[e :U 322 ]
-"42
-[; ;subroutines.c: 42: }
-[e :UE 319 ]
-}
 "46
-[; ;subroutines.c: 46: volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-[v _moveToBeacon `(Vuc ~T0 @X0 1 ef5`*S314`*S314`i`*S316`*Vuc ]
-"48
-[; ;subroutines.c: 48: {
+[; ;subroutines.c: 46:     }
+}
+[e :U 317 ]
+[e $U 318  ]
+[e :U 319 ]
+"47
+[; ;subroutines.c: 47: }
+[e :UE 316 ]
+}
+"51
+[; ;subroutines.c: 51: volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+[v _moveToBeacon `(Vuc ~T0 @X0 1 ef5`*S314`*S314`i`*S315`*Vuc ]
+"53
+[; ;subroutines.c: 53: {
 {
 [e :U _moveToBeacon ]
-"46
-[; ;subroutines.c: 46: volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+"51
+[; ;subroutines.c: 51: volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 [v _mL `*S314 ~T0 @X0 1 r1 ]
 [v _mR `*S314 ~T0 @X0 1 r2 ]
 [v _speed `i ~T0 @X0 1 r3 ]
-"47
-[; ;subroutines.c: 47:                         struct Movements *move, volatile char *exit_flag)
-[v _move `*S316 ~T0 @X0 1 r4 ]
-[v _exit_flag `*Vuc ~T0 @X0 1 r5 ]
-"48
-[; ;subroutines.c: 48: {
-[f ]
-"49
-[; ;subroutines.c: 49:     move->move_type[move->move_number] = 0;
-[e = *U + &U . *U _move 0 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 0 `ui `ux -> -> 0 `i `uc ]
-"50
-[; ;subroutines.c: 50:     moveForward(mL,mR,speed);
-[e ( _moveForward (3 , , _mL _mR _speed ]
-"51
-[; ;subroutines.c: 51:     ClearLCD();
-[e ( _ClearLCD ..  ]
 "52
-[; ;subroutines.c: 52:     LCD_String("MOVING TO BOMB");
-[e ( _LCD_String (1 :s 2C ]
+[; ;subroutines.c: 52:                         struct Movements *move, volatile char *exit_flag)
+[v _move `*S315 ~T0 @X0 1 r4 ]
+[v _exit_flag `*Vuc ~T0 @X0 1 r5 ]
 "53
-[; ;subroutines.c: 53:     int count = 0;
+[; ;subroutines.c: 53: {
+[f ]
+"54
+[; ;subroutines.c: 54:     move->move_type[move->move_number] = 0;
+[e = *U + &U . *U _move 0 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 0 `ui `ux -> -> 0 `i `uc ]
+"55
+[; ;subroutines.c: 55:     moveForward(mL,mR,speed);
+[e ( _moveForward (3 , , _mL _mR _speed ]
+"56
+[; ;subroutines.c: 56:     ClearLCD();
+[e ( _ClearLCD ..  ]
+"57
+[; ;subroutines.c: 57:     LCD_String("MOVING TO BOMB");
+[e ( _LCD_String (1 :s 2C ]
+"58
+[; ;subroutines.c: 58:     int count = 0;
 [v _count `i ~T0 @X0 1 a ]
 [e = _count -> 0 `i ]
-"55
-[; ;subroutines.c: 55:     while(1)
-[e :U 326 ]
-"56
-[; ;subroutines.c: 56:     {
+"60
+[; ;subroutines.c: 60:     while(1)
+[e :U 323 ]
+"61
+[; ;subroutines.c: 61:     {
 {
-"58
-[; ;subroutines.c: 58:         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+"63
+[; ;subroutines.c: 63:         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 [v _raw_data `ui ~T0 @X0 1 a ]
 [e = _raw_data -> | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i `ui ]
-"61
-[; ;subroutines.c: 61:         char beacon_location = classify_data(raw_data);
+"66
+[; ;subroutines.c: 66:         char beacon_location = classify_data(raw_data);
 [v _beacon_location `uc ~T0 @X0 1 a ]
 [e = _beacon_location ( _classify_data (1 _raw_data ]
-"63
-[; ;subroutines.c: 63:         if(*exit_flag == 1)
-[e $ ! == -> *U _exit_flag `i -> 1 `i 328  ]
-"64
-[; ;subroutines.c: 64:         {
-{
-"65
-[; ;subroutines.c: 65:             exit_flag = 0;
-[e = _exit_flag -> -> 0 `i `*Vuc ]
-"66
-[; ;subroutines.c: 66:             return 2;
-[e ) -> -> 2 `i `uc ]
-[e $UE 324  ]
-"67
-[; ;subroutines.c: 67:         }
-}
-[e $U 329  ]
+"68
+[; ;subroutines.c: 68:         if(*exit_flag == 1)
+[e $ ! == -> *U _exit_flag `i -> 1 `i 325  ]
 "69
-[; ;subroutines.c: 69:         else if(beacon_location == 0)
-[e :U 328 ]
-[e $ ! == -> _beacon_location `i -> 0 `i 330  ]
-"70
-[; ;subroutines.c: 70:         {
+[; ;subroutines.c: 69:         {
 {
+"70
+[; ;subroutines.c: 70:             exit_flag = 0;
+[e = _exit_flag -> -> 0 `i `*Vuc ]
 "71
-[; ;subroutines.c: 71:             count += 1;
-[e =+ _count -> 1 `i ]
+[; ;subroutines.c: 71:             return 2;
+[e ) -> -> 2 `i `uc ]
+[e $UE 321  ]
 "72
 [; ;subroutines.c: 72:         }
 }
-[e $U 331  ]
-"73
-[; ;subroutines.c: 73:         else
-[e :U 330 ]
+[e $U 326  ]
 "74
-[; ;subroutines.c: 74:         {
-{
+[; ;subroutines.c: 74:         else if(beacon_location == 0)
+[e :U 325 ]
+[e $ ! == -> _beacon_location `i -> 0 `i 327  ]
 "75
-[; ;subroutines.c: 75:             count = 0;
-[e = _count -> 0 `i ]
+[; ;subroutines.c: 75:         {
+{
 "76
-[; ;subroutines.c: 76:         }
+[; ;subroutines.c: 76:             count += 1;
+[e =+ _count -> 1 `i ]
+"77
+[; ;subroutines.c: 77:         }
 }
-[e :U 331 ]
-[e :U 329 ]
+[e $U 328  ]
 "78
-[; ;subroutines.c: 78:         if(count >=18000)
-[e $ ! >= _count -> 18000 `i 332  ]
+[; ;subroutines.c: 78:         else
+[e :U 327 ]
 "79
 [; ;subroutines.c: 79:         {
 {
 "80
-[; ;subroutines.c: 80:             move-> move_number += 1;
-[e =+ . *U _move 2 -> -> 1 `i `uc ]
+[; ;subroutines.c: 80:             count = 0;
+[e = _count -> 0 `i ]
 "81
-[; ;subroutines.c: 81:             return 0;
-[e ) -> -> 0 `i `uc ]
-[e $UE 324  ]
-"82
-[; ;subroutines.c: 82:         }
+[; ;subroutines.c: 81:         }
 }
-[e :U 332 ]
+[e :U 328 ]
+[e :U 326 ]
 "83
-[; ;subroutines.c: 83:     }
-}
-[e :U 325 ]
-[e $U 326  ]
-[e :U 327 ]
+[; ;subroutines.c: 83:         if(count >=18000)
+[e $ ! >= _count -> 18000 `i 329  ]
 "84
-[; ;subroutines.c: 84: }
-[e :UE 324 ]
-}
+[; ;subroutines.c: 84:         {
+{
+"85
+[; ;subroutines.c: 85:             move-> move_number += 1;
+[e =+ . *U _move 2 -> -> 1 `i `uc ]
+"86
+[; ;subroutines.c: 86:             return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 321  ]
 "87
-[; ;subroutines.c: 87: volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
-[v _returnHome `(Vuc ~T0 @X0 1 ef5`*S314`*S314`i`i`*S316 ]
+[; ;subroutines.c: 87:         }
+}
+[e :U 329 ]
+"88
+[; ;subroutines.c: 88:     }
+}
+[e :U 322 ]
+[e $U 323  ]
+[e :U 324 ]
 "89
-[; ;subroutines.c: 89: {
+[; ;subroutines.c: 89: }
+[e :UE 321 ]
+}
+"92
+[; ;subroutines.c: 92: volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
+[v _returnHome `(Vuc ~T0 @X0 1 ef5`*S314`*S314`i`i`*S315 ]
+"94
+[; ;subroutines.c: 94: {
 {
 [e :U _returnHome ]
-"87
-[; ;subroutines.c: 87: volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
+"92
+[; ;subroutines.c: 92: volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
 [v _mL `*S314 ~T0 @X0 1 r1 ]
 [v _mR `*S314 ~T0 @X0 1 r2 ]
 [v _move_speed `i ~T0 @X0 1 r3 ]
-"88
-[; ;subroutines.c: 88:                             int search_speed, struct Movements *move)
+"93
+[; ;subroutines.c: 93:                             int search_speed, struct Movements *move)
 [v _search_speed `i ~T0 @X0 1 r4 ]
-[v _move `*S316 ~T0 @X0 1 r5 ]
-"89
-[; ;subroutines.c: 89: {
-[f ]
-"90
-[; ;subroutines.c: 90:     stop(mL,mR,move_speed);
-[e ( _stop (3 , , _mL _mR _move_speed ]
-"91
-[; ;subroutines.c: 91:     ClearLCD();
-[e ( _ClearLCD ..  ]
-"92
-[; ;subroutines.c: 92:     LCD_String("RETURNING HOME");
-[e ( _LCD_String (1 :s 3C ]
+[v _move `*S315 ~T0 @X0 1 r5 ]
 "94
-[; ;subroutines.c: 94:     for(int i=move->move_number;move->move_number >0; move->move_number--)
+[; ;subroutines.c: 94: {
+[f ]
+"95
+[; ;subroutines.c: 95:     stop(mL,mR,move_speed);
+[e ( _stop (3 , , _mL _mR _move_speed ]
+"96
+[; ;subroutines.c: 96:     ClearLCD();
+[e ( _ClearLCD ..  ]
+"97
+[; ;subroutines.c: 97:     LCD_String("RETURNING HOME");
+[e ( _LCD_String (1 :s 3C ]
+"99
+[; ;subroutines.c: 99:     for(int i=move->move_number;move->move_number >0; move->move_number--)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> . *U _move 2 `i ]
-[e $U 337  ]
-[e :U 334 ]
-"95
-[; ;subroutines.c: 95:     {
-{
-"96
-[; ;subroutines.c: 96:         if(move->move_type[move->move_number] == 0)
-[e $ ! == -> *U + &U . *U _move 0 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 0 `ui `ux `i -> 0 `i 338  ]
-"97
-[; ;subroutines.c: 97:         {
-{
-"98
-[; ;subroutines.c: 98:             moveBackward(mL,mR,move_speed);
-[e ( _moveBackward (3 , , _mL _mR _move_speed ]
-"99
-[; ;subroutines.c: 99:             while(move->time_taken[move->move_number] > 0);
-[e $U 339  ]
-[e :U 340 ]
-[e :U 339 ]
-[e $ > *U + &U . *U _move 1 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 1 `ui `ux -> 0 `i 340  ]
-[e :U 341 ]
+[e $U 334  ]
+[e :U 331 ]
 "100
-[; ;subroutines.c: 100:         }
-}
-[e $U 342  ]
+[; ;subroutines.c: 100:     {
+{
 "101
-[; ;subroutines.c: 101:         else if(move->move_type[move->move_number] == 1)
-[e :U 338 ]
-[e $ ! == -> *U + &U . *U _move 0 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 0 `ui `ux `i -> 1 `i 343  ]
+[; ;subroutines.c: 101:         if(move->move_type[move->move_number] == 0)
+[e $ ! == -> *U + &U . *U _move 0 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 0 `ui `ux `i -> 0 `i 335  ]
 "102
 [; ;subroutines.c: 102:         {
 {
 "103
-[; ;subroutines.c: 103:             turnRight(mL,mR,search_speed);
-[e ( _turnRight (3 , , _mL _mR _search_speed ]
+[; ;subroutines.c: 103:             moveBackward(mL,mR,move_speed);
+[e ( _moveBackward (3 , , _mL _mR _move_speed ]
 "104
 [; ;subroutines.c: 104:             while(move->time_taken[move->move_number] > 0);
-[e $U 344  ]
-[e :U 345 ]
-[e :U 344 ]
-[e $ > *U + &U . *U _move 1 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 1 `ui `ux -> 0 `i 345  ]
-[e :U 346 ]
+[e $U 336  ]
+[e :U 337 ]
+[e :U 336 ]
+[e $ > *U + &U . *U _move 1 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 1 `ui `ux -> 0 `i 337  ]
+[e :U 338 ]
 "105
 [; ;subroutines.c: 105:         }
 }
-[e :U 343 ]
-[e :U 342 ]
+[e $U 339  ]
 "106
-[; ;subroutines.c: 106:     }
+[; ;subroutines.c: 106:         else if(move->move_type[move->move_number] == 1)
+[e :U 335 ]
+[e $ ! == -> *U + &U . *U _move 0 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 0 `ui `ux `i -> 1 `i 340  ]
+"107
+[; ;subroutines.c: 107:         {
+{
+"108
+[; ;subroutines.c: 108:             turnRight(mL,mR,search_speed);
+[e ( _turnRight (3 , , _mL _mR _search_speed ]
+"109
+[; ;subroutines.c: 109:             while(move->time_taken[move->move_number] > 0);
+[e $U 341  ]
+[e :U 342 ]
+[e :U 341 ]
+[e $ > *U + &U . *U _move 1 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 1 `ui `ux -> 0 `i 342  ]
+[e :U 343 ]
+"110
+[; ;subroutines.c: 110:         }
+}
+[e :U 340 ]
+[e :U 339 ]
+"111
+[; ;subroutines.c: 111:     }
 }
 [e -- . *U _move 2 -> -> 1 `i `uc ]
-[e :U 337 ]
-[e $ > -> . *U _move 2 `i -> 0 `i 334  ]
-[e :U 335 ]
+[e :U 334 ]
+[e $ > -> . *U _move 2 `i -> 0 `i 331  ]
+[e :U 332 ]
 }
-"108
-[; ;subroutines.c: 108:     return 3;
+"113
+[; ;subroutines.c: 113:     return 3;
 [e ) -> -> 3 `i `uc ]
-[e $UE 333  ]
-"109
-[; ;subroutines.c: 109: }
-[e :UE 333 ]
-}
-"112
-[; ;subroutines.c: 112: volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
-[v _stopAndDisplay `(Vuc ~T0 @X0 1 ef4`*S314`*S314`i`*Vuc ]
+[e $UE 330  ]
 "114
-[; ;subroutines.c: 114: {
+[; ;subroutines.c: 114: }
+[e :UE 330 ]
+}
+"117
+[; ;subroutines.c: 117: volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
+[v _stopAndDisplay `(Vuc ~T0 @X0 1 ef4`*S314`*S314`i`*Vuc ]
+"119
+[; ;subroutines.c: 119: {
 {
 [e :U _stopAndDisplay ]
-"112
-[; ;subroutines.c: 112: volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
+"117
+[; ;subroutines.c: 117: volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
 [v _mL `*S314 ~T0 @X0 1 r1 ]
 [v _mR `*S314 ~T0 @X0 1 r2 ]
 [v _speed `i ~T0 @X0 1 r3 ]
-"113
-[; ;subroutines.c: 113:                                 volatile char RFID_buffer[])
-[v _RFID_buffer `*Vuc ~T0 @X0 1 r4 ]
-"114
-[; ;subroutines.c: 114: {
-[f ]
-"115
-[; ;subroutines.c: 115:     stop(mL, mR,speed);
-[e ( _stop (3 , , _mL _mR _speed ]
-"117
-[; ;subroutines.c: 117:     display_RFID(RFID_buffer);
-[e ( _display_RFID (1 _RFID_buffer ]
 "118
-[; ;subroutines.c: 118:     check_RFID(RFID_buffer);
-[e ( _check_RFID (1 _RFID_buffer ]
+[; ;subroutines.c: 118:                                 volatile char RFID_buffer[])
+[v _RFID_buffer `*Vuc ~T0 @X0 1 r4 ]
+"119
+[; ;subroutines.c: 119: {
+[f ]
 "120
-[; ;subroutines.c: 120:     if(RFID_buffer[0] != 0)
-[e $ ! != -> *U + _RFID_buffer * -> -> 0 `i `x -> -> # *U _RFID_buffer `i `x `i -> 0 `i 348  ]
-"121
-[; ;subroutines.c: 121:     {
-{
+[; ;subroutines.c: 120:     stop(mL, mR,speed);
+[e ( _stop (3 , , _mL _mR _speed ]
 "122
-[; ;subroutines.c: 122:         while(1)
-[e :U 350 ]
+[; ;subroutines.c: 122:     display_RFID(RFID_buffer);
+[e ( _display_RFID (1 _RFID_buffer ]
 "123
-[; ;subroutines.c: 123:         {
-{
-"124
-[; ;subroutines.c: 124:             while(PORTDbits.RD2 == 1)
-[e $U 352  ]
-[e :U 353 ]
+[; ;subroutines.c: 123:     check_RFID(RFID_buffer);
+[e ( _check_RFID (1 _RFID_buffer ]
 "125
-[; ;subroutines.c: 125:             {
-{
+[; ;subroutines.c: 125:     if(RFID_buffer[0] != 0)
+[e $ ! != -> *U + _RFID_buffer * -> -> 0 `i `x -> -> # *U _RFID_buffer `i `x `i -> 0 `i 345  ]
 "126
-[; ;subroutines.c: 126:                 ClearLCD();
-[e ( _ClearLCD ..  ]
+[; ;subroutines.c: 126:     {
+{
 "127
-[; ;subroutines.c: 127:                 LCD_String("RESETTING ROBOT");
-[e ( _LCD_String (1 :s 4C ]
+[; ;subroutines.c: 127:         while(1)
+[e :U 347 ]
 "128
-[; ;subroutines.c: 128:                 for(int i=0; i<10;i++)
+[; ;subroutines.c: 128:         {
+{
+"129
+[; ;subroutines.c: 129:             while(PORTDbits.RD2 == 1)
+[e $U 349  ]
+[e :U 350 ]
+"130
+[; ;subroutines.c: 130:             {
+{
+"131
+[; ;subroutines.c: 131:                 ClearLCD();
+[e ( _ClearLCD ..  ]
+"132
+[; ;subroutines.c: 132:                 LCD_String("RESETTING ROBOT");
+[e ( _LCD_String (1 :s 4C ]
+"133
+[; ;subroutines.c: 133:                 for(int i=0; i<10;i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 10 `i 355  ]
-[e $U 356  ]
-[e :U 355 ]
-"129
-[; ;subroutines.c: 129:                 {
+[e $ < _i -> 10 `i 352  ]
+[e $U 353  ]
+[e :U 352 ]
+"134
+[; ;subroutines.c: 134:                 {
 {
-"130
-[; ;subroutines.c: 130:                     _delay((unsigned long)((100)*(8000000/4000.0)));
+"135
+[; ;subroutines.c: 135:                     _delay((unsigned long)((100)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"131
-[; ;subroutines.c: 131:                 }
+"136
+[; ;subroutines.c: 136:                 }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 10 `i 355  ]
-[e :U 356 ]
+[e $ < _i -> 10 `i 352  ]
+[e :U 353 ]
 }
-"132
-[; ;subroutines.c: 132:                 ClearLCD();
+"137
+[; ;subroutines.c: 137:                 ClearLCD();
 [e ( _ClearLCD ..  ]
-"133
-[; ;subroutines.c: 133:                 __asm(" reset");
+"138
+[; ;subroutines.c: 138:                 __asm(" reset");
 [; <"  reset ;# ">
-"134
-[; ;subroutines.c: 134:             }
-}
-[e :U 352 ]
-"124
-[; ;subroutines.c: 124:             while(PORTDbits.RD2 == 1)
-[e $ == -> . . _PORTDbits 0 2 `i -> 1 `i 353  ]
-[e :U 354 ]
-"135
-[; ;subroutines.c: 135:         }
+"139
+[; ;subroutines.c: 139:             }
 }
 [e :U 349 ]
-[e $U 350  ]
+"129
+[; ;subroutines.c: 129:             while(PORTDbits.RD2 == 1)
+[e $ == -> . . _PORTDbits 0 2 `i -> 1 `i 350  ]
 [e :U 351 ]
-"136
-[; ;subroutines.c: 136:     }
-}
-[e $U 358  ]
-"137
-[; ;subroutines.c: 137:     else
-[e :U 348 ]
-"138
-[; ;subroutines.c: 138:     {
-{
-"139
-[; ;subroutines.c: 139:         return 0;
-[e ) -> -> 0 `i `uc ]
-[e $UE 347  ]
 "140
-[; ;subroutines.c: 140:     }
+[; ;subroutines.c: 140:         }
 }
-[e :U 358 ]
+[e :U 346 ]
+[e $U 347  ]
+[e :U 348 ]
 "141
-[; ;subroutines.c: 141: }
-[e :UE 347 ]
+[; ;subroutines.c: 141:     }
 }
+[e $U 355  ]
+"142
+[; ;subroutines.c: 142:     else
+[e :U 345 ]
 "143
-[; ;subroutines.c: 143: void debug(void)
-[v _debug `(v ~T0 @X0 1 ef ]
+[; ;subroutines.c: 143:     {
+{
 "144
-[; ;subroutines.c: 144: {
-{
-[e :U _debug ]
-[f ]
+[; ;subroutines.c: 144:         return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 344  ]
+"145
+[; ;subroutines.c: 145:     }
+}
+[e :U 355 ]
 "146
-[; ;subroutines.c: 146:     while(1)
-[e :U 361 ]
-"147
-[; ;subroutines.c: 147:     {
-{
+[; ;subroutines.c: 146: }
+[e :UE 344 ]
+}
 "149
-[; ;subroutines.c: 149:         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
-[v _raw_data `ui ~T0 @X0 1 a ]
-[e = _raw_data -> | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i `ui ]
-"151
-[; ;subroutines.c: 151:         static unsigned int smoothed_data;
-[v F3209 `ui ~T0 @X0 1 s smoothed_data ]
-"152
-[; ;subroutines.c: 152:         smoothed_data = smoothed_data + ((raw_data - smoothed_data) >> 2);
-[e = F3209 + F3209 >> - _raw_data F3209 -> 2 `i ]
-"154
-[; ;subroutines.c: 154:         unsigned int dif = raw_data - smoothed_data;
-[v _dif `ui ~T0 @X0 1 a ]
-[e = _dif - _raw_data F3209 ]
-"155
-[; ;subroutines.c: 155:         ClearLCD();
-[e ( _ClearLCD ..  ]
-"156
-[; ;subroutines.c: 156:         char buf[16];
-[v _buf `uc ~T0 @X0 -> 16 `i a ]
-"157
-[; ;subroutines.c: 157:         SetLine(1);
-[e ( _SetLine (1 -> -> 1 `i `uc ]
-"158
-[; ;subroutines.c: 158:         sprintf(buf,"%u",raw_data);
-[e ( _sprintf (1 , (. , &U _buf :s 5C _raw_data ]
-"159
-[; ;subroutines.c: 159:         LCD_String(buf);
-[e ( _LCD_String (1 &U _buf ]
-"160
-[; ;subroutines.c: 160:         SetLine(2);
-[e ( _SetLine (1 -> -> 2 `i `uc ]
-"161
-[; ;subroutines.c: 161:         char buf2[16];
-[v _buf2 `uc ~T0 @X0 -> 16 `i a ]
-"162
-[; ;subroutines.c: 162:         sprintf(buf2, "%u",dif);
-[e ( _sprintf (1 , (. , &U _buf2 :s 6C _dif ]
-"163
-[; ;subroutines.c: 163:         LCD_String(buf2);
-[e ( _LCD_String (1 &U _buf2 ]
-"164
-[; ;subroutines.c: 164:         _delay((unsigned long)((100)*(8000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"170
-[; ;subroutines.c: 170:     }
-}
-[e :U 360 ]
-[e $U 361  ]
-[e :U 362 ]
-"171
-[; ;subroutines.c: 171: }
-[e :UE 359 ]
-}
-"174
-[; ;subroutines.c: 174: void waitForInput(void)
+[; ;subroutines.c: 149: void waitForInput(void)
 [v _waitForInput `(v ~T0 @X0 1 ef ]
-"175
-[; ;subroutines.c: 175: {
+"150
+[; ;subroutines.c: 150: {
 {
 [e :U _waitForInput ]
 [f ]
-"177
-[; ;subroutines.c: 177:     for(int i =0;i<500;i++)
+"152
+[; ;subroutines.c: 152:     for(int i =0;i<500;i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 500 `i 364  ]
-[e $U 365  ]
-[e :U 364 ]
-"178
-[; ;subroutines.c: 178:     {
+[e $ < _i -> 500 `i 357  ]
+[e $U 358  ]
+[e :U 357 ]
+"153
+[; ;subroutines.c: 153:     {
 {
-"179
-[; ;subroutines.c: 179:         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+"154
+[; ;subroutines.c: 154:         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
 [v _raw_data `ui ~T0 @X0 1 a ]
 [e = _raw_data -> | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i `ui ]
-"180
-[; ;subroutines.c: 180:         char throwaway = classify_data(raw_data);
+"155
+[; ;subroutines.c: 155:         char throwaway = classify_data(raw_data);
 [v _throwaway `uc ~T0 @X0 1 a ]
 [e = _throwaway ( _classify_data (1 _raw_data ]
-"181
-[; ;subroutines.c: 181:     }
+"156
+[; ;subroutines.c: 156:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 500 `i 364  ]
-[e :U 365 ]
+[e $ < _i -> 500 `i 357  ]
+[e :U 358 ]
 }
-"184
-[; ;subroutines.c: 184:     ClearLCD();
+"159
+[; ;subroutines.c: 159:     ClearLCD();
 [e ( _ClearLCD ..  ]
-"185
-[; ;subroutines.c: 185:     SetLine(1);
+"160
+[; ;subroutines.c: 160:     SetLine(1);
 [e ( _SetLine (1 -> -> 1 `i `uc ]
-"186
-[; ;subroutines.c: 186:     LCD_String("PRESS BUTTON");
-[e ( _LCD_String (1 :s 7C ]
-"187
-[; ;subroutines.c: 187:     SetLine(2);
+"161
+[; ;subroutines.c: 161:     LCD_String("PRESS BUTTON");
+[e ( _LCD_String (1 :s 5C ]
+"162
+[; ;subroutines.c: 162:     SetLine(2);
 [e ( _SetLine (1 -> -> 2 `i `uc ]
-"188
-[; ;subroutines.c: 188:     LCD_String("TO START SEARCH");
-[e ( _LCD_String (1 :s 8C ]
-"191
-[; ;subroutines.c: 191:     while(PORTDbits.RD2 == 0);
-[e $U 367  ]
-[e :U 368 ]
-[e :U 367 ]
-[e $ == -> . . _PORTDbits 0 2 `i -> 0 `i 368  ]
-[e :U 369 ]
-"194
-[; ;subroutines.c: 194:     ClearLCD();
+"163
+[; ;subroutines.c: 163:     LCD_String("TO START SEARCH");
+[e ( _LCD_String (1 :s 6C ]
+"166
+[; ;subroutines.c: 166:     while(PORTDbits.RD2 == 0);
+[e $U 360  ]
+[e :U 361 ]
+[e :U 360 ]
+[e $ == -> . . _PORTDbits 0 2 `i -> 0 `i 361  ]
+[e :U 362 ]
+"169
+[; ;subroutines.c: 169:     ClearLCD();
 [e ( _ClearLCD ..  ]
-"195
-[; ;subroutines.c: 195:     SetLine(1);
+"170
+[; ;subroutines.c: 170:     SetLine(1);
 [e ( _SetLine (1 -> -> 1 `i `uc ]
-"196
-[; ;subroutines.c: 196:     LCD_String("STARTING SEARCH");
-[e ( _LCD_String (1 :s 9C ]
-"197
-[; ;subroutines.c: 197:     for(int i=0; i<10;i++)
+"171
+[; ;subroutines.c: 171:     LCD_String("STARTING SEARCH");
+[e ( _LCD_String (1 :s 7C ]
+"172
+[; ;subroutines.c: 172:     for(int i=0; i<10;i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 10 `i 370  ]
-[e $U 371  ]
-[e :U 370 ]
-"198
-[; ;subroutines.c: 198:     {
+[e $ < _i -> 10 `i 363  ]
+[e $U 364  ]
+[e :U 363 ]
+"173
+[; ;subroutines.c: 173:     {
 {
-"199
-[; ;subroutines.c: 199:         _delay((unsigned long)((100)*(8000000/4000.0)));
+"174
+[; ;subroutines.c: 174:         _delay((unsigned long)((100)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"200
-[; ;subroutines.c: 200:     }
+"175
+[; ;subroutines.c: 175:     }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 10 `i 370  ]
-[e :U 371 ]
+[e $ < _i -> 10 `i 363  ]
+[e :U 364 ]
 }
-"201
-[; ;subroutines.c: 201:     ClearLCD();
+"176
+[; ;subroutines.c: 176:     ClearLCD();
 [e ( _ClearLCD ..  ]
-"202
-[; ;subroutines.c: 202: }
-[e :UE 363 ]
+"177
+[; ;subroutines.c: 177: }
+[e :UE 356 ]
 }
-[p f _sprintf 8389632 ]
-[a 5C 37 117 0 ]
-[a 6C 37 117 0 ]
 [a 4C 82 69 83 69 84 84 73 78 71 32 82 79 66 79 84 0 ]
-[a 7C 80 82 69 83 83 32 66 85 84 84 79 78 0 ]
-[a 8C 84 79 32 83 84 65 82 84 32 83 69 65 82 67 72 0 ]
-[a 9C 83 84 65 82 84 73 78 71 32 83 69 65 82 67 72 0 ]
+[a 5C 80 82 69 83 83 32 66 85 84 84 79 78 0 ]
+[a 6C 84 79 32 83 84 65 82 84 32 83 69 65 82 67 72 0 ]
+[a 7C 83 84 65 82 84 73 78 71 32 83 69 65 82 67 72 0 ]
 [a 1C 83 69 65 82 67 72 73 78 71 0 ]
 [a 3C 82 69 84 85 82 78 73 78 71 32 72 79 77 69 0 ]
 [a 2C 77 79 86 73 78 71 32 84 79 32 66 79 77 66 0 ]

@@ -5,14 +5,6 @@
 [d frameptr 4065 ]
 "7 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\awdiv.c
 [v ___awdiv __awdiv `(i  1 e 2 0 ]
-"72 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\doprnt.c
-[v _pad pad `(i  1 s 2 pad ]
-"593
-[v _utoa utoa `(i  1 s 2 utoa ]
-"670
-[v _vfpfcnvrt vfpfcnvrt `(i  1 s 2 vfpfcnvrt ]
-"1368
-[v _vfprintf vfprintf `(i  1 e 2 0 ]
 "4 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\fleq.c
 [v ___fleq __fleq `(b  1 e 0 0 ]
 "62 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\float.c
@@ -25,18 +17,6 @@
 [v ___ftmul __ftmul `(f  1 e 4 0 ]
 "19 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\ftsub.c
 [v ___ftsub __ftsub `(f  1 e 4 0 ]
-"9 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\lodiv.c
-[v ___lodiv __lodiv `(uo  1 e 8 0 ]
-"9 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\lomod.c
-[v ___lomod __lomod `(uo  1 e 8 0 ]
-"8 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\nf_fputc.c
-[v _fputc fputc `(i  1 e 2 0 ]
-"8 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\nf_fputs.c
-[v _fputs fputs `(i  1 e 2 0 ]
-"9 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\nf_sprintf.c
-[v _sprintf sprintf `(i  1 e 2 0 ]
-"7 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\putch.c
-[v _putch putch `(v  1 e 1 0 ]
 "10 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\sprcadd.c
 [v ___fladd __fladd `(d  1 e 4 0 ]
 "245
@@ -45,8 +25,6 @@
 [v ___fldiv __fldiv `(d  1 e 4 0 ]
 "8 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
-"12 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\strlen.c
-[v _strlen strlen `(ui  1 e 2 0 ]
 "15 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
 "15 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\sources\c99\common\Umul32.c
@@ -101,17 +79,17 @@
 [v _display_RFID display_RFID `(v  1 e 1 0 ]
 "17 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
 [v _init_sensor init_sensor `(v  1 e 1 0 ]
-"35
+"33
 [v _classify_data classify_data `(uc  1 e 1 0 ]
-"18 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+"23 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
 [v _scanForBeacon scanForBeacon `(VEuc  1 e 1 0 ]
-"46
+"51
 [v _moveToBeacon moveToBeacon `(VEuc  1 e 1 0 ]
-"87
+"92
 [v _returnHome returnHome `(VEuc  1 e 1 0 ]
-"112
+"117
 [v _stopAndDisplay stopAndDisplay `(VEuc  1 e 1 0 ]
-"174
+"149
 [v _waitForInput waitForInput `(v  1 e 1 0 ]
 "234 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [v _CAP1CON CAP1CON `VEuc  1 e 1 @3939 ]
@@ -149,11 +127,11 @@
 `uc 1 RD7 1 0 :1:7 
 ]
 "1555
-[s S1308 . 1 `uc 1 . 1 0 :7:0 
+[s S1305 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 SS2 1 0 :1:7 
 ]
-[u S1311 . 1 `S257 1 . 1 0 `S1308 1 . 1 0 ]
-[v _PORTDbits PORTDbits `VES1311  1 e 1 @3971 ]
+[u S1308 . 1 `S257 1 . 1 0 `S1305 1 . 1 0 ]
+[v _PORTDbits PORTDbits `VES1308  1 e 1 @3971 ]
 [s S658 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
@@ -553,38 +531,38 @@
 {
 [s S370 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyLowByte 2 2 `*.39uc 1 dutyHighByte 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 "123
-[v main@motorR motorR `S370  1 a 9 23 ]
-[v main@motorL motorL `S370  1 a 9 14 ]
+[v main@motorR motorR `S370  1 a 9 13 ]
+[v main@motorL motorL `S370  1 a 9 4 ]
 "128
-[v main@moving_speed moving_speed `i  1 a 2 12 ]
+[v main@moving_speed moving_speed `i  1 a 2 2 ]
 "127
-[v main@searching_speed searching_speed `i  1 a 2 10 ]
+[v main@searching_speed searching_speed `i  1 a 2 0 ]
 "168
 } 0
-"174 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+"149 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
 [v _waitForInput waitForInput `(v  1 e 1 0 ]
 {
-"179
+"154
 [v waitForInput@raw_data raw_data `ui  1 a 2 23 ]
-"197
-[v waitForInput@i_1408 i `i  1 a 2 27 ]
-"177
+"172
+[v waitForInput@i_1391 i `i  1 a 2 27 ]
+"152
 [v waitForInput@i i `i  1 a 2 25 ]
-"202
+"177
 } 0
-"112
+"117
 [v _stopAndDisplay stopAndDisplay `(VEuc  1 e 1 0 ]
 {
-"128
-[v stopAndDisplay@i i `i  1 a 2 2 ]
+"133
+[v stopAndDisplay@i i `i  1 a 2 56 ]
 [s S370 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyLowByte 2 2 `*.39uc 1 dutyHighByte 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
-"112
+"117
 [v stopAndDisplay@mL mL `*.39S370  1 p 2 46 ]
 [v stopAndDisplay@mR mR `*.39S370  1 p 2 48 ]
 [v stopAndDisplay@speed speed `i  1 p 2 50 ]
-"113
+"118
 [v stopAndDisplay@RFID_buffer RFID_buffer `*.39VEuc  1 p 2 52 ]
-"141
+"146
 } 0
 "107 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
 [v _display_RFID display_RFID `(v  1 e 1 0 ]
@@ -635,7 +613,7 @@
 "17 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
 [v _init_sensor init_sensor `(v  1 e 1 0 ]
 {
-"29
+"27
 } 0
 "13 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
 [v _init_RFID init_RFID `(v  1 e 1 0 ]
@@ -653,22 +631,22 @@
 [v initPWM@PWMperiod PWMperiod `i  1 p 2 14 ]
 "15
 } 0
-"18 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+"23 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
 [v _scanForBeacon scanForBeacon `(VEuc  1 e 1 0 ]
 {
-"30
-[v scanForBeacon@raw_data raw_data `ui  1 a 2 2 ]
-"33
-[v scanForBeacon@beacon_location beacon_location `uc  1 a 1 4 ]
+"35
+[v scanForBeacon@raw_data raw_data `ui  1 a 2 56 ]
+"38
+[v scanForBeacon@beacon_location beacon_location `uc  1 a 1 58 ]
 [s S370 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyLowByte 2 2 `*.39uc 1 dutyHighByte 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
-"18
+"23
 [v scanForBeacon@mL mL `*.39S370  1 p 2 46 ]
 [v scanForBeacon@mR mR `*.39S370  1 p 2 48 ]
 [v scanForBeacon@speed speed `i  1 p 2 50 ]
 [s S24 Movements 61 `[20]uc 1 move_type 20 0 `[20]i 1 time_taken 40 20 `uc 1 move_number 1 60 ]
-"19
+"24
 [v scanForBeacon@move move `*.39S24  1 p 2 52 ]
-"42
+"47
 } 0
 "53 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
 [v _turnLeft turnLeft `(v  1 e 1 0 ]
@@ -682,18 +660,18 @@
 [v turnLeft@max_power max_power `i  1 p 2 41 ]
 "67
 } 0
-"87 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+"92 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
 [v _returnHome returnHome `(VEuc  1 e 1 0 ]
 {
 [s S370 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyLowByte 2 2 `*.39uc 1 dutyHighByte 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
-[v returnHome@mL mL `*.39S370  1 p 2 0 ]
-[v returnHome@mR mR `*.39S370  1 p 2 2 ]
-[v returnHome@move_speed move_speed `i  1 p 2 4 ]
-"88
-[v returnHome@search_speed search_speed `i  1 p 2 6 ]
+[v returnHome@mL mL `*.39S370  1 p 2 46 ]
+[v returnHome@mR mR `*.39S370  1 p 2 48 ]
+[v returnHome@move_speed move_speed `i  1 p 2 50 ]
+"93
+[v returnHome@search_speed search_speed `i  1 p 2 52 ]
 [s S24 Movements 61 `[20]uc 1 move_type 20 0 `[20]i 1 time_taken 40 20 `uc 1 move_number 1 60 ]
-[v returnHome@move move `*.39S24  1 p 2 8 ]
-"109
+[v returnHome@move move `*.39S24  1 p 2 54 ]
+"114
 } 0
 "69 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
 [v _turnRight turnRight `(v  1 e 1 0 ]
@@ -731,25 +709,25 @@
 [v moveBackward@max_power max_power `i  1 p 2 41 ]
 "113
 } 0
-"46 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+"51 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
 [v _moveToBeacon moveToBeacon `(VEuc  1 e 1 0 ]
 {
+"63
+[v moveToBeacon@raw_data raw_data `ui  1 a 2 58 ]
+"66
+[v moveToBeacon@beacon_location beacon_location `uc  1 a 1 60 ]
 "58
-[v moveToBeacon@raw_data raw_data `ui  1 a 2 48 ]
-"61
-[v moveToBeacon@beacon_location beacon_location `uc  1 a 1 50 ]
-"53
-[v moveToBeacon@count count `i  1 a 2 51 ]
+[v moveToBeacon@count count `i  1 a 2 61 ]
 [s S370 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyLowByte 2 2 `*.39uc 1 dutyHighByte 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
-"46
-[v moveToBeacon@mL mL `*.39S370  1 p 2 0 ]
-[v moveToBeacon@mR mR `*.39S370  1 p 2 2 ]
-[v moveToBeacon@speed speed `i  1 p 2 4 ]
+"51
+[v moveToBeacon@mL mL `*.39S370  1 p 2 46 ]
+[v moveToBeacon@mR mR `*.39S370  1 p 2 48 ]
+[v moveToBeacon@speed speed `i  1 p 2 50 ]
 [s S24 Movements 61 `[20]uc 1 move_type 20 0 `[20]i 1 time_taken 40 20 `uc 1 move_number 1 60 ]
-"47
-[v moveToBeacon@move move `*.39S24  1 p 2 6 ]
-[v moveToBeacon@exit_flag exit_flag `*.39VEuc  1 p 2 8 ]
-"84
+"52
+[v moveToBeacon@move move `*.39S24  1 p 2 52 ]
+[v moveToBeacon@exit_flag exit_flag `*.39VEuc  1 p 2 54 ]
+"89
 } 0
 "86 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
 [v _moveForward moveForward `(v  1 e 1 0 ]
@@ -763,21 +741,21 @@
 [v moveForward@max_power max_power `i  1 p 2 41 ]
 "98
 } 0
-"35 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
+"33 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
 [v _classify_data classify_data `(uc  1 e 1 0 ]
 {
-"40
+"43
 [v classify_data@filtered filtered `ui  1 a 2 18 ]
-"35
+"33
 [v classify_data@raw_data raw_data `ui  1 p 2 14 ]
 "37
 [v classify_data@smoothed smoothed `ui  1 s 2 smoothed ]
-"51
+"54
 } 0
 "119 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
 [v _LCD_String LCD_String `(v  1 e 1 0 ]
 {
-[v LCD_String@string string `*.35uc  1 p 2 18 ]
+[v LCD_String@string string `*.32uc  1 p 2 18 ]
 "129
 } 0
 "131
