@@ -124,7 +124,7 @@ void main(void)
   init_motor_struct(&motorL, &motorR); // initialise values in each structure
   
   // these define how fast the robot moves in each operation
-  int searching_speed = 55;
+  int searching_speed = 60;
   int moving_speed = 95;
   
   waitForInput(); // wait until user presses button to start
@@ -132,11 +132,11 @@ void main(void)
   // loop, this runs forever
   while(1)
   {
-      // Subroutine for initial sweep to search for bomb
+      // Subroutine for sweeping to search for bomb
       if(robot_mode == 0)
       {
-          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed, &travel_moves);
-          //debug();
+          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed,
+                                    &travel_moves, &RFID_flag);
       }
       
       // Subroutine to move towards bomb

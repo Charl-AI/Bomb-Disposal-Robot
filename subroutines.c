@@ -21,7 +21,7 @@
 
 // This subroutine scans for the beacon initially
 volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                            struct Movements *move)
+                        struct Movements *move, volatile char *exit_flag)
 {
     move-> move_type[move->move_number] = 1; // store move type as left
     turnLeft(mL,mR,speed); // continuously turn on the spot
@@ -37,8 +37,14 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
         // Now, classify the signals to find if we are looking at the beacon
         char beacon_location = classify_data(raw_data);
         
+        // if RFID read, return home
+        if(*exit_flag == 1)
+        {
+            exit_flag = 0;
+            return 2; // return home
+        }
         // if beacon is straight ahead, exit this subroutine
-        if(beacon_location == 1)
+        else if(beacon_location == 1)
         {
             move-> move_number += 1; // increment move number
             return 1;

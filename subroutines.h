@@ -23,8 +23,8 @@ struct Movements {
 };
     
 // routine to scan for the beacon
-volatile char scanForBeacon(struct DC_motor *mL,struct DC_motor *mR, int speed,
-                            struct Movements *move);
+volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+                        struct Movements *move, volatile char *exit_flag);
 
 // routine to move to beacon
 volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
