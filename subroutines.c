@@ -17,7 +17,7 @@
 // This subroutine scans for the beacon initially
 volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed)
 {
-    turn(mL,mR,speed); // continuously turn on the spot
+    turnLeft(mL,mR,speed); // continuously turn on the spot
     ClearLCD();
     LCD_String("SEARCHING"); // Display on LCD
         
@@ -71,7 +71,7 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
             count = 0;
         }
         
-        if(count >=20000)
+        if(count >=18000)
         {
             return 0;
         }

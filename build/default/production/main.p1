@@ -176,8 +176,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./dc_motor.h: 7: struct DC_motor {
 [s S316 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
 [n S316 DC_motor power direction dutyLowByte dutyHighByte dir_pin PWMperiod ]
-"27
-[; ;./dc_motor.h: 27: void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR);
+"29
+[; ;./dc_motor.h: 29: void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR);
 [v _init_motor_struct `(v ~T0 @X0 0 ef2`*S316`*S316 ]
 "28 ./subroutines.h
 [; ;./subroutines.h: 28: void waitForInput(void);

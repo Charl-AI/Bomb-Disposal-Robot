@@ -50,11 +50,27 @@ void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed)
 }
 
 //function to make the robot turn on the spot 
-void turn(struct DC_motor *mL, struct DC_motor *mR, int max_power)
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
 	//remember to change the power gradually
     mL->direction = 0;
     mR->direction = 1;
+	//remember to change the power gradually
+    for(int i = 0; i<max_power;i++){
+        mL->power = i;
+        mR->power = i;
+        
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        __delay_ms(1);
+    }
+}
+
+void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power)
+{
+	//remember to change the power gradually
+    mL->direction = 1;
+    mR->direction = 0;
 	//remember to change the power gradually
     for(int i = 0; i<max_power;i++){
         mL->power = i;

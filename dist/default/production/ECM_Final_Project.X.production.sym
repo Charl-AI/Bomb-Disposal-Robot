@@ -7,6 +7,7 @@ moveForward@max_power 26 0 COMRAM 1
 __S0 30000E 0 ABS 0
 __S1 A8 0 ABS 0
 __S2 0 0 ABS 0
+__size_of_turnLeft 0 0 ABS 0
 main@moving_speed 94 0 BANK0 1
 __Hintentry 0 0 ABS 0
 __Lintentry 0 0 ABS 0
@@ -18,11 +19,11 @@ __size_of_stopAndDisplay 0 0 ABS 0
 scanForBeacon@speed 2F 0 COMRAM 1
 main@motorL 96 0 BANK0 1
 _LATB F8A 0 ABS 0
+turnLeft@i 29 0 COMRAM 1
 __end_of_moveForward CA0 0 CODE 0
 _main 60E 0 CODE 0
 ___sp 0 0 STACK 2
 btemp 49 0 COMRAM 1
-_turn B1A 0 CODE 0
 _stop D76 0 CODE 0
 start 66 0 CODE 0
 classify_data@filtered F 0 COMRAM 1
@@ -33,7 +34,6 @@ _PDC0H F78 0 ABS 0
 _PDC1H F76 0 ABS 0
 _PDC0L F79 0 ABS 0
 _PDC1L F77 0 ABS 0
-turn@max_power 26 0 COMRAM 1
 _RCREG FAE 0 ABS 0
 __size_of_ClearLCD 0 0 ABS 0
 _SPBRG FAF 0 ABS 0
@@ -54,7 +54,6 @@ wtemp8 4A 0 COMRAM 1
 __size_of_SetLine 0 0 ABS 0
 __Hconfig 30000E 0 CONFIG 0
 __Lconfig 300000 0 CONFIG 0
-turn@i 29 0 COMRAM 1
 stop@i 29 0 COMRAM 1
 __Hbigram 0 0 ABS 0
 __Lbigram 0 0 ABS 0
@@ -74,6 +73,7 @@ __Lnvrram 0 0 COMRAM 1
 _setup F40 0 CODE 0
 display_RFID@dataBuf 10 0 COMRAM 1
 int$flags 49 0 COMRAM 1
+_turnLeft B1A 0 CODE 0
 _ANSEL0 FB8 0 ABS 0
 __size_of_SendLCD 0 0 ABS 0
 _ANSEL1 FB9 0 ABS 0
@@ -87,6 +87,7 @@ __Heeprom_data 0 0 EEDATA 0
 __Leeprom_data 0 0 EEDATA 0
 _PIR1bits F9E 0 ABS 0
 _IPR1bits F9F 0 ABS 0
+__end_of_turnLeft B9C 0 CODE 0
 _LATAbits F89 0 ABS 0
 _LATCbits F8B 0 ABS 0
 _LATDbits F8C 0 ABS 0
@@ -94,7 +95,6 @@ __Hintsave_regs 0 0 BIGRAM 1
 __Lintsave_regs 0 0 BIGRAM 1
 check_RFID@checksum 26 0 COMRAM 1
 _RCONbits FD0 0 ABS 0
-__end_of_turn B9C 0 CODE 0
 __Hbigbss 0 0 BIGRAM 1
 __Lbigbss 0 0 BIGRAM 1
 ?___awdiv 11 0 COMRAM 1
@@ -132,9 +132,7 @@ __size_of_setMotorPWM 0 0 ABS 0
 __HnvFARRAM 0 0 FARRAM 0
 __LnvFARRAM 0 0 FARRAM 0
 __size_of_LCD_String 0 0 ABS 0
-turn@mL 22 0 COMRAM 1
 stop@mL 22 0 COMRAM 1
-turn@mR 24 0 COMRAM 1
 stop@mR 24 0 COMRAM 1
 _setMotorPWM 4EA 0 CODE 0
 __Hdata 0 0 ABS 0
@@ -190,7 +188,6 @@ _TXSTAbits FAC 0 ABS 0
 _PORTDbits F83 0 ABS 0
 init_motor_struct@mL 22 0 COMRAM 1
 init_motor_struct@mR 24 0 COMRAM 1
-__size_of_turn 0 0 ABS 0
 _SendLCD FAA 0 CODE 0
 __Hibigdata 0 0 CODE 0
 __Libigdata 0 0 CODE 0
@@ -388,6 +385,7 @@ moveToBeacon@exit_flag 33 0 COMRAM 1
 __Htext26 0 0 ABS 0
 __Ltext26 0 0 ABS 0
 __ptext16 A04 0 CODE 0
+turnLeft@mL 22 0 COMRAM 1
 __end_of_check_RFID 4EA 0 CODE 0
 __Htext17 0 0 ABS 0
 __Ltext17 0 0 ABS 0
@@ -402,7 +400,7 @@ __ptext27 A96 0 CODE 0
 __ptext18 EBC 0 CODE 0
 __Htext19 0 0 ABS 0
 __Ltext19 0 0 ABS 0
-waitForInput@i_1364 18 0 COMRAM 1
+waitForInput@i_1381 18 0 COMRAM 1
 __ptext19 D18 0 CODE 0
 ___intlo_sp 0 0 STACK 2
 setMotorPWM@m 19 0 COMRAM 1
@@ -431,10 +429,12 @@ __Hintcode_body 0 0 ABS 0
 __Lintcode_body 0 0 ABS 0
 __pintcode_body F76 0 CODE 0
 intlevel0 0 0 CODE 0
+turnLeft@max_power 26 0 COMRAM 1
 intlevel1 0 0 CODE 0
 intlevel2 0 0 CODE 0
 intlevel3 0 0 CODE 0
 __end_of_scanForBeacon E2C 0 CODE 0
+turnLeft@mR 24 0 COMRAM 1
 SendLCD@Byte E 0 COMRAM 1
 __size_of_scanForBeacon 0 0 ABS 0
 SetLine@line F 0 COMRAM 1
@@ -474,7 +474,7 @@ text5 39A 10C7 CODE 39A 0
 %locals
 dist/default/production\ECM_Final_Project.X.production.o
 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
-C:\Users\charl\AppData\Local\Temp\sf1c.
+C:\Users\charl\AppData\Local\Temp\sgmk.
 2603 1008 0 CODE 0
 2605 1008 0 CODE 0
 2608 1008 0 CODE 0
@@ -709,16 +709,16 @@ subroutines.c
 90 EB8 0 CODE 0
 91 EBA 0 CODE 0
 dc_motor.c
-85 B9C 0 CODE 0
-87 B9C 0 CODE 0
-88 BAC 0 CODE 0
-89 BBC 0 CODE 0
-91 BC6 0 CODE 0
-92 BD2 0 CODE 0
-93 BDE 0 CODE 0
-94 BEA 0 CODE 0
-95 BF6 0 CODE 0
-96 C04 0 CODE 0
+101 B9C 0 CODE 0
+103 B9C 0 CODE 0
+104 BAC 0 CODE 0
+105 BBC 0 CODE 0
+107 BC6 0 CODE 0
+108 BD2 0 CODE 0
+109 BDE 0 CODE 0
+110 BEA 0 CODE 0
+111 BF6 0 CODE 0
+112 C04 0 CODE 0
 subroutines.c
 43 A04 0 CODE 0
 46 A04 0 CODE 0
@@ -737,16 +737,16 @@ subroutines.c
 76 A92 0 CODE 0
 79 A94 0 CODE 0
 dc_motor.c
-70 C1E 0 CODE 0
-72 C1E 0 CODE 0
-73 C2E 0 CODE 0
-74 C3E 0 CODE 0
-76 C48 0 CODE 0
-77 C54 0 CODE 0
-78 C60 0 CODE 0
-79 C6C 0 CODE 0
-80 C78 0 CODE 0
-81 C86 0 CODE 0
+86 C1E 0 CODE 0
+88 C1E 0 CODE 0
+89 C2E 0 CODE 0
+90 C3E 0 CODE 0
+92 C48 0 CODE 0
+93 C54 0 CODE 0
+94 C60 0 CODE 0
+95 C6C 0 CODE 0
+96 C78 0 CODE 0
+97 C86 0 CODE 0
 signal_processing.c
 35 EBC 0 CODE 0
 39 EBC 0 CODE 0
@@ -790,22 +790,22 @@ LCDIO.c
 27 10C4 0 CODE 0
 28 10C6 0 CODE 0
 dc_motor.c
-99 700 0 CODE 0
-102 700 0 CODE 0
-103 70C 0 CODE 0
-104 71C 0 CODE 0
-105 730 0 CODE 0
-106 744 0 CODE 0
-107 754 0 CODE 0
-109 768 0 CODE 0
-110 774 0 CODE 0
-111 784 0 CODE 0
-112 798 0 CODE 0
-113 7AC 0 CODE 0
-114 7BC 0 CODE 0
-116 7D0 0 CODE 0
-117 7DC 0 CODE 0
-118 7E8 0 CODE 0
+115 700 0 CODE 0
+118 700 0 CODE 0
+119 70C 0 CODE 0
+120 71C 0 CODE 0
+121 730 0 CODE 0
+122 744 0 CODE 0
+123 754 0 CODE 0
+125 768 0 CODE 0
+126 774 0 CODE 0
+127 784 0 CODE 0
+128 798 0 CODE 0
+129 7AC 0 CODE 0
+130 7BC 0 CODE 0
+132 7D0 0 CODE 0
+133 7DC 0 CODE 0
+134 7E8 0 CODE 0
 dc_motor.c
 18 4EA 0 CODE 0
 22 4EA 0 CODE 0

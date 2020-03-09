@@ -5152,7 +5152,9 @@ void setMotorPWM(struct DC_motor *m);
 
 
 void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed);
-void turn(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+
 void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 
@@ -5363,7 +5365,7 @@ char *tempnam(const char *, const char *);
 
 volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed)
 {
-    turn(mL,mR,speed);
+    turnLeft(mL,mR,speed);
     ClearLCD();
     LCD_String("SEARCHING");
 
@@ -5417,7 +5419,7 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
             count = 0;
         }
 
-        if(count >=20000)
+        if(count >=18000)
         {
             return 0;
         }

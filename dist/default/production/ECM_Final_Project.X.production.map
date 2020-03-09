@@ -5,7 +5,7 @@ Linker command line:
 -W-3 --edf=C:\Program Files (x86)\Microchip\xc8\v2.05\pic\dat\en_msgs.txt \
   -cs -h+dist/default/production\ECM_Final_Project.X.production.sym \
   --cmf=dist/default/production\ECM_Final_Project.X.production.cmf -z \
-  -Q18F4331 -oC:\Users\charl\AppData\Local\Temp\sf1c.2 \
+  -Q18F4331 -oC:\Users\charl\AppData\Local\Temp\sgmk.2 \
   --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/ECM_Final_Project.X.production.map -E1 -ver=XC8 \
   --acfsm=1493 -ASTACK=0A8h-02FFh -pstack=STACK -ACODE=00h-01FFFh \
@@ -22,7 +22,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\charl\AppData\Local\Temp\sf1c.o \
+  C:\Users\charl\AppData\Local\Temp\sgmk.o \
   dist/default/production\ECM_Final_Project.X.production.o 
 
 Object code version is 3.11
@@ -35,7 +35,7 @@ Call graph: (short form)
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\charl\AppData\Local\Temp\sf1c.o
+C:\Users\charl\AppData\Local\Temp\sgmk.o
                 init                                 66       66        4        C       0
                 reset_vec                             0        0        4        0       0
                 idloc                            200000   200000        8   200000       0
@@ -480,7 +480,7 @@ __end_of_setMotorPWM           text25       00060E
 __end_of_setup                 text7        000F76
 __end_of_stop                  text3        000DD2
 __end_of_stopAndDisplay        text2        000A04
-__end_of_turn                  text13       000B9C
+__end_of_turnLeft              text13       000B9C
 __end_of_waitForInput          text1        00096C
 __initialization               cinit        001008
 __mediumconst                  mediumconst  000000
@@ -552,7 +552,7 @@ __size_of_setMotorPWM          (abs)        000000
 __size_of_setup                (abs)        000000
 __size_of_stop                 (abs)        000000
 __size_of_stopAndDisplay       (abs)        000000
-__size_of_turn                 (abs)        000000
+__size_of_turnLeft             (abs)        000000
 __size_of_waitForInput         (abs)        000000
 __smallconst                   smallconst   000300
 _check_RFID                    text5        00039A
@@ -576,7 +576,7 @@ _setMotorPWM                   text25       0004EA
 _setup                         text7        000F40
 _stop                          text3        000D76
 _stopAndDisplay                text2        00096C
-_turn                          text13       000B1A
+_turnLeft                      text13       000B1A
 _waitForInput                  text1        0008B2
 btemp                          temp         000049
 check_RFID@byte1               cstackCOMRAM 000021
@@ -655,12 +655,12 @@ stopAndDisplay@speed           cstackCOMRAM 00002F
 ttemp5                         temp         00004A
 ttemp6                         temp         00004D
 ttemp7                         temp         000051
-turn@i                         cstackCOMRAM 000029
-turn@mL                        cstackCOMRAM 000022
-turn@mR                        cstackCOMRAM 000024
-turn@max_power                 cstackCOMRAM 000026
+turnLeft@i                     cstackCOMRAM 000029
+turnLeft@mL                    cstackCOMRAM 000022
+turnLeft@mR                    cstackCOMRAM 000024
+turnLeft@max_power             cstackCOMRAM 000026
 waitForInput@i                 cstackCOMRAM 000016
-waitForInput@i_1364            cstackCOMRAM 000018
+waitForInput@i_1381            cstackCOMRAM 000018
 waitForInput@raw_data          cstackCOMRAM 000014
 wtemp8                         temp         00004A
 
@@ -1107,13 +1107,13 @@ Total ram usage:       11 bytes
 		_ClearLCD
 		_LCD_String
 		_classify_data
-		_turn
+		_turnLeft
  This function is called by:
 		_main
  This function uses a non-reentrant model
 
 
- *************** function _turn *****************
+ *************** function _turnLeft *****************
  Defined at:
 		line 53 in file "dc_motor.c"
  Parameters:    Size  Location     Type
@@ -1187,7 +1187,7 @@ Total ram usage:       12 bytes
 
  *************** function _moveBackward *****************
  Defined at:
-		line 85 in file "dc_motor.c"
+		line 101 in file "dc_motor.c"
  Parameters:    Size  Location     Type
   mL              2   33[COMRAM] PTR struct DC_motor
 		 -> main@motorL(9), 
@@ -1264,7 +1264,7 @@ Total ram usage:       17 bytes
 
  *************** function _moveForward *****************
  Defined at:
-		line 70 in file "dc_motor.c"
+		line 86 in file "dc_motor.c"
  Parameters:    Size  Location     Type
   mL              2   33[COMRAM] PTR struct DC_motor
 		 -> main@motorL(9), 
@@ -1502,7 +1502,7 @@ Total ram usage:        0 bytes
 
  *************** function _init_motor_struct *****************
  Defined at:
-		line 99 in file "dc_motor.c"
+		line 115 in file "dc_motor.c"
  Parameters:    Size  Location     Type
   mL              2   33[COMRAM] PTR struct DC_motor
 		 -> main@motorL(9), 
@@ -1562,10 +1562,11 @@ Total ram usage:        9 bytes
 		___wmul
  This function is called by:
 		_stop
-		_turn
+		_turnLeft
 		_moveForward
 		_moveBackward
 		_init_motor_struct
+		_turnRight
  This function uses a non-reentrant model
 
 
@@ -1730,7 +1731,7 @@ MODULE INFORMATION
 Module		Function		Class		Link	Load	Size
 dc_motor.c
 		_moveForward   		CODE           	0C1E	0000	131
-		_turn          		CODE           	0B1A	0000	131
+		_turnLeft      		CODE           	0B1A	0000	131
 		_stop          		CODE           	0D76	0000	93
 		_moveBackward  		CODE           	0B9C	0000	131
 		_setMotorPWM   		CODE           	04EA	0000	293
