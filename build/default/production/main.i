@@ -5449,8 +5449,8 @@ void main(void)
   init_motor_struct(&motorL, &motorR);
 
 
-  int searching_speed = 55;
-  int moving_speed = 100;
+  int searching_speed = 65;
+  int moving_speed = 95;
 
   waitForInput();
 
@@ -5476,7 +5476,7 @@ void main(void)
       else if(robot_mode == 2)
       {
           robot_mode = returnHome(&motorL, &motorR, moving_speed,
-                  &movement_time);
+                                    &movement_time);
       }
 
 

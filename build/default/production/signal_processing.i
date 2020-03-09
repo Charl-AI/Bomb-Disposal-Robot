@@ -5306,7 +5306,6 @@ void init_sensor(void)
     ANSEL0 = 0;
     ANSEL1 = 0;
 
-
     CAP1CON = 0b01000111;
 
     unsigned int throwaway = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
@@ -5320,11 +5319,11 @@ char classify_data(unsigned int raw_data, unsigned int *smoothed)
 {
 
 
-    *smoothed = *smoothed + ((raw_data - *smoothed) >> 3);
+    *smoothed = *smoothed + ((raw_data - *smoothed) >> 2);
     unsigned int filtered = raw_data - *smoothed;
 
 
-    if(filtered >= 20)
+    if(filtered >= 100)
     {
         return 1;
     }

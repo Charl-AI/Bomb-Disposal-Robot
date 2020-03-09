@@ -5445,14 +5445,16 @@ volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
 }
 
 
-volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed,
-volatile char RFID_buffer[])
+volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
+                                volatile char RFID_buffer[])
 {
     stop(mL, mR,speed);
 
     display_RFID(RFID_buffer);
     check_RFID(RFID_buffer);
 
+    if(RFID_buffer[0] != 0)
+    {
         while(1)
         {
             while(PORTDbits.RD2 == 1)
@@ -5467,6 +5469,11 @@ volatile char RFID_buffer[])
                 __asm(" reset");
             }
         }
+    }
+    else
+    {
+        return 0;
+    }
 }
 
 void debug(void)

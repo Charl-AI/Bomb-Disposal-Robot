@@ -61,7 +61,7 @@ void setup(void)
     TRISBbits.RB0 = 0; 
     TRISBbits.RB2 = 0;
     
-    TRISDbits.RD2 = 1; // button attached to D2, used for reset  
+    TRISDbits.RD2 = 1; // button attached to D2, used for reset and UI 
     
     T0CON = 0b11000111; // enable timer 0, 256 prescaler, 8 bit
     // overflow every 32 ms
@@ -122,8 +122,8 @@ void main(void)
   init_motor_struct(&motorL, &motorR); // initialise values in each structure
   
   // these define how fast the robot moves in each operation
-  int searching_speed = 55;
-  int moving_speed = 100;
+  int searching_speed = 65;
+  int moving_speed = 95;
   
   waitForInput(); // wait until user presses button to start
   
@@ -149,7 +149,7 @@ void main(void)
       else if(robot_mode == 2)
       {
           robot_mode = returnHome(&motorL, &motorR, moving_speed, 
-                  &movement_time);
+                                    &movement_time);
       }
       
       // Subroutine for once bomb has been found and robot has returned

@@ -7,7 +7,7 @@ void initPWM(int PWMperiod){
     PTCON0 = 0b00000000; // free running mode, 1:1 prescaler = 0.5us
     PTCON1 = 0b10000000; // enable PWM timer
     
-    PWMCON0 = 0b01101111; // PWM0/1 enabled, independant mode
+    PWMCON0 = 0b01101111; // PWM0/1 enabled, independent mode
     PWMCON1 = 0x00; //special features, all 0
     
     PTPERL = (0b11111111 & PWMperiod); // base PWM period low byte
@@ -49,12 +49,12 @@ void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed)
     }
 }
 
-//function to make the robot turn right 
-void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power)
+//function to make the robot turn on the spot 
+void turn(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
 	//remember to change the power gradually
-    mL->direction = 1;
-    mR->direction = 0;
+    mL->direction = 0;
+    mR->direction = 1;
 	//remember to change the power gradually
     for(int i = 0; i<max_power;i++){
         mL->power = i;

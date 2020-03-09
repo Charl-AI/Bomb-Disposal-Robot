@@ -18,14 +18,14 @@
 volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
                             volatile unsigned long *time)
 {
-    turnRight(mL,mR,speed); // continuously turn right
+    turn(mL,mR,speed); // continuously turn on the spot
     ClearLCD();
-    LCD_String("SEARCHING");
+    LCD_String("SEARCHING"); // Display on LCD
     
     // Initialise variable to store smoothed data
     unsigned int smoothed_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
     
-    // Runs until the beacon is found and the break statement executes
+    // Runs until the beacon is found and the return statement executes
     while(1)
     {
         // First, acquire the raw signal using the motion feedback module
@@ -98,14 +98,16 @@ volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
 }
 
 // This subroutine makes the robot stop and wait for further inputs at the end
-volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed,
-volatile char RFID_buffer[])
+volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
+                                volatile char RFID_buffer[])
 {
     stop(mL, mR,speed); // stop moving
     
     display_RFID(RFID_buffer);
     check_RFID(RFID_buffer);
     
+    if(RFID_buffer[0] != 0)
+    {
         while(1)
         {
             while(PORTDbits.RD2 == 1) // when button is pressed
@@ -120,6 +122,11 @@ volatile char RFID_buffer[])
                 Reset();
             }
         }
+    }
+    else 
+    {
+        return 0;
+    }
 }
 
 void debug(void)

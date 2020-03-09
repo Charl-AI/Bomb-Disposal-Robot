@@ -941,13 +941,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 122:   init_motor_struct(&motorL, &motorR);
 [e ( _init_motor_struct (2 , &U _motorL &U _motorR ]
 "125
-[; ;main.c: 125:   int searching_speed = 55;
+[; ;main.c: 125:   int searching_speed = 65;
 [v _searching_speed `i ~T0 @X0 1 a ]
-[e = _searching_speed -> 55 `i ]
+[e = _searching_speed -> 65 `i ]
 "126
-[; ;main.c: 126:   int moving_speed = 100;
+[; ;main.c: 126:   int moving_speed = 95;
 [v _moving_speed `i ~T0 @X0 1 a ]
-[e = _moving_speed -> 100 `i ]
+[e = _moving_speed -> 95 `i ]
 "128
 [; ;main.c: 128:   waitForInput();
 [e ( _waitForInput ..  ]

@@ -735,11 +735,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;dc_motor.c: 54: {
 [f ]
 "56
-[; ;dc_motor.c: 56:     mL->direction = 1;
-[e = . *U _mL 1 -> -> 1 `i `uc ]
+[; ;dc_motor.c: 56:     mL->direction = 0;
+[e = . *U _mL 1 -> -> 0 `i `uc ]
 "57
-[; ;dc_motor.c: 57:     mR->direction = 0;
-[e = . *U _mR 1 -> -> 0 `i `uc ]
+[; ;dc_motor.c: 57:     mR->direction = 1;
+[e = . *U _mR 1 -> -> 1 `i `uc ]
 "59
 [; ;dc_motor.c: 59:     for(int i = 0; i<max_power;i++){
 {

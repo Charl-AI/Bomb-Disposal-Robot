@@ -5205,8 +5205,8 @@ void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed)
 void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
 
-    mL->direction = 1;
-    mR->direction = 0;
+    mL->direction = 0;
+    mR->direction = 1;
 
     for(int i = 0; i<max_power;i++){
         mL->power = i;

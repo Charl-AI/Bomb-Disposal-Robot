@@ -99,7 +99,7 @@
 [v _display_RFID display_RFID `(v  1 e 1 0 ]
 "17 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
 [v _init_sensor init_sensor `(v  1 e 1 0 ]
-"36
+"35
 [v _classify_data classify_data `(uc  1 e 1 0 ]
 "18 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
 [v _scanForBeacon scanForBeacon `(VEuc  1 e 1 0 ]
@@ -109,7 +109,7 @@
 [v _returnHome returnHome `(VEuc  1 e 1 0 ]
 "101
 [v _stopAndDisplay stopAndDisplay `(VEuc  1 e 1 0 ]
-"156
+"163
 [v _waitForInput waitForInput `(v  1 e 1 0 ]
 "234 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [v _CAP1CON CAP1CON `VEuc  1 e 1 @3939 ]
@@ -558,17 +558,17 @@
 [v main@searching_speed searching_speed `i  1 a 2 0 ]
 "167
 } 0
-"156 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+"163 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
 [v _waitForInput waitForInput `(v  1 e 1 0 ]
 {
-"172
+"179
 [v waitForInput@i i `i  1 a 2 18 ]
-"177
+"184
 } 0
 "101
 [v _stopAndDisplay stopAndDisplay `(VEuc  1 e 1 0 ]
 {
-"115
+"117
 [v stopAndDisplay@i i `i  1 a 2 52 ]
 [s S366 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyLowByte 2 2 `*.39uc 1 dutyHighByte 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 "101
@@ -577,7 +577,7 @@
 [v stopAndDisplay@speed speed `i  1 p 2 46 ]
 "102
 [v stopAndDisplay@RFID_buffer RFID_buffer `*.39VEuc  1 p 2 48 ]
-"123
+"130
 } 0
 "107 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
 [v _display_RFID display_RFID `(v  1 e 1 0 ]
@@ -619,7 +619,7 @@
 "17 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
 [v _init_sensor init_sensor `(v  1 e 1 0 ]
 {
-"30
+"29
 } 0
 "13 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
 [v _init_RFID init_RFID `(v  1 e 1 0 ]
@@ -681,15 +681,15 @@
 [v stop@initial_speed initial_speed `i  1 p 2 37 ]
 "50
 } 0
-"36 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
+"35 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\signal_processing.c
 [v _classify_data classify_data `(uc  1 e 1 0 ]
 {
-"41
+"40
 [v classify_data@filtered filtered `ui  1 a 2 20 ]
-"36
+"35
 [v classify_data@raw_data raw_data `ui  1 p 2 10 ]
 [v classify_data@smoothed smoothed `*.39ui  1 p 2 12 ]
-"52
+"51
 } 0
 "107 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\LCDIO.c
 [v _SetLine SetLine `(v  1 e 1 0 ]
