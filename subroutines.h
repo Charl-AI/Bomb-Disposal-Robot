@@ -12,8 +12,7 @@
 extern "C" {
 #endif
 
-volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                            volatile unsigned long *time);
+volatile char scanForBeacon(struct DC_motor *mL,struct DC_motor *mR, int speed);
 
 volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
     volatile unsigned long *time, volatile char *exit_flag);

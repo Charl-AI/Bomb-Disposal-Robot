@@ -93,7 +93,7 @@ void __interrupt(high_priority) InterruptHandlerHigh (void)
 void __interrupt(low_priority) InterruptHandlerLow(void)
 {
     // Triggers on timer interrupt when robot is moving forwards
-    if((INTCONbits.TMR0IF) && (robot_mode == 1 || robot_mode == 0))
+    if((INTCONbits.TMR0IF) && (robot_mode == 1))
     {
         movement_time += 1; // add 1 to movement time
         INTCONbits.TMR0IF = 0; // reset interrupt flag
@@ -133,8 +133,7 @@ void main(void)
       // Subroutine for initial sweep to search for bomb
       if(robot_mode == 0)
       {
-          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed,
-                                     &movement_time);
+          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed);
           //debug();
       }
       

@@ -15,8 +15,7 @@
 #include <stdio.h>
 
 // This subroutine scans for the beacon initially
-volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                            volatile unsigned long *time)
+volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed)
 {
     turn(mL,mR,speed); // continuously turn on the spot
     ClearLCD();
@@ -34,24 +33,8 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
         // if beacon is straight ahead, exit this subroutine
         if(beacon_location == 1)
         {
-            *time = 0;
             return 1;
         }  
-        // if searching for more than 20 seconds, timeout and display error
-        else if(*time >= 610)
-        {
-            *time = 0;
-            ClearLCD();
-            LCD_String("BOMB NOT FOUND");
-            SetLine(2);
-            LCD_String("RESETTING ROBOT");
-            stop(mL,mR,speed);
-            for(int i=0; i<20;i++)
-            {
-                __delay_ms(100);
-            }
-            Reset();
-        }
     }
 }
 

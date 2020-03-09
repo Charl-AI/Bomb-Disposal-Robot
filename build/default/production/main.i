@@ -5340,8 +5340,7 @@ char classify_data(unsigned int smoothed_data);
 
 # 1 "./subroutines.h" 1
 # 15 "./subroutines.h"
-volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                            volatile unsigned long *time);
+volatile char scanForBeacon(struct DC_motor *mL,struct DC_motor *mR, int speed);
 
 volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
     volatile unsigned long *time, volatile char *exit_flag);
@@ -5420,7 +5419,7 @@ void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void
 void __attribute__((picinterrupt(("low_priority")))) InterruptHandlerLow(void)
 {
 
-    if((INTCONbits.TMR0IF) && (robot_mode == 1 || robot_mode == 0))
+    if((INTCONbits.TMR0IF) && (robot_mode == 1))
     {
         movement_time += 1;
         INTCONbits.TMR0IF = 0;
@@ -5460,8 +5459,7 @@ void main(void)
 
       if(robot_mode == 0)
       {
-          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed,
-                                     &movement_time);
+          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed);
 
       }
 
