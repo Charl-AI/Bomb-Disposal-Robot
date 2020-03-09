@@ -15,8 +15,10 @@
 #include <stdio.h>
 
 // This subroutine scans for the beacon initially
-volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed)
+volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+                            struct Movements *move)
 {
+    move-> move_type[move->move_number] = 1; // store move type as left
     turnLeft(mL,mR,speed); // continuously turn on the spot
     ClearLCD();
     LCD_String("SEARCHING"); // Display on LCD
@@ -33,6 +35,7 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed)
         // if beacon is straight ahead, exit this subroutine
         if(beacon_location == 1)
         {
+            move-> move_number += 1; // increment move number
             return 1;
         }  
     }
@@ -41,8 +44,9 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed)
 // This subroutine moves the robot forwards until it either finds the beacon
 // or reaches a time limit
 volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                        volatile unsigned long *time, volatile char *exit_flag)
+                        struct Movements *move, volatile char *exit_flag)
 {
+    move->move_type[move->move_number] = 0; // store move type as forwards
     moveForward(mL,mR,speed); // move robot forwards
     ClearLCD();
     LCD_String("MOVING TO BOMB");
@@ -73,20 +77,34 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
         
         if(count >=18000)
         {
+            move-> move_number += 1; // increment move number
             return 0;
         }
     }
 }
 
 // This subroutine makes the robot return to its starting position
-volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                            volatile unsigned long *time)
+volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
+                            int search_speed, struct Movements *move)
 {
-    moveBackward(mL,mR,speed); // move robot backwards
-    
+    stop(mL,mR,move_speed);
     ClearLCD();
     LCD_String("RETURNING HOME");
-    while(*time != 0);
+    
+    for(int i=move->move_number;move->move_number >0; move->move_number--)
+    {
+        if(move->move_type[move->move_number] == 0)
+        {
+            moveBackward(mL,mR,move_speed);
+            while(move->time_taken[move->move_number] > 0);
+        }
+        else if(move->move_type[move->move_number] == 1)
+        {
+            turnRight(mL,mR,search_speed);
+            while(move->time_taken[move->move_number] > 0);
+        }
+    }
+    
     return 3;
 }
 

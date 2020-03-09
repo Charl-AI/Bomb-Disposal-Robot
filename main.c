@@ -24,6 +24,7 @@
 #include "subroutines.h"
 /*****************************************************************************/
 //Global variables defined here
+// These variables must be global because they need to be visible to the ISR
 
 // this defines the subroutine that the robot will operate on:
 // 0 represents the initial sweep to look for bomb
@@ -38,8 +39,8 @@ volatile char RFIDbuf[12];
 // This flag is set to 1 once the RFID has been completely read
 volatile char RFID_flag = 0;
 
-// This stores the amount of time each movement
-volatile unsigned long movement_time = 0;
+// This structure stores the movements made by the robot and related variables
+struct Movements travel_moves;
 /*****************************************************************************/
 // setup function, initialise registers here
 void setup(void)
@@ -63,9 +64,9 @@ void setup(void)
     
     TRISDbits.RD2 = 1; // button attached to D2, used for reset and UI 
     
+    // Timer overflow every 32 ms
     T0CON = 0b11000111; // enable timer 0, 256 prescaler, 8 bit
-    // overflow every 32 ms
-  
+   
     // generate interrupt on timer overflow
     INTCONbits.TMR0IE=1; // enable TMR0 overflow interrupt
     INTCON2bits.TMR0IP=0; // TMR0  Low priority
@@ -92,16 +93,17 @@ void __interrupt(high_priority) InterruptHandlerHigh (void)
 // Low priority ISR for timing movements
 void __interrupt(low_priority) InterruptHandlerLow(void)
 {
-    // Triggers on timer interrupt when robot is moving forwards
-    if((INTCONbits.TMR0IF) && (robot_mode == 1))
+    // Triggers on timer interrupt when robot is moving forwards or searching
+    if((INTCONbits.TMR0IF) && ((robot_mode == 1) || (robot_mode == 0)))
     {
-        movement_time += 1; // add 1 to movement time
+        // increment the time of the current movement
+        travel_moves.time_taken[travel_moves.move_number] += 1; 
         INTCONbits.TMR0IF = 0; // reset interrupt flag
     }
     // Triggers on timer interrupt when robot is returning home
-    else if((INTCONbits.TMR0IF) && robot_mode == 2)
-    {
-        movement_time -= 1; // subtract 1 from movement time
+    else if((INTCONbits.TMR0IF) && robot_mode == 2)  
+    {   // decrement the time of the current movement
+        travel_moves.time_taken[travel_moves.move_number] -= 1; 
         INTCONbits.TMR0IF = 0; // reset interrupt flag
     }
     // Triggers on timer interrupt when robot is in any other state
@@ -122,7 +124,7 @@ void main(void)
   init_motor_struct(&motorL, &motorR); // initialise values in each structure
   
   // these define how fast the robot moves in each operation
-  int searching_speed = 65;
+  int searching_speed = 55;
   int moving_speed = 95;
   
   waitForInput(); // wait until user presses button to start
@@ -133,7 +135,7 @@ void main(void)
       // Subroutine for initial sweep to search for bomb
       if(robot_mode == 0)
       {
-          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed);
+          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed, &travel_moves);
           //debug();
       }
       
@@ -141,14 +143,14 @@ void main(void)
       else if(robot_mode == 1)
       {
           robot_mode = moveToBeacon(&motorL, &motorR, moving_speed,
-                                    &movement_time, &RFID_flag);
+                                    &travel_moves, &RFID_flag);
       }
     
       // Subroutine to return to starting position
       else if(robot_mode == 2)
       {
           robot_mode = returnHome(&motorL, &motorR, moving_speed, 
-                                    &movement_time);
+                                    searching_speed, &travel_moves);
       }
       
       // Subroutine for once bomb has been found and robot has returned
