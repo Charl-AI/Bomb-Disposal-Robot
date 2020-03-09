@@ -47,7 +47,7 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 }
 
 // This subroutine moves the robot forwards until it either finds the beacon
-// or reaches a time limit
+// or loses the bomb - in which case it starts searching again
 volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
                         struct Movements *move, volatile char *exit_flag)
 {
@@ -55,7 +55,11 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
     moveForward(mL,mR,speed); // move robot forwards
     ClearLCD();
     LCD_String("MOVING TO BOMB");
-    int count = 0;
+    
+    // this stores the number of consecutive times the robot misses the bomb
+    // once it is over a threshold value, the robot starts searching again
+    int error_counter = 0;
+    
     // Runs until RFID has been scanned and break statement executes
     while(1)
     {
@@ -65,22 +69,25 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
         // Now, classify the signals to find if we are looking at the beacon
         char beacon_location = classify_data(raw_data);
         
+        // if RFID read, return home
         if(*exit_flag == 1)
         {
             exit_flag = 0;
             return 2; // return home
         }
         
+        // if beacon lost, add 1 to error counter
         else if(beacon_location == 0)
         {
-            count += 1;
+            error_counter += 1;
         }
+        // if beacon found, reset error counter
         else
         {
-            count = 0;
+            error_counter = 0;
         }
-        
-        if(count >=18000)
+        // if the beacon has been lost for a set amount of time, start searching
+        if(error_counter >=18000)
         {
             move-> move_number += 1; // increment move number
             return 0;
@@ -92,25 +99,30 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
                             int search_speed, struct Movements *move)
 {
+    // stop and display returning on LCD
     stop(mL,mR,move_speed);
     ClearLCD();
     LCD_String("RETURNING HOME");
     
+    // Go back through array of moves and undo each previous move
     for(int i=move->move_number;move->move_number >0; move->move_number--)
     {
+        // if move was forward
         if(move->move_type[move->move_number] == 0)
         {
-            moveBackward(mL,mR,move_speed);
+            // reverse for same time as initial move
+            moveBackward(mL,mR,move_speed); 
             while(move->time_taken[move->move_number] > 0);
         }
+        // if move was left
         else if(move->move_type[move->move_number] == 1)
         {
+            // turn right for same time as initial move
             turnRight(mL,mR,search_speed);
             while(move->time_taken[move->move_number] > 0);
         }
     }
-    
-    return 3;
+    return 3; // exit subroutine
 }
 
 // This subroutine makes the robot stop and wait for further inputs at the end
