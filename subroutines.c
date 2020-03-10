@@ -40,7 +40,6 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
         // if RFID read, return home
         if(*exit_flag == 1)
         {
-            exit_flag = 0;
             return 2; // return home
         }
         // if beacon is straight ahead, exit this subroutine
@@ -78,7 +77,6 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
         // if RFID read, return home
         if(*exit_flag == 1)
         {
-            exit_flag = 0;
             return 2; // return home
         }
         
@@ -93,9 +91,9 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
             error_counter = 0;
         }
         // if the beacon has been lost for a set amount of time, start searching
-        // 18000 is a paramater to adjust the sensitivity of how often it will 
+        // 17000 is a parameter to adjust the sensitivity of how often it will 
         // start searching again
-        if(error_counter >=18000)
+        if(error_counter >=17000)
         {
             move-> move_number += 1; // increment move number
             
