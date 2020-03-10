@@ -1,13 +1,20 @@
+/* 
+ dc_motor.c
+ 
+ This file contains the functions required to move the robot
+ */
+
 #include <xc.h>
 #include "dc_motor.h"
 
-// PWMperiod input in seconds
+// PWMperiod input in seconds. This function is called in setup to initialise
+// the motor PWM registers
 void initPWM(int PWMperiod){
     
     PTCON0 = 0b00000000; // free running mode, 1:1 prescaler = 0.5us
     PTCON1 = 0b10000000; // enable PWM timer
     
-    PWMCON0 = 0b01101111; // PWM0/1 enabled, independant mode
+    PWMCON0 = 0b01101111; // PWM0/1 enabled, independent mode
     PWMCON1 = 0x00; //special features, all 0
     
     PTPERL = (0b11111111 & PWMperiod); // base PWM period low byte
@@ -37,24 +44,26 @@ void setMotorPWM(struct DC_motor *m)
 }
 
 //function to stop the robot gradually 
-void stop(struct DC_motor *mL, struct DC_motor *mR)
+void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed)
 {
-	for(int i = 50; i > 0; i--)
+	for(int i = initial_speed; i > 0; i--)
     {
         mL->power = i;
         mR->power = i;
         setMotorPWM(mL);
         setMotorPWM(mR);
+        __delay_ms(1);
     }
 }
 
-//function to make the robot turn left 
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
+//function to make the robot turn on the spot 
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
+	//remember to change the power gradually
     mL->direction = 0;
     mR->direction = 1;
 	//remember to change the power gradually
-    for(int i = 0; i<50;i++){
+    for(int i = 0; i<max_power;i++){
         mL->power = i;
         mR->power = i;
         
@@ -64,14 +73,13 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
     }
 }
 
-//function to make the robot turn right 
-void turnRight(struct DC_motor *mL, struct DC_motor *mR)
+void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
 	//remember to change the power gradually
     mL->direction = 1;
     mR->direction = 0;
 	//remember to change the power gradually
-    for(int i = 0; i<50;i++){
+    for(int i = 0; i<max_power;i++){
         mL->power = i;
         mR->power = i;
         
@@ -81,51 +89,63 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR)
     }
 }
 
-//function to make the robot go straight
+/* 
+ function to make the robot go straight
+ Note: we deliberately bias the movement to curve slightly right becuase we
+ would prefer to miss right than left if we miss the beacon
+*/
 void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
     mL->direction = 1;
     mR->direction = 1;
-    for(int i = 0; i < max_power; i++)
+    for(int i = 5; i < max_power; i++)
     {
-        mL->power = i;
-        mR->power = i;
+        mL->power = i; 
+        mR->power = i - 5; // slightly underpower right motor to curve the path
         setMotorPWM(mL);
         setMotorPWM(mR);
+        __delay_ms(1);
     }
 }
 
-//function to make the robot go straight
+/*
+ function to make the robot go straight
+ Note: we also bias the robot in this function because we need to 'undo'
+ the effect of the curvilinear path in the forwards one
+*/
+
 void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
     mL->direction = 0;
     mR->direction = 0;
-    for(int i = 0; i < max_power; i++)
+    for(int i = 5; i < max_power; i++)
     {
         mL->power = i;
-        mR->power = i;
+        mR->power = i - 5; // slightly underpower right motor to curve the path
         setMotorPWM(mL);
         setMotorPWM(mR);
+        __delay_ms(1);
     }
 }
 
-void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR)
+void initMotorValues(struct DC_motor *mL, struct DC_motor *mR)
 {
     //some code to set initial values of each structure
-mL->power = 0;
-mL->direction = 1;
-mL->dutyLowByte = (unsigned char *)(&PDC0L);
-mL->dutyHighByte = (unsigned char *)(&PDC0H);
-mL->dir_pin=0;
-mL->PWMperiod=199;
+    mL->power = 0;
+    mL->direction = 1;
+    mL->dutyLowByte = (unsigned char *)(&PDC0L);
+    mL->dutyHighByte = (unsigned char *)(&PDC0H);
+    mL->dir_pin=0;
+    mL->PWMperiod=199;
 
-mR->power = 0;
-mR->direction = 1;
-mR->dutyLowByte = (unsigned char *)(&PDC1L);
-mR->dutyHighByte = (unsigned char *)(&PDC1H);
-mR->dir_pin=2;
-mR->PWMperiod=199;
+    mR->power = 0;
+    mR->direction = 1;
+    mR->dutyLowByte = (unsigned char *)(&PDC1L);
+    mR->dutyHighByte = (unsigned char *)(&PDC1H);
+    mR->dir_pin=2;
+    mR->PWMperiod=199;
 
-setMotorPWM(mL);
-setMotorPWM(mR);
+    // set PWM for each motor to prevent random startup values
+    setMotorPWM(mL);
+    setMotorPWM(mR);
 }

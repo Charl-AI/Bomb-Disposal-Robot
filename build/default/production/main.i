@@ -7,7 +7,7 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-# 11 "main.c"
+# 22 "main.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -5121,7 +5121,7 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 2 3
-# 11 "main.c" 2
+# 22 "main.c" 2
 
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdio.h" 1 3
@@ -5260,35 +5260,32 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 13 "main.c" 2
+# 24 "main.c" 2
 
 #pragma config OSC = IRCIO, MCLRE=OFF, LVP=OFF
 
 
+
 # 1 "./LCDIO.h" 1
-# 26 "./LCDIO.h"
+# 29 "./LCDIO.h"
 void E_TOG(void);
 
-
 void LCDout(unsigned char number);
-
 
 void SendLCD(unsigned char Byte, char type);
 
 
-void init_LCD(void);
 
+
+
+void init_LCD(void);
 
 void SetLine (char line);
 
+void LCDString(char *string);
 
-void LCD_String(char *string);
-
-
-void ShiftLeft(void);
-void ShiftRight(void);
-void ClearLCD(void);
-# 16 "main.c" 2
+void clearLCD(void);
+# 28 "main.c" 2
 
 # 1 "./dc_motor.h" 1
 
@@ -5308,35 +5305,81 @@ struct DC_motor {
 
 
 void initPWM(int PWMperiod);
+
+
+
+void initMotorValues(struct DC_motor *mL, struct DC_motor *mR);
+
+
+
 void setMotorPWM(struct DC_motor *m);
-void stop(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR);
+
+
+void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed);
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
-void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR);
-# 17 "main.c" 2
+# 29 "main.c" 2
 
 # 1 "./RFID.h" 1
-# 11 "./RFID.h"
+# 12 "./RFID.h"
 void init_RFID(void);
-char getCharSerial(void);
-char processRFID(char RFIDbuf[], char latestChar);
-void check_RFID(char dataBuf[]);
-void display_RFID(char RFIDBuf[]);
-# 18 "main.c" 2
+
+
+
+char processRFID(volatile char RFIDbuf[], char latestChar);
+
+
+void check_RFID(volatile char dataBuf[]);
+
+
+void display_RFID(volatile char RFIDBuf[]);
+# 30 "main.c" 2
 
 # 1 "./signal_processing.h" 1
-# 13 "./signal_processing.h"
-struct Sensor {
-    unsigned int raw_data;
-    unsigned int smoothed_signal;
+# 12 "./signal_processing.h"
+void init_sensor(void);
+
+
+char classify_data(unsigned int raw_data);
+
+
+
+void stabiliseAverage(void);
+# 31 "main.c" 2
+
+# 1 "./subroutines.h" 1
+# 16 "./subroutines.h"
+struct Movement_storage {
+
+    char move_type[20];
+
+    int time_taken[20];
+
+    char move_number;
 };
 
-void init_sensor(void);
-char classify_data(int smoothed_data);
-# 19 "main.c" 2
-# 29 "main.c"
+
+volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+                    struct Movement_storage *move, volatile char *exit_flag);
+
+
+volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+                    struct Movement_storage *move, volatile char *exit_flag);
+
+
+volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
+                            int search_speed, struct Movement_storage *move);
+
+
+volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
+                            volatile char RFID_buffer[]);
+
+
+void waitForInput(void);
+# 32 "main.c" 2
+# 42 "main.c"
 volatile char robot_mode = 0;
 
 
@@ -5344,6 +5387,9 @@ volatile char RFIDbuf[12];
 
 
 volatile char RFID_flag = 0;
+
+
+struct Movement_storage travel_moves;
 
 
 void setup(void)
@@ -5361,9 +5407,18 @@ void setup(void)
     init_sensor();
     initPWM(199);
 
+
     TRISBbits.RB0 = 0;
     TRISBbits.RB2 = 0;
+
     TRISDbits.RD2 = 1;
+
+
+    T0CON = 0b11000111;
+
+
+    INTCONbits.TMR0IE=1;
+    INTCON2bits.TMR0IP=0;
 }
 
 
@@ -5371,7 +5426,7 @@ void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void
 {
 
 
-    if((PIR1bits.RCIF) && (robot_mode == 1))
+    if((PIR1bits.RCIF) && ((robot_mode == 1) || robot_mode==0))
     {
 
         RFID_flag = processRFID(RFIDbuf, RCREG);
@@ -5385,6 +5440,29 @@ void __attribute__((picinterrupt(("high_priority")))) InterruptHandlerHigh (void
 }
 
 
+void __attribute__((picinterrupt(("low_priority")))) InterruptHandlerLow(void)
+{
+
+    if((INTCONbits.TMR0IF) && ((robot_mode == 1) || (robot_mode == 0)))
+    {
+
+        travel_moves.time_taken[travel_moves.move_number] += 1;
+        INTCONbits.TMR0IF = 0;
+    }
+
+    else if((INTCONbits.TMR0IF) && robot_mode == 2)
+    {
+        travel_moves.time_taken[travel_moves.move_number] -= 1;
+        INTCONbits.TMR0IF = 0;
+    }
+
+    else
+    {
+        INTCONbits.TMR0IF = 0;
+    }
+}
+
+
 void main(void)
 {
 
@@ -5392,9 +5470,14 @@ void main(void)
 
 
   struct DC_motor motorL, motorR;
-  init_motor_struct(&motorL, &motorR);
+  initMotorValues(&motorL, &motorR);
 
-  unsigned long movementMicros=0;
+
+  const int SEARCHING_SPEED = 50;
+  const int MOVING_SPEED = 95;
+
+  stabiliseAverage();
+  waitForInput();
 
 
   while(1)
@@ -5402,79 +5485,34 @@ void main(void)
 
       if(robot_mode == 0)
       {
-          turnRight(&motorL, &motorR);
-
-
-          while(robot_mode == 0)
-          {
-
-            unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
-
-
-            char beacon_location = classify_data(raw_data);
-
-
-            if(beacon_location == 1)
-            {
-                robot_mode = 1;
-            }
-         }
+          robot_mode = scanForBeacon(&motorL, &motorR, SEARCHING_SPEED,
+                                    &travel_moves, &RFID_flag);
       }
 
 
-      if(robot_mode == 1)
+      else if(robot_mode == 1)
       {
-          moveForward(&motorL, &motorR,75);
-
-
-          while(robot_mode == 1)
-          {
-              _delay((unsigned long)((1)*(8000000/4000000.0)));
-              movementMicros += 1;
-
-
-
-              if(RFID_flag == 1)
-              {
-                  display_RFID(RFIDbuf);
-                  check_RFID(RFIDbuf);
-                  robot_mode = 2;
-                  RFID_flag = 0;
-              }
-          }
+          robot_mode = moveToBeacon(&motorL, &motorR, MOVING_SPEED,
+                                    &travel_moves, &RFID_flag);
       }
 
 
-      if(robot_mode == 2)
+      else if(robot_mode == 2)
       {
-          moveBackward(&motorL,&motorR,75);
-
-          for(unsigned long i=0; i<movementMicros;i++)
-          {
-              _delay((unsigned long)((1)*(8000000/4000000.0)));
-          }
-          robot_mode = 3;
+          robot_mode = returnHome(&motorL, &motorR, MOVING_SPEED,
+                                    SEARCHING_SPEED, &travel_moves);
       }
 
 
-      if(robot_mode == 3)
+      else if(robot_mode == 3)
       {
-          stop(&motorL, &motorR);
+          robot_mode = stopAndDisplay(&motorL, &motorR, MOVING_SPEED,RFIDbuf);
+      }
 
-          while(robot_mode == 3)
-          {
-              while(PORTDbits.RD2 == 1)
-              {
-                  ClearLCD();
-                  LCD_String("RESETTING ROBOT");
-                  for(int i=0; i<10;i++)
-                  {
-                      _delay((unsigned long)((100)*(8000000/4000.0)));
-                  }
-                  ClearLCD();
-                  robot_mode = 0;
-              }
-          }
+
+      else
+      {
+          LCDString("Critical Error");
       }
   }
 }

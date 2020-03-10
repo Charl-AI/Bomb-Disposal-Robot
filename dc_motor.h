@@ -1,10 +1,19 @@
+/* 
+ File:   dc_motor.h
+ Author: charl
+ 
+ 
+ This header file contains function declarations for moving the robot
+ and also contains the definition of the structure used to store the variables
+ */
+
 #ifndef _DC_MOTOR_H
 #define _DC_MOTOR_H
 
 #define _XTAL_FREQ 8000000
 
-
-struct DC_motor { //definition of DC_motor structure
+//definition of DC_motor structure, this stores the variables for each motor
+struct DC_motor { 
     char power;         //motor power, out of 100
     char direction;     //motor direction, forward(1), reverse(0)
     unsigned char *dutyLowByte; //PWM duty low byte address
@@ -13,14 +22,30 @@ struct DC_motor { //definition of DC_motor structure
     int PWMperiod; //base period of PWM cycle
 };
 
-//function prototypes
+// Call this in the setup to initialise PWM registers
 void initPWM(int PWMperiod); // function to setup PWM
-void setMotorPWM(struct DC_motor *m);
-void stop(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR);
+
+// function for initialising values in each structure. Call outside the loop
+// at the top of main
+void initMotorValues(struct DC_motor *mL, struct DC_motor *mR);
+
+// This is used as part of the movement functions, do not call this from
+// the main file. This should be declared privately in future.
+void setMotorPWM(struct DC_motor *m); // function to set PWM
+
+/* 
+ functions for moving robot
+ Note: we deliberately bias the forward and reverse movements to curve slightly 
+ right becuase we would prefer to miss right than left if we miss the beacon
+*/
+void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed);
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
-void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR);
+
+
+
+
 
 #endif

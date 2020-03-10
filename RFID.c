@@ -31,7 +31,7 @@ void init_RFID(void)
 
 // this function is called when the RFID serial interrupt is triggered
 // it returns 1 when the RFID has been completely read and 0 otherwise
-char processRFID(char RFIDbuf[], char latestChar)
+char processRFID(volatile char RFIDbuf[], char latestChar)
 {
     // here we store the position we are at in the buffer, it is declared
     // as static so it doesn't change between function calls
@@ -43,33 +43,28 @@ char processRFID(char RFIDbuf[], char latestChar)
     {
         return 1;
     }
+    // if we see the starting character of RFID
+    else if(latestChar == 0x02)
+    {
+        // reset position to 0 and clear buffer
+       position_in_buf = 0;
+       for(char i=0 ;i<12 ;i++)
+       {
+            RFIDbuf[i] = 0;
+       }
+        return 0; // not finished reading RFID, so return 0
+    }
+    // if any other data is received, add it to the buffer
     else
     {
-       // if starting character is received, reset position to 0
-       // and clear RFID buffer
-       if(latestChar == 0x02)
-        {
-           position_in_buf = 0;
-           for(char i=0 ;i<12 ;i++)
-           {
-               RFIDbuf[i] = 0;
-           }
-           // not finished reading RFID, so return 0
-           return 0;
-        } 
-       // if any other data is received, add it to the buffer
-       else
-        {
-            RFIDbuf[position_in_buf] = latestChar;
-            position_in_buf++;
-            // not finished reading RFID, so return 0
-            return 0;
-        }
+        RFIDbuf[position_in_buf] = latestChar;
+        position_in_buf++; // increment position in buffer
+        return 0; // not finished reading RFID, so return 0
     } 
 }
 
 // do checksum calculation, display result on LCD
-void check_RFID(char dataBuf[])
+void check_RFID(volatile char dataBuf[])
 {
     // array to store hex values
     char hexBuf[12];
@@ -97,18 +92,18 @@ void check_RFID(char dataBuf[])
     {
         // if good, display checksum passed on screen
         SetLine(2);
-        LCD_String("CHECKSUM PASSED");
+        LCDString("CHECKSUM PASSED");
     }
     else{
         // if bad, display checksum failed on screen
         SetLine(2);
-        LCD_String("CHECKSUM FAILED");
+        LCDString("CHECKSUM FAILED");
     }
 }
 
-void display_RFID(char dataBuf[])
+void display_RFID(volatile char dataBuf[])
 {
-    ClearLCD();
+    clearLCD();
     SetLine(1);
     for(int i=0;i<10;i++)
     {

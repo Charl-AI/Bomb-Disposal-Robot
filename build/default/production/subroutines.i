@@ -1,4 +1,4 @@
-# 1 "dc_motor.c"
+# 1 "subroutines.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,8 @@
 # 1 "<built-in>" 2
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "dc_motor.c" 2
+# 1 "subroutines.c" 2
+# 14 "subroutines.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -5120,7 +5121,8 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 2 3
-# 1 "dc_motor.c" 2
+# 14 "subroutines.c" 2
+
 
 # 1 "./dc_motor.h" 1
 
@@ -5155,138 +5157,261 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
-# 2 "dc_motor.c" 2
+# 16 "subroutines.c" 2
+
+# 1 "./RFID.h" 1
+# 12 "./RFID.h"
+void init_RFID(void);
+
+
+
+char processRFID(volatile char RFIDbuf[], char latestChar);
+
+
+void check_RFID(volatile char dataBuf[]);
+
+
+void display_RFID(volatile char RFIDBuf[]);
+# 17 "subroutines.c" 2
+
+# 1 "./signal_processing.h" 1
+# 12 "./signal_processing.h"
+void init_sensor(void);
+
+
+char classify_data(unsigned int raw_data);
+
+
+
+void stabiliseAverage(void);
+# 18 "subroutines.c" 2
+
+# 1 "./subroutines.h" 1
+# 16 "./subroutines.h"
+struct Movement_storage {
+
+    char move_type[20];
+
+    int time_taken[20];
+
+    char move_number;
+};
+
+
+volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+                    struct Movement_storage *move, volatile char *exit_flag);
+
+
+volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+                    struct Movement_storage *move, volatile char *exit_flag);
+
+
+volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
+                            int search_speed, struct Movement_storage *move);
+
+
+volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
+                            volatile char RFID_buffer[]);
+
+
+void waitForInput(void);
+# 19 "subroutines.c" 2
+
+# 1 "./LCDIO.h" 1
+# 29 "./LCDIO.h"
+void E_TOG(void);
+
+void LCDout(unsigned char number);
+
+void SendLCD(unsigned char Byte, char type);
 
 
 
 
-void initPWM(int PWMperiod){
 
-    PTCON0 = 0b00000000;
-    PTCON1 = 0b10000000;
+void init_LCD(void);
 
-    PWMCON0 = 0b01101111;
-    PWMCON1 = 0x00;
+void SetLine (char line);
 
-    PTPERL = (0b11111111 & PWMperiod);
-    PTPERH = (0b1111111100000000 & PWMperiod) >> 8;
-}
+void LCDString(char *string);
+
+void clearLCD(void);
+# 20 "subroutines.c" 2
 
 
-void setMotorPWM(struct DC_motor *m)
+
+volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+                        struct Movement_storage *move, volatile char *exit_flag)
 {
-    int PWMduty;
+    move-> move_type[move->move_number] = 1;
+    turnLeft(mL,mR,speed);
+    clearLCD();
+    LCDString("SEARCHING");
 
-    PWMduty = (m->power*m->PWMperiod)/100;
 
-    if (m->direction)
+    while(1)
     {
-        LATB=LATB|(1<<(m->dir_pin));
-  PWMduty=m->PWMperiod-PWMduty;
+
+        unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+
+
+        char beacon_location = classify_data(raw_data);
+
+
+        if(*exit_flag == 1)
+        {
+            return 2;
+        }
+
+        else if(beacon_location == 1)
+        {
+            move-> move_number += 1;
+            return 1;
+        }
     }
-    else
+}
+
+
+
+volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+                        struct Movement_storage *move, volatile char *exit_flag)
+{
+    move->move_type[move->move_number] = 0;
+    moveForward(mL,mR,speed);
+    clearLCD();
+    LCDString("MOVING TO BOMB");
+
+
+
+
+
+
+
+    int error_counter = 0;
+    const int ERROR_THRESHOLD = 17000;
+
+
+    while(1)
     {
-        LATB=LATB&(~(1<<(m->dir_pin)));
+
+        unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+
+
+        char beacon_location = classify_data(raw_data);
+
+
+        if(*exit_flag == 1)
+        {
+            return 2;
+        }
+
+
+        else if(beacon_location == 0)
+        {
+            error_counter += 1;
+        }
+
+        else
+        {
+            error_counter = 0;
+        }
+
+
+
+        if(error_counter >= ERROR_THRESHOLD)
+        {
+            move-> move_number += 1;
+
+
+            if(move->move_number >= 19)
+            {
+                return 2;
+            }
+            else
+            {
+                 return 0;
+            }
+        }
     }
-
-
-    *(m->dutyLowByte)=PWMduty<<2;
-    *(m->dutyHighByte)=PWMduty>>6;
 }
 
 
-void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed)
+volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
+                            int search_speed, struct Movement_storage *move)
 {
- for(int i = initial_speed; i > 0; i--)
+
+    stop(mL,mR,move_speed);
+    clearLCD();
+    LCDString("RETURNING HOME");
+
+
+    for(int i=move->move_number;move->move_number >0; move->move_number--)
     {
-        mL->power = i;
-        mR->power = i;
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-        _delay((unsigned long)((1)*(8000000/4000.0)));
+
+        if(move->move_type[move->move_number] == 0)
+        {
+
+            moveBackward(mL,mR,move_speed);
+            while(move->time_taken[move->move_number] > 0);
+        }
+
+        else if(move->move_type[move->move_number] == 1)
+        {
+
+            turnRight(mL,mR,search_speed);
+            while(move->time_taken[move->move_number] > 0);
+        }
     }
+    return 3;
 }
 
 
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR, int max_power)
+volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
+                                volatile char RFID_buffer[])
 {
-
-    mL->direction = 0;
-    mR->direction = 1;
-
-    for(int i = 0; i<max_power;i++){
-        mL->power = i;
-        mR->power = i;
-
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-        _delay((unsigned long)((1)*(8000000/4000.0)));
-    }
-}
-
-void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power)
-{
-
-    mL->direction = 1;
-    mR->direction = 0;
-
-    for(int i = 0; i<max_power;i++){
-        mL->power = i;
-        mR->power = i;
-
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-        _delay((unsigned long)((1)*(8000000/4000.0)));
-    }
-}
+    stop(mL, mR,speed);
 
 
-void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
-{
-    mL->direction = 1;
-    mR->direction = 1;
-    for(int i = 5; i < max_power; i++)
+    display_RFID(RFID_buffer);
+    check_RFID(RFID_buffer);
+
+
+    while(1)
     {
-        mL->power = i;
-        mR->power = i - 5;
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-        _delay((unsigned long)((1)*(8000000/4000.0)));
+        while(PORTDbits.RD2 == 1)
+        {
+            clearLCD();
+            LCDString("RESETTING ROBOT");
+            for(int i=0; i<10;i++)
+            {
+                _delay((unsigned long)((100)*(8000000/4000.0)));
+            }
+            clearLCD();
+            __asm(" reset");
+        }
     }
 }
 
 
-void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
+void waitForInput(void)
 {
-    mL->direction = 0;
-    mR->direction = 0;
-    for(int i = 5; i < max_power; i++)
+
+    clearLCD();
+    SetLine(1);
+    LCDString("PRESS BUTTON");
+    SetLine(2);
+    LCDString("TO START SEARCH");
+
+
+    while(PORTDbits.RD2 == 0);
+
+
+    clearLCD();
+    SetLine(1);
+    LCDString("STARTING SEARCH");
+    for(int i=0; i<10;i++)
     {
-        mL->power = i;
-        mR->power = i - 5;
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-        _delay((unsigned long)((1)*(8000000/4000.0)));
+        _delay((unsigned long)((100)*(8000000/4000.0)));
     }
-}
-
-void initMotorValues(struct DC_motor *mL, struct DC_motor *mR)
-{
-
-mL->power = 0;
-mL->direction = 1;
-mL->dutyLowByte = (unsigned char *)(&PDC0L);
-mL->dutyHighByte = (unsigned char *)(&PDC0H);
-mL->dir_pin=0;
-mL->PWMperiod=199;
-
-mR->power = 0;
-mR->direction = 1;
-mR->dutyLowByte = (unsigned char *)(&PDC1L);
-mR->dutyHighByte = (unsigned char *)(&PDC1H);
-mR->dir_pin=2;
-mR->PWMperiod=199;
-
-setMotorPWM(mL);
-setMotorPWM(mR);
+    clearLCD();
 }

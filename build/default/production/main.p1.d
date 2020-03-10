@@ -3,4 +3,5 @@ main.c  \
 LCDIO.h  \
 dc_motor.h  \
 RFID.h  \
-signal_processing.h 
+signal_processing.h  \
+subroutines.h 

@@ -1,152 +1,70 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"2728 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2728:     struct {
-[s S93 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S93 . TRISC0 TRISC1 TRISC2 TRISC3 TRISC4 TRISC5 TRISC6 TRISC7 ]
-"2738
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2738:     struct {
-[s S94 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S94 . RC0 RC1 RC2 RC3 RC4 RC5 RC6 RC7 ]
-"2727
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2727: typedef union {
-[u S92 `S93 1 `S94 1 ]
-[n S92 . . . ]
-"2749
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 2749: extern volatile TRISCbits_t TRISCbits __attribute__((address(0xF94)));
-[v _TRISCbits `VS92 ~T0 @X0 0 e@3988 ]
-"4863
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4863: extern volatile unsigned char SPBRG __attribute__((address(0xFAF)));
-[v _SPBRG `Vuc ~T0 @X0 0 e@4015 ]
-"4875
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4875: extern volatile unsigned char SPBRGH __attribute__((address(0xFB0)));
-[v _SPBRGH `Vuc ~T0 @X0 0 e@4016 ]
-"4204
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4204:     struct {
-[s S152 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S152 . ABDEN WUE . BRG16 TXCKP RXDTP RCIDL ABDOVF ]
-"4214
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4214:     struct {
-[s S153 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S153 . . SCKP . RCMT ]
-"4220
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4220:     struct {
-[s S154 :5 `uc 1 :1 `uc 1 ]
-[n S154 . . RXCKP ]
-"4224
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4224:     struct {
-[s S155 :1 `uc 1 :1 `uc 1 ]
-[n S155 . . W4E ]
-"4203
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4203: typedef union {
-[u S151 `S152 1 `S153 1 `S154 1 `S155 1 ]
-[n S151 . . . . . ]
-"4229
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4229: extern volatile BAUDCONbits_t BAUDCONbits __attribute__((address(0xFAA)));
-[v _BAUDCONbits `VS151 ~T0 @X0 0 e@4010 ]
-"4594
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4594:     struct {
-[s S176 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S176 . TX9D TRMT BRGH SENDB SYNC TXEN TX9 CSRC ]
-"4604
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4604:     struct {
-[s S177 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S177 . TX9D1 TRMT1 BRGH1 SENDB1 SYNC1 TXEN1 TX91 CSRC1 ]
-"4614
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4614:     struct {
-[s S178 :6 `uc 1 :1 `uc 1 ]
-[n S178 . . TX8_9 ]
-"4618
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4618:     struct {
-[s S179 :1 `uc 1 ]
-[n S179 . TXD8 ]
-"4593
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4593: typedef union {
-[u S175 `S176 1 `S177 1 `S178 1 `S179 1 ]
-[n S175 . . . . . ]
-"4622
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4622: extern volatile TXSTAbits_t TXSTAbits __attribute__((address(0xFAC)));
-[v _TXSTAbits `VS175 ~T0 @X0 0 e@4012 ]
-"4384
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4384:     struct {
-[s S162 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S162 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
-"4394
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4394:     struct {
-[s S163 :3 `uc 1 :1 `uc 1 ]
-[n S163 . . ADEN ]
-"4398
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4398:     struct {
-[s S164 :5 `uc 1 :1 `uc 1 ]
-[n S164 . . SRENA ]
-"4402
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4402:     struct {
-[s S165 :6 `uc 1 :1 `uc 1 ]
-[n S165 . . RC8_9 ]
-"4406
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4406:     struct {
-[s S166 :6 `uc 1 :1 `uc 1 ]
-[n S166 . . RC9 ]
-"4410
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4410:     struct {
-[s S167 :1 `uc 1 ]
-[n S167 . RCD8 ]
-"4383
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4383: typedef union {
-[u S161 `S162 1 `S163 1 `S164 1 `S165 1 `S166 1 `S167 1 ]
-[n S161 . . . . . . . ]
-"4414
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 4414: extern volatile RCSTAbits_t RCSTAbits __attribute__((address(0xFAB)));
-[v _RCSTAbits `VS161 ~T0 @X0 0 e@4011 ]
-"3537
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3537:     struct {
-[s S121 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S121 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE ]
-"3546
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3546:     struct {
-[s S122 :4 `uc 1 :1 `uc 1 ]
-[n S122 . . TBIE ]
-"3550
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3550:     struct {
-[s S123 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S123 . . TX1IE RC1IE ]
-"3536
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3536: typedef union {
-[u S120 `S121 1 `S122 1 `S123 1 ]
-[n S120 . . . . ]
-"3556
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3556: extern volatile PIE1bits_t PIE1bits __attribute__((address(0xF9D)));
-[v _PIE1bits `VS120 ~T0 @X0 0 e@3997 ]
-"3697
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3697:     struct {
-[s S129 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S129 . TMR1IP TMR2IP CCP1IP SSPIP TXIP RCIP ADIP ]
-"3706
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3706:     struct {
-[s S130 :4 `uc 1 :1 `uc 1 ]
-[n S130 . . TBIP ]
-"3710
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3710:     struct {
-[s S131 :4 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S131 . . TX1IP RC1IP ]
-"3696
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3696: typedef union {
-[u S128 `S129 1 `S130 1 `S131 1 ]
-[n S128 . . . . ]
-"3716
-[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 3716: extern volatile IPR1bits_t IPR1bits __attribute__((address(0xF9F)));
-[v _IPR1bits `VS128 ~T0 @X0 0 e@3999 ]
-"41 ./LCDIO.h
-[; ;./LCDIO.h: 41: void SetLine (char line);
-[v _SetLine `(v ~T0 @X0 0 ef1`uc ]
+"7 ./dc_motor.h
+[; ;./dc_motor.h: 7: struct DC_motor {
+[s S314 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
+[n S314 DC_motor power direction dutyLowByte dutyHighByte dir_pin PWMperiod ]
+"16 ./subroutines.h
+[; ;./subroutines.h: 16: struct Movement_storage {
+[s S315 `uc -> 20 `i `i -> 20 `i `uc 1 ]
+[n S315 Movement_storage move_type time_taken move_number ]
+"29 ./dc_motor.h
+[; ;./dc_motor.h: 29: void turnLeft(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+[v _turnLeft `(v ~T0 @X0 0 ef3`*S314`*S314`i ]
+"45 ./LCDIO.h
+[; ;./LCDIO.h: 45: void clearLCD(void);
+[v _clearLCD `(v ~T0 @X0 0 ef ]
 "43
 [; ;./LCDIO.h: 43: void LCDString(char *string);
 [v _LCDString `(v ~T0 @X0 0 ef1`*uc ]
-"45
-[; ;./LCDIO.h: 45: void clearLCD(void);
-[v _clearLCD `(v ~T0 @X0 0 ef ]
-"33
-[; ;./LCDIO.h: 33: void SendLCD(unsigned char Byte, char type);
-[v _SendLCD `(v ~T0 @X0 0 ef2`uc`uc ]
+"353 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 353: extern volatile unsigned char CAP1BUFH __attribute__((address(0xF69)));
+[v _CAP1BUFH `Vuc ~T0 @X0 0 e@3945 ]
+"341
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 341: extern volatile unsigned char CAP1BUFL __attribute__((address(0xF68)));
+[v _CAP1BUFL `Vuc ~T0 @X0 0 e@3944 ]
+"15 ./signal_processing.h
+[; ;./signal_processing.h: 15: char classify_data(unsigned int raw_data);
+[v _classify_data `(uc ~T0 @X0 0 ef1`ui ]
+"31 ./dc_motor.h
+[; ;./dc_motor.h: 31: void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+[v _moveForward `(v ~T0 @X0 0 ef3`*S314`*S314`i ]
+"28
+[; ;./dc_motor.h: 28: void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed);
+[v _stop `(v ~T0 @X0 0 ef3`*S314`*S314`i ]
+"32
+[; ;./dc_motor.h: 32: void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+[v _moveBackward `(v ~T0 @X0 0 ef3`*S314`*S314`i ]
+"30
+[; ;./dc_motor.h: 30: void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power);
+[v _turnRight `(v ~T0 @X0 0 ef3`*S314`*S314`i ]
+"22 ./RFID.h
+[; ;./RFID.h: 22: void display_RFID(volatile char RFIDBuf[]);
+[v _display_RFID `(v ~T0 @X0 0 ef1`*Vuc ]
+"19
+[; ;./RFID.h: 19: void check_RFID(volatile char dataBuf[]);
+[v _check_RFID `(v ~T0 @X0 0 ef1`*Vuc ]
+[v F2763 `(v ~T0 @X0 1 tf1`ul ]
+"183 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18.h
+[v __delay `JF2763 ~T0 @X0 0 e ]
+[p i __delay ]
+"1540 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1540:     struct {
+[s S60 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S60 . RD0 RD1 RD2 RD3 RD4 RD5 RD6 RD7 ]
+"1550
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1550:     struct {
+[s S61 :7 `uc 1 :1 `uc 1 ]
+[n S61 . . SS2 ]
+"1539
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1539: typedef union {
+[u S59 `S60 1 `S61 1 ]
+[n S59 . . . ]
+"1555
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1555: extern volatile PORTDbits_t PORTDbits __attribute__((address(0xF83)));
+[v _PORTDbits `VS59 ~T0 @X0 0 e@3971 ]
+"41 ./LCDIO.h
+[; ;./LCDIO.h: 41: void SetLine (char line);
+[v _SetLine `(v ~T0 @X0 0 ef1`uc ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 54: __asm("DFLTCON equ 0F60h");
 [; <" DFLTCON equ 0F60h ;# ">
@@ -687,304 +605,500 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7616
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 7616: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"13 RFID.c
-[; ;RFID.c: 13: void init_RFID(void)
-[v _init_RFID `(v ~T0 @X0 1 ef ]
-"14
-[; ;RFID.c: 14: {
-{
-[e :U _init_RFID ]
-[f ]
-"16
-[; ;RFID.c: 16:     TRISCbits.RC7 = 1;
-[e = . . _TRISCbits 1 7 -> -> 1 `i `uc ]
-"19
-[; ;RFID.c: 19:     SPBRG = 203;
-[e = _SPBRG -> -> 203 `i `uc ]
-"20
-[; ;RFID.c: 20:     SPBRGH = 0;
-[e = _SPBRGH -> -> 0 `i `uc ]
-"22
-[; ;RFID.c: 22:     BAUDCONbits.BRG16=1;
-[e = . . _BAUDCONbits 0 3 -> -> 1 `i `uc ]
-"23
-[; ;RFID.c: 23:     TXSTAbits.BRGH = 1;
-[e = . . _TXSTAbits 0 2 -> -> 1 `i `uc ]
-"24
-[; ;RFID.c: 24:     RCSTAbits.CREN = 1;
-[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
+"23 subroutines.c
+[; ;subroutines.c: 23: volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+[v _scanForBeacon `(Vuc ~T0 @X0 1 ef5`*S314`*S314`i`*S315`*Vuc ]
 "25
-[; ;RFID.c: 25:     RCSTAbits.SPEN = 1;
-[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
-"26
-[; ;RFID.c: 26:     TXSTAbits.TXEN = 1;
-[e = . . _TXSTAbits 0 5 -> -> 1 `i `uc ]
-"28
-[; ;RFID.c: 28:     PIE1bits.RC1IE = 1;
-[e = . . _PIE1bits 2 2 -> -> 1 `i `uc ]
-"29
-[; ;RFID.c: 29:     IPR1bits.RC1IP = 1;
-[e = . . _IPR1bits 2 2 -> -> 1 `i `uc ]
-"30
-[; ;RFID.c: 30: }
-[e :UE 309 ]
-}
-"34
-[; ;RFID.c: 34: char processRFID(volatile char RFIDbuf[], char latestChar)
-[v _processRFID `(uc ~T0 @X0 1 ef2`*Vuc`uc ]
-"35
-[; ;RFID.c: 35: {
+[; ;subroutines.c: 25: {
 {
-[e :U _processRFID ]
-"34
-[; ;RFID.c: 34: char processRFID(volatile char RFIDbuf[], char latestChar)
-[v _RFIDbuf `*Vuc ~T0 @X0 1 r1 ]
-[v _latestChar `uc ~T0 @X0 1 r2 ]
-"35
-[; ;RFID.c: 35: {
+[e :U _scanForBeacon ]
+"23
+[; ;subroutines.c: 23: volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+[v _mL `*S314 ~T0 @X0 1 r1 ]
+[v _mR `*S314 ~T0 @X0 1 r2 ]
+[v _speed `i ~T0 @X0 1 r3 ]
+"24
+[; ;subroutines.c: 24:                         struct Movement_storage *move, volatile char *exit_flag)
+[v _move `*S315 ~T0 @X0 1 r4 ]
+[v _exit_flag `*Vuc ~T0 @X0 1 r5 ]
+"25
+[; ;subroutines.c: 25: {
 [f ]
-"39
-[; ;RFID.c: 39:     static char position_in_buf;
-[v F2623 `uc ~T0 @X0 1 s position_in_buf ]
+"26
+[; ;subroutines.c: 26:     move-> move_type[move->move_number] = 1;
+[e = *U + &U . *U _move 0 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 0 `ui `ux -> -> 1 `i `uc ]
+"27
+[; ;subroutines.c: 27:     turnLeft(mL,mR,speed);
+[e ( _turnLeft (3 , , _mL _mR _speed ]
+"28
+[; ;subroutines.c: 28:     clearLCD();
+[e ( _clearLCD ..  ]
+"29
+[; ;subroutines.c: 29:     LCDString("SEARCHING");
+[e ( _LCDString (1 :s 1C ]
+"32
+[; ;subroutines.c: 32:     while(1)
+[e :U 318 ]
+"33
+[; ;subroutines.c: 33:     {
+{
+"35
+[; ;subroutines.c: 35:         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+[v _raw_data `ui ~T0 @X0 1 a ]
+[e = _raw_data -> | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i `ui ]
+"38
+[; ;subroutines.c: 38:         char beacon_location = classify_data(raw_data);
+[v _beacon_location `uc ~T0 @X0 1 a ]
+[e = _beacon_location ( _classify_data (1 _raw_data ]
+"41
+[; ;subroutines.c: 41:         if(*exit_flag == 1)
+[e $ ! == -> *U _exit_flag `i -> 1 `i 320  ]
 "42
-[; ;RFID.c: 42:     if(latestChar == 0x03)
-[e $ ! == -> _latestChar `i -> 3 `i 311  ]
+[; ;subroutines.c: 42:         {
+{
 "43
-[; ;RFID.c: 43:     {
-{
+[; ;subroutines.c: 43:             return 2;
+[e ) -> -> 2 `i `uc ]
+[e $UE 316  ]
 "44
-[; ;RFID.c: 44:         return 1;
-[e ) -> -> 1 `i `uc ]
-[e $UE 310  ]
-"45
-[; ;RFID.c: 45:     }
+[; ;subroutines.c: 44:         }
 }
-[e $U 312  ]
+[e $U 321  ]
+"46
+[; ;subroutines.c: 46:         else if(beacon_location == 1)
+[e :U 320 ]
+[e $ ! == -> _beacon_location `i -> 1 `i 322  ]
 "47
-[; ;RFID.c: 47:     else if(latestChar == 0x02)
-[e :U 311 ]
-[e $ ! == -> _latestChar `i -> 2 `i 313  ]
+[; ;subroutines.c: 47:         {
+{
 "48
-[; ;RFID.c: 48:     {
-{
+[; ;subroutines.c: 48:             move-> move_number += 1;
+[e =+ . *U _move 2 -> -> 1 `i `uc ]
+"49
+[; ;subroutines.c: 49:             return 1;
+[e ) -> -> 1 `i `uc ]
+[e $UE 316  ]
 "50
-[; ;RFID.c: 50:        position_in_buf = 0;
-[e = F2623 -> -> 0 `i `uc ]
+[; ;subroutines.c: 50:         }
+}
+[e :U 322 ]
+[e :U 321 ]
 "51
-[; ;RFID.c: 51:        for(char i=0 ;i<12 ;i++)
-{
-[v _i `uc ~T0 @X0 1 a ]
-[e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 12 `i 314  ]
-[e $U 315  ]
-[e :U 314 ]
-"52
-[; ;RFID.c: 52:        {
-{
-"53
-[; ;RFID.c: 53:             RFIDbuf[i] = 0;
-[e = *U + _RFIDbuf * -> _i `ux -> -> # *U _RFIDbuf `ui `ux -> -> 0 `i `uc ]
-"54
-[; ;RFID.c: 54:        }
-}
-[e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 12 `i 314  ]
-[e :U 315 ]
-}
-"55
-[; ;RFID.c: 55:         return 0;
-[e ) -> -> 0 `i `uc ]
-[e $UE 310  ]
-"56
-[; ;RFID.c: 56:     }
-}
-[e $U 317  ]
-"58
-[; ;RFID.c: 58:     else
-[e :U 313 ]
-"59
-[; ;RFID.c: 59:     {
-{
-"60
-[; ;RFID.c: 60:         RFIDbuf[position_in_buf] = latestChar;
-[e = *U + _RFIDbuf * -> F2623 `ux -> -> # *U _RFIDbuf `ui `ux _latestChar ]
-"61
-[; ;RFID.c: 61:         position_in_buf++;
-[e ++ F2623 -> -> 1 `i `uc ]
-"62
-[; ;RFID.c: 62:         return 0;
-[e ) -> -> 0 `i `uc ]
-[e $UE 310  ]
-"63
-[; ;RFID.c: 63:     }
+[; ;subroutines.c: 51:     }
 }
 [e :U 317 ]
-[e :U 312 ]
-"64
-[; ;RFID.c: 64: }
-[e :UE 310 ]
-}
-"67
-[; ;RFID.c: 67: void check_RFID(volatile char dataBuf[])
-[v _check_RFID `(v ~T0 @X0 1 ef1`*Vuc ]
-"68
-[; ;RFID.c: 68: {
-{
-[e :U _check_RFID ]
-"67
-[; ;RFID.c: 67: void check_RFID(volatile char dataBuf[])
-[v _dataBuf `*Vuc ~T0 @X0 1 r1 ]
-"68
-[; ;RFID.c: 68: {
-[f ]
-"70
-[; ;RFID.c: 70:     char hexBuf[12];
-[v _hexBuf `uc ~T0 @X0 -> 12 `i a ]
-"72
-[; ;RFID.c: 72:     for(int i=0; i<12;i++)
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $ < _i -> 12 `i 319  ]
-[e $U 320  ]
+[e $U 318  ]
 [e :U 319 ]
-"73
-[; ;RFID.c: 73:     {
-{
-"74
-[; ;RFID.c: 74:         if ((dataBuf[i] >= '0') && (dataBuf[i] <= '9'))
-[e $ ! && >= -> *U + _dataBuf * -> _i `x -> -> # *U _dataBuf `i `x `ui -> 48 `ui <= -> *U + _dataBuf * -> _i `x -> -> # *U _dataBuf `i `x `ui -> 57 `ui 322  ]
-"75
-[; ;RFID.c: 75:         {
-{
-"76
-[; ;RFID.c: 76:             hexBuf[i] = dataBuf[i] - '0';
-[e = *U + &U _hexBuf * -> -> _i `ui `ux -> -> # *U &U _hexBuf `ui `ux -> - -> *U + _dataBuf * -> _i `x -> -> # *U _dataBuf `i `x `ui -> 48 `ui `uc ]
-"77
-[; ;RFID.c: 77:         } else if ((dataBuf[i] >= 'A') && (dataBuf[i] <= 'F'))
+"52
+[; ;subroutines.c: 52: }
+[e :UE 316 ]
 }
-[e $U 323  ]
-[e :U 322 ]
-[e $ ! && >= -> *U + _dataBuf * -> _i `x -> -> # *U _dataBuf `i `x `ui -> 65 `ui <= -> *U + _dataBuf * -> _i `x -> -> # *U _dataBuf `i `x `ui -> 70 `ui 324  ]
-"78
-[; ;RFID.c: 78:         {
+"56
+[; ;subroutines.c: 56: volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+[v _moveToBeacon `(Vuc ~T0 @X0 1 ef5`*S314`*S314`i`*S315`*Vuc ]
+"58
+[; ;subroutines.c: 58: {
 {
-"79
-[; ;RFID.c: 79:             hexBuf[i] = 10 + dataBuf[i] - 'A';
-[e = *U + &U _hexBuf * -> -> _i `ui `ux -> -> # *U &U _hexBuf `ui `ux -> - -> + -> 10 `i -> *U + _dataBuf * -> _i `x -> -> # *U _dataBuf `i `x `i `ui -> 65 `ui `uc ]
+[e :U _moveToBeacon ]
+"56
+[; ;subroutines.c: 56: volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
+[v _mL `*S314 ~T0 @X0 1 r1 ]
+[v _mR `*S314 ~T0 @X0 1 r2 ]
+[v _speed `i ~T0 @X0 1 r3 ]
+"57
+[; ;subroutines.c: 57:                         struct Movement_storage *move, volatile char *exit_flag)
+[v _move `*S315 ~T0 @X0 1 r4 ]
+[v _exit_flag `*Vuc ~T0 @X0 1 r5 ]
+"58
+[; ;subroutines.c: 58: {
+[f ]
+"59
+[; ;subroutines.c: 59:     move->move_type[move->move_number] = 0;
+[e = *U + &U . *U _move 0 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 0 `ui `ux -> -> 0 `i `uc ]
+"60
+[; ;subroutines.c: 60:     moveForward(mL,mR,speed);
+[e ( _moveForward (3 , , _mL _mR _speed ]
+"61
+[; ;subroutines.c: 61:     clearLCD();
+[e ( _clearLCD ..  ]
+"62
+[; ;subroutines.c: 62:     LCDString("MOVING TO BOMB");
+[e ( _LCDString (1 :s 2C ]
+"70
+[; ;subroutines.c: 70:     int error_counter = 0;
+[v _error_counter `i ~T0 @X0 1 a ]
+[e = _error_counter -> 0 `i ]
+"71
+[; ;subroutines.c: 71:     const int ERROR_THRESHOLD = 17000;
+[v F2872 `Ci ~T0 @X0 1 s ERROR_THRESHOLD ]
+[i F2872
+-> 17000 `i
+]
+"74
+[; ;subroutines.c: 74:     while(1)
+[e :U 325 ]
+"75
+[; ;subroutines.c: 75:     {
+{
+"77
+[; ;subroutines.c: 77:         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+[v _raw_data `ui ~T0 @X0 1 a ]
+[e = _raw_data -> | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i `ui ]
 "80
-[; ;RFID.c: 80:         }
+[; ;subroutines.c: 80:         char beacon_location = classify_data(raw_data);
+[v _beacon_location `uc ~T0 @X0 1 a ]
+[e = _beacon_location ( _classify_data (1 _raw_data ]
+"83
+[; ;subroutines.c: 83:         if(*exit_flag == 1)
+[e $ ! == -> *U _exit_flag `i -> 1 `i 327  ]
+"84
+[; ;subroutines.c: 84:         {
+{
+"85
+[; ;subroutines.c: 85:             return 2;
+[e ) -> -> 2 `i `uc ]
+[e $UE 323  ]
+"86
+[; ;subroutines.c: 86:         }
+}
+[e $U 328  ]
+"89
+[; ;subroutines.c: 89:         else if(beacon_location == 0)
+[e :U 327 ]
+[e $ ! == -> _beacon_location `i -> 0 `i 329  ]
+"90
+[; ;subroutines.c: 90:         {
+{
+"91
+[; ;subroutines.c: 91:             error_counter += 1;
+[e =+ _error_counter -> 1 `i ]
+"92
+[; ;subroutines.c: 92:         }
+}
+[e $U 330  ]
+"94
+[; ;subroutines.c: 94:         else
+[e :U 329 ]
+"95
+[; ;subroutines.c: 95:         {
+{
+"96
+[; ;subroutines.c: 96:             error_counter = 0;
+[e = _error_counter -> 0 `i ]
+"97
+[; ;subroutines.c: 97:         }
+}
+[e :U 330 ]
+[e :U 328 ]
+"101
+[; ;subroutines.c: 101:         if(error_counter >= ERROR_THRESHOLD)
+[e $ ! >= _error_counter F2872 331  ]
+"102
+[; ;subroutines.c: 102:         {
+{
+"103
+[; ;subroutines.c: 103:             move-> move_number += 1;
+[e =+ . *U _move 2 -> -> 1 `i `uc ]
+"106
+[; ;subroutines.c: 106:             if(move->move_number >= 19)
+[e $ ! >= -> . *U _move 2 `i -> 19 `i 332  ]
+"107
+[; ;subroutines.c: 107:             {
+{
+"108
+[; ;subroutines.c: 108:                 return 2;
+[e ) -> -> 2 `i `uc ]
+[e $UE 323  ]
+"109
+[; ;subroutines.c: 109:             }
+}
+[e $U 333  ]
+"110
+[; ;subroutines.c: 110:             else
+[e :U 332 ]
+"111
+[; ;subroutines.c: 111:             {
+{
+"112
+[; ;subroutines.c: 112:                  return 0;
+[e ) -> -> 0 `i `uc ]
+[e $UE 323  ]
+"113
+[; ;subroutines.c: 113:             }
+}
+[e :U 333 ]
+"114
+[; ;subroutines.c: 114:         }
+}
+[e :U 331 ]
+"115
+[; ;subroutines.c: 115:     }
 }
 [e :U 324 ]
-[e :U 323 ]
-"81
-[; ;RFID.c: 81:     }
-}
-[e ++ _i -> 1 `i ]
-[e $ < _i -> 12 `i 319  ]
-[e :U 320 ]
-}
-"83
-[; ;RFID.c: 83:     char byte1 = 0x00 | (hexBuf[0] < 1) | hexBuf[1];
-[v _byte1 `uc ~T0 @X0 1 a ]
-[e = _byte1 -> | | -> 0 `i -> < -> *U + &U _hexBuf * -> -> -> 0 `i `ui `ux -> -> # *U &U _hexBuf `ui `ux `i -> 1 `i `i -> *U + &U _hexBuf * -> -> -> 1 `i `ui `ux -> -> # *U &U _hexBuf `ui `ux `i `uc ]
-"84
-[; ;RFID.c: 84:     char byte2 = 0x00 | (hexBuf[2] < 1) | hexBuf[3];
-[v _byte2 `uc ~T0 @X0 1 a ]
-[e = _byte2 -> | | -> 0 `i -> < -> *U + &U _hexBuf * -> -> -> 2 `i `ui `ux -> -> # *U &U _hexBuf `ui `ux `i -> 1 `i `i -> *U + &U _hexBuf * -> -> -> 3 `i `ui `ux -> -> # *U &U _hexBuf `ui `ux `i `uc ]
-"85
-[; ;RFID.c: 85:     char byte3 = 0x00 | (hexBuf[4] < 1) | hexBuf[5];
-[v _byte3 `uc ~T0 @X0 1 a ]
-[e = _byte3 -> | | -> 0 `i -> < -> *U + &U _hexBuf * -> -> -> 4 `i `ui `ux -> -> # *U &U _hexBuf `ui `ux `i -> 1 `i `i -> *U + &U _hexBuf * -> -> -> 5 `i `ui `ux -> -> # *U &U _hexBuf `ui `ux `i `uc ]
-"86
-[; ;RFID.c: 86:     char byte4 = 0x00 | (hexBuf[6] < 1) | hexBuf[7];
-[v _byte4 `uc ~T0 @X0 1 a ]
-[e = _byte4 -> | | -> 0 `i -> < -> *U + &U _hexBuf * -> -> -> 6 `i `ui `ux -> -> # *U &U _hexBuf `ui `ux `i -> 1 `i `i -> *U + &U _hexBuf * -> -> -> 7 `i `ui `ux -> -> # *U &U _hexBuf `ui `ux `i `uc ]
-"87
-[; ;RFID.c: 87:     char byte5 = 0x00 | (hexBuf[8] < 1) | hexBuf[9];
-[v _byte5 `uc ~T0 @X0 1 a ]
-[e = _byte5 -> | | -> 0 `i -> < -> *U + &U _hexBuf * -> -> -> 8 `i `ui `ux -> -> # *U &U _hexBuf `ui `ux `i -> 1 `i `i -> *U + &U _hexBuf * -> -> -> 9 `i `ui `ux -> -> # *U &U _hexBuf `ui `ux `i `uc ]
-"88
-[; ;RFID.c: 88:     char checksum = 0x00 | (hexBuf[10] < 1) | hexBuf[11];
-[v _checksum `uc ~T0 @X0 1 a ]
-[e = _checksum -> | | -> 0 `i -> < -> *U + &U _hexBuf * -> -> -> 10 `i `ui `ux -> -> # *U &U _hexBuf `ui `ux `i -> 1 `i `i -> *U + &U _hexBuf * -> -> -> 11 `i `ui `ux -> -> # *U &U _hexBuf `ui `ux `i `uc ]
-"91
-[; ;RFID.c: 91:     if(byte1^byte2^byte3^byte4^byte5 == checksum)
-[e $ ! != ^ ^ ^ ^ -> _byte1 `i -> _byte2 `i -> _byte3 `i -> _byte4 `i -> == -> _byte5 `i -> _checksum `i `i -> 0 `i 325  ]
-"92
-[; ;RFID.c: 92:     {
-{
-"94
-[; ;RFID.c: 94:         SetLine(2);
-[e ( _SetLine (1 -> -> 2 `i `uc ]
-"95
-[; ;RFID.c: 95:         LCDString("CHECKSUM PASSED");
-[e ( _LCDString (1 :s 1C ]
-"96
-[; ;RFID.c: 96:     }
-}
-[e $U 326  ]
-"97
-[; ;RFID.c: 97:     else{
-[e :U 325 ]
-{
-"99
-[; ;RFID.c: 99:         SetLine(2);
-[e ( _SetLine (1 -> -> 2 `i `uc ]
-"100
-[; ;RFID.c: 100:         LCDString("CHECKSUM FAILED");
-[e ( _LCDString (1 :s 2C ]
-"101
-[; ;RFID.c: 101:     }
-}
+[e $U 325  ]
 [e :U 326 ]
-"102
-[; ;RFID.c: 102: }
-[e :UE 318 ]
+"116
+[; ;subroutines.c: 116: }
+[e :UE 323 ]
 }
-"104
-[; ;RFID.c: 104: void display_RFID(volatile char dataBuf[])
-[v _display_RFID `(v ~T0 @X0 1 ef1`*Vuc ]
-"105
-[; ;RFID.c: 105: {
+"119
+[; ;subroutines.c: 119: volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
+[v _returnHome `(Vuc ~T0 @X0 1 ef5`*S314`*S314`i`i`*S315 ]
+"121
+[; ;subroutines.c: 121: {
 {
-[e :U _display_RFID ]
-"104
-[; ;RFID.c: 104: void display_RFID(volatile char dataBuf[])
-[v _dataBuf `*Vuc ~T0 @X0 1 r1 ]
-"105
-[; ;RFID.c: 105: {
+[e :U _returnHome ]
+"119
+[; ;subroutines.c: 119: volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
+[v _mL `*S314 ~T0 @X0 1 r1 ]
+[v _mR `*S314 ~T0 @X0 1 r2 ]
+[v _move_speed `i ~T0 @X0 1 r3 ]
+"120
+[; ;subroutines.c: 120:                             int search_speed, struct Movement_storage *move)
+[v _search_speed `i ~T0 @X0 1 r4 ]
+[v _move `*S315 ~T0 @X0 1 r5 ]
+"121
+[; ;subroutines.c: 121: {
 [f ]
-"106
-[; ;RFID.c: 106:     clearLCD();
+"123
+[; ;subroutines.c: 123:     stop(mL,mR,move_speed);
+[e ( _stop (3 , , _mL _mR _move_speed ]
+"124
+[; ;subroutines.c: 124:     clearLCD();
 [e ( _clearLCD ..  ]
-"107
-[; ;RFID.c: 107:     SetLine(1);
-[e ( _SetLine (1 -> -> 1 `i `uc ]
-"108
-[; ;RFID.c: 108:     for(int i=0;i<10;i++)
+"125
+[; ;subroutines.c: 125:     LCDString("RETURNING HOME");
+[e ( _LCDString (1 :s 3C ]
+"128
+[; ;subroutines.c: 128:     for(int i=move->move_number;move->move_number >0; move->move_number--)
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> . *U _move 2 `i ]
+[e $U 338  ]
+[e :U 335 ]
+"129
+[; ;subroutines.c: 129:     {
+{
+"131
+[; ;subroutines.c: 131:         if(move->move_type[move->move_number] == 0)
+[e $ ! == -> *U + &U . *U _move 0 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 0 `ui `ux `i -> 0 `i 339  ]
+"132
+[; ;subroutines.c: 132:         {
+{
+"134
+[; ;subroutines.c: 134:             moveBackward(mL,mR,move_speed);
+[e ( _moveBackward (3 , , _mL _mR _move_speed ]
+"135
+[; ;subroutines.c: 135:             while(move->time_taken[move->move_number] > 0);
+[e $U 340  ]
+[e :U 341 ]
+[e :U 340 ]
+[e $ > *U + &U . *U _move 1 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 1 `ui `ux -> 0 `i 341  ]
+[e :U 342 ]
+"136
+[; ;subroutines.c: 136:         }
+}
+[e $U 343  ]
+"138
+[; ;subroutines.c: 138:         else if(move->move_type[move->move_number] == 1)
+[e :U 339 ]
+[e $ ! == -> *U + &U . *U _move 0 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 0 `ui `ux `i -> 1 `i 344  ]
+"139
+[; ;subroutines.c: 139:         {
+{
+"141
+[; ;subroutines.c: 141:             turnRight(mL,mR,search_speed);
+[e ( _turnRight (3 , , _mL _mR _search_speed ]
+"142
+[; ;subroutines.c: 142:             while(move->time_taken[move->move_number] > 0);
+[e $U 345  ]
+[e :U 346 ]
+[e :U 345 ]
+[e $ > *U + &U . *U _move 1 * -> . *U _move 2 `ux -> -> # *U &U . *U _move 1 `ui `ux -> 0 `i 346  ]
+[e :U 347 ]
+"143
+[; ;subroutines.c: 143:         }
+}
+[e :U 344 ]
+[e :U 343 ]
+"144
+[; ;subroutines.c: 144:     }
+}
+[e -- . *U _move 2 -> -> 1 `i `uc ]
+[e :U 338 ]
+[e $ > -> . *U _move 2 `i -> 0 `i 335  ]
+[e :U 336 ]
+}
+"145
+[; ;subroutines.c: 145:     return 3;
+[e ) -> -> 3 `i `uc ]
+[e $UE 334  ]
+"146
+[; ;subroutines.c: 146: }
+[e :UE 334 ]
+}
+"149
+[; ;subroutines.c: 149: volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
+[v _stopAndDisplay `(Vuc ~T0 @X0 1 ef4`*S314`*S314`i`*Vuc ]
+"151
+[; ;subroutines.c: 151: {
+{
+[e :U _stopAndDisplay ]
+"149
+[; ;subroutines.c: 149: volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
+[v _mL `*S314 ~T0 @X0 1 r1 ]
+[v _mR `*S314 ~T0 @X0 1 r2 ]
+[v _speed `i ~T0 @X0 1 r3 ]
+"150
+[; ;subroutines.c: 150:                                 volatile char RFID_buffer[])
+[v _RFID_buffer `*Vuc ~T0 @X0 1 r4 ]
+"151
+[; ;subroutines.c: 151: {
+[f ]
+"152
+[; ;subroutines.c: 152:     stop(mL, mR,speed);
+[e ( _stop (3 , , _mL _mR _speed ]
+"155
+[; ;subroutines.c: 155:     display_RFID(RFID_buffer);
+[e ( _display_RFID (1 _RFID_buffer ]
+"156
+[; ;subroutines.c: 156:     check_RFID(RFID_buffer);
+[e ( _check_RFID (1 _RFID_buffer ]
+"159
+[; ;subroutines.c: 159:     while(1)
+[e :U 350 ]
+"160
+[; ;subroutines.c: 160:     {
+{
+"161
+[; ;subroutines.c: 161:         while(PORTDbits.RD2 == 1)
+[e $U 352  ]
+[e :U 353 ]
+"162
+[; ;subroutines.c: 162:         {
+{
+"163
+[; ;subroutines.c: 163:             clearLCD();
+[e ( _clearLCD ..  ]
+"164
+[; ;subroutines.c: 164:             LCDString("RESETTING ROBOT");
+[e ( _LCDString (1 :s 4C ]
+"165
+[; ;subroutines.c: 165:             for(int i=0; i<10;i++)
 {
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-[e $ < _i -> 10 `i 328  ]
-[e $U 329  ]
-[e :U 328 ]
-"109
-[; ;RFID.c: 109:     {
+[e $ < _i -> 10 `i 355  ]
+[e $U 356  ]
+[e :U 355 ]
+"166
+[; ;subroutines.c: 166:             {
 {
-"110
-[; ;RFID.c: 110:         SendLCD(dataBuf[i],1);
-[e ( _SendLCD (2 , -> *U + _dataBuf * -> _i `x -> -> # *U _dataBuf `i `x `uc -> -> 1 `i `uc ]
-"111
-[; ;RFID.c: 111:     }
+"167
+[; ;subroutines.c: 167:                 _delay((unsigned long)((100)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"168
+[; ;subroutines.c: 168:             }
 }
 [e ++ _i -> 1 `i ]
-[e $ < _i -> 10 `i 328  ]
-[e :U 329 ]
+[e $ < _i -> 10 `i 355  ]
+[e :U 356 ]
 }
-"112
-[; ;RFID.c: 112: }
-[e :UE 327 ]
+"169
+[; ;subroutines.c: 169:             clearLCD();
+[e ( _clearLCD ..  ]
+"170
+[; ;subroutines.c: 170:             __asm(" reset");
+[; <"  reset ;# ">
+"171
+[; ;subroutines.c: 171:         }
 }
-[a 1C 67 72 69 67 75 83 85 77 32 80 65 83 83 69 68 0 ]
-[a 2C 67 72 69 67 75 83 85 77 32 70 65 73 76 69 68 0 ]
+[e :U 352 ]
+"161
+[; ;subroutines.c: 161:         while(PORTDbits.RD2 == 1)
+[e $ == -> . . _PORTDbits 0 2 `i -> 1 `i 353  ]
+[e :U 354 ]
+"172
+[; ;subroutines.c: 172:     }
+}
+[e :U 349 ]
+[e $U 350  ]
+[e :U 351 ]
+"173
+[; ;subroutines.c: 173: }
+[e :UE 348 ]
+}
+"176
+[; ;subroutines.c: 176: void waitForInput(void)
+[v _waitForInput `(v ~T0 @X0 1 ef ]
+"177
+[; ;subroutines.c: 177: {
+{
+[e :U _waitForInput ]
+[f ]
+"179
+[; ;subroutines.c: 179:     clearLCD();
+[e ( _clearLCD ..  ]
+"180
+[; ;subroutines.c: 180:     SetLine(1);
+[e ( _SetLine (1 -> -> 1 `i `uc ]
+"181
+[; ;subroutines.c: 181:     LCDString("PRESS BUTTON");
+[e ( _LCDString (1 :s 5C ]
+"182
+[; ;subroutines.c: 182:     SetLine(2);
+[e ( _SetLine (1 -> -> 2 `i `uc ]
+"183
+[; ;subroutines.c: 183:     LCDString("TO START SEARCH");
+[e ( _LCDString (1 :s 6C ]
+"186
+[; ;subroutines.c: 186:     while(PORTDbits.RD2 == 0);
+[e $U 359  ]
+[e :U 360 ]
+[e :U 359 ]
+[e $ == -> . . _PORTDbits 0 2 `i -> 0 `i 360  ]
+[e :U 361 ]
+"189
+[; ;subroutines.c: 189:     clearLCD();
+[e ( _clearLCD ..  ]
+"190
+[; ;subroutines.c: 190:     SetLine(1);
+[e ( _SetLine (1 -> -> 1 `i `uc ]
+"191
+[; ;subroutines.c: 191:     LCDString("STARTING SEARCH");
+[e ( _LCDString (1 :s 7C ]
+"192
+[; ;subroutines.c: 192:     for(int i=0; i<10;i++)
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 10 `i 362  ]
+[e $U 363  ]
+[e :U 362 ]
+"193
+[; ;subroutines.c: 193:     {
+{
+"194
+[; ;subroutines.c: 194:         _delay((unsigned long)((100)*(8000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
+"195
+[; ;subroutines.c: 195:     }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 10 `i 362  ]
+[e :U 363 ]
+}
+"196
+[; ;subroutines.c: 196:     clearLCD();
+[e ( _clearLCD ..  ]
+"197
+[; ;subroutines.c: 197: }
+[e :UE 358 ]
+}
+[a 4C 82 69 83 69 84 84 73 78 71 32 82 79 66 79 84 0 ]
+[a 5C 80 82 69 83 83 32 66 85 84 84 79 78 0 ]
+[a 6C 84 79 32 83 84 65 82 84 32 83 69 65 82 67 72 0 ]
+[a 7C 83 84 65 82 84 73 78 71 32 83 69 65 82 67 72 0 ]
+[a 1C 83 69 65 82 67 72 73 78 71 0 ]
+[a 3C 82 69 84 85 82 78 73 78 71 32 72 79 77 69 0 ]
+[a 2C 77 79 86 73 78 71 32 84 79 32 66 79 77 66 0 ]

@@ -14,9 +14,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1779
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1779: extern volatile LATAbits_t LATAbits __attribute__((address(0xF89)));
 [v _LATAbits `VS70 ~T0 @X0 0 e@3977 ]
-[v F2777 `(v ~T0 @X0 1 tf1`ul ]
+[v F2775 `(v ~T0 @X0 1 tf1`ul ]
 "183 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18.h
-[v __delay `JF2777 ~T0 @X0 0 e ]
+[v __delay `JF2775 ~T0 @X0 0 e ]
 [p i __delay ]
 "1982 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 1982:     struct {
@@ -848,10 +848,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 318 ]
 }
 "119
-[; ;LCDIO.c: 119: void LCD_String(char *string){
-[v _LCD_String `(v ~T0 @X0 1 ef1`*uc ]
+[; ;LCDIO.c: 119: void LCDString(char *string){
+[v _LCDString `(v ~T0 @X0 1 ef1`*uc ]
 {
-[e :U _LCD_String ]
+[e :U _LCDString ]
 [v _string `*uc ~T0 @X0 1 r1 ]
 [f ]
 "121
@@ -878,44 +878,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 321 ]
 }
 "131
-[; ;LCDIO.c: 131: void ShiftLeft(void){
-[v _ShiftLeft `(v ~T0 @X0 1 ef ]
+[; ;LCDIO.c: 131: void clearLCD(void){
+[v _clearLCD `(v ~T0 @X0 1 ef ]
 {
-[e :U _ShiftLeft ]
+[e :U _clearLCD ]
 [f ]
 "132
-[; ;LCDIO.c: 132:     SendLCD(0b00011000,0);
-[e ( _SendLCD (2 , -> -> 24 `i `uc -> -> 0 `i `uc ]
-"133
-[; ;LCDIO.c: 133: }
-[e :UE 325 ]
-}
-"134
-[; ;LCDIO.c: 134: void ShiftRight(void){
-[v _ShiftRight `(v ~T0 @X0 1 ef ]
-{
-[e :U _ShiftRight ]
-[f ]
-"135
-[; ;LCDIO.c: 135:     SendLCD(0b00011100,0);
-[e ( _SendLCD (2 , -> -> 28 `i `uc -> -> 0 `i `uc ]
-"136
-[; ;LCDIO.c: 136: }
-[e :UE 326 ]
-}
-"137
-[; ;LCDIO.c: 137: void ClearLCD(void){
-[v _ClearLCD `(v ~T0 @X0 1 ef ]
-{
-[e :U _ClearLCD ]
-[f ]
-"138
-[; ;LCDIO.c: 138:     SendLCD(0b00000001,0);
+[; ;LCDIO.c: 132:     SendLCD(0b00000001,0);
 [e ( _SendLCD (2 , -> -> 1 `i `uc -> -> 0 `i `uc ]
-"139
-[; ;LCDIO.c: 139:     _delay((unsigned long)((5)*(8000000/4000.0)));
+"133
+[; ;LCDIO.c: 133:     _delay((unsigned long)((5)*(8000000/4000.0)));
 [e ( __delay (1 -> * -> -> 5 `i `d / -> -> 8000000 `l `d .4000.0 `ul ]
-"140
-[; ;LCDIO.c: 140: }
-[e :UE 327 ]
+"134
+[; ;LCDIO.c: 134: }
+[e :UE 325 ]
 }
