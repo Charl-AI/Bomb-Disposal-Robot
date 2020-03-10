@@ -5249,7 +5249,6 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 
         if(*exit_flag == 1)
         {
-
             return 2;
         }
 
@@ -5287,7 +5286,6 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 
         if(*exit_flag == 1)
         {
-
             return 2;
         }
 
@@ -5304,7 +5302,7 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 
 
 
-        if(error_counter >=17000)
+        if(error_counter >=16500)
         {
             move-> move_number += 1;
 

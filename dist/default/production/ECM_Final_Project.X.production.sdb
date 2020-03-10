@@ -83,13 +83,13 @@
 [v _classify_data classify_data `(uc  1 e 1 0 ]
 "23 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
 [v _scanForBeacon scanForBeacon `(VEuc  1 e 1 0 ]
-"57
+"56
 [v _moveToBeacon moveToBeacon `(VEuc  1 e 1 0 ]
-"116
+"114
 [v _returnHome returnHome `(VEuc  1 e 1 0 ]
-"146
+"144
 [v _stopAndDisplay stopAndDisplay `(VEuc  1 e 1 0 ]
-"179
+"177
 [v _waitForInput waitForInput `(v  1 e 1 0 ]
 "234 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [v _CAP1CON CAP1CON `VEuc  1 e 1 @3939 ]
@@ -539,30 +539,30 @@
 [v main@searching_speed searching_speed `i  1 a 2 0 ]
 "168
 } 0
-"179 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+"177 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
 [v _waitForInput waitForInput `(v  1 e 1 0 ]
 {
-"184
-[v waitForInput@raw_data raw_data `ui  1 a 2 22 ]
-"202
-[v waitForInput@i_1392 i `i  1 a 2 26 ]
 "182
+[v waitForInput@raw_data raw_data `ui  1 a 2 22 ]
+"200
+[v waitForInput@i_1392 i `i  1 a 2 26 ]
+"180
 [v waitForInput@i i `i  1 a 2 24 ]
-"207
+"205
 } 0
-"146
+"144
 [v _stopAndDisplay stopAndDisplay `(VEuc  1 e 1 0 ]
 {
-"163
+"161
 [v stopAndDisplay@i i `i  1 a 2 49 ]
 [s S370 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyLowByte 2 2 `*.39uc 1 dutyHighByte 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
-"146
+"144
 [v stopAndDisplay@mL mL `*.30S370  1 p 1 42 ]
 [v stopAndDisplay@mR mR `*.30S370  1 p 1 43 ]
 [v stopAndDisplay@speed speed `i  1 p 2 44 ]
-"147
+"145
 [v stopAndDisplay@RFID_buffer RFID_buffer `*.30VEuc  1 p 1 46 ]
-"176
+"174
 } 0
 "107 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\RFID.c
 [v _display_RFID display_RFID `(v  1 e 1 0 ]
@@ -647,7 +647,7 @@
 "24
 [v scanForBeacon@move move `*.30S24  1 p 1 46 ]
 [v scanForBeacon@exit_flag exit_flag `*.30VEuc  1 p 1 47 ]
-"53
+"52
 } 0
 "53 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
 [v _turnLeft turnLeft `(v  1 e 1 0 ]
@@ -661,18 +661,18 @@
 [v turnLeft@max_power max_power `i  1 p 2 37 ]
 "67
 } 0
-"116 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+"114 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
 [v _returnHome returnHome `(VEuc  1 e 1 0 ]
 {
 [s S370 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyLowByte 2 2 `*.39uc 1 dutyHighByte 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v returnHome@mL mL `*.30S370  1 p 1 42 ]
 [v returnHome@mR mR `*.30S370  1 p 1 43 ]
 [v returnHome@move_speed move_speed `i  1 p 2 44 ]
-"117
+"115
 [v returnHome@search_speed search_speed `i  1 p 2 46 ]
 [s S24 Movements 61 `[20]uc 1 move_type 20 0 `[20]i 1 time_taken 40 20 `uc 1 move_number 1 60 ]
 [v returnHome@move move `*.30S24  1 p 1 48 ]
-"143
+"141
 } 0
 "69 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
 [v _turnRight turnRight `(v  1 e 1 0 ]
@@ -710,25 +710,25 @@
 [v moveBackward@max_power max_power `i  1 p 2 37 ]
 "113
 } 0
-"57 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
+"56 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutines.c
 [v _moveToBeacon moveToBeacon `(VEuc  1 e 1 0 ]
 {
-"73
+"72
 [v moveToBeacon@raw_data raw_data `ui  1 a 2 50 ]
-"76
+"75
 [v moveToBeacon@beacon_location beacon_location `uc  1 a 1 52 ]
-"67
+"66
 [v moveToBeacon@error_counter error_counter `i  1 a 2 53 ]
 [s S370 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyLowByte 2 2 `*.39uc 1 dutyHighByte 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
-"57
+"56
 [v moveToBeacon@mL mL `*.30S370  1 p 1 42 ]
 [v moveToBeacon@mR mR `*.30S370  1 p 1 43 ]
 [v moveToBeacon@speed speed `i  1 p 2 44 ]
 [s S24 Movements 61 `[20]uc 1 move_type 20 0 `[20]i 1 time_taken 40 20 `uc 1 move_number 1 60 ]
-"58
+"57
 [v moveToBeacon@move move `*.30S24  1 p 1 46 ]
 [v moveToBeacon@exit_flag exit_flag `*.30VEuc  1 p 1 47 ]
-"113
+"111
 } 0
 "86 C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\dc_motor.c
 [v _moveForward moveForward `(v  1 e 1 0 ]

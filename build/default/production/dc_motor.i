@@ -5241,10 +5241,10 @@ void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
     mL->direction = 1;
     mR->direction = 1;
-    for(int i = 0; i < max_power; i++)
+    for(int i = 10; i < max_power; i++)
     {
         mL->power = i;
-        mR->power = i;
+        mR->power = i - 4;
         setMotorPWM(mL);
         setMotorPWM(mR);
         _delay((unsigned long)((1)*(8000000/4000.0)));
@@ -5256,10 +5256,10 @@ void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
     mL->direction = 0;
     mR->direction = 0;
-    for(int i = 0; i < max_power; i++)
+    for(int i = 10; i < max_power; i++)
     {
         mL->power = i;
-        mR->power = i;
+        mR->power = i-4;
         setMotorPWM(mL);
         setMotorPWM(mR);
         _delay((unsigned long)((1)*(8000000/4000.0)));
