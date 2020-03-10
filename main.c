@@ -6,17 +6,25 @@
  * This project is to develop the software and hardware for an autonomous
  * bomb disposal robot.
  * 
- * The solution we use involves first scanning for the bomb, then moving
- * straight towards it, scanning the RFID and moving straight back to the
- * starting position. No adjustment is required in the process.
+ * The solution we use involves using one sensor to determine if the bomb is 
+ * straight head or not. If straight ahead, move towards the bomb, otherwise
+ * sweep for the bomb by turning left. Once RFID is scanned, return home by
+ * 'undoing' each previous move.
+ * 
+ * We use advanced C programming concepts such as structures, pointers,
+ * static local variables and type casting where necessary in order to improve, 
+ * reliability, memory usage, speed and human readability
+ * 
+ * Charles Jones & Matteo Ghiringhelli
  */
 /*****************************************************************************/
-// Include statements and boilerplate code
+// 'Boilerplate' includes and settings
 #include <xc.h>
 #include <pic18f4331.h>
 #include <stdio.h>
 #pragma config OSC = IRCIO, MCLRE=OFF, LVP=OFF
 
+// Include headers for project-specific source files
 #include "LCDIO.h"
 #include "dc_motor.h"
 #include "RFID.h"
@@ -26,11 +34,11 @@
 //Global variables defined here
 // These variables must be global because they need to be visible to the ISR
 
-// this defines the subroutine that the robot will operate on:
-// 0 represents the initial sweep to look for bomb
-// 1 represents moving towards bomb
-// 2 represents returning to starting position
-// 3 represents finished (robot has found bomb and returned)
+/* this defines the subroutine that the robot will operate on:
+   0 represents the initial sweep to look for bomb
+   1 represents moving towards bomb
+   2 represents returning to starting position
+   3 represents finished (robot has found bomb and returned)*/
 volatile char robot_mode = 0;
 
 // stores characters read from RFID (10 data bits and 2 checksum)
@@ -40,7 +48,7 @@ volatile char RFIDbuf[12];
 volatile char RFID_flag = 0;
 
 // This structure stores the movements made by the robot and related variables
-struct Movements travel_moves;
+struct Movement_storage travel_moves;
 /*****************************************************************************/
 // setup function, initialise registers here
 void setup(void)
@@ -76,7 +84,7 @@ void setup(void)
 void __interrupt(high_priority) InterruptHandlerHigh (void)
 {
     // Trigger interrupt when a character is read from the RFID
-    // this can only occur when the robot is in searching mode
+    // this can only occur when the robot is in mode 0 or 1
     if((PIR1bits.RCIF) && ((robot_mode == 1) || robot_mode==0))
     {
         //read RFID data into buffer, once all the data has been read set flag=1
@@ -121,12 +129,13 @@ void main(void)
   
   //now, we declare the structures that need to be visible to the main function
   struct DC_motor motorL, motorR; //declare 2 motor structures
-  init_motor_struct(&motorL, &motorR); // initialise values in each structure
+  initMotorValues(&motorL, &motorR); // initialise values in each structure
   
   // these define how fast the robot moves in each operation
-  int searching_speed = 50;
-  int moving_speed = 95;
+  const int SEARCHING_SPEED = 50;
+  const int MOVING_SPEED = 95;
   
+  stabiliseAverage(); // wait for moving average to stabilise
   waitForInput(); // wait until user presses button to start
   
   // loop, this runs forever
@@ -135,34 +144,41 @@ void main(void)
       // Subroutine for sweeping to search for bomb
       if(robot_mode == 0)
       {
-          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed,
+          robot_mode = scanForBeacon(&motorL, &motorR, SEARCHING_SPEED,
                                     &travel_moves, &RFID_flag);
       }
       
       // Subroutine to move towards bomb
       else if(robot_mode == 1)
       {
-          robot_mode = moveToBeacon(&motorL, &motorR, moving_speed,
+          robot_mode = moveToBeacon(&motorL, &motorR, MOVING_SPEED,
                                     &travel_moves, &RFID_flag);
       }
     
       // Subroutine to return to starting position
       else if(robot_mode == 2)
       {
-          robot_mode = returnHome(&motorL, &motorR, moving_speed, 
-                                    searching_speed, &travel_moves);
+          robot_mode = returnHome(&motorL, &motorR, MOVING_SPEED, 
+                                    SEARCHING_SPEED, &travel_moves);
       }
       
       // Subroutine for once bomb has been found and robot has returned
       else if(robot_mode == 3)
       {
-          robot_mode = stopAndDisplay(&motorL, &motorR, moving_speed,RFIDbuf);
+          robot_mode = stopAndDisplay(&motorL, &motorR, MOVING_SPEED,RFIDbuf);
       }
       
       // Program should never reach here, so print error message if it does
       else 
       {
-          LCD_String("Critical Error");
+          LCDString("Critical Error");
       }
   }
 }
+
+/*
+ Note: we use if ... else if ... else if ... else... to improve the
+ program flow and ensure that it always executes in the correct order when
+ robot_mode is set properly. This helps avoid bugs that might occur if the robot
+ unexpectedly enters the wrong subroutine.
+ */

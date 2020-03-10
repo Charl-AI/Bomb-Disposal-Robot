@@ -7,7 +7,7 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "main.c" 2
-# 15 "main.c"
+# 22 "main.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -5121,7 +5121,7 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 2 3
-# 15 "main.c" 2
+# 22 "main.c" 2
 
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdio.h" 1 3
@@ -5260,33 +5260,32 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 17 "main.c" 2
+# 24 "main.c" 2
 
 #pragma config OSC = IRCIO, MCLRE=OFF, LVP=OFF
 
 
+
 # 1 "./LCDIO.h" 1
-# 26 "./LCDIO.h"
+# 29 "./LCDIO.h"
 void E_TOG(void);
 
-
 void LCDout(unsigned char number);
-
 
 void SendLCD(unsigned char Byte, char type);
 
 
-void init_LCD(void);
 
+
+
+void init_LCD(void);
 
 void SetLine (char line);
 
+void LCDString(char *string);
 
-void LCD_String(char *string);
-
-
-void ClearLCD(void);
-# 20 "main.c" 2
+void clearLCD(void);
+# 28 "main.c" 2
 
 # 1 "./dc_motor.h" 1
 
@@ -5306,28 +5305,37 @@ struct DC_motor {
 
 
 void initPWM(int PWMperiod);
+
+
+
+void initMotorValues(struct DC_motor *mL, struct DC_motor *mR);
+
+
+
 void setMotorPWM(struct DC_motor *m);
 
 
 void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power);
-
 void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
-
-
-void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR);
-# 21 "main.c" 2
+# 29 "main.c" 2
 
 # 1 "./RFID.h" 1
-# 11 "./RFID.h"
+# 12 "./RFID.h"
 void init_RFID(void);
-char getCharSerial(void);
+
+
+
 char processRFID(volatile char RFIDbuf[], char latestChar);
+
+
 void check_RFID(volatile char dataBuf[]);
+
+
 void display_RFID(volatile char RFIDBuf[]);
-# 22 "main.c" 2
+# 30 "main.c" 2
 
 # 1 "./signal_processing.h" 1
 # 12 "./signal_processing.h"
@@ -5335,11 +5343,15 @@ void init_sensor(void);
 
 
 char classify_data(unsigned int raw_data);
-# 23 "main.c" 2
+
+
+
+void stabiliseAverage(void);
+# 31 "main.c" 2
 
 # 1 "./subroutines.h" 1
 # 16 "./subroutines.h"
-struct Movements {
+struct Movement_storage {
 
     char move_type[20];
 
@@ -5350,24 +5362,24 @@ struct Movements {
 
 
 volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                        struct Movements *move, volatile char *exit_flag);
+                    struct Movement_storage *move, volatile char *exit_flag);
 
 
 volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                        struct Movements *move, volatile char *exit_flag);
+                    struct Movement_storage *move, volatile char *exit_flag);
 
 
 volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
-                            int search_speed, struct Movements *move);
+                            int search_speed, struct Movement_storage *move);
 
 
-volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed,
-volatile char RFID_buffer[]);
+volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
+                            volatile char RFID_buffer[]);
 
 
 void waitForInput(void);
-# 24 "main.c" 2
-# 34 "main.c"
+# 32 "main.c" 2
+# 42 "main.c"
 volatile char robot_mode = 0;
 
 
@@ -5377,7 +5389,7 @@ volatile char RFIDbuf[12];
 volatile char RFID_flag = 0;
 
 
-struct Movements travel_moves;
+struct Movement_storage travel_moves;
 
 
 void setup(void)
@@ -5458,12 +5470,13 @@ void main(void)
 
 
   struct DC_motor motorL, motorR;
-  init_motor_struct(&motorL, &motorR);
+  initMotorValues(&motorL, &motorR);
 
 
-  int searching_speed = 50;
-  int moving_speed = 95;
+  const int SEARCHING_SPEED = 50;
+  const int MOVING_SPEED = 95;
 
+  stabiliseAverage();
   waitForInput();
 
 
@@ -5472,34 +5485,34 @@ void main(void)
 
       if(robot_mode == 0)
       {
-          robot_mode = scanForBeacon(&motorL, &motorR, searching_speed,
+          robot_mode = scanForBeacon(&motorL, &motorR, SEARCHING_SPEED,
                                     &travel_moves, &RFID_flag);
       }
 
 
       else if(robot_mode == 1)
       {
-          robot_mode = moveToBeacon(&motorL, &motorR, moving_speed,
+          robot_mode = moveToBeacon(&motorL, &motorR, MOVING_SPEED,
                                     &travel_moves, &RFID_flag);
       }
 
 
       else if(robot_mode == 2)
       {
-          robot_mode = returnHome(&motorL, &motorR, moving_speed,
-                                    searching_speed, &travel_moves);
+          robot_mode = returnHome(&motorL, &motorR, MOVING_SPEED,
+                                    SEARCHING_SPEED, &travel_moves);
       }
 
 
       else if(robot_mode == 3)
       {
-          robot_mode = stopAndDisplay(&motorL, &motorR, moving_speed,RFIDbuf);
+          robot_mode = stopAndDisplay(&motorL, &motorR, MOVING_SPEED,RFIDbuf);
       }
 
 
       else
       {
-          LCD_String("Critical Error");
+          LCDString("Critical Error");
       }
   }
 }

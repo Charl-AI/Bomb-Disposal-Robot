@@ -5142,26 +5142,35 @@ struct DC_motor {
 
 
 void initPWM(int PWMperiod);
+
+
+
+void initMotorValues(struct DC_motor *mL, struct DC_motor *mR);
+
+
+
 void setMotorPWM(struct DC_motor *m);
 
 
 void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power);
-
 void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power);
-
-
-void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR);
 # 16 "subroutines.c" 2
 
 # 1 "./RFID.h" 1
-# 11 "./RFID.h"
+# 12 "./RFID.h"
 void init_RFID(void);
-char getCharSerial(void);
+
+
+
 char processRFID(volatile char RFIDbuf[], char latestChar);
+
+
 void check_RFID(volatile char dataBuf[]);
+
+
 void display_RFID(volatile char RFIDBuf[]);
 # 17 "subroutines.c" 2
 
@@ -5171,11 +5180,15 @@ void init_sensor(void);
 
 
 char classify_data(unsigned int raw_data);
+
+
+
+void stabiliseAverage(void);
 # 18 "subroutines.c" 2
 
 # 1 "./subroutines.h" 1
 # 16 "./subroutines.h"
-struct Movements {
+struct Movement_storage {
 
     char move_type[20];
 
@@ -5186,56 +5199,54 @@ struct Movements {
 
 
 volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                        struct Movements *move, volatile char *exit_flag);
+                    struct Movement_storage *move, volatile char *exit_flag);
 
 
 volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                        struct Movements *move, volatile char *exit_flag);
+                    struct Movement_storage *move, volatile char *exit_flag);
 
 
 volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
-                            int search_speed, struct Movements *move);
+                            int search_speed, struct Movement_storage *move);
 
 
-volatile char stopAndDisplay(struct DC_motor *mL, struct DC_motor *mR, int speed,
-volatile char RFID_buffer[]);
+volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
+                            volatile char RFID_buffer[]);
 
 
 void waitForInput(void);
 # 19 "subroutines.c" 2
 
 # 1 "./LCDIO.h" 1
-# 26 "./LCDIO.h"
+# 29 "./LCDIO.h"
 void E_TOG(void);
 
-
 void LCDout(unsigned char number);
-
 
 void SendLCD(unsigned char Byte, char type);
 
 
-void init_LCD(void);
 
+
+
+void init_LCD(void);
 
 void SetLine (char line);
 
+void LCDString(char *string);
 
-void LCD_String(char *string);
-
-
-void ClearLCD(void);
+void clearLCD(void);
 # 20 "subroutines.c" 2
 
 
 
 volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                        struct Movements *move, volatile char *exit_flag)
+                        struct Movement_storage *move, volatile char *exit_flag)
 {
     move-> move_type[move->move_number] = 1;
     turnLeft(mL,mR,speed);
-    ClearLCD();
-    LCD_String("SEARCHING");
+    clearLCD();
+    LCDString("SEARCHING");
 
 
     while(1)
@@ -5263,16 +5274,21 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 
 
 volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                        struct Movements *move, volatile char *exit_flag)
+                        struct Movement_storage *move, volatile char *exit_flag)
 {
     move->move_type[move->move_number] = 0;
     moveForward(mL,mR,speed);
-    ClearLCD();
-    LCD_String("MOVING TO BOMB");
+    clearLCD();
+    LCDString("MOVING TO BOMB");
+
+
+
+
 
 
 
     int error_counter = 0;
+    const int ERROR_THRESHOLD = 17000;
 
 
     while(1)
@@ -5302,7 +5318,7 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 
 
 
-        if(error_counter >=17000)
+        if(error_counter >= ERROR_THRESHOLD)
         {
             move-> move_number += 1;
 
@@ -5321,12 +5337,12 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 
 
 volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
-                            int search_speed, struct Movements *move)
+                            int search_speed, struct Movement_storage *move)
 {
 
     stop(mL,mR,move_speed);
-    ClearLCD();
-    LCD_String("RETURNING HOME");
+    clearLCD();
+    LCDString("RETURNING HOME");
 
 
     for(int i=move->move_number;move->move_number >0; move->move_number--)
@@ -5359,26 +5375,20 @@ volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
     display_RFID(RFID_buffer);
     check_RFID(RFID_buffer);
 
-    if(RFID_buffer[0] != 0)
+
+    while(1)
     {
-        while(1)
+        while(PORTDbits.RD2 == 1)
         {
-            while(PORTDbits.RD2 == 1)
+            clearLCD();
+            LCDString("RESETTING ROBOT");
+            for(int i=0; i<10;i++)
             {
-                ClearLCD();
-                LCD_String("RESETTING ROBOT");
-                for(int i=0; i<10;i++)
-                {
-                    _delay((unsigned long)((100)*(8000000/4000.0)));
-                }
-                ClearLCD();
-                __asm(" reset");
+                _delay((unsigned long)((100)*(8000000/4000.0)));
             }
+            clearLCD();
+            __asm(" reset");
         }
-    }
-    else
-    {
-        return 0;
     }
 }
 
@@ -5386,29 +5396,22 @@ volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
 void waitForInput(void)
 {
 
-    for(int i =0;i<500;i++)
-    {
-        unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
-        char throwaway = classify_data(raw_data);
-    }
-
-
-    ClearLCD();
+    clearLCD();
     SetLine(1);
-    LCD_String("PRESS BUTTON");
+    LCDString("PRESS BUTTON");
     SetLine(2);
-    LCD_String("TO START SEARCH");
+    LCDString("TO START SEARCH");
 
 
     while(PORTDbits.RD2 == 0);
 
 
-    ClearLCD();
+    clearLCD();
     SetLine(1);
-    LCD_String("STARTING SEARCH");
+    LCDString("STARTING SEARCH");
     for(int i=0; i<10;i++)
     {
         _delay((unsigned long)((100)*(8000000/4000.0)));
     }
-    ClearLCD();
+    clearLCD();
 }

@@ -116,7 +116,7 @@ void SetLine (char line){
  __delay_us(50); // 50us delay 
 }
 
-void LCD_String(char *string){
+void LCDString(char *string){
  //While the data pointed to isn?t a 0x00 do below
 while(*string != 0){
  //Send out the current byte pointed to
@@ -128,7 +128,7 @@ SendLCD(*string++,1);
  }
 }
 
-void ClearLCD(void){
+void clearLCD(void){
     SendLCD(0b00000001,0);
     __delay_ms(5);
 }

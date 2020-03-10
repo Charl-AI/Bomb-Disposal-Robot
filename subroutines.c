@@ -19,16 +19,16 @@
 #include "subroutines.h"
 #include "LCDIO.h"
 
-// This subroutine scans for the beacon initially
+// This subroutine scans for the beacon by turning left on the spot
 volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                        struct Movements *move, volatile char *exit_flag)
+                        struct Movement_storage *move, volatile char *exit_flag)
 {
     move-> move_type[move->move_number] = 1; // store move type as left
     turnLeft(mL,mR,speed); // continuously turn on the spot
-    ClearLCD();
-    LCD_String("SEARCHING"); // Display on LCD
+    clearLCD();
+    LCDString("SEARCHING"); // Display on LCD
         
-    // Runs until the beacon is found and the return statement executes
+    // Runs until the beacon is located or RFID is scanned
     while(1)
     {
         // First, acquire the raw signal using the motion feedback module
@@ -40,13 +40,13 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
         // if RFID read, return home
         if(*exit_flag == 1)
         {
-            return 2; // return home
+            return 2; // go to returnHome subroutine
         }
         // if beacon is straight ahead, exit this subroutine
         else if(beacon_location == 1)
         {
             move-> move_number += 1; // increment move number
-            return 1;
+            return 1; // go to moveToBeacon subroutine
         }  
     }
 }
@@ -54,16 +54,21 @@ volatile char scanForBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 // This subroutine moves the robot forwards until it either finds the beacon
 // or loses the bomb - in which case it starts searching again
 volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
-                        struct Movements *move, volatile char *exit_flag)
+                        struct Movement_storage *move, volatile char *exit_flag)
 {
     move->move_type[move->move_number] = 0; // store move type as forwards
     moveForward(mL,mR,speed); // move robot forwards
-    ClearLCD();
-    LCD_String("MOVING TO BOMB");
+    clearLCD();
+    LCDString("MOVING TO BOMB");
     
-    // this stores the number of consecutive times the robot misses the bomb
-    // once it is over a threshold value, the robot starts searching again
+    /* 
+      This stores the number of consecutive times the robot misses the bomb.
+      Once it is over the threshold value, the robot starts searching again.
+      Increasing the threshold to around 20000 means the robot rarely adjusts
+      its course... around 10000 means the robot adjusts frequently
+    */
     int error_counter = 0;
+    const int ERROR_THRESHOLD = 17000;
     
     // Runs until RFID has been scanned and break statement executes
     while(1)
@@ -77,7 +82,7 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
         // if RFID read, return home
         if(*exit_flag == 1)
         {
-            return 2; // return home
+            return 2; // go to returnHome subroutine
         }
         
         // if beacon lost, add 1 to error counter
@@ -85,22 +90,22 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
         {
             error_counter += 1;
         }
-        // if beacon found, reset error counter
+        // if beacon found, reset error counter to zero
         else
         {
             error_counter = 0;
         }
-        // if the beacon has been lost for a set amount of time, start searching
-        // 17000 is a parameter to adjust the sensitivity of how often it will 
-        // start searching again
-        if(error_counter >=17000)
+        
+        // if the beacon has been lost for more cycles than the threshold, start
+        // searching again
+        if(error_counter >= ERROR_THRESHOLD)
         {
             move-> move_number += 1; // increment move number
             
             // if we run out of space to store the moves, return home
             if(move->move_number >= 19)
             {
-                return 2;
+                return 2; // go to returnHome subroutine
             }
             else
             {
@@ -112,12 +117,12 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 
 // This subroutine makes the robot return to its starting position
 volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_speed,
-                            int search_speed, struct Movements *move)
+                            int search_speed, struct Movement_storage *move)
 {
     // stop and display returning on LCD
     stop(mL,mR,move_speed);
-    ClearLCD();
-    LCD_String("RETURNING HOME");
+    clearLCD();
+    LCDString("RETURNING HOME");
     
     // Go back through array of moves and undo each previous move
     for(int i=move->move_number;move->move_number >0; move->move_number--)
@@ -137,7 +142,7 @@ volatile char returnHome(struct DC_motor *mL, struct DC_motor *mR, int move_spee
             while(move->time_taken[move->move_number] > 0);
         }
     }
-    return 3; // exit subroutine
+    return 3; // go to stopAndDisplay subroutine
 }
 
 // This subroutine makes the robot stop and wait for further inputs at the end
@@ -150,57 +155,44 @@ volatile char stopAndDisplay(struct DC_motor *mL,struct DC_motor *mR, int speed,
     display_RFID(RFID_buffer);
     check_RFID(RFID_buffer);
     
-    if(RFID_buffer[0] != 0)
+    // Now, simply wait for button press to reset robot
+    while(1)
     {
-        while(1)
+        while(PORTDbits.RD2 == 1) // when button is pressed
         {
-            while(PORTDbits.RD2 == 1) // when button is pressed
+            clearLCD();
+            LCDString("RESETTING ROBOT");
+            for(int i=0; i<10;i++)
             {
-                ClearLCD();
-                LCD_String("RESETTING ROBOT");
-                for(int i=0; i<10;i++)
-                {
-                    __delay_ms(100);
-                }
-                ClearLCD();
-                Reset();
+                __delay_ms(100);
             }
+            clearLCD();
+            Reset();
         }
-    }
-    else 
-    {
-        return 0;
-    }
+    } 
 }
 
 // This function is allows the user to press the button to start the search
 void waitForInput(void)
 {
-    // first, stabilise the smoothing algorithm by reading values
-    for(int i =0;i<500;i++)
-    {
-        unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
-        char throwaway = classify_data(raw_data); // throw away the result
-    }
-    
     // display some text for the user
-    ClearLCD();
+    clearLCD();
     SetLine(1);
-    LCD_String("PRESS BUTTON");
+    LCDString("PRESS BUTTON");
     SetLine(2);
-    LCD_String("TO START SEARCH");
+    LCDString("TO START SEARCH");
     
     // wait until button is pressed
     while(PORTDbits.RD2 == 0);
 
     // display text to confirm start
-    ClearLCD();
+    clearLCD();
     SetLine(1);
-    LCD_String("STARTING SEARCH");
+    LCDString("STARTING SEARCH");
     for(int i=0; i<10;i++)
     {
         __delay_ms(100);
     }
-    ClearLCD();     
+    clearLCD();     
 }
     

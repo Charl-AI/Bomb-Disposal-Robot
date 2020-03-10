@@ -9,26 +9,24 @@
 # 1 "LCDIO.c" 2
 # 18 "LCDIO.c"
 # 1 "./LCDIO.h" 1
-# 26 "./LCDIO.h"
+# 29 "./LCDIO.h"
 void E_TOG(void);
 
-
 void LCDout(unsigned char number);
-
 
 void SendLCD(unsigned char Byte, char type);
 
 
-void init_LCD(void);
 
+
+
+void init_LCD(void);
 
 void SetLine (char line);
 
+void LCDString(char *string);
 
-void LCD_String(char *string);
-
-
-void ClearLCD(void);
+void clearLCD(void);
 # 18 "LCDIO.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 1 3
@@ -5245,7 +5243,7 @@ void SetLine (char line){
  _delay((unsigned long)((50)*(8000000/4000000.0)));
 }
 
-void LCD_String(char *string){
+void LCDString(char *string){
 
 while(*string != 0){
 
@@ -5257,7 +5255,7 @@ SendLCD(*string++,1);
  }
 }
 
-void ClearLCD(void){
+void clearLCD(void){
     SendLCD(0b00000001,0);
     _delay((unsigned long)((5)*(8000000/4000.0)));
 }

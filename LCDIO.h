@@ -22,26 +22,27 @@
 #define LCD_DB6 LATDbits.LATD0
 #define LCD_DB7 LATDbits.LATD1
 
+// These functions are used in the LCDString function etc., do not call directly 
+//from main. In future, declare as private so they cant be called:
+
 //function to toggle enable bit on then off
 void E_TOG(void);
-
 //function to send four bits to the LCD
 void LCDout(unsigned char number);
-
 //function to send data/commands over a 4bit interface
 void SendLCD(unsigned char Byte, char type);
 
-// function to initialise LCD display, always call this before doing anything
+
+// These functions should be called to use the LCD:
+
+// function to initialise LCD display, call this in the setup function 
 void init_LCD(void);
-
-//function to put cursor to start of line
+//function to put cursor to start of line 1 or 2
 void SetLine (char line);
-
 // output a string on the LCD
-void LCD_String(char *string);
-
+void LCDString(char *string);
 // function to clear the LCD
-void ClearLCD(void);
+void clearLCD(void);
 
 
 #endif	/* LCDIO_H */

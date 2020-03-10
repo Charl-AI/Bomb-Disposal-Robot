@@ -7,7 +7,7 @@
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "signal_processing.c" 2
-# 10 "signal_processing.c"
+# 11 "signal_processing.c"
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\pic18f4331.h" 1 3
 # 44 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\pic18f4331.h" 3
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\__at.h" 1 3
@@ -4962,7 +4962,7 @@ extern volatile __bit nW __attribute__((address(0x7E3A)));
 
 
 extern volatile __bit nWRITE __attribute__((address(0x7E3A)));
-# 10 "signal_processing.c" 2
+# 11 "signal_processing.c" 2
 
 # 1 "./signal_processing.h" 1
 # 12 "./signal_processing.h"
@@ -4970,7 +4970,11 @@ void init_sensor(void);
 
 
 char classify_data(unsigned int raw_data);
-# 11 "signal_processing.c" 2
+
+
+
+void stabiliseAverage(void);
+# 12 "signal_processing.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\c99\\stdio.h" 1 3
 
@@ -5127,7 +5131,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 12 "signal_processing.c" 2
+# 13 "signal_processing.c" 2
 
 # 1 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 1 3
 # 18 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 3
@@ -5267,30 +5271,28 @@ extern __attribute__((nonreentrant)) void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __attribute__((nonreentrant)) void _delay3(unsigned char);
 # 32 "C:\\Program Files (x86)\\Microchip\\xc8\\v2.05\\pic\\include\\xc.h" 2 3
-# 13 "signal_processing.c" 2
+# 14 "signal_processing.c" 2
 
 # 1 "./LCDIO.h" 1
-# 26 "./LCDIO.h"
+# 29 "./LCDIO.h"
 void E_TOG(void);
 
-
 void LCDout(unsigned char number);
-
 
 void SendLCD(unsigned char Byte, char type);
 
 
-void init_LCD(void);
 
+
+
+void init_LCD(void);
 
 void SetLine (char line);
 
+void LCDString(char *string);
 
-void LCD_String(char *string);
-
-
-void ClearLCD(void);
-# 14 "signal_processing.c" 2
+void clearLCD(void);
+# 15 "signal_processing.c" 2
 
 
 
@@ -5330,5 +5332,17 @@ char classify_data(unsigned int raw_data)
     else
     {
         return 0;
+    }
+}
+
+
+
+void stabiliseAverage(void)
+{
+
+    for(int i =0;i<500;i++)
+    {
+        unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+        char throwaway = classify_data(raw_data);
     }
 }

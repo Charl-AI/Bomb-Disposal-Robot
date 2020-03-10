@@ -4971,35 +4971,39 @@ extern volatile __bit nWRITE __attribute__((address(0x7E3A)));
 # 8 "RFID.c" 2
 
 # 1 "./RFID.h" 1
-# 11 "./RFID.h"
+# 12 "./RFID.h"
 void init_RFID(void);
-char getCharSerial(void);
+
+
+
 char processRFID(volatile char RFIDbuf[], char latestChar);
+
+
 void check_RFID(volatile char dataBuf[]);
+
+
 void display_RFID(volatile char RFIDBuf[]);
 # 9 "RFID.c" 2
 
 # 1 "./LCDIO.h" 1
-# 26 "./LCDIO.h"
+# 29 "./LCDIO.h"
 void E_TOG(void);
 
-
 void LCDout(unsigned char number);
-
 
 void SendLCD(unsigned char Byte, char type);
 
 
-void init_LCD(void);
 
+
+
+void init_LCD(void);
 
 void SetLine (char line);
 
+void LCDString(char *string);
 
-void LCD_String(char *string);
-
-
-void ClearLCD(void);
+void clearLCD(void);
 # 10 "RFID.c" 2
 
 
@@ -5037,26 +5041,23 @@ char processRFID(volatile char RFIDbuf[], char latestChar)
     {
         return 1;
     }
-    else
+
+    else if(latestChar == 0x02)
     {
 
+       position_in_buf = 0;
+       for(char i=0 ;i<12 ;i++)
+       {
+            RFIDbuf[i] = 0;
+       }
+        return 0;
+    }
 
-       if(latestChar == 0x02)
-        {
-           position_in_buf = 0;
-           for(char i=0 ;i<12 ;i++)
-           {
-               RFIDbuf[i] = 0;
-           }
-           return 0;
-        }
-
-       else
-        {
-            RFIDbuf[position_in_buf] = latestChar;
-            position_in_buf++;
-            return 0;
-        }
+    else
+    {
+        RFIDbuf[position_in_buf] = latestChar;
+        position_in_buf++;
+        return 0;
     }
 }
 
@@ -5089,18 +5090,18 @@ void check_RFID(volatile char dataBuf[])
     {
 
         SetLine(2);
-        LCD_String("CHECKSUM PASSED");
+        LCDString("CHECKSUM PASSED");
     }
     else{
 
         SetLine(2);
-        LCD_String("CHECKSUM FAILED");
+        LCDString("CHECKSUM FAILED");
     }
 }
 
 void display_RFID(volatile char dataBuf[])
 {
-    ClearLCD();
+    clearLCD();
     SetLine(1);
     for(int i=0;i<10;i++)
     {

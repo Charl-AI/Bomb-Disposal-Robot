@@ -1,7 +1,14 @@
+/* 
+ dc_motor.c
+ 
+ This file contains the functions required to move the robot
+ */
+
 #include <xc.h>
 #include "dc_motor.h"
 
-// PWMperiod input in seconds
+// PWMperiod input in seconds. This function is called in setup to initialise
+// the motor PWM registers
 void initPWM(int PWMperiod){
     
     PTCON0 = 0b00000000; // free running mode, 1:1 prescaler = 0.5us
@@ -112,7 +119,7 @@ void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
     }
 }
 
-void init_motor_struct(struct DC_motor *mL, struct DC_motor *mR)
+void initMotorValues(struct DC_motor *mL, struct DC_motor *mR)
 {
     //some code to set initial values of each structure
 mL->power = 0;

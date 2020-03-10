@@ -26,6 +26,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "234
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 234: extern volatile unsigned char CAP1CON __attribute__((address(0xF63)));
 [v _CAP1CON `Vuc ~T0 @X0 0 e@3939 ]
+"353
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 353: extern volatile unsigned char CAP1BUFH __attribute__((address(0xF69)));
+[v _CAP1BUFH `Vuc ~T0 @X0 0 e@3945 ]
+"341
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 341: extern volatile unsigned char CAP1BUFL __attribute__((address(0xF68)));
+[v _CAP1BUFL `Vuc ~T0 @X0 0 e@3944 ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 54: __asm("DFLTCON equ 0F60h");
 [; <" DFLTCON equ 0F60h ;# ">
@@ -566,85 +572,123 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7616
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.05\pic\include\pic18f4331.h: 7616: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"17 signal_processing.c
-[; ;signal_processing.c: 17: void init_sensor(void)
+"18 signal_processing.c
+[; ;signal_processing.c: 18: void init_sensor(void)
 [v _init_sensor `(v ~T0 @X0 1 ef ]
-"18
-[; ;signal_processing.c: 18: {
+"19
+[; ;signal_processing.c: 19: {
 {
 [e :U _init_sensor ]
 [f ]
-"19
-[; ;signal_processing.c: 19:     T5CON =0b00000001;
-[e = _T5CON -> -> 1 `i `uc ]
 "20
-[; ;signal_processing.c: 20:     TRISAbits.RA2 = 1;
+[; ;signal_processing.c: 20:     T5CON =0b00000001;
+[e = _T5CON -> -> 1 `i `uc ]
+"21
+[; ;signal_processing.c: 21:     TRISAbits.RA2 = 1;
 [e = . . _TRISAbits 1 2 -> -> 1 `i `uc ]
-"23
-[; ;signal_processing.c: 23:     ANSEL0 = 0;
-[e = _ANSEL0 -> -> 0 `i `uc ]
 "24
-[; ;signal_processing.c: 24:     ANSEL1 = 0;
+[; ;signal_processing.c: 24:     ANSEL0 = 0;
+[e = _ANSEL0 -> -> 0 `i `uc ]
+"25
+[; ;signal_processing.c: 25:     ANSEL1 = 0;
 [e = _ANSEL1 -> -> 0 `i `uc ]
-"26
-[; ;signal_processing.c: 26:     CAP1CON = 0b01000111;
-[e = _CAP1CON -> -> 71 `i `uc ]
 "27
-[; ;signal_processing.c: 27: }
+[; ;signal_processing.c: 27:     CAP1CON = 0b01000111;
+[e = _CAP1CON -> -> 71 `i `uc ]
+"28
+[; ;signal_processing.c: 28: }
 [e :UE 316 ]
 }
-"33
-[; ;signal_processing.c: 33: char classify_data(unsigned int raw_data)
-[v _classify_data `(uc ~T0 @X0 1 ef1`ui ]
 "34
-[; ;signal_processing.c: 34: {
+[; ;signal_processing.c: 34: char classify_data(unsigned int raw_data)
+[v _classify_data `(uc ~T0 @X0 1 ef1`ui ]
+"35
+[; ;signal_processing.c: 35: {
 {
 [e :U _classify_data ]
-"33
-[; ;signal_processing.c: 33: char classify_data(unsigned int raw_data)
-[v _raw_data `ui ~T0 @X0 1 r1 ]
 "34
-[; ;signal_processing.c: 34: {
+[; ;signal_processing.c: 34: char classify_data(unsigned int raw_data)
+[v _raw_data `ui ~T0 @X0 1 r1 ]
+"35
+[; ;signal_processing.c: 35: {
 [f ]
-"37
-[; ;signal_processing.c: 37:     static unsigned int smoothed;
-[v F3107 `ui ~T0 @X0 1 s smoothed ]
-"42
-[; ;signal_processing.c: 42:     smoothed = smoothed + ((raw_data - smoothed) >> 2);
-[e = F3107 + F3107 >> - _raw_data F3107 -> 2 `i ]
+"38
+[; ;signal_processing.c: 38:     static unsigned int smoothed;
+[v F3108 `ui ~T0 @X0 1 s smoothed ]
 "43
-[; ;signal_processing.c: 43:     unsigned int filtered = raw_data - smoothed;
+[; ;signal_processing.c: 43:     smoothed = smoothed + ((raw_data - smoothed) >> 2);
+[e = F3108 + F3108 >> - _raw_data F3108 -> 2 `i ]
+"44
+[; ;signal_processing.c: 44:     unsigned int filtered = raw_data - smoothed;
 [v _filtered `ui ~T0 @X0 1 a ]
-[e = _filtered - _raw_data F3107 ]
-"46
-[; ;signal_processing.c: 46:     if(filtered >= 100)
-[e $ ! >= _filtered -> -> 100 `i `ui 318  ]
+[e = _filtered - _raw_data F3108 ]
 "47
-[; ;signal_processing.c: 47:     {
-{
+[; ;signal_processing.c: 47:     if(filtered >= 100)
+[e $ ! >= _filtered -> -> 100 `i `ui 318  ]
 "48
-[; ;signal_processing.c: 48:         return 1;
+[; ;signal_processing.c: 48:     {
+{
+"49
+[; ;signal_processing.c: 49:         return 1;
 [e ) -> -> 1 `i `uc ]
 [e $UE 317  ]
-"49
-[; ;signal_processing.c: 49:     }
+"50
+[; ;signal_processing.c: 50:     }
 }
 [e $U 319  ]
-"50
-[; ;signal_processing.c: 50:     else
-[e :U 318 ]
 "51
-[; ;signal_processing.c: 51:     {
-{
+[; ;signal_processing.c: 51:     else
+[e :U 318 ]
 "52
-[; ;signal_processing.c: 52:         return 0;
+[; ;signal_processing.c: 52:     {
+{
+"53
+[; ;signal_processing.c: 53:         return 0;
 [e ) -> -> 0 `i `uc ]
 [e $UE 317  ]
-"53
-[; ;signal_processing.c: 53:     }
+"54
+[; ;signal_processing.c: 54:     }
 }
 [e :U 319 ]
-"54
-[; ;signal_processing.c: 54: }
+"55
+[; ;signal_processing.c: 55: }
 [e :UE 317 ]
+}
+"59
+[; ;signal_processing.c: 59: void stabiliseAverage(void)
+[v _stabiliseAverage `(v ~T0 @X0 1 ef ]
+"60
+[; ;signal_processing.c: 60: {
+{
+[e :U _stabiliseAverage ]
+[f ]
+"62
+[; ;signal_processing.c: 62:     for(int i =0;i<500;i++)
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $ < _i -> 500 `i 321  ]
+[e $U 322  ]
+[e :U 321 ]
+"63
+[; ;signal_processing.c: 63:     {
+{
+"64
+[; ;signal_processing.c: 64:         unsigned int raw_data = (unsigned int)((CAP1BUFH << 8) | CAP1BUFL);
+[v _raw_data `ui ~T0 @X0 1 a ]
+[e = _raw_data -> | << -> _CAP1BUFH `i -> 8 `i -> _CAP1BUFL `i `ui ]
+"65
+[; ;signal_processing.c: 65:         char throwaway = classify_data(raw_data);
+[v _throwaway `uc ~T0 @X0 1 a ]
+[e = _throwaway ( _classify_data (1 _raw_data ]
+"66
+[; ;signal_processing.c: 66:     }
+}
+[e ++ _i -> 1 `i ]
+[e $ < _i -> 500 `i 321  ]
+[e :U 322 ]
+}
+"67
+[; ;signal_processing.c: 67: }
+[e :UE 320 ]
 }
