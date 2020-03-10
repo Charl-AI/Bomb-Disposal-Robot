@@ -5461,7 +5461,7 @@ void main(void)
   init_motor_struct(&motorL, &motorR);
 
 
-  int searching_speed = 55;
+  int searching_speed = 50;
   int moving_speed = 95;
 
   waitForInput();

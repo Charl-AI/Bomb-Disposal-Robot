@@ -11,7 +11,7 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\charl\AppData\Local\Temp\sg5k.o
+$C:\Users\charl\AppData\Local\Temp\seko.o
 idloc IDLOC 0 200000 200000 8 1
 init CODE 0 9E 9E 4 1
 reset_vec CODE 0 0 0 4 1
@@ -476,30 +476,30 @@ A8E text1 CODE >205:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\subroutine
 900 text0 CODE >159:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
 91A text0 CODE >160:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
 91C text0 CODE >165:C:\Users\charl\MPLABXProjects\ECM_Final_Project.X\main.c
-1068 cinit CODE >2599:C:\Users\charl\AppData\Local\Temp\sg5k.
-1068 cinit CODE >2601:C:\Users\charl\AppData\Local\Temp\sg5k.
-1068 cinit CODE >2604:C:\Users\charl\AppData\Local\Temp\sg5k.
-1068 cinit CODE >2632:C:\Users\charl\AppData\Local\Temp\sg5k.
-106C cinit CODE >2633:C:\Users\charl\AppData\Local\Temp\sg5k.
-106E cinit CODE >2634:C:\Users\charl\AppData\Local\Temp\sg5k.
-106E cinit CODE >2635:C:\Users\charl\AppData\Local\Temp\sg5k.
-1070 cinit CODE >2636:C:\Users\charl\AppData\Local\Temp\sg5k.
-1072 cinit CODE >2637:C:\Users\charl\AppData\Local\Temp\sg5k.
-1074 cinit CODE >2640:C:\Users\charl\AppData\Local\Temp\sg5k.
-1078 cinit CODE >2641:C:\Users\charl\AppData\Local\Temp\sg5k.
-107A cinit CODE >2642:C:\Users\charl\AppData\Local\Temp\sg5k.
-107A cinit CODE >2643:C:\Users\charl\AppData\Local\Temp\sg5k.
-107C cinit CODE >2644:C:\Users\charl\AppData\Local\Temp\sg5k.
-107E cinit CODE >2645:C:\Users\charl\AppData\Local\Temp\sg5k.
-1080 cinit CODE >2651:C:\Users\charl\AppData\Local\Temp\sg5k.
-1080 cinit CODE >2653:C:\Users\charl\AppData\Local\Temp\sg5k.
-1082 cinit CODE >2654:C:\Users\charl\AppData\Local\Temp\sg5k.
-1084 cinit CODE >2656:C:\Users\charl\AppData\Local\Temp\sg5k.
-1086 cinit CODE >2657:C:\Users\charl\AppData\Local\Temp\sg5k.
-1088 cinit CODE >2658:C:\Users\charl\AppData\Local\Temp\sg5k.
-108A cinit CODE >2659:C:\Users\charl\AppData\Local\Temp\sg5k.
-108C cinit CODE >2660:C:\Users\charl\AppData\Local\Temp\sg5k.
-108E cinit CODE >2661:C:\Users\charl\AppData\Local\Temp\sg5k.
+1068 cinit CODE >2599:C:\Users\charl\AppData\Local\Temp\seko.
+1068 cinit CODE >2601:C:\Users\charl\AppData\Local\Temp\seko.
+1068 cinit CODE >2604:C:\Users\charl\AppData\Local\Temp\seko.
+1068 cinit CODE >2632:C:\Users\charl\AppData\Local\Temp\seko.
+106C cinit CODE >2633:C:\Users\charl\AppData\Local\Temp\seko.
+106E cinit CODE >2634:C:\Users\charl\AppData\Local\Temp\seko.
+106E cinit CODE >2635:C:\Users\charl\AppData\Local\Temp\seko.
+1070 cinit CODE >2636:C:\Users\charl\AppData\Local\Temp\seko.
+1072 cinit CODE >2637:C:\Users\charl\AppData\Local\Temp\seko.
+1074 cinit CODE >2640:C:\Users\charl\AppData\Local\Temp\seko.
+1078 cinit CODE >2641:C:\Users\charl\AppData\Local\Temp\seko.
+107A cinit CODE >2642:C:\Users\charl\AppData\Local\Temp\seko.
+107A cinit CODE >2643:C:\Users\charl\AppData\Local\Temp\seko.
+107C cinit CODE >2644:C:\Users\charl\AppData\Local\Temp\seko.
+107E cinit CODE >2645:C:\Users\charl\AppData\Local\Temp\seko.
+1080 cinit CODE >2651:C:\Users\charl\AppData\Local\Temp\seko.
+1080 cinit CODE >2653:C:\Users\charl\AppData\Local\Temp\seko.
+1082 cinit CODE >2654:C:\Users\charl\AppData\Local\Temp\seko.
+1084 cinit CODE >2656:C:\Users\charl\AppData\Local\Temp\seko.
+1086 cinit CODE >2657:C:\Users\charl\AppData\Local\Temp\seko.
+1088 cinit CODE >2658:C:\Users\charl\AppData\Local\Temp\seko.
+108A cinit CODE >2659:C:\Users\charl\AppData\Local\Temp\seko.
+108C cinit CODE >2660:C:\Users\charl\AppData\Local\Temp\seko.
+108E cinit CODE >2661:C:\Users\charl\AppData\Local\Temp\seko.
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -522,7 +522,7 @@ __size_of_init_LCD 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.produ
 _PWMCON0 F6F 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _PWMCON1 F6E 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\ECM_Final_Project.X.production.o
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\charl\AppData\Local\Temp\sg5k.o
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\charl\AppData\Local\Temp\seko.o
 __end_of_classify_data EF2 0 CODE 0 text19 dist/default/production\ECM_Final_Project.X.production.o
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\ECM_Final_Project.X.production.o
 __end_of_LCDout C92 0 CODE 0 text23 dist/default/production\ECM_Final_Project.X.production.o
@@ -532,12 +532,12 @@ __end_of_moveToBeacon 9E2 0 CODE 0 text17 dist/default/production\ECM_Final_Proj
 __Lsmallconst 300 0 SMALLCONST 0 smallconst dist/default/production\ECM_Final_Project.X.production.o
 returnHome@move_speed 2D 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 _LATB F8A 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\charl\AppData\Local\Temp\sg5k.o
+___sp 0 0 STACK 2 stack C:\Users\charl\AppData\Local\Temp\seko.o
 _main 860 0 CODE 0 text0 dist/default/production\ECM_Final_Project.X.production.o
 _stop E5E 0 CODE 0 text15 dist/default/production\ECM_Final_Project.X.production.o
 btemp 49 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
 returnHome@move 31 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-start 9E 0 CODE 0 init C:\Users\charl\AppData\Local\Temp\sg5k.o
+start 9E 0 CODE 0 init C:\Users\charl\AppData\Local\Temp\seko.o
 _SendLCD FDE 0 CODE 0 text22 dist/default/production\ECM_Final_Project.X.production.o
 __size_of___awdiv 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _SetLine 100E 0 CODE 0 text5 dist/default/production\ECM_Final_Project.X.production.o
@@ -555,11 +555,11 @@ moveBackward@mR 25 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Pro
 ttemp5 4A 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
 ttemp6 4D 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
 ttemp7 51 0 COMRAM 1 temp dist/default/production\ECM_Final_Project.X.production.o
-__accesstop 60 0 ABS 0 - C:\Users\charl\AppData\Local\Temp\sg5k.o
-intlevel0 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\sg5k.o
-intlevel1 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\sg5k.o
-intlevel2 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\sg5k.o
-intlevel3 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\sg5k.o
+__accesstop 60 0 ABS 0 - C:\Users\charl\AppData\Local\Temp\seko.o
+intlevel0 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\seko.o
+intlevel1 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\seko.o
+intlevel2 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\seko.o
+intlevel3 0 0 CODE 0 text C:\Users\charl\AppData\Local\Temp\seko.o
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 _init_LCD 798 0 CODE 0 text9 dist/default/production\ECM_Final_Project.X.production.o
 init_motor_struct@mL 24 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
@@ -584,8 +584,8 @@ stop@initial_speed 26 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_
 _ANSEL0 FB8 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 _ANSEL1 FB9 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 ___awdiv@dividend 14 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-___inthi_sp 0 0 STACK 2 stack C:\Users\charl\AppData\Local\Temp\sg5k.o
-___intlo_sp 0 0 STACK 2 stack C:\Users\charl\AppData\Local\Temp\sg5k.o
+___inthi_sp 0 0 STACK 2 stack C:\Users\charl\AppData\Local\Temp\seko.o
+___intlo_sp 0 0 STACK 2 stack C:\Users\charl\AppData\Local\Temp\seko.o
 _LCD_String 103C 0 CODE 0 text20 dist/default/production\ECM_Final_Project.X.production.o
 __size_of_initPWM 0 0 ABS 0 - dist/default/production\ECM_Final_Project.X.production.o
 __Hintcode_body 0 0 ABS 0 intcode_body dist/default/production\ECM_Final_Project.X.production.o
@@ -680,7 +680,7 @@ stopAndDisplay@i 32 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Pr
 _InterruptHandlerHigh 8 0 CODE 0 intcode dist/default/production\ECM_Final_Project.X.production.o
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\ECM_Final_Project.X.production.o
 __Hbigram 0 0 ABS 0 bigram dist/default/production\ECM_Final_Project.X.production.o
-__smallconst 300 0 SMALLCONST 0 smallconst C:\Users\charl\AppData\Local\Temp\sg5k.o
+__smallconst 300 0 SMALLCONST 0 smallconst C:\Users\charl\AppData\Local\Temp\seko.o
 _init_sensor 1106 0 CODE 0 text7 dist/default/production\ECM_Final_Project.X.production.o
 moveToBeacon@error_counter 36 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 _ClearLCD 10EC 0 CODE 0 text21 dist/default/production\ECM_Final_Project.X.production.o
@@ -840,8 +840,8 @@ __Lfarbss 0 0 FARRAM 0 farbss dist/default/production\ECM_Final_Project.X.produc
 _init_RFID 10B8 0 CODE 0 text8 dist/default/production\ECM_Final_Project.X.production.o
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production\ECM_Final_Project.X.production.o
 setMotorPWM@PWMduty 22 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-stackhi 2FF 0 ABS 0 - C:\Users\charl\AppData\Local\Temp\sg5k.o
-stacklo B3 0 ABS 0 - C:\Users\charl\AppData\Local\Temp\sg5k.o
+stackhi 2FF 0 ABS 0 - C:\Users\charl\AppData\Local\Temp\seko.o
+stacklo B3 0 ABS 0 - C:\Users\charl\AppData\Local\Temp\seko.o
 stop@mL 24 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 stop@mR 25 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
 __Lintcode 8 0 CODE 0 intcode dist/default/production\ECM_Final_Project.X.production.o
@@ -917,7 +917,7 @@ __Ltext28 0 0 ABS 0 text28 dist/default/production\ECM_Final_Project.X.productio
 __Ltext31 0 0 ABS 0 text31 dist/default/production\ECM_Final_Project.X.production.o
 __end_of_InterruptHandlerLow 9E 0 CODE 0 intcodelo dist/default/production\ECM_Final_Project.X.production.o
 waitForInput@raw_data 17 0 COMRAM 1 cstackCOMRAM dist/default/production\ECM_Final_Project.X.production.o
-__ramtop 300 0 RAM 0 ramtop C:\Users\charl\AppData\Local\Temp\sg5k.o
+__ramtop 300 0 RAM 0 ramtop C:\Users\charl\AppData\Local\Temp\seko.o
 main@motorL A1 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
 main@motorR AA 0 BANK0 1 cstackBANK0 dist/default/production\ECM_Final_Project.X.production.o
 __Lpowerup 9E 0 CODE 0 powerup dist/default/production\ECM_Final_Project.X.production.o

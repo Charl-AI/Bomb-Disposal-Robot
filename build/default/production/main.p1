@@ -942,9 +942,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 124:   init_motor_struct(&motorL, &motorR);
 [e ( _init_motor_struct (2 , &U _motorL &U _motorR ]
 "127
-[; ;main.c: 127:   int searching_speed = 55;
+[; ;main.c: 127:   int searching_speed = 50;
 [v _searching_speed `i ~T0 @X0 1 a ]
-[e = _searching_speed -> 55 `i ]
+[e = _searching_speed -> 50 `i ]
 "128
 [; ;main.c: 128:   int moving_speed = 95;
 [v _moving_speed `i ~T0 @X0 1 a ]

@@ -93,7 +93,7 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
         // if the beacon has been lost for a set amount of time, start searching
         // 17000 is a parameter to adjust the sensitivity of how often it will 
         // start searching again
-        if(error_counter >=17500)
+        if(error_counter >=17000)
         {
             move-> move_number += 1; // increment move number
             

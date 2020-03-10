@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V2.05 build -831301201 
-                                                                                               Tue Mar 10 08:44:02 2020
+                                                                                               Tue Mar 10 09:04:12 2020
 
 Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og9 
      1                           	processor	18F4331
@@ -752,11 +752,11 @@ Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og9
    737  00086A  6E25               	movwf	init_motor_struct@mR,c
    738  00086C  EC67  F003         	call	_init_motor_struct	;wreg free
    739                           
-   740                           ;main.c: 127:   int searching_speed = 55;
+   740                           ;main.c: 127:   int searching_speed = 50;
    741  000870  0E00               	movlw	0
    742  000872  0100               	movlb	0	; () banked
    743  000874  6F9E               	movwf	(main@searching_speed+1)& (0+255),b
-   744  000876  0E37               	movlw	55
+   744  000876  0E32               	movlw	50
    745  000878  6F9D               	movwf	main@searching_speed& (0+255),b
    746                           
    747                           ; BSR set to: 0
@@ -2780,12 +2780,12 @@ Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og9
   2741  000CBC  6ADA               	clrf	fsr2h,c
   2742  000CBE  C029  FFDF         	movff	moveBackward@i,indf2
   2743                           
-  2744                           ;dc_motor.c: 108:         mR->power = i-4;
+  2744                           ;dc_motor.c: 108:         mR->power = i-5;
   2745  000CC2  5025               	movf	moveBackward@mR,w,c
   2746  000CC4  6ED9               	movwf	fsr2l,c
   2747  000CC6  6ADA               	clrf	fsr2h,c
   2748  000CC8  5029               	movf	moveBackward@i,w,c
-  2749  000CCA  0FFC               	addlw	252
+  2749  000CCA  0FFB               	addlw	251
   2750  000CCC  6EDF               	movwf	indf2,c
   2751                           
   2752                           ;dc_motor.c: 109:         setMotorPWM(mL);
@@ -2965,12 +2965,12 @@ Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og9
   2922  0009AE  6E36               	movwf	moveToBeacon@error_counter,c
   2923  0009B0                     l2655:
   2924                           
-  2925                           ;subroutines.c: 96:         if(error_counter >=16500)
+  2925                           ;subroutines.c: 96:         if(error_counter >=17000)
   2926  0009B0  BE37               	btfsc	moveToBeacon@error_counter+1,7,c
   2927  0009B2  D7DA               	goto	l2637
-  2928  0009B4  0E74               	movlw	116
+  2928  0009B4  0E68               	movlw	104
   2929  0009B6  5C36               	subwf	moveToBeacon@error_counter,w,c
-  2930  0009B8  0E40               	movlw	64
+  2930  0009B8  0E42               	movlw	66
   2931  0009BA  5837               	subwfb	moveToBeacon@error_counter+1,w,c
   2932  0009BC  A0D8               	btfss	status,0,c
   2933  0009BE  D7D4               	goto	l2637
@@ -3076,12 +3076,12 @@ Microchip MPLAB XC8 C Compiler v2.05 (Free license) build 20181220022703 Og9
   3032  000D30  6ADA               	clrf	fsr2h,c
   3033  000D32  C029  FFDF         	movff	moveForward@i,indf2
   3034                           
-  3035                           ;dc_motor.c: 93:         mR->power = i - 4;
+  3035                           ;dc_motor.c: 93:         mR->power = i - 5;
   3036  000D36  5025               	movf	moveForward@mR,w,c
   3037  000D38  6ED9               	movwf	fsr2l,c
   3038  000D3A  6ADA               	clrf	fsr2h,c
   3039  000D3C  5029               	movf	moveForward@i,w,c
-  3040  000D3E  0FFC               	addlw	252
+  3040  000D3E  0FFB               	addlw	251
   3041  000D40  6EDF               	movwf	indf2,c
   3042                           
   3043                           ;dc_motor.c: 94:         setMotorPWM(mL);
@@ -5077,7 +5077,7 @@ CODE                 0      0       0       0        0.0%
 
 
 Microchip Technology PIC18 Macro Assembler V2.05 build -831301201 
-Symbol Table                                                                                   Tue Mar 10 08:44:02 2020
+Symbol Table                                                                                   Tue Mar 10 09:04:12 2020
 
                            l55 0F76                   ___awdiv@sign 0019                             bsr 000FE0  
           ___wmul@multiplicand 0010                  ?_display_RFID 0013                    ?_LCD_String 0012  

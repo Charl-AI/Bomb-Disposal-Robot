@@ -785,8 +785,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 330 ]
 [e :U 328 ]
 "96
-[; ;subroutines.c: 96:         if(error_counter >=16500)
-[e $ ! >= _error_counter -> 16500 `i 331  ]
+[; ;subroutines.c: 96:         if(error_counter >=17000)
+[e $ ! >= _error_counter -> 17000 `i 331  ]
 "97
 [; ;subroutines.c: 97:         {
 {

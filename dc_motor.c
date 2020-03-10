@@ -87,10 +87,10 @@ void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
     mL->direction = 1;
     mR->direction = 1;
-    for(int i = 10; i < max_power; i++)
+    for(int i = 5; i < max_power; i++)
     {
-        mL->power = i;
-        mR->power = i - 4;
+        mL->power = i; 
+        mR->power = i - 5; // slightly underpower right motor to curve the path
         setMotorPWM(mL);
         setMotorPWM(mR);
         __delay_ms(1);
@@ -102,10 +102,10 @@ void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
     mL->direction = 0;
     mR->direction = 0;
-    for(int i = 10; i < max_power; i++)
+    for(int i = 5; i < max_power; i++)
     {
         mL->power = i;
-        mR->power = i-4;
+        mR->power = i - 5; // slightly underpower right motor to curve the path
         setMotorPWM(mL);
         setMotorPWM(mR);
         __delay_ms(1);

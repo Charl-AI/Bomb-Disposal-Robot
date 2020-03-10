@@ -866,8 +866,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;dc_motor.c: 92:         mL->power = i;
 [e = . *U _mL 0 -> _i `uc ]
 "93
-[; ;dc_motor.c: 93:         mR->power = i - 4;
-[e = . *U _mR 0 -> - _i -> 4 `i `uc ]
+[; ;dc_motor.c: 93:         mR->power = i - 5;
+[e = . *U _mR 0 -> - _i -> 5 `i `uc ]
 "94
 [; ;dc_motor.c: 94:         setMotorPWM(mL);
 [e ( _setMotorPWM (1 _mL ]
@@ -924,8 +924,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;dc_motor.c: 107:         mL->power = i;
 [e = . *U _mL 0 -> _i `uc ]
 "108
-[; ;dc_motor.c: 108:         mR->power = i-4;
-[e = . *U _mR 0 -> - _i -> 4 `i `uc ]
+[; ;dc_motor.c: 108:         mR->power = i-5;
+[e = . *U _mR 0 -> - _i -> 5 `i `uc ]
 "109
 [; ;dc_motor.c: 109:         setMotorPWM(mL);
 [e ( _setMotorPWM (1 _mL ]

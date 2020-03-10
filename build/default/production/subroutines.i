@@ -5302,7 +5302,7 @@ volatile char moveToBeacon(struct DC_motor *mL, struct DC_motor *mR, int speed,
 
 
 
-        if(error_counter >=16500)
+        if(error_counter >=17000)
         {
             move-> move_number += 1;
 
