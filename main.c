@@ -1,21 +1,25 @@
 /*
- * 12/02/20
- * 
- * ECM Final Project main file
- * 
- * This project is to develop the software and hardware for an autonomous
- * bomb disposal robot.
- * 
- * The solution we use involves using one sensor to determine if the bomb is 
- * straight head or not. If straight ahead, move towards the bomb, otherwise
- * sweep for the bomb by turning left. Once RFID is scanned, return home by
- * 'undoing' each previous move.
- * 
- * We use advanced C programming concepts such as structures, pointers,
- * static local variables and type casting where necessary in order to improve, 
- * reliability, memory usage, speed and human readability
- * 
- * Charles Jones & Matteo Ghiringhelli
+ 12/02/20
+ 
+ ECM Final Project main file
+ 
+ This project is to develop the software and hardware for an autonomous
+ bomb disposal robot.
+ 
+ The solution we use involves using one sensor to determine if the bomb is 
+ straight head or not. If straight ahead, move towards the bomb, otherwise
+ sweep for the bomb by turning left. Once RFID is scanned, return home by
+ 'undoing' each previous move.
+ 
+ Because the sweep always turns left, we would rather miss to the right of the
+ beacon so it can adjust faster. For this reason, the robot is biased to
+ slightly curve right when it is moving forwards
+ 
+ We use advanced C programming concepts such as structures, pointers,
+ static local variables and type casting where necessary in order to improve, 
+ reliability, memory usage, speed and human readability
+ 
+ Charles Jones & Matteo Ghiringhelli
  */
 /*****************************************************************************/
 // 'Boilerplate' includes and settings

@@ -33,7 +33,11 @@ void initMotorValues(struct DC_motor *mL, struct DC_motor *mR);
 // the main file. This should be declared privately in future.
 void setMotorPWM(struct DC_motor *m); // function to set PWM
 
-// functions for moving robot
+/* 
+ functions for moving robot
+ Note: we deliberately bias the forward and reverse movements to curve slightly 
+ right becuase we would prefer to miss right than left if we miss the beacon
+*/
 void stop(struct DC_motor *mL, struct DC_motor *mR, int initial_speed);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR, int max_power);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power);

@@ -89,7 +89,11 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, int max_power)
     }
 }
 
-//function to make the robot go straight
+/* 
+ function to make the robot go straight
+ Note: we deliberately bias the movement to curve slightly right becuase we
+ would prefer to miss right than left if we miss the beacon
+*/
 void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
     mL->direction = 1;
@@ -104,7 +108,12 @@ void moveForward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
     }
 }
 
-//function to make the robot go straight
+/*
+ function to make the robot go straight
+ Note: we also bias the robot in this function because we need to 'undo'
+ the effect of the curvilinear path in the forwards one
+*/
+
 void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 {
     mL->direction = 0;
@@ -122,20 +131,21 @@ void moveBackward(struct DC_motor *mL, struct DC_motor *mR, int max_power)
 void initMotorValues(struct DC_motor *mL, struct DC_motor *mR)
 {
     //some code to set initial values of each structure
-mL->power = 0;
-mL->direction = 1;
-mL->dutyLowByte = (unsigned char *)(&PDC0L);
-mL->dutyHighByte = (unsigned char *)(&PDC0H);
-mL->dir_pin=0;
-mL->PWMperiod=199;
+    mL->power = 0;
+    mL->direction = 1;
+    mL->dutyLowByte = (unsigned char *)(&PDC0L);
+    mL->dutyHighByte = (unsigned char *)(&PDC0H);
+    mL->dir_pin=0;
+    mL->PWMperiod=199;
 
-mR->power = 0;
-mR->direction = 1;
-mR->dutyLowByte = (unsigned char *)(&PDC1L);
-mR->dutyHighByte = (unsigned char *)(&PDC1H);
-mR->dir_pin=2;
-mR->PWMperiod=199;
+    mR->power = 0;
+    mR->direction = 1;
+    mR->dutyLowByte = (unsigned char *)(&PDC1L);
+    mR->dutyHighByte = (unsigned char *)(&PDC1H);
+    mR->dir_pin=2;
+    mR->PWMperiod=199;
 
-setMotorPWM(mL);
-setMotorPWM(mR);
+    // set PWM for each motor to prevent random startup values
+    setMotorPWM(mL);
+    setMotorPWM(mR);
 }
