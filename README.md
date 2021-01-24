@@ -5,5 +5,5 @@ This robot autonomously searches for a suspicious infrared-emitting beacon. It t
 
 
 
-![alt text](https://github.com/cj1917/Bomb-Disposal-Robot/blob/master/Bomb_disposal_robot.jpg)
+![alt text](https://github.com/cj1917/Bomb-Disposal-Robot/blob/master/bomb_disposal_robot.jpg)
 
